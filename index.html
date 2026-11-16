@@ -511,6 +511,10 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
 /* первый экран: круг с фото по центру текстового блока */
 @media (min-width:821px){.herosec .hero-photo.pop{position:relative;top:var(--lift,0px);left:var(--shift,0px)}.herosec .hero-text{padding-bottom:0}.herosec .hero{padding-block:72px 64px}}
+
+/* переносы строк только для компьютера (bd) или только для телефона (bm), чтобы RU и KZ занимали одинаково строк */
+@media (max-width:820px){br.bd{display:none}}
+@media (min-width:821px){br.bm{display:none}}
 </style>
 
 <header><div class="wrap hd">
@@ -530,7 +534,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 <section class="band herosec"><div class="wrap hero"><span class="blob" style="width:340px;height:340px;right:6%;top:6%;background:#C9B4F5"></span><span class="blob" style="width:260px;height:260px;right:30%;bottom:0;background:#F2C4E2"></span>
   <div class="hero-text">
     <span class="eyebrow" data-kz="Зәр ұстамау · жатыр түсуі · интимдік эстетика">Недержание · опущение · интимная эстетика</span>
-    <h1 data-kz="Айтуға ұялатын&lt;br&gt;мәселеңізді&lt;br&gt;шешемін">Решаю то, о чём вы боитесь говорить вслух</h1>
+    <h1 data-kz="Айтуға ұялатын&lt;br&gt;мәселеңізді&lt;br&gt;шешемін">Решаю то, о чём<br>вы боитесь<br>говорить вслух</h1>
     <p class="lead" data-kz="Жөтелгенде, күлгенде немесе спорт кезінде зәр тамады ма? Жақындықта сезім азайды ма? Анонимді тесттен өтіп, не істеу керегін біліңіз">Подтекает при кашле, смехе или спорте? Стало меньше ощущений в близости? Пройдите анонимный тест и узнайте, что с этим делать</p>
     <div class="cta"><a class="btn main" href="#test" data-kz="Тесттен өту">Пройти тест</a><a class="btn" href="/app/" data-kz="Тегін жаттықтырғыш">Бесплатный тренажёр</a></div><small class="hint" data-kz="Тест – 2 минут, тіркеусіз. Жаттығулар – күніне 5 минут">Тест – 2 минуты, без имени. Упражнения – 5 минут в день</small>
     <div class="stats">
@@ -548,16 +552,16 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 </div></section>
 
 <section class="pain"><div class="wrap">
-  <div class="head"><h2 data-kz="Сіз жалғыз емессіз, тек бұл туралы үндемейді">Вы не одна, просто об этом молчат</h2></div>
+  <div class="head"><h2 data-kz="Сіз жалғыз емессіз,&lt;br&gt;тек бұл туралы үндемейді">Вы не одна,<br>просто об этом молчат</h2></div>
   <div class="grid2">
-    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/></svg></span><p class="q" data-kz="Жөтелгенде, түшкіргенде зәр тамады">Подтекает при кашле и чихании</p><p class="muted" data-kz="Спорттан бас тартып, күнде төсеніш тағуға тура келеді">Приходится бросать спорт и каждый день носить прокладки</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/></svg></span><p class="q" data-kz="Жөтелгенде, түшкіргенде&lt;br class=&quot;bm&quot;&gt;зәр тамады">Подтекает при кашле<br class="bm">и чихании</p><p class="muted" data-kz="Спорттан бас тартып, күнде төсеніш тағуға тура келеді">Приходится бросать спорт и каждый день носить прокладки</p></div>
     <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><p class="q" data-kz="Жақындықта сезім азайды">Меньше ощущений в близости</p><p class="muted" data-kz="Сондықтан ниет жоғалады, ал жұбайыңызға айтуға ұят">Из-за этого пропадает желание, а сказать партнёру стыдно</p></div>
     <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span><p class="q" data-kz="Анамды, баламды, су көтердім">Таскала маму, детей и воду</p><p class="muted" data-kz="Жеке үйдегі ауыр жұмыс, қатарынан босану – бұлшықет шыдамайды">Тяжести в частном доме, роды одни за другими – мышцы не выдерживают</p></div>
-    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><p class="q" data-kz="Ерте босандым, 30-да ағза көнбейді">Родила рано, а в 30 организм не тянет</p><p class="muted" data-kz="Толық өмір сүргіңіз келеді, бірақ дене қолдамайды">Хочется жить полной жизнью, а тело подводит</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><p class="q" data-kz="Ерте босандым,&lt;br class=&quot;bm&quot;&gt;30-да ағза көнбейді">Родила рано, а в 30 организм не тянет</p><p class="muted" data-kz="Толық өмір сүргіңіз келеді, бірақ дене қолдамайды">Хочется жить полной жизнью, а тело подводит</p></div>
   </div>
   <div class="viz rv">
     <div class="big" data-kz="3-тің 1-і">1 из 3</div>
-    <div><p style="font-weight:700;font-size:18px" data-kz="Босанған әйелдердің шамамен әр үшіншісінде жамбас түбі бұлшықеттері әлсірейді">Примерно у каждой третьей рожавшей женщины ослабевают мышцы тазового дна</p>
+    <div><p style="font-weight:700;font-size:18px" data-kz="Босанғандардың шамамен үштен бірінде&lt;br class=&quot;bd&quot;&gt;жамбас түбі бұлшықеттері әлсірейді">Примерно у каждой третьей рожавшей женщины<br class="bd">ослабевают мышцы тазового дна</p>
     <p class="muted" style="font-size:14px" data-kz="Бұл жиі кездеседі және ерте кезеңде жаттығулармен түзеледі">Это частая история, и на ранней стадии она поправима упражнениями</p>
     <div class="ppl" id="ppl" aria-hidden="true"></div></div>
   </div>
@@ -576,7 +580,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
   <div class="app-text">
     <span class="eyebrow" data-kz="Тегін · анонимді">Бесплатно · анонимно</span>
     <h2 data-kz="Жамбас түбіне арналған жеке қосымша">Личное приложение для мышц тазового дна</h2>
-    <p class="muted" data-kz="Телефонның «Үй» экранына орнатылады, App Store қажет емес. Тіркеусіз, атыңыз бен нөміріңізсіз. Күніне 5 минут, 21 күн – прогресс тек сіздің телефоныңызда сақталады">Ставится на экран «Домой» прямо с сайта, без App Store. Без регистрации, имени и телефона. 5 минут в день, 21 день – прогресс хранится только в вашем телефоне</p>
+    <p class="muted" data-kz="Телефонның «Үй» экранына орнатылады, App Store керек емес. Тіркеусіз, атсыз, нөмірсіз. Күніне 5 минут, 21 күн – прогресс тек телефоныңызда сақталады">Ставится на экран «Домой» прямо с сайта, без App Store. Без регистрации, имени и телефона. 5 минут в день, 21 день – прогресс хранится только в вашем телефоне</p>
     <ul class="perks">
       <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><b data-kz="Бейтарап белгіше">Нейтральная иконка</b><span data-kz="Атауынан ешкім ештеңе түсінбейді">По названию никто ничего не поймёт</span></div></li>
       <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><div><b data-kz="Дәрігер бекіткен жаттығулар">Упражнения от врача</b><span data-kz="Кегель, тыныс алу, цикл күнделігі, мақалалар мен кеңестер">Кегель, дыхание, дневник цикла, статьи и советы</span></div></li>
@@ -648,7 +652,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
 <section id="steps"><div class="wrap">
   <div class="head"><span class="eyebrow" data-kz="Емдеу қалай өтеді">Как проходит лечение</span>
-  <h2 data-kz="Алдымен кеңес, сосын шешім">Сначала консультация, потом решение</h2></div>
+  <h2 data-kz="Алдымен кеңес,&lt;br class=&quot;bm&quot;&gt;сосын шешім">Сначала консультация,<br class="bm">потом решение</h2></div>
   <div class="track" id="track2"><i></i></div>
   <div class="grid3 steps-cards">
     <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg></span><span class="n" data-kz="1-қадам">Шаг 1</span><h3 data-kz="Кеңес">Консультация</h3><p class="muted" data-kz="20 минут, клиникада немесе онлайн">20 минут, в клинике или онлайн</p></div>
@@ -670,13 +674,13 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
 <section id="faq"><div class="wrap">
   <div class="faq-wrap"><div style="min-width:0">
-  <div class="head"><h2 data-kz="Жиі кездесетін қорқыныштар">Частые страхи</h2></div>
+  <div class="head"><h2 data-kz="Жиі қорқыныштар">Частые страхи</h2></div>
   <div class="faq">
     <details><summary data-kz="Тор – бөгде дене ғой. Қауіпті емес пе?">Сетка – это инородное тело. Это опасно?</summary><p data-kz="Алдымен операциясыз әдістерді қолданамыз. Филлерлер уақытша әсер береді, торлы протез – ұзақ мерзімге. Тор қоюдан бұрын міндетті түрде урологқа барасыз. Толығырақ дәрігер қабылдауда айтады">Сначала пробуем методы без операции. Филлеры дают временный эффект, сетчатый протез – надолго. Перед установкой сетки вы обязательно консультируетесь у уролога. Подробно врач расскажет на приёме</p></details>
-    <details><summary data-kz="Маған 35 жас толмаған. Операция жасауға бола ма?">Мне нет 35. Мне можно операцию?</summary><p data-kz="Иә. Алдыңғы пластиканы жас әйелдерге де жасайды. Шешімді дәрігер тексеруден кейін қабылдайды">Да. Переднюю пластику делают и молодым. Решение врач принимает после осмотра</p></details>
+    <details><summary data-kz="35-ке толмадым.&lt;br class=&quot;bm&quot;&gt;Операция бола ма?">Мне нет 35.<br class="bm">Мне можно операцию?</summary><p data-kz="Иә. Алдыңғы пластиканы жас әйелдерге де жасайды. Шешімді дәрігер тексеруден кейін қабылдайды">Да. Переднюю пластику делают и молодым. Решение врач принимает после осмотра</p></details>
     <details><summary data-kz="Кеңеске дейін анализ тапсыру керек пе?">Нужно ли сдавать анализы до консультации?</summary><p data-kz="Жоқ. Анализ керек болса, дәрігер тексеруден кейін айтады">Нет. Если анализы понадобятся, врач скажет после осмотра</p></details>
-    <details><summary data-kz="Онлайн кеңес алуға бола ма?">Можно ли проконсультироваться онлайн?</summary><p data-kz="Иә, онлайн кеңес бар – 10&nbsp;000&nbsp;₸">Да, онлайн-консультация есть – 10&nbsp;000&nbsp;₸</p></details>
-    <details><summary data-kz="Біреу біліп қоя ма?">Узнает ли кто-то, что я обращалась?</summary><p data-kz="Тест анонимді. WhatsApp-тағы хабарламаны тек дәрігер мен оның менеджері көреді">Тест анонимный. Сообщение в WhatsApp видят только врач и её менеджер</p></details>
+    <details><summary data-kz="Онлайн кеңес&lt;br class=&quot;bm&quot;&gt;алуға бола ма?">Можно ли проконсультироваться онлайн?</summary><p data-kz="Иә, онлайн кеңес бар – 10&nbsp;000&nbsp;₸">Да, онлайн-консультация есть – 10&nbsp;000&nbsp;₸</p></details>
+    <details><summary data-kz="Жүгінгенімді&lt;br class=&quot;bm&quot;&gt;біреу біліп қоя ма?">Узнает ли кто-то,<br class="bm">что я обращалась?</summary><p data-kz="Тест анонимді.&lt;br class=&quot;bd&quot;&gt;Хатты тек дәрігер мен оның менеджері көреді">Тест анонимный.<br class="bd">Сообщение в WhatsApp видят только врач и её менеджер</p></details>
   </div></div>
   <div class="faq-side"><img class="cut" src="media/doc-triangle.webp" alt="Юлия Иномовна, гинеколог-хирург" loading="lazy"></div>
   </div>
@@ -707,8 +711,8 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
   <div class="contact">
     <div class="cphoto"><img src="media/doc-smile.webp" alt="Юлия Иномовна в кабинете" loading="lazy"></div>
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
-      <h2 data-kz="Кеңеске жазылыңыз">Запишитесь на консультацию</h2>
-      <p data-kz="WhatsApp-қа жазыңыз – нәзік әрі жылдам жауап береміз. Нөмір: +7 700 111 40 20">Напишите в WhatsApp – ответим деликатно. Номер: <span class="nw">+7&nbsp;700&nbsp;111&nbsp;40&nbsp;20</span></p>
+      <h2 data-kz="Кеңеске&lt;br&gt;жазылыңыз">Запишитесь<br>на консультацию</h2>
+      <p data-kz="WhatsApp-қа жазыңыз – нәзік жауап береміз. Нөмір: &lt;span class=&quot;nw&quot;&gt;+7&amp;nbsp;700&amp;nbsp;111&amp;nbsp;40&amp;nbsp;20&lt;/span&gt;">Напишите в WhatsApp – ответим деликатно. Номер: <span class="nw">+7&nbsp;700&nbsp;111&nbsp;40&nbsp;20</span></p>
       <div class="cta"><a class="btn main" id="wa" href="https://wa.me/77001114020" target="_blank" rel="noopener" data-kz="WhatsApp-қа жазу">Написать в WhatsApp</a></div>
     </div>
     <div class="cinfo">
