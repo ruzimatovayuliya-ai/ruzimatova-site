@@ -390,6 +390,59 @@ a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
 .cphoto img{-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent);max-width:320px}
 
 .band .quiz .btn{border-color:#2E2538;color:#2E2538}.band .quiz .btn.main{background:var(--grad);color:#fff;border-color:transparent}.band .askf .btn.main{background:var(--grad);color:#fff}
+
+.step-btn{align-self:flex-start;margin-top:14px;padding:11px 20px;font-size:15px}
+
+.herosec .hero{padding-block:48px 56px}
+@media (max-width:860px){.herosec .hero{padding-block:24px 40px}.herosec .hero-text{padding-bottom:0}}
+
+@media (max-width:480px){.badge em{font-size:13px;white-space:nowrap}}
+
+.pain-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* v24: тест поярче */
+.quiz{padding:0;overflow:hidden;max-width:880px}
+.quiz .res{padding:32px}
+.qwrap{display:grid;grid-template-columns:220px 1fr;min-height:340px}
+.qside{position:relative;background:var(--grad);color:#fff;padding:28px 24px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.qpet{position:absolute;right:-50px;bottom:-40px;width:230px;height:230px;opacity:.35}
+.qn{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.03em}.qn small{font-size:24px;opacity:.7;margin-left:2px}
+.qlab{opacity:.85;font-weight:600}
+.qdots{display:flex;gap:6px;margin-top:14px}.qdots i{width:22px;height:5px;border-radius:3px;background:#ffffff44;transition:background .3s}.qdots i.d{background:#fff}.qdots i.c{background:#fff;animation:qpulse 1.4s ease-in-out infinite}
+@keyframes qpulse{50%{opacity:.4}}
+.qanon{margin-top:auto;font-size:13px;opacity:.9;position:relative}
+.qmain{padding:30px 32px;display:flex;flex-direction:column}
+.qmain h3{font-size:22px;margin:0 0 4px}
+.qin{animation:qin .4s ease both}@keyframes qin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);transition:border-color .2s,transform .2s,box-shadow .2s}
+.opt:hover{border-color:#B583D6;transform:translateY(-2px);box-shadow:0 10px 22px -14px #8F6BDA}
+.ol{flex:none;width:30px;height:30px;border-radius:10px;background:var(--rose-soft);color:#7A55B8;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.opt:hover .ol{background:var(--grad);color:#fff}
+@media (max-width:700px){.qwrap{grid-template-columns:1fr;min-height:0}.qside{flex-direction:row;align-items:center;gap:12px;padding:16px 20px}.qn{font-size:34px}.qn small{font-size:15px}.qdots{margin:0 0 0 auto}.qdots i{width:12px}.qanon,.qpet{display:none}.qlab{display:none}.qmain{padding:22px 20px}.qmain h3{font-size:19px}}
+
+@media (min-width:821px){#trainer .phone{justify-self:end}.hero-photo.pop{justify-self:end}}
+
+/* v25: экран «Сегодня» без прокрутки */
+.as[data-s=today]{overflow:hidden;gap:8px}
+.as[data-s=today] .acard{padding:10px 12px;gap:6px}
+.as[data-s=today] .hero-c{grid-template-columns:72px 1fr}
+.as[data-s=today] .pring{width:72px;height:72px}
+.as[data-s=today] .acard:has(#a-bars){flex:1 1 0;min-height:56px}
+.as[data-s=today] .bars{flex:1;height:auto;min-height:28px}
+.as[data-s=today] .row2{gap:8px}
+.as[data-s=today] .mini b{font-size:16px}
+.as[data-s=today] .mini small{font-size:10px;line-height:1.3}
+.as[data-s=today] .achip{padding:7px 10px}
+.as[data-s=today] .tip p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.btn.main,.go-app,.nav-app,.fab,.steps-min .num{background-origin:border-box;background-clip:border-box}
+.btn.main{border-color:transparent}
+
+.as[data-s=today] .acard:has(#a-bars){max-height:130px}
+.as[data-s=train]{justify-content:space-evenly;gap:12px}
+.as[data-s=train] .modes{flex:none;margin-bottom:6px}
+.as[data-s=train] .ring{flex:none;margin:6px auto}
+.as[data-s=train] .adesc{min-height:0}
 </style><style>
 html,body{height:100%}
 body{background:#1E1730;margin:0;overflow:hidden}
@@ -401,17 +454,18 @@ body{background:#1E1730;margin:0;overflow:hidden}
 .av{cursor:pointer}
 .inst{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;background:linear-gradient(125deg,#8F6BDA,#E59CC6);color:#fff;border-radius:16px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.35}
 .inst[hidden]{display:none}
-.inst b{font-size:14px}
+.inst b{font-size:13px;cursor:pointer}.inst{padding:9px 12px!important;margin-bottom:8px!important;flex:none}
 .inst span{grid-column:1}
 .inst button{font:700 13px Manrope,sans-serif;border:0;border-radius:10px;padding:8px 12px;background:#fff;color:#7A55B8;cursor:pointer}
 #inst-x{grid-column:2;grid-row:1;background:transparent;color:#fff;font-size:20px;padding:0 4px;justify-self:end}
 #inst-b{grid-column:2;grid-row:2}
+@media (max-height:600px){.as[data-s=today] .tip{display:none}}
 @media (min-width:600px){body{background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6)}.phone{top:24px;bottom:24px;height:auto;max-width:420px;border-radius:36px;overflow:hidden;box-shadow:0 40px 90px -30px #2b1440aa}.scr{border-radius:36px}}
 </style>
 </head><body>
   <div class="phone" aria-label="Приложение «Тонус»">
     <div class="scr">
-      <div class="inst" id="inst" hidden><b data-kz="Телефонға орнатыңыз">Установите на телефон</b><span id="inst-t"></span><button id="inst-b" hidden data-kz="Орнату">Установить</button><button id="inst-x" aria-label="Закрыть">×</button></div>
+      <div class="inst" id="inst" hidden><b id="inst-h" data-kz="📲 Телефонға орнату – қалай?">📲 Установить на телефон – как?</b><span id="inst-t" hidden></span><button id="inst-b" hidden data-kz="Орнату">Установить</button><button id="inst-x" aria-label="Закрыть">×</button></div>
 
       <div class="as on" data-s="today">
         <div class="ahead"><span class="abud" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="abg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B7BE0"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs><rect width="100" height="100" fill="url(#abg)"/><path d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="1"/><path d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><path d="M50 30 C68 46.0 65.3 74.0 50 80 C34.7 74.0 32 46.0 50 30Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.7"/><path d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.55"/><path d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.4"/></svg>
@@ -595,6 +649,7 @@ function instText(){document.getElementById('inst-t').textContent=dp?T('Икон
 if(!standalone&&!ls.get('pf_inst_x',false)){document.getElementById('inst').hidden=false;instText()}
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;document.getElementById('inst-b').hidden=false;instText()});
 document.getElementById('inst-b').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;document.getElementById('inst').hidden=true};
+document.getElementById('inst-h').onclick=()=>{const t=document.getElementById('inst-t');t.hidden=!t.hidden};
 document.getElementById('inst-x').onclick=()=>{document.getElementById('inst').hidden=true;ls.set('pf_inst_x',true)};
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).catch(()=>{});
 let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}

@@ -426,6 +426,28 @@ a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
 @media (max-width:700px){.qwrap{grid-template-columns:1fr;min-height:0}.qside{flex-direction:row;align-items:center;gap:12px;padding:16px 20px}.qn{font-size:34px}.qn small{font-size:15px}.qdots{margin:0 0 0 auto}.qdots i{width:12px}.qanon,.qpet{display:none}.qlab{display:none}.qmain{padding:22px 20px}.qmain h3{font-size:19px}}
 
 @media (min-width:821px){#trainer .phone{justify-self:end}.hero-photo.pop{justify-self:end}}
+
+/* v25: экран «Сегодня» без прокрутки */
+.as[data-s=today]{overflow:hidden;gap:8px}
+.as[data-s=today] .acard{padding:10px 12px;gap:6px}
+.as[data-s=today] .hero-c{grid-template-columns:72px 1fr}
+.as[data-s=today] .pring{width:72px;height:72px}
+.as[data-s=today] .acard:has(#a-bars){flex:1 1 0;min-height:56px}
+.as[data-s=today] .bars{flex:1;height:auto;min-height:28px}
+.as[data-s=today] .row2{gap:8px}
+.as[data-s=today] .mini b{font-size:16px}
+.as[data-s=today] .mini small{font-size:10px;line-height:1.3}
+.as[data-s=today] .achip{padding:7px 10px}
+.as[data-s=today] .tip p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.btn.main,.go-app,.nav-app,.fab,.steps-min .num{background-origin:border-box;background-clip:border-box}
+.btn.main{border-color:transparent}
+
+.as[data-s=today] .acard:has(#a-bars){max-height:130px}
+.as[data-s=train]{justify-content:space-evenly;gap:12px}
+.as[data-s=train] .modes{flex:none;margin-bottom:6px}
+.as[data-s=train] .ring{flex:none;margin:6px auto}
+.as[data-s=train] .adesc{min-height:0}
 </style>
 
 <header><div class="wrap hd">
