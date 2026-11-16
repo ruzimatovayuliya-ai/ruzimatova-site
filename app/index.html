@@ -495,8 +495,16 @@ body{background:#1E1730;margin:0;overflow:hidden}
 #inst-b{grid-column:2;grid-row:2}
 @media (max-height:600px){.as[data-s=today] .tip{display:none}}
 @media (min-width:600px){body{background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6)}.phone{top:24px;bottom:24px;height:auto;max-width:420px;border-radius:36px;overflow:hidden;box-shadow:0 40px 90px -30px #2b1440aa}.scr{border-radius:36px}}
+
+.ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:#3E2F5C;box-shadow:0 8px 24px -8px #0009,inset 0 0 0 1px #ffffff1a;display:flex;align-items:center;justify-content:center;transform:translateY(-70px);opacity:0;pointer-events:none}
+.ptr svg{width:30px;height:30px;overflow:visible}
+.ptr path{stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--p,0)*100)}
+.ptr.go path{animation:ptrdraw 1.6s ease-in-out infinite;animation-delay:calc(var(--i)*.1s)}
+@keyframes ptrdraw{0%{stroke-dashoffset:100;opacity:1}50%{stroke-dashoffset:0;opacity:1}85%,100%{stroke-dashoffset:0;opacity:0}}
+.ptr.back{transition:transform .3s ease,opacity .3s}
 </style>
 </head><body>
+<div class="ptr" id="ptr" aria-hidden="true"><svg viewBox="10 10 80 80" fill="none" stroke="url(#ptrg)" stroke-width="3" stroke-linecap="round"><defs><linearGradient id="ptrg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C9B4F5"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs><path pathLength="100" style="--i:0" d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z"/><path pathLength="100" style="--i:1" d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z"/><path pathLength="100" style="--i:2" d="M50 30 C68 46 65.3 74 50 80 C34.7 74 32 46 50 30Z"/><path pathLength="100" style="--i:3" d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z"/><path pathLength="100" style="--i:4" d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z"/></svg></div>
   <div class="phone" aria-label="Приложение «Тонус»">
     <div class="scr">
       <div class="inst" id="inst" hidden><b id="inst-h" data-kz="📲 Телефонға орнату – қалай?">📲 Установить на телефон – как?</b><span id="inst-t" hidden></span><button id="inst-b" hidden data-kz="Орнату">Установить</button><button id="inst-x" aria-label="Закрыть">×</button></div>
@@ -688,6 +696,16 @@ document.getElementById('inst-x').onclick=()=>{document.getElementById('inst').h
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).catch(()=>{});
 let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
 setLang(start);
+
+/* обновление свайпом вниз */
+(()=>{const el=document.getElementById('ptr');let y0=null,dy=0,busy=false;const TH=70;
+const cur=()=>document.querySelector('.as.on');
+addEventListener('touchstart',e=>{if(busy||e.touches.length!==1)return;const a=cur();if(a&&a.scrollTop>0)return;if(scrollY>0)return;y0=e.touches[0].clientY;dy=0;el.classList.remove('back')},{passive:true});
+addEventListener('touchmove',e=>{if(y0===null)return;dy=Math.max(0,e.touches[0].clientY-y0);if(dy<=0)return;const d=Math.min(dy*.5,TH+20);el.style.transform='translateY('+(d-60)+'px)';el.style.opacity=Math.min(1,d/40);el.style.setProperty('--p',Math.min(1,d/TH))},{passive:true});
+addEventListener('touchend',()=>{if(y0===null)return;y0=null;el.classList.add('back');
+ if(dy*.5>=TH){busy=true;el.style.transform='translateY(16px)';el.style.opacity=1;el.classList.add('go');if(navigator.vibrate)navigator.vibrate(8);setTimeout(()=>location.reload(),900)}
+ else{el.style.transform='';el.style.opacity=0}});
+})();
 
 /* размеры текстов фиксируются по более длинному из RU/KZ, чтобы при смене языка ничего не прыгало */
 function lockSizes(again){
