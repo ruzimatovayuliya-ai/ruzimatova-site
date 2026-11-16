@@ -131,7 +131,7 @@ details p{padding-bottom:18px;color:var(--muted)}
 .askf{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px}
 .askf textarea{font:15px/1.5 var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px;min-height:130px;resize:vertical;width:100%}
 .askf textarea:focus{outline:none;border-color:var(--rose)}
-.err{font-size:13px;color:#C0392B}
+.err{font-size:13px;color:#E46FA8}
 .empty{border:1.5px dashed var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
 @media (max-width:760px){.ask{grid-template-columns:1fr}}
 
@@ -253,7 +253,7 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
 .pring b small{font-size:9px;font-weight:600;color:var(--a-mut);margin-top:3px}
 .kpis{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--a-mut)}
 .kpis b{display:block;color:var(--a-ink);font-size:16px}
-.fire{display:inline-flex;align-items:center;gap:4px;background:#ffffff1f;border-radius:99px;padding:3px 8px;color:#FFD27A;font-weight:700;font-size:11px;width:max-content}
+.fire{display:inline-flex;align-items:center;gap:4px;background:#ffffff1f;border-radius:99px;padding:3px 8px;color:var(--a-acc);font-weight:700;font-size:11px;width:max-content}
 .bars{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:64px}
 .bars div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
 .bars i{display:block;width:100%;border-radius:6px;background:linear-gradient(#C9B4F5,#8E6CE0);min-height:4px;transition:height .8s ease}
@@ -505,6 +505,9 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
 .pring b.pday{flex-direction:row!important;align-items:center!important;font-size:24px;justify-content:center;gap:1px}
 .pring b.pday small{font-size:12px;font-weight:700;margin:6px 0 0}
+
+.kp2 .kpi i svg{width:15px;height:15px}
+.qlock{width:14px;height:14px;vertical-align:-2px}
 </style>
 
 <header><div class="wrap hd">
@@ -588,7 +591,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 </span><div class="grow"><b>Тонус</b><small id="a-date">сегодня</small></div><span class="av" aria-hidden="true">RU</span></div>
         <div class="acard hero-c">
           <div class="pring"><svg viewBox="0 0 100 100"><defs><linearGradient id="pg"><stop offset="0" stop-color="#F2A6C9"/><stop offset="1" stop-color="#C9B4F5"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="a-ring" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/></svg><b class="pday"><span id="a-day">0</span><small>/21</small></b></div>
-          <div class="kpis kp2"><div class="kpi"><i>🔥</i><b id="a-streak">0</b><span data-kz="күн қатарынан">дней подряд</span></div><div class="kpi"><i><svg viewBox="0 0 24 24" fill="none" stroke="#C9B4F5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
+          <div class="kpis kp2"><div class="kpi"><i><svg viewBox="0 0 24 24" fill="none" stroke="#C9B4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.6 3-5.6 3.7-9.3 2.5 1.5 3.4 3.8 3.3 5.6 1-.6 1.7-1.6 1.9-2.9 2 1.6 4.1 4 4.1 6.6 0 3.6-2.6 6.2-6.5 6.2z"/><path d="M12 21c-1.5 0-2.6-1.1-2.6-2.6 0-1.6 1.4-2.4 2.6-4 1.2 1.6 2.6 2.4 2.6 4 0 1.5-1.1 2.6-2.6 2.6z"/></svg></i><b id="a-streak">0</b><span data-kz="күн қатарынан">дней подряд</span></div><div class="kpi"><i><svg viewBox="0 0 24 24" fill="none" stroke="#C9B4F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
         </div>
         <div class="acard"><h4 data-kz="Апта, минут">Неделя, минут</h4><div class="bars" id="a-bars"></div></div>
         <div class="row2">
@@ -772,7 +775,7 @@ const L=a=>lang==='kz'?a[1]:a[0];
 function renderQ(){
   if(qi>=Q.length)return renderRes();
   const it=Q[qi];
-  box.innerHTML='<div class="qwrap"><div class="qside"><svg class="qpet" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width=".8"><path d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z"/><path d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z"/><path d="M50 30 C68 46 65.3 74 50 80 C34.7 74 32 46 50 30Z"/><path d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z"/><path d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z"/></svg><span class="qn">'+(qi+1)+'<small>/'+Q.length+'</small></span><span class="qlab">'+T('вопрос','сұрақ')+'</span><div class="qdots">'+Q.map((_,i)=>'<i class="'+(i<qi?'d':i===qi?'c':'')+'"></i>').join('')+'</div><span class="qanon">🔒 '+T('анонимно','анонимді')+'</span></div><div class="qmain qin"><h3>'+L(it.q)+'</h3><div class="opts">'+it.o.map((o,i)=>'<button class="opt" data-i="'+i+'"><span class="ol">'+'АБВГД'[i]+'</span><span>'+L(o[0])+'</span></button>').join('')+'</div>'+(qi>0?'<button class="back" id="qback">'+T('← Назад','← Артқа')+'</button>':'')+'</div></div>';
+  box.innerHTML='<div class="qwrap"><div class="qside"><svg class="qpet" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width=".8"><path d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z"/><path d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z"/><path d="M50 30 C68 46 65.3 74 50 80 C34.7 74 32 46 50 30Z"/><path d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z"/><path d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z"/></svg><span class="qn">'+(qi+1)+'<small>/'+Q.length+'</small></span><span class="qlab">'+T('вопрос','сұрақ')+'</span><div class="qdots">'+Q.map((_,i)=>'<i class="'+(i<qi?'d':i===qi?'c':'')+'"></i>').join('')+'</div><span class="qanon"><svg class="qlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></svg> '+T('анонимно','анонимді')+'</span></div><div class="qmain qin"><h3>'+L(it.q)+'</h3><div class="opts">'+it.o.map((o,i)=>'<button class="opt" data-i="'+i+'"><span class="ol">'+'АБВГД'[i]+'</span><span>'+L(o[0])+'</span></button>').join('')+'</div>'+(qi>0?'<button class="back" id="qback">'+T('← Назад','← Артқа')+'</button>':'')+'</div></div>';
   box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const o=it.o[+b.dataset.i];hist.push([score,hard]);score+=o[1];if(o[2])hard=true;qi++;renderQ();box.scrollIntoView({block:'nearest'})});
   const bk=document.getElementById('qback');if(bk)bk.onclick=()=>{[score,hard]=hist.pop();qi--;renderQ()};
   typo(box);
@@ -876,9 +879,9 @@ function drawCal(){
 /* статьи */
 const ARTS=[
  ['a','Кегель: как найти нужные мышцы','Кегель: керекті бұлшықетті қалай табу','4',['#F2A6C9','#C9B4F5'],'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>'],
- ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1',['#FFE08A','#F2A6C9'],'<path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/>'],
+ ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1',['#C9B4F5','#F2A6C9'],'<path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/>'],
  ['a','Что нормально после родов, а что – повод к врачу','Босанғаннан кейін не қалыпты, не дәрігерге бару себебі','6',['#B9A2FF','#8E6CE0'],'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
- ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1',['#A6E3D0','#C9B4F5'],'<path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/>'],
+ ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1',['#F2A6C9','#C9B4F5'],'<path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/>'],
  ['n','Врач отвечает на анонимные вопросы каждую неделю','Дәрігер апта сайын анонимді сұрақтарға жауап береді','2',['#F2A6C9','#E46FA8'],'<path d="M5 5h14v10H9l-4 4z"/>'],
  ['a','Спорт и недержание: можно ли бегать и прыгать','Спорт және зәр ұстамау: жүгіруге бола ма','5',['#C9B4F5','#F2A6C9'],'<path d="M13 4a2 2 0 1 0 0 .1M7 21l3-6 3 2v5M10 15l1-5 4 2 3-1"/>']
 ];
