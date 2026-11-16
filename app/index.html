@@ -34,7 +34,7 @@ p{margin:0}
 .muted{color:var(--muted)}
 .nw{white-space:nowrap}
 section{padding-block:56px}
-.eyebrow{font-size:14px;font-weight:700;color:var(--rose-ink);display:inline-flex;align-items:center;gap:8px}.eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+.eyebrow{font-size:14px;font-weight:700;color:var(--rose-ink);display:inline-flex;align-items:center;gap:8px}.eyebrow::before{content:"";width:9px;height:1.5px;border-radius:2px;background:currentColor}
 .head{display:flex;flex-direction:column;gap:10px;max-width:720px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px var(--body);border-radius:999px;padding:14px 26px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer;text-decoration:none;text-align:center}
 .btn.main{background:var(--rose);border-color:var(--rose);color:var(--on-rose)}
@@ -453,6 +453,8 @@ a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
 .as[data-s=cycle] .cal button{aspect-ratio:1;height:min(100%,40px);width:auto;justify-self:center;min-height:22px}
 .as[data-s=cycle] .legend{margin-top:auto;padding-top:6px}
 .as[data-s=cycle]{overflow-y:auto}
+nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-content:center;line-height:1.2}
+.av{width:auto!important;min-width:38px;padding:0 10px;border-radius:999px!important;font-size:11px!important;letter-spacing:.04em}
 </style><style>
 html,body{height:100%}
 body{background:#1E1730;margin:0;overflow:hidden}
@@ -479,7 +481,7 @@ body{background:#1E1730;margin:0;overflow:hidden}
 
       <div class="as on" data-s="today">
         <div class="ahead"><span class="abud" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="abg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B7BE0"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs><rect width="100" height="100" fill="url(#abg)"/><path d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="1"/><path d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><path d="M50 30 C68 46.0 65.3 74.0 50 80 C34.7 74.0 32 46.0 50 30Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.7"/><path d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.55"/><path d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.4"/></svg>
-</span><div class="grow"><b>Тонус</b><small id="a-date">сегодня</small></div><span class="av" aria-hidden="true">Я</span></div>
+</span><div class="grow"><b>Тонус</b><small id="a-date">сегодня</small></div><span class="av" aria-hidden="true">RU</span></div>
         <div class="acard hero-c">
           <div class="pring"><svg viewBox="0 0 100 100"><defs><linearGradient id="pg"><stop offset="0" stop-color="#F2A6C9"/><stop offset="1" stop-color="#C9B4F5"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="a-ring" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/></svg><b><span id="a-day">0</span><small data-kz="21 күннен">из 21 дня</small></b></div>
           <div class="kpis"><span class="fire">🔥 <span id="a-streak">0</span>&nbsp;<span data-kz="күн қатарынан">дней подряд</span></span><div><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
@@ -648,7 +650,7 @@ appRender();
 /* язык из сайта (тот же localStorage) */
 function setLang(l){lang=l;document.documentElement.lang=l==='kz'?'kk':'ru';
   document.querySelectorAll('[data-kz]').forEach(el=>{if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;el.innerHTML=l==='kz'?el.dataset.kz:el.dataset.ru});
-  setMode(mode);appRender();instText();try{localStorage.setItem('lang',l)}catch(e){}}
+  setMode(mode);appRender();instText();document.querySelector('.av').textContent=l==='kz'?'KZ':'RU';try{localStorage.setItem('lang',l)}catch(e){}}
 document.querySelector('.av').title='RU / KZ';
 document.querySelector('.av').onclick=()=>setLang(lang==='ru'?'kz':'ru');
 /* установка на экран «Домой» */
@@ -664,5 +666,27 @@ document.getElementById('inst-x').onclick=()=>{document.getElementById('inst').h
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).catch(()=>{});
 let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
 setLang(start);
+
+/* размеры текстов фиксируются по более длинному из RU/KZ, чтобы при смене языка ничего не прыгало */
+function lockSizes(again){
+  const els=[...document.querySelectorAll('[data-kz]')].filter(el=>el.offsetParent||getComputedStyle(el).position==='fixed');
+  els.forEach(el=>{if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;if(!again){el.style.minWidth='';el.style.minHeight=''}});
+  const m=new Map(),par=new Set();
+  els.forEach(el=>{if(getComputedStyle(el).display==='inline'&&el.parentElement){par.add(el.parentElement);if(!again)el.parentElement.style.minHeight=''}});
+  const all=[...els,...par];
+  for(const v of ['ru','kz']){els.forEach(el=>{el.innerHTML=el.dataset[v]});if(typeof typo==='function')typo(document.body);
+    all.forEach(el=>{const r=el.getBoundingClientRect(),o=m.get(el)||{w:0,h:0};m.set(el,{w:Math.max(o.w,r.width),h:Math.max(o.h,r.height)})})}
+  els.forEach(el=>{el.innerHTML=lang==='kz'?el.dataset.kz:el.dataset.ru});if(typeof typo==='function')typo(document.body);
+  els.forEach(el=>{
+    const d=getComputedStyle(el).display,pd=el.parentElement?getComputedStyle(el.parentElement):null,o=m.get(el);
+    const rowItem=pd&&/flex/.test(pd.display)&&!/column/.test(pd.flexDirection);
+    if(d==='inline')return;
+    if(d.startsWith('inline')||rowItem)el.style.minWidth=Math.ceil(o.w)+'px';
+    else el.style.minHeight=Math.ceil(o.h)+'px'});
+  par.forEach(el=>{if(!els.includes(el))el.style.minHeight=Math.ceil(m.get(el).h)+'px'});
+}
+{let t;const run=()=>{try{lockSizes();lockSizes(1)}catch(e){}};
+ addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(run,200)});
+ (document.fonts?document.fonts.ready:Promise.resolve()).then(run);addEventListener('load',run)}
 </script>
 </body></html>
