@@ -508,6 +508,9 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
 .kp2 .kpi i svg{width:17px;height:17px}
 .qlock{width:14px;height:14px;vertical-align:-2px}
+
+/* первый экран: круг с фото по центру текстового блока */
+@media (min-width:821px){.herosec .hero-photo.pop{position:relative;top:var(--lift,0px)}.herosec .hero-text{padding-bottom:0}.herosec .hero{padding-block:72px 64px}}
 </style>
 
 <header><div class="wrap hd">
@@ -969,6 +972,11 @@ function lockSizes(again){
 {let t;const run=()=>{try{lockSizes();lockSizes(1)}catch(e){}};
  addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(run,200)});
  (document.fonts?document.fonts.ready:Promise.resolve()).then(run);addEventListener('load',run)}
+
+/* центр круга = центр текста слева */
+(function(){const ph=document.querySelector('.herosec .hero-photo.pop'),bg=ph&&ph.querySelector('.pop-bg'),tx=document.querySelector('.herosec .hero-text');if(!ph||!bg||!tx)return;
+ const fit=()=>{ph.style.setProperty('--lift','0px');if(innerWidth<821)return;const k=[...tx.children].filter(e=>e.offsetParent),a={top:k[0].getBoundingClientRect().top,bottom:k[k.length-1].getBoundingClientRect().bottom},c=bg.getBoundingClientRect();const d=(a.top+a.bottom)/2-(c.top+c.bottom)/2;ph.style.setProperty('--lift',Math.round(d)+'px')};
+ fit();addEventListener('resize',fit);addEventListener('load',fit);(document.fonts?document.fonts.ready:Promise.resolve()).then(fit)})();
 </script>
 
 </body></html>
