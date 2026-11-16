@@ -455,6 +455,28 @@ a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
 .as[data-s=cycle]{overflow-y:auto}
 nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-content:center;line-height:1.2}
 .av{width:auto!important;min-width:38px;padding:0 10px;border-radius:999px!important;font-size:11px!important;letter-spacing:.04em}
+
+/* этапы: одинаковые карточки, линия заполняется по очереди, номер «загорается» */
+.steps-min li{position:relative;border-top:0;padding-top:18px}
+.steps-min li::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;border-radius:2px;background:var(--line)}
+.steps-min li::after{content:"";position:absolute;left:0;top:0;height:2px;width:100%;border-radius:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.4,0,.2,1)}
+.steps-min li .num{transform:scale(.6);opacity:.35;transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .4s}
+.steps-min li.in::after{transform:scaleX(1)}
+.steps-min li.in .num{transform:scale(1);opacity:1}
+.steps-min li:nth-child(1)::after{transition-delay:.15s}.steps-min li:nth-child(1) .num{transition-delay:.1s}
+.steps-min li:nth-child(2)::after{transition-delay:1.05s}.steps-min li:nth-child(2) .num{transition-delay:1s}
+.steps-min li:nth-child(3)::after{transition-delay:1.95s}.steps-min li:nth-child(3) .num{transition-delay:1.9s}
+.steps-min li.rv{transition-delay:0s}
+.steps-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px}
+.steps-cta .step-btn{margin:0}
+.steps-cta small{font-weight:700;color:#7A55B8}
+@media (prefers-reduced-motion:reduce){.steps-min li::after{transform:scaleX(1);transition:none}.steps-min li .num{transform:none;opacity:1;transition:none}}
+
+/* шаги лечения в стиле этапов: карточки появляются по очереди за полосой */
+.steps-cards .card:nth-child(2){transition-delay:.35s}.steps-cards .card:nth-child(3){transition-delay:.7s}
+#stages .grid3 .card:nth-child(2){transition-delay:.35s}#stages .grid3 .card:nth-child(3){transition-delay:.7s}
+.steps-cards .card .ico,#stages .card .ico{transition:transform .5s cubic-bezier(.3,1.6,.5,1) .3s}
+.steps-cards .card:not(.in) .ico,#stages .card:not(.in) .ico{transform:scale(.6)}
 </style><style>
 html,body{height:100%}
 body{background:#1E1730;margin:0;overflow:hidden}
