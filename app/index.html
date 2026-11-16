@@ -512,7 +512,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 @media (min-width:821px){br.bm{display:none}}
 
 .bars{position:relative}
-.bars.empty::before{content:attr(data-empty);position:absolute;left:0;right:0;top:0;bottom:22px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:var(--a-mut);opacity:.8;padding:0 12px}
+.bars.bz::before{content:attr(data-empty);position:absolute;left:0;right:0;top:0;bottom:22px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:var(--a-mut);opacity:.8;padding:0 12px}
 </style><style>
 html,body{height:100%}
 html{background:#2B2140}body{background:#2B2140;margin:0;overflow:hidden}
@@ -732,7 +732,7 @@ function appRender(){
   document.getElementById('a-today').textContent=(log[iso(today)]||0)+'/2';
   const wd=lang==='kz'?['Дс','Сс','Ср','Бс','Жм','Сн','Жк']:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
   let h='';for(let i=6;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);const m=(log[iso(d)]||0)*2;h+='<div><i class="'+(m?'':'z')+'" style="height:'+(m?Math.min(100,18+m*8):6)+'%"></i><span>'+wd[(d.getDay()+6)%7]+'</span></div>'}
-  const ab=document.getElementById('a-bars');ab.innerHTML=h;const emp=!/class=""/.test(h);ab.classList.toggle('empty',emp);ab.dataset.empty=T('Здесь появятся минуты ваших тренировок','Мұнда жаттығу минуттарыңыз көрінеді');
+  const ab=document.getElementById('a-bars');ab.innerHTML=h;const emp=!/class=""/.test(h);ab.classList.toggle('bz',emp);ab.dataset.empty=T('Здесь появятся минуты ваших тренировок','Мұнда жаттығу минуттарыңыз көрінеді');
   const info=cycleInfo();
   document.getElementById('a-cyc').textContent=info?T('день '+info.dayOf,info.dayOf+'-күн'):'–';
   document.getElementById('a-cyc2').textContent=info?T('месячные через '+info.inDays+' дн.','етеккірге '+info.inDays+' күн'):T('отметьте месячные','етеккірді белгілеңіз');
