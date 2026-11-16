@@ -483,6 +483,26 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .steps-cards .card .ico,#stages .card .ico{transition:transform .5s cubic-bezier(.3,1.6,.5,1) .3s}
 .steps-cards .card:not(.in) .ico,#stages .card:not(.in) .ico{transform:scale(.6)}
 .as[data-s=today]{justify-content:space-between}
+
+/* обложки: кнопка play не перекрывает лепесток */
+.vid .play{padding:18px}
+.vids .vid:nth-child(1) .play,.vids .vid:nth-child(2) .play{align-items:flex-end;justify-content:flex-end}
+.vids .vid:nth-child(3) .play{align-items:flex-start;justify-content:flex-end}
+.vid .play span{width:56px;height:56px;box-shadow:0 8px 20px -8px #2b144080}
+.vids .vid:nth-child(2) .play span{background:linear-gradient(125deg,#8F6BDA,#E59CC6)}
+.vids .vid:nth-child(2) .play span::after{border-left-color:#fff}
+.vids .vid:nth-child(3){box-shadow:inset 0 0 0 2px #ffffffb0}
+.vids .vid:nth-child(3)::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 2px #ffffffa0;pointer-events:none}
+.vids .vid{box-shadow:0 20px 44px -22px #2b1440aa}
+
+/* показатели рядом с кольцом: две одинаковые строки */
+.kp2{display:flex;flex-direction:column;gap:0;align-self:stretch;justify-content:center}
+.kp2 .kpi{display:flex;align-items:center;gap:8px;padding:7px 0}
+.kp2 .kpi+.kpi{border-top:1px solid #ffffff1f}
+.kp2 .kpi i{flex:none;width:26px;height:26px;border-radius:50%;background:#ffffff1a;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:13px}
+.kp2 .kpi i svg{width:14px;height:14px}
+.kp2 .kpi b{font-size:18px;font-weight:800;line-height:1;min-width:14px}
+.kp2 .kpi span{font-size:12px;color:var(--a-mut);line-height:1.2}
 </style>
 
 <header><div class="wrap hd">
@@ -566,7 +586,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 </span><div class="grow"><b>Тонус</b><small id="a-date">сегодня</small></div><span class="av" aria-hidden="true">RU</span></div>
         <div class="acard hero-c">
           <div class="pring"><svg viewBox="0 0 100 100"><defs><linearGradient id="pg"><stop offset="0" stop-color="#F2A6C9"/><stop offset="1" stop-color="#C9B4F5"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="a-ring" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/></svg><b><span id="a-day">0</span><small data-kz="21 күннен">из 21 дня</small></b></div>
-          <div class="kpis"><span class="fire">🔥 <span id="a-streak">0</span>&nbsp;<span data-kz="күн қатарынан">дней подряд</span></span><div><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
+          <div class="kpis kp2"><div class="kpi"><i>🔥</i><b id="a-streak">0</b><span data-kz="күн қатарынан">дней подряд</span></div><div class="kpi"><i><svg viewBox="0 0 24 24" fill="none" stroke="#C9B4F5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
         </div>
         <div class="acard"><h4 data-kz="Апта, минут">Неделя, минут</h4><div class="bars" id="a-bars"></div></div>
         <div class="row2">
