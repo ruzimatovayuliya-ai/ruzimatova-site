@@ -482,6 +482,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 #stages .grid3 .card:nth-child(2){transition-delay:.35s}#stages .grid3 .card:nth-child(3){transition-delay:.7s}
 .steps-cards .card .ico,#stages .card .ico{transition:transform .5s cubic-bezier(.3,1.6,.5,1) .3s}
 .steps-cards .card:not(.in) .ico,#stages .card:not(.in) .ico{transform:scale(.6)}
+.as[data-s=today]{justify-content:space-between}
 </style>
 
 <header><div class="wrap hd">
@@ -924,7 +925,7 @@ if('IntersectionObserver' in window)new IntersectionObserver(e=>{e[0].isIntersec
 
 /* размеры текстов фиксируются по более длинному из RU/KZ, чтобы при смене языка ничего не прыгало */
 function lockSizes(again){
-  const els=[...document.querySelectorAll('[data-kz]')].filter(el=>el.offsetParent||getComputedStyle(el).position==='fixed');
+  const els=[...document.querySelectorAll('[data-kz]')].filter(el=>!el.closest('[data-nolock]')&&(el.offsetParent||getComputedStyle(el).position==='fixed'));
   els.forEach(el=>{if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;if(!again){el.style.minWidth='';el.style.minHeight=''}});
   const m=new Map(),par=new Set();
   els.forEach(el=>{if(getComputedStyle(el).display==='inline'&&el.parentElement){par.add(el.parentElement);if(!again)el.parentElement.style.minHeight=''}});
