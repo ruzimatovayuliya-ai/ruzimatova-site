@@ -335,6 +335,28 @@ section{background:#fff}
 .contact{background:var(--grad);color:#fff;--ink:#fff;--muted:#ffffffe0;--on-night:#fff;--rose-ink:#fff}
 .contact .btn.main{background:#fff;color:#7A55B8}
 .hero{background:transparent}
+
+/* v20: цветной первый экран, чередование сдвинуто */
+.herosec{padding:0}
+.herosec .hero{padding-block:48px 0}
+.herosec .blob{display:none}
+.herosec .lead,.herosec .stat span,.herosec small{color:#ffffffe6}
+.herosec .stats{border-color:#ffffff40}
+.herosec .hero-text{padding-bottom:48px}
+.herosec .pop-bg{box-shadow:0 30px 60px -25px #3b238066,0 0 0 12px #ffffff26}
+.herosec .badge{--ink:#2E2538;--muted:#786C86;color:#2E2538}
+header{background:color-mix(in srgb,#fff 88%,transparent)}
+.band details{--ink:#2E2538;--muted:#786C86;color:#2E2538;border-color:transparent}
+.band .card .ico,.band details .ico{color:#7A55B8}
+.band .track{--rose-soft:#ffffff40}
+.men.plain{background:#fff;color:#2E2538;--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;--on-night:#2E2538}
+.men.plain::before{display:none}
+.men.plain li .ico{background:var(--rose-soft);color:#7A55B8}
+.men.plain .btn{border-color:#2E2538;color:#2E2538}
+#trainer.band .phone{box-shadow:0 40px 80px -30px #2b144088}
+
+.band .quiz,.band .app .phone~*{--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;color:#2E2538}
+section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150deg,#FAF5FD,#F6EEFA);box-shadow:inset 0 0 0 1px #EFE4F3}
 </style>
 
 <header><div class="wrap hd">
@@ -351,7 +373,7 @@ section{background:#fff}
 </div></header>
 
 <main>
-<div class="wrap hero"><span class="blob" style="width:340px;height:340px;right:6%;top:6%;background:#C9B4F5"></span><span class="blob" style="width:260px;height:260px;right:30%;bottom:0;background:#F2C4E2"></span>
+<section class="band herosec"><div class="wrap hero"><span class="blob" style="width:340px;height:340px;right:6%;top:6%;background:#C9B4F5"></span><span class="blob" style="width:260px;height:260px;right:30%;bottom:0;background:#F2C4E2"></span>
   <div class="hero-text">
     <span class="eyebrow" data-kz="Зәр ұстамау · жатыр түсуі · интимдік эстетика">Недержание · опущение · интимная эстетика</span>
     <h1 data-kz="Айтуға ұялатын мәселеңізді шешемін">Решаю то, о чём вы боитесь говорить вслух</h1>
@@ -369,9 +391,9 @@ section{background:#fff}
     <img class="pop-fg" src="media/hero-pop.webp" alt="Юлия Иномовна готовится к операции">
     <div class="badge"><b data-kz="Алдымен операциясыз">Сначала без операции</b><span data-kz="Ерте кезеңде жаттығулар көмектеседі">На ранних стадиях помогают упражнения</span></div>
   </div>
-</div>
+</div></section>
 
-<section class="band"><div class="wrap">
+<section class="pain"><div class="wrap">
   <div class="head"><h2 data-kz="Сіз жалғыз емессіз, тек бұл туралы үндемейді">Вы не одна, просто об этом молчат</h2></div>
   <div class="grid2">
     <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/></svg></span><p class="q" data-kz="Жөтелгенде, түшкіргенде зәр тамады">Подтекает при кашле и чихании</p><p class="muted" data-kz="Спорттан бас тартып, күнде төсеніш тағуға тура келеді">Приходится бросать спорт и каждый день носить прокладки</p></div>
@@ -388,14 +410,14 @@ section{background:#fff}
 
 </div></section>
 
-<section id="test"><div class="wrap">
+<section id="test" class="band"><div class="wrap">
   <div class="head"><span class="eyebrow" data-kz="Анонимді тест">Анонимный тест</span>
   <h2 data-kz="Бұл қаншалықты маңызды">Насколько это серьёзно</h2>
   <p class="muted" data-kz="6 сұрақ, атыңыз бен нөміріңіз сұралмайды. Нәтижесін тек сіз көресіз">6 вопросов, имя и телефон не спрашиваем. Результат видите только вы</p></div>
   <div class="quiz" id="quiz" aria-live="polite"></div>
 </div></section>
 
-<section id="video" class="band"><div class="wrap">
+<section id="video"><div class="wrap">
   <div class="head"><h2 data-kz="Дәрігер қарапайым тілмен түсіндіреді">Врач объясняет простыми словами</h2></div>
   <div class="vids">
     <div class="vid"><video preload="none" playsinline poster="media/cover1.jpg" src="media/v1.mp4"></video><div class="cap" data-kz="Орнынан тұрғанда зәр тамса">Когда при вставании подтекает моча</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
@@ -405,7 +427,7 @@ section{background:#fff}
   <p class="note" style="margin-top:12px" data-kz="Видеолар орыс тілінде">Видео на русском языке</p>
 </div></section>
 
-<section id="steps"><div class="wrap">
+<section id="steps" class="band"><div class="wrap">
   <div class="head"><span class="eyebrow" data-kz="Емдеу қалай өтеді">Как проходит лечение</span>
   <h2 data-kz="Алдымен кеңес, сосын шешім">Сначала консультация, потом решение</h2></div>
   <div class="grid3">
@@ -424,7 +446,7 @@ section{background:#fff}
   <p class="note" style="margin-top:14px" data-kz="Филлерлер уақытша әсер береді. Ұзақ нәтиже керек болса, дәрігер операцияны талқылайды">Филлеры дают временный эффект. Если нужен результат надолго, врач обсудит операцию</p>
 </div></section>
 
-<section class="men"><div class="wrap">
+<section class="men plain"><div class="wrap">
   <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
     <span class="eyebrow" data-kz="Ерлерге">Для мужчин</span>
     <h2 data-kz="Ол жақындықтан қашқақтаса – мәселе сізде болмауы мүмкін">Если она стала избегать близости – дело может быть не в вас</h2>
@@ -438,7 +460,7 @@ section{background:#fff}
   </ul>
 </div></section>
 
-<section id="faq"><div class="wrap">
+<section id="faq" class="band"><div class="wrap">
   <div class="faq-wrap"><div style="min-width:0">
   <div class="head"><h2 data-kz="Жиі кездесетін қорқыныштар">Частые страхи</h2></div>
   <div class="faq">
@@ -452,7 +474,7 @@ section{background:#fff}
   </div>
 </div></section>
 
-<section id="ask" class="band"><div class="wrap">
+<section id="ask"><div class="wrap">
   <div class="head"><span class="eyebrow" data-kz="Анонимді">Анонимно</span>
   <h2 data-kz="Дәрігерге сұрақ қойыңыз">Задайте вопрос врачу</h2>
   <p class="muted" data-kz="Жеке хабарлама жазуға ұяласыз ба? Сұрағыңызды осында жазыңыз – атсыз және нөмірсіз. Дәрігер аптасына бір рет жауап береді, жауаптар сайтта анонимді жарияланады">Стесняетесь написать в личку? Задайте вопрос здесь – без имени и телефона. Врач отвечает раз в неделю, ответы публикуются на сайте анонимно</p></div>
@@ -472,7 +494,7 @@ section{background:#fff}
   </div>
 </div></section>
 
-<section id="trainer"><div class="wrap app">
+<section id="trainer" class="band"><div class="wrap app">
   <div class="app-text">
     <span class="eyebrow" data-kz="Тегін · анонимді">Бесплатно · анонимно</span>
     <h2 data-kz="Жамбас түбіне арналған жеке қосымша">Личное приложение для мышц тазового дна</h2>
@@ -536,7 +558,7 @@ section{background:#fff}
   </div>
 </div></section>
 
-<section class="band"><div class="wrap review">
+<section><div class="wrap review">
   <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
     <span class="eyebrow" data-kz="Пациенттің пікірі">Отзыв пациентки</span>
     <blockquote>«После операции прошло 3 года. Себя чувствую великолепно! Ни о чём не жалею»</blockquote>
