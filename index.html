@@ -16,8 +16,6 @@
 <link rel="icon" href="media/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="media/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="media/apple-touch-icon.png">
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="apple-mobile-web-app-title" content="Тонус">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head><body>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -357,16 +355,56 @@ header{background:color-mix(in srgb,#fff 88%,transparent)}
 
 .band .quiz,.band .app .phone~*{--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;color:#2E2538}
 section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150deg,#FAF5FD,#F6EEFA);box-shadow:inset 0 0 0 1px #EFE4F3}
+
+/* v21: бейдж ведёт в тренажёр, кнопки приложения */
+a.badge{display:block;text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
+.badge em{display:block;font-style:normal;font-weight:700;color:#7A55B8;margin-top:6px;font-size:14px}
+.app-cta{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 10px}
+.go-app{display:grid;gap:4px;margin:18px 0 6px;padding:16px 18px;border-radius:18px;background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6);color:#fff;text-decoration:none;box-shadow:0 14px 30px -14px #8F6BDA}
+.go-app span{opacity:.9;font-size:14px}.go-app em{font-style:normal;font-weight:700;margin-top:4px}
+
+/* v22: тренажёр – главное действие */
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.herosec .btn:not(.main){border-color:#fff;color:#fff}
+.hint{display:block;margin-top:12px;font-size:13px;color:var(--muted)}
+.nav-app{background:var(--grad);color:#fff!important;border-radius:999px;padding:6px 14px;font-weight:700}
+.mini-link{margin-top:auto;padding-top:8px;font-weight:700;color:#7A55B8;text-decoration:none}
+.fab{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translate(-50%,120px);z-index:20;background:var(--grad);color:#fff;font:700 15px var(--body);text-decoration:none;padding:14px 24px;border-radius:999px;box-shadow:0 14px 30px -10px #5E3FA3aa;transition:transform .35s ease;white-space:nowrap}
+.fab.on{transform:translate(-50%,0)}
+@media (min-width:861px){.fab{display:none}}
+
+/* v23: минимализм */
+.steps-min{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps-min li{display:flex;flex-direction:column;gap:4px;border-top:2px solid var(--line);padding-top:16px}
+.steps-min .num{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.steps-min b{font-size:18px}.steps-min span{color:var(--muted)}.steps-min small{margin-top:6px;font-weight:700;color:#7A55B8}
+@media (max-width:700px){.steps-min{grid-template-columns:1fr;gap:18px}}
+#stages .head{margin-bottom:0}
+.askf.solo{max-width:640px;margin-top:24px}
+
+.phone{position:relative}
+.demo-tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#ffffff55;box-shadow:0 0 0 2px #ffffffaa;opacity:0;pointer-events:none;z-index:5}
+.demo-tap.go{animation:dtap .7s ease-out}
+@keyframes dtap{0%{opacity:0;transform:scale(.4)}30%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+.demo-chip{position:absolute;left:50%;top:-16px;transform:translateX(-50%);white-space:nowrap;background:#fff;color:#7A55B8;font:700 12px var(--body);padding:7px 14px;border-radius:999px;box-shadow:0 10px 24px -10px #5E3FA388;transition:opacity .4s;z-index:6}
+.demo-chip.off{opacity:0}
+#ring.demo{animation:dring 3s ease-in-out infinite}
+@keyframes dring{0%,100%{transform:scale(1)}50%{transform:scale(.82)}}
+
+.cphoto img{-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent);max-width:320px}
+
+.band .quiz .btn{border-color:#2E2538;color:#2E2538}.band .quiz .btn.main{background:var(--grad);color:#fff;border-color:transparent}.band .askf .btn.main{background:var(--grad);color:#fff}
 </style>
 
 <header><div class="wrap hd">
   <div class="logo">Юлия Иномовна<small data-kz="гинеколог-хирург · Алматы">гинеколог-хирург · Алматы</small></div>
   <div class="hr">
     <nav>
+      <a class="nav-app" href="/app/" data-kz="Жаттықтырғыш">Тренажёр</a>
       <a href="#test" data-kz="Тест">Тест</a>
       <a href="#steps" data-kz="Емдеу">Лечение</a>
       <a href="#ask" data-kz="Сұрақтар">Вопросы</a>
-      <a href="#trainer" data-kz="Қосымша">Приложение</a>
     </nav>
     <div class="lang" role="group" aria-label="Язык сайта"><button id="l-ru" aria-pressed="true">RU</button><button id="l-kz" aria-pressed="false">KZ</button></div>
   </div>
@@ -378,7 +416,7 @@ section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150d
     <span class="eyebrow" data-kz="Зәр ұстамау · жатыр түсуі · интимдік эстетика">Недержание · опущение · интимная эстетика</span>
     <h1 data-kz="Айтуға ұялатын мәселеңізді шешемін">Решаю то, о чём вы боитесь говорить вслух</h1>
     <p class="lead" data-kz="Жөтелгенде, күлгенде немесе спорт кезінде зәр тамады ма? Жақындықта сезім азайды ма? Анонимді тесттен өтіп, не істеу керегін біліңіз">Подтекает при кашле, смехе или спорте? Стало меньше ощущений в близости? Пройдите анонимный тест и узнайте, что с этим делать</p>
-    <div class="cta"><a class="btn main" href="#test" data-kz="Тесттен өту">Пройти тест</a><small data-kz="2 минут, атыңыз бен нөміріңізсіз">2 минуты, без имени и телефона</small></div>
+    <div class="cta"><a class="btn main" href="#test" data-kz="Тесттен өту">Пройти тест</a><a class="btn" href="/app/" data-kz="Тегін жаттықтырғыш">Бесплатный тренажёр</a></div><small class="hint" data-kz="Тест – 2 минут, тіркеусіз. Жаттығулар – күніне 5 минут">Тест – 2 минуты, без имени. Упражнения – 5 минут в день</small>
     <div class="stats">
       <div class="stat"><b data-kz="15 жыл"><span class="cnt" data-to="15">15</span> лет</b><span data-kz="тәжірибе">практики</span></div>
       <div class="stat"><b class="nw"><span class="cnt" data-to="1000">1&nbsp;000</span>+</b><span data-kz="операция">операций</span></div>
@@ -389,7 +427,7 @@ section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150d
   <div class="hero-photo pop">
     <div class="pop-bg" style="background-image:linear-gradient(165deg,#E3D5FCeb,#B897E8eb),url(media/hero-bg.jpg)" aria-hidden="true"></div>
     <img class="pop-fg" src="media/hero-pop.webp" alt="Юлия Иномовна готовится к операции">
-    <div class="badge"><b data-kz="Алдымен операциясыз">Сначала без операции</b><span data-kz="Ерте кезеңде жаттығулар көмектеседі">На ранних стадиях помогают упражнения</span></div>
+    <a class="badge" href="/app/"><b data-kz="Алдымен операциясыз">Сначала без операции</b><span data-kz="Ерте кезеңде жаттығулар көмектеседі">На ранних стадиях помогают упражнения</span><em data-kz="Тегін жаттықтырғышты ашу →">Открыть бесплатный тренажёр →</em></a>
   </div>
 </div></section>
 
@@ -417,84 +455,7 @@ section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150d
   <div class="quiz" id="quiz" aria-live="polite"></div>
 </div></section>
 
-<section id="video"><div class="wrap">
-  <div class="head"><h2 data-kz="Дәрігер қарапайым тілмен түсіндіреді">Врач объясняет простыми словами</h2></div>
-  <div class="vids">
-    <div class="vid"><video preload="none" playsinline poster="media/cover1.jpg" src="media/v1.mp4"></video><div class="cap" data-kz="Орнынан тұрғанда зәр тамса">Когда при вставании подтекает моча</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
-    <div class="vid"><video preload="none" playsinline poster="media/cover2.jpg" src="media/v2.mp4"></video><div class="cap" data-kz="Жамбас түбі бұлшықеті әлсіресе">Слабые мышцы тазового дна: признаки</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
-    <div class="vid"><video preload="none" playsinline poster="media/cover3.jpg" src="media/v3.mp4"></video><div class="cap" data-kz="Босанғаннан кейінгі шағымдар">На что жалуются женщины после родов</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
-  </div>
-  <p class="note" style="margin-top:12px" data-kz="Видеолар орыс тілінде">Видео на русском языке</p>
-</div></section>
-
-<section id="steps" class="band"><div class="wrap">
-  <div class="head"><span class="eyebrow" data-kz="Емдеу қалай өтеді">Как проходит лечение</span>
-  <h2 data-kz="Алдымен кеңес, сосын шешім">Сначала консультация, потом решение</h2></div>
-  <div class="grid3">
-    <div class="card line rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14v10H9l-4 4z"/><path d="M9 9h6M9 12h4"/></svg></span><span class="n" data-kz="1-қадам">Шаг 1</span><h3 data-kz="Кеңес">Консультация</h3><p class="muted" data-kz="20 минут, клиникада немесе онлайн. Алдын ала анализ қажет емес">20 минут, в клинике или онлайн. Анализы заранее не нужны</p><div class="meta" style="display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px"><span><b class="nw">20&nbsp;000&nbsp;₸</b> <span class="muted" data-kz="клиникада">в&nbsp;клинике</span></span><span><b class="nw">10&nbsp;000&nbsp;₸</b> <span class="muted" data-kz="онлайн">онлайн</span></span></div></div>
-    <div class="card line rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M9 3h6M7.5 15h9"/></svg></span><span class="n" data-kz="2-қадам">Шаг 2</span><h3 data-kz="Анализ және уролог">Анализы и уролог</h3><p class="muted" data-kz="Қажет болса, дәрігер тексеруден кейін айтады. Тор қоюдан бұрын уролог міндетті">Если нужны, врач скажет после осмотра. Перед установкой сетки – обязательно уролог</p></div>
-    <div class="card line rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h11l-2 4 2 4H6"/></svg></span><span class="n" data-kz="3-қадам">Шаг 3</span><h3 data-kz="Емдеу жоспары">План лечения</h3><p class="muted" data-kz="Жаттығудан операцияға дейін – тек сізге керегі">От упражнений до операции – только то, что нужно именно вам</p></div>
-  </div>
-
-  <div class="head" style="margin-top:56px"><h2 data-kz="Қарапайымнан күрделіге">От простого к сложному</h2></div>
-  <div class="track" id="track"><i></i></div>
-  <div class="grid3">
-    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l8-8"/></svg></span><span class="n" data-kz="1-кезең">Этап 1</span><h3 data-kz="Процедурасыз">Без процедур</h3><p class="muted" data-kz="Кегель жаттығулары, тыныс алу тәжірибелері, гимнастика, дәрі-дәрмек">Упражнения Кегеля, дыхательные практики, гимнастика, таблетки</p></div>
-    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/></svg></span><span class="n" data-kz="2-кезең">Этап 2</span><h3 data-kz="Тіліксіз">Без разрезов</h3><p class="muted" data-kz="Лазерлік жасарту, филлерлер, серіктес дәрігердегі инерефлексотерапия">Лазерное омоложение, филлеры, иглорефлексотерапия у врача‑партнёра</p></div>
-    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="n" data-kz="3-кезең">Этап 3</span><h3 data-kz="Операция">Операция</h3><p class="muted" data-kz="Қынап пластикасы, торлы протез – уролог кеңесінен кейін">Пластика влагалища, сетчатый протез – после консультации уролога</p></div>
-  </div>
-  <p class="note" style="margin-top:14px" data-kz="Филлерлер уақытша әсер береді. Ұзақ нәтиже керек болса, дәрігер операцияны талқылайды">Филлеры дают временный эффект. Если нужен результат надолго, врач обсудит операцию</p>
-</div></section>
-
-<section class="men plain"><div class="wrap">
-  <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
-    <span class="eyebrow" data-kz="Ерлерге">Для мужчин</span>
-    <h2 data-kz="Ол жақындықтан қашқақтаса – мәселе сізде болмауы мүмкін">Если она стала избегать близости – дело может быть не в вас</h2>
-    <p class="muted" data-kz="Босанудан және ауыр жұмыстан кейін әйелдерде күйеуіне де айтуға ұялатын мәселелер пайда болады. Бұл емделеді. Оған анонимді тестті жіберіңіз – ишарасыз, ыңғайсыз әңгімесіз">После родов и тяжёлой работы у женщин появляются проблемы, о которых они стесняются сказать даже мужу. Это лечится. Отправьте ей анонимный тест – без намёков и неловких разговоров</p>
-    <div class="cta"><a class="btn" id="share" href="#" target="_blank" rel="noopener" data-kz="Тестті оған жіберу">Отправить тест ей</a></div>
-  </div>
-  <ul>
-    <li data-kz="Бұл сіздің кінәңіз емес және оның кінәсі емес"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>Это не ваша вина и не её вина</li>
-    <li data-kz="Бұл босанғаннан кейін жиі кездеседі"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>Это часто бывает после родов</li>
-    <li data-kz="Ерте кезеңде операциясыз емделеді"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>На ранних стадиях лечится без операции</li>
-  </ul>
-</div></section>
-
-<section id="faq" class="band"><div class="wrap">
-  <div class="faq-wrap"><div style="min-width:0">
-  <div class="head"><h2 data-kz="Жиі кездесетін қорқыныштар">Частые страхи</h2></div>
-  <div class="faq">
-    <details><summary data-kz="Тор – бөгде дене ғой. Қауіпті емес пе?">Сетка – это инородное тело. Это опасно?</summary><p data-kz="Алдымен операциясыз әдістерді қолданамыз. Филлерлер уақытша әсер береді, торлы протез – ұзақ мерзімге. Тор қоюдан бұрын міндетті түрде урологқа барасыз. Толығырақ дәрігер қабылдауда айтады">Сначала пробуем методы без операции. Филлеры дают временный эффект, сетчатый протез – надолго. Перед установкой сетки вы обязательно консультируетесь у уролога. Подробно врач расскажет на приёме</p></details>
-    <details><summary data-kz="Маған 35 жас толмаған. Операция жасауға бола ма?">Мне нет 35. Мне можно операцию?</summary><p data-kz="Иә. Алдыңғы пластиканы жас әйелдерге де жасайды. Шешімді дәрігер тексеруден кейін қабылдайды">Да. Переднюю пластику делают и молодым. Решение врач принимает после осмотра</p></details>
-    <details><summary data-kz="Кеңеске дейін анализ тапсыру керек пе?">Нужно ли сдавать анализы до консультации?</summary><p data-kz="Жоқ. Анализ керек болса, дәрігер тексеруден кейін айтады">Нет. Если анализы понадобятся, врач скажет после осмотра</p></details>
-    <details><summary data-kz="Онлайн кеңес алуға бола ма?">Можно ли проконсультироваться онлайн?</summary><p data-kz="Иә, онлайн кеңес бар – 10&nbsp;000&nbsp;₸">Да, онлайн-консультация есть – 10&nbsp;000&nbsp;₸</p></details>
-    <details><summary data-kz="Біреу біліп қоя ма?">Узнает ли кто-то, что я обращалась?</summary><p data-kz="Тест анонимді. WhatsApp-тағы хабарламаны тек дәрігер мен оның менеджері көреді">Тест анонимный. Сообщение в WhatsApp видят только врач и её менеджер</p></details>
-  </div></div>
-  <div class="faq-side"><img class="cut" src="media/doc-triangle.webp" alt="Юлия Иномовна, гинеколог-хирург" loading="lazy"></div>
-  </div>
-</div></section>
-
-<section id="ask"><div class="wrap">
-  <div class="head"><span class="eyebrow" data-kz="Анонимді">Анонимно</span>
-  <h2 data-kz="Дәрігерге сұрақ қойыңыз">Задайте вопрос врачу</h2>
-  <p class="muted" data-kz="Жеке хабарлама жазуға ұяласыз ба? Сұрағыңызды осында жазыңыз – атсыз және нөмірсіз. Дәрігер аптасына бір рет жауап береді, жауаптар сайтта анонимді жарияланады">Стесняетесь написать в личку? Задайте вопрос здесь – без имени и телефона. Врач отвечает раз в неделю, ответы публикуются на сайте анонимно</p></div>
-  <div class="ask">
-    <form class="askf" id="askf" novalidate>
-      <label for="q" style="font-weight:700" data-kz="Сіздің сұрағыңыз">Ваш вопрос</label>
-      <textarea id="q" placeholder="Например: после третьих родов подтекает при прыжках. Это пройдёт само?" data-kz-ph="Мысалы: үшінші босанудан кейін секіргенде зәр тамады. Бұл өздігінен өте ме?"></textarea>
-      <p class="err" id="qerr" hidden></p>
-      <button class="btn" type="submit" style="align-self:flex-start" data-kz="Сұрақ жіберу">Отправить вопрос</button>
-      <p class="note" data-kz="Атыңыз, нөміріңіз және аккаунтыңыз сақталмайды">Имя, телефон и аккаунт не сохраняются</p>
-    </form>
-    <div class="empty">
-      <h3 data-kz="Дәрігер жауаптары">Ответы врача</h3>
-      <p class="muted" data-kz="Алғашқы жауаптар іске қосылғаннан кейін осында пайда болады. Басқа әйелдердің сұрақтарынан өзіңізді табасыз">Первые ответы появятся здесь после запуска. В вопросах других женщин вы узнаете себя</p>
-      <span class="soon" data-kz="жақында">скоро здесь</span>
-    </div>
-  </div>
-</div></section>
-
-<section id="trainer" class="band"><div class="wrap app">
+<section id="trainer"><div class="wrap app">
   <div class="app-text">
     <span class="eyebrow" data-kz="Тегін · анонимді">Бесплатно · анонимно</span>
     <h2 data-kz="Жамбас түбіне арналған жеке қосымша">Личное приложение для мышц тазового дна</h2>
@@ -504,7 +465,8 @@ section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150d
       <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><div><b data-kz="Дәрігер бекіткен жаттығулар">Упражнения от врача</b><span data-kz="Кегель, тыныс алу, цикл күнделігі, мақалалар мен кеңестер">Кегель, дыхание, дневник цикла, статьи и советы</span></div></li>
       <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><div><b data-kz="Ақырын еске салу">Тихие напоминания</b><span data-kz="Күніне бір рет, мәтінсіз">Раз в день, без лишних слов</span></div></li>
     </ul>
-    <p class="note" data-kz="Қосымша экранын қазір байқап көріңіз. Жаттығулар жиынтығын дәрігер бекітеді">Экран приложения можно попробовать уже сейчас. Набор упражнений утверждает врач</p>
+    <div class="cta app-cta"><a class="btn main" href="/app/" data-kz="Жаттықтырғышты ашу">Открыть тренажёр</a><a class="btn" href="#test" data-kz="Алдымен тесттен өту">Сначала пройти тест</a></div>
+    <p class="note" data-kz="Тегін, тіркеусіз. Ашылған соң телефонның «Үй» экранына қосыңыз – қосымша сияқты жұмыс істейді">Бесплатно и без регистрации. После открытия добавьте на экран «Домой» – будет работать как приложение</p>
   </div>
   <div class="phone" aria-label="Приложение «Тонус», демо">
     <div class="scr">
@@ -557,6 +519,61 @@ section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150d
     </div>
   </div>
 </div></section>
+<section id="video" class="band"><div class="wrap">
+  <div class="head"><h2 data-kz="Дәрігер қарапайым тілмен түсіндіреді">Врач объясняет простыми словами</h2></div>
+  <div class="vids">
+    <div class="vid"><video preload="none" playsinline poster="media/cover1.jpg" src="media/v1.mp4"></video><div class="cap" data-kz="Орнынан тұрғанда зәр тамса">Когда при вставании подтекает моча</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
+    <div class="vid"><video preload="none" playsinline poster="media/cover2.jpg" src="media/v2.mp4"></video><div class="cap" data-kz="Жамбас түбі бұлшықеті әлсіресе">Слабые мышцы тазового дна: признаки</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
+    <div class="vid"><video preload="none" playsinline poster="media/cover3.jpg" src="media/v3.mp4"></video><div class="cap" data-kz="Босанғаннан кейінгі шағымдар">На что жалуются женщины после родов</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
+  </div>
+  <p class="note" style="margin-top:12px" data-kz="Видеолар орыс тілінде">Видео на русском языке</p>
+</div></section>
+
+<section id="steps"><div class="wrap">
+  <div class="head"><span class="eyebrow" data-kz="Емдеу қалай өтеді">Как проходит лечение</span>
+  <h2 data-kz="Алдымен кеңес, сосын шешім">Сначала консультация, потом решение</h2></div>
+  <ol class="steps-min">
+    <li class="rv"><span class="num">1</span><b data-kz="Кеңес">Консультация</b><span data-kz="20 минут, клиникада немесе онлайн">20 минут, в клинике или онлайн</span><small>20 000 ₸ · <span data-kz="онлайн">онлайн</span> 10 000 ₸</small></li>
+    <li class="rv"><span class="num">2</span><b data-kz="Анализ">Анализы</b><span data-kz="Тек қажет болса – дәрігер айтады">Только если нужны – скажет врач</span></li>
+    <li class="rv"><span class="num">3</span><b data-kz="Емдеу жоспары">План лечения</b><span data-kz="Тек сізге керегі">Только то, что нужно вам</span></li>
+  </ol>
+</div></section>
+<section id="stages" class="band"><div class="wrap">
+  <div class="head"><h2 data-kz="Қарапайымнан күрделіге">От простого к сложному</h2></div>
+  <div class="track" id="track"><i></i></div>
+  <div class="grid3">
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l8-8"/></svg></span><span class="n" data-kz="1-кезең">Этап 1</span><h3 data-kz="Процедурасыз">Без процедур</h3><p class="muted" data-kz="Кегель жаттығулары мен тыныс алу">Упражнения Кегеля и дыхание</p><a class="mini-link" href="/app/" data-kz="Жаттықтырғышта бастау →">Начать в тренажёре →</a></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/></svg></span><span class="n" data-kz="2-кезең">Этап 2</span><h3 data-kz="Тіліксіз">Без разрезов</h3><p class="muted" data-kz="Лазер, филлерлер">Лазер, филлеры</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="n" data-kz="3-кезең">Этап 3</span><h3 data-kz="Операция">Операция</h3><p class="muted" data-kz="Пластика, торлы протез">Пластика, сетчатый протез</p></div>
+  </div>
+</div></section>
+
+
+<section id="faq"><div class="wrap">
+  <div class="faq-wrap"><div style="min-width:0">
+  <div class="head"><h2 data-kz="Жиі кездесетін қорқыныштар">Частые страхи</h2></div>
+  <div class="faq">
+    <details><summary data-kz="Тор – бөгде дене ғой. Қауіпті емес пе?">Сетка – это инородное тело. Это опасно?</summary><p data-kz="Алдымен операциясыз әдістерді қолданамыз. Филлерлер уақытша әсер береді, торлы протез – ұзақ мерзімге. Тор қоюдан бұрын міндетті түрде урологқа барасыз. Толығырақ дәрігер қабылдауда айтады">Сначала пробуем методы без операции. Филлеры дают временный эффект, сетчатый протез – надолго. Перед установкой сетки вы обязательно консультируетесь у уролога. Подробно врач расскажет на приёме</p></details>
+    <details><summary data-kz="Маған 35 жас толмаған. Операция жасауға бола ма?">Мне нет 35. Мне можно операцию?</summary><p data-kz="Иә. Алдыңғы пластиканы жас әйелдерге де жасайды. Шешімді дәрігер тексеруден кейін қабылдайды">Да. Переднюю пластику делают и молодым. Решение врач принимает после осмотра</p></details>
+    <details><summary data-kz="Кеңеске дейін анализ тапсыру керек пе?">Нужно ли сдавать анализы до консультации?</summary><p data-kz="Жоқ. Анализ керек болса, дәрігер тексеруден кейін айтады">Нет. Если анализы понадобятся, врач скажет после осмотра</p></details>
+    <details><summary data-kz="Онлайн кеңес алуға бола ма?">Можно ли проконсультироваться онлайн?</summary><p data-kz="Иә, онлайн кеңес бар – 10&nbsp;000&nbsp;₸">Да, онлайн-консультация есть – 10&nbsp;000&nbsp;₸</p></details>
+    <details><summary data-kz="Біреу біліп қоя ма?">Узнает ли кто-то, что я обращалась?</summary><p data-kz="Тест анонимді. WhatsApp-тағы хабарламаны тек дәрігер мен оның менеджері көреді">Тест анонимный. Сообщение в WhatsApp видят только врач и её менеджер</p></details>
+  </div></div>
+  <div class="faq-side"><img class="cut" src="media/doc-triangle.webp" alt="Юлия Иномовна, гинеколог-хирург" loading="lazy"></div>
+  </div>
+</div></section>
+
+<section id="ask" class="band"><div class="wrap">
+  <div class="head"><span class="eyebrow" data-kz="Анонимді">Анонимно</span>
+  <h2 data-kz="Дәрігерге сұрақ қойыңыз">Задайте вопрос врачу</h2>
+  <p class="muted" data-kz="Атсыз және нөмірсіз. Дәрігер аптасына бір рет жауап береді">Без имени и телефона. Врач отвечает раз в неделю</p></div>
+  <form class="askf solo" id="askf" novalidate>
+    <textarea id="q" aria-label="Ваш вопрос" placeholder="Например: после третьих родов подтекает при прыжках. Это пройдёт само?" data-kz-ph="Мысалы: үшінші босанудан кейін секіргенде зәр тамады. Бұл өздігінен өте ме?"></textarea>
+    <p class="err" id="qerr" hidden></p>
+    <button class="btn main" type="submit" style="align-self:flex-start" data-kz="Сұрақ жіберу">Отправить вопрос</button>
+  </form>
+</div></section>
+
 
 <section><div class="wrap review">
   <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
@@ -584,6 +601,7 @@ section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150d
   </div>
 </div></section>
 </main>
+<a class="fab" id="fab" href="/app/" data-kz="Тегін жаттықтырғыш">Бесплатный тренажёр</a>
 
 <footer class="wrap">
   <p data-kz="Тест пен жаттықтырғыш – алғашқы түсінік үшін ғана, дәрігер кеңесі мен анализдерді алмастырмайды. Қарсы көрсетілімдер бар, маман кеңесі қажет">Тест и тренажёр – для первого понимания и не заменяют консультацию врача и анализы. Есть противопоказания, нужна консультация специалиста</p>
@@ -614,7 +632,7 @@ function setLang(l){
   });
   const q=document.getElementById('q');if(q.dataset.ruPh===undefined)q.dataset.ruPh=q.placeholder;q.placeholder=l==='kz'?q.dataset.kzPh:q.dataset.ruPh;
   document.getElementById('wa').href=waLink(T('Здравствуйте! Я с сайта, хочу записаться на консультацию','Сәлеметсіз бе! Мен сайттан, кеңеске жазылғым келеді'));
-  document.getElementById('share').href='https://wa.me/?text='+encodeURIComponent(T('Посмотри, тут анонимный тест про женское здоровье от гинеколога. Никто не узнает результат: ','Қарашы, гинекологтың әйел денсаулығы туралы анонимді тесті. Нәтижесін ешкім білмейді: ')+location.href.split('#')[0]+'#test');
+  (document.getElementById('share')||{}).href='https://wa.me/?text='+encodeURIComponent(T('Посмотри, тут анонимный тест про женское здоровье от гинеколога. Никто не узнает результат: ','Қарашы, гинекологтың әйел денсаулығы туралы анонимді тесті. Нәтижесін ешкім білмейді: ')+location.href.split('#')[0]+'#test');
   renderQ();setMode(mode);if(typeof appRender==="function")appRender();typo(document.body);
   try{localStorage.setItem('lang',l)}catch(e){}
 }
@@ -649,7 +667,7 @@ let hist=[];
 function renderRes(){
   const k=hard||score>=11?3:score>=5?2:1, r=R[k];
   const msg=T('Здравствуйте! Я с сайта, прошла тест: ','Сәлеметсіз бе! Мен сайттан, тесттен өттім: ')+L(r.code)+T('. Хочу консультацию','. Кеңес алғым келеді');
-  box.innerHTML='<div class="res"><span class="lvl">'+L(r.lvl)+'</span><h3>'+L(r.txt)+'</h3><div class="cta"><a class="btn main" target="_blank" rel="noopener" href="'+waLink(msg)+'">'+T('Обсудить с врачом в WhatsApp','Дәрігермен WhatsApp-та талқылау')+'</a>'+(k===1?'<a class="btn" href="#trainer">'+T('Открыть приложение','Қосымшаны ашу')+'</a>':'')+'</div><p class="note">'+T('Результат теста – не диагноз, точный ответ даст осмотр. Сообщение в WhatsApp уже заполнено – его увидит только врач','Тест нәтижесі – диагноз емес, нақты жауапты тексеру береді. WhatsApp хабарламасы дайын – оны тек дәрігер көреді')+'</p><button class="back" id="again">'+T('Пройти заново','Қайта өту')+'</button></div>';
+  box.innerHTML='<div class="res"><span class="lvl">'+L(r.lvl)+'</span><h3>'+L(r.txt)+'</h3><div class="cta"><a class="btn main" href="/app/?from=test">'+T('Начать упражнения в тренажёре','Жаттықтырғышта бастау')+'</a><a class="btn" target="_blank" rel="noopener" href="'+waLink(msg)+'">'+T('Спросить врача в WhatsApp','Дәрігерден WhatsApp-та сұрау')+'</a></div><p class="note">'+(k===3?T('При такой степени упражнения дополняют лечение, но не заменяют осмотр – лучше показаться врачу. ','Мұндай дәрежеде жаттығу емді толықтырады, бірақ тексеруді алмастырмайды – дәрігерге көріну жақсы. '):k===2?T('Упражнения – хорошее начало, пока вы решаете насчёт консультации. ','Кеңес туралы шешкенше жаттығу – жақсы бастама. '):T('На этой стадии регулярные упражнения часто дают заметный результат. ','Бұл кезеңде тұрақты жаттығу жиі жақсы нәтиже береді. '))+T('Результат теста – не диагноз, точный ответ даст осмотр. Сообщение в WhatsApp уже заполнено – его увидит только врач','Тест нәтижесі – диагноз емес, нақты жауапты тексеру береді. WhatsApp хабарламасы дайын – оны тек дәрігер көреді')+'</p><button class="back" id="again">'+T('Пройти заново','Қайта өту')+'</button></div>';
   document.getElementById('again').onclick=()=>{qi=0;score=0;hard=false;hist=[];renderQ()};
   typo(box);
 }
@@ -793,6 +811,25 @@ appRender();
 
 let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
 setLang(start);
+
+/* плавающая кнопка тренажёра на телефоне */
+(function(){const fab=document.getElementById('fab'),hero=document.querySelector('.herosec'),tr=document.getElementById('trainer');if(!fab||!('IntersectionObserver' in window))return;let h=true,t=false;const up=()=>fab.classList.toggle('on',!h&&!t);
+new IntersectionObserver(e=>{h=e[0].isIntersecting;up()}).observe(hero);new IntersectionObserver(e=>{t=e[0].isIntersecting;up()}).observe(tr)})();
+
+/* демо-анимация мокапа: листает экраны, пока человек не нажмёт сам */
+(function(){const ph=document.querySelector('#trainer .phone');if(!ph||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+const order=['today','train','cycle','read'];let i=0,t=null,stopped=false;
+const tap=document.createElement('span');tap.className='demo-tap';ph.querySelector('.scr').appendChild(tap);
+const chip=document.createElement('span');chip.className='demo-chip';chip.textContent=T('Демо – нажмите, чтобы попробовать','Демо – байқап көру үшін басыңыз');ph.appendChild(chip);
+function step(){i=(i+1)%order.length;const b=ph.querySelector('.atab[data-go="'+order[i]+'"]');
+  const r=b.getBoundingClientRect(),pr=ph.querySelector('.scr').getBoundingClientRect();tap.style.left=(r.left-pr.left+r.width/2)+'px';tap.style.top=(r.top-pr.top+r.height/2)+'px';tap.classList.remove('go');void tap.offsetWidth;tap.classList.add('go');
+  setTimeout(()=>{if(stopped)return;go(order[i]);document.getElementById('ring').classList.toggle('demo',order[i]==='train');const sc=ph.querySelector('.as.on');if(sc){sc.scrollTop=0;setTimeout(()=>{if(!stopped)sc.scrollTo({top:sc.scrollHeight,behavior:'smooth'})},900)}},350)}
+function start(){if(stopped||t)return;t=setInterval(step,3200)}
+function pause(){clearInterval(t);t=null}
+function stop(){if(stopped)return;stopped=true;pause();chip.classList.add('off');tap.remove();document.getElementById('ring').classList.remove('demo')}
+['pointerdown','keydown','wheel','touchstart'].forEach(e=>ph.addEventListener(e,stop,{passive:true}));
+if('IntersectionObserver' in window)new IntersectionObserver(e=>{e[0].isIntersecting?start():pause()},{threshold:.4}).observe(ph);else start();
+})();
 </script>
 
 </body></html>

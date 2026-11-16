@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Тонус</title>
+<meta name="description" content="Упражнения для мышц тазового дна, дневник цикла и советы врача. Анонимно, без регистрации.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2B2140">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Тонус">
+<link rel="manifest" href="/app/manifest.webmanifest">
+<link rel="icon" href="/media/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/media/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style><style>
+/* palette: светлая лаванда, только светлая тема; фото врача – вырезанный PNG без фона; без кругов и рамок */
+/* layout: одна колонка, крупные фото-блоки; тест, вопросы и тренажёр как живые модули; RU/KZ */
+:root{
+  --bg:#FBF7FC; --surface:#FFFFFF; --ink:#2E2538; --muted:#786C86; --line:#EFE4F3;
+  --rose:#A88BE0; --on-rose:#FFFFFF; --rose-soft:#F6EDF8; --rose-ink:#7A55B8; --night:#F3E8F6; --on-night:#2A2338;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-weight:800;letter-spacing:-0.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.08}
+h2{font-size:clamp(24px,3.4vw,36px);line-height:1.15}
+h3{font-size:18px;line-height:1.3}
+p{margin:0}
+.muted{color:var(--muted)}
+.nw{white-space:nowrap}
+section{padding-block:56px}
+.eyebrow{font-size:14px;font-weight:700;color:var(--rose-ink);display:inline-flex;align-items:center;gap:8px}.eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+.head{display:flex;flex-direction:column;gap:10px;max-width:720px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px var(--body);border-radius:999px;padding:14px 26px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer;text-decoration:none;text-align:center}
+.btn.main{background:var(--rose);border-color:var(--rose);color:var(--on-rose)}
+.btn:focus-visible,.opt:focus-visible,.lang button:focus-visible,summary:focus-visible{outline:3px solid var(--rose-ink);outline-offset:3px}
+.soon{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--rose-ink);border:1.5px dashed var(--rose);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.soon::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rose)}
+.band{background:var(--rose-soft)}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font-weight:800;font-size:16px;line-height:1.15}
+.logo small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+nav a{color:var(--ink);text-decoration:none}
+.lang{display:flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font:700 13px var(--body);border:0;background:transparent;color:var(--muted);border-radius:999px;padding:6px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.hr{display:flex;align-items:center;gap:22px}
+@media (max-width:820px){nav{display:none}}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:40px 56px}
+.hero-text{display:flex;flex-direction:column;gap:20px;min-width:0}
+.lead{font-size:18px;color:var(--muted);max-width:30em}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cta small{color:var(--muted);font-size:14px}
+.hero-photo{position:relative;aspect-ratio:1/1;max-width:100%;isolation:isolate;display:flex;align-items:flex-end;justify-content:center}
+.hero-photo::before{content:"";position:absolute;inset:4% 0 0;background:radial-gradient(closest-side at 50% 60%,color-mix(in srgb,var(--rose) 22%,transparent),transparent);z-index:-1}
+.hero-photo img{width:100%;height:auto;max-height:100%;object-fit:contain;object-position:50% 100%;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(#000 80%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(#000 80%,transparent);mask-composite:intersect}
+.badge{position:absolute;left:12%;bottom:4%;right:12%;box-shadow:0 8px 30px color-mix(in srgb,var(--rose) 18%,transparent);background:var(--surface);color:var(--ink);border-radius:16px;padding:12px 16px;font-size:14px;line-height:1.35}
+.badge b{display:block;font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-top:1px solid var(--line);padding-top:22px}
+.stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.hero-photo{order:-1;aspect-ratio:auto}}
+@media (max-width:480px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.card{background:var(--surface);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card.line{border:1px solid var(--line)}
+.card .q{font-weight:700;font-size:17px}
+.card .n{font-size:13px;font-weight:700;color:var(--rose-ink)}
+.card .meta{margin-top:auto;padding-top:8px}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+.note{font-size:13px;color:var(--muted)}
+
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:32px;margin-top:28px;max-width:760px}
+.qtop{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:10px}
+.bar{height:6px;border-radius:3px;background:var(--rose-soft);overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;background:var(--rose);transition:width .3s}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.opt{text-align:left;font:500 15px/1.4 var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer}
+.opt:hover{border-color:var(--rose)}
+@media (max-width:560px){.opts{grid-template-columns:1fr}.quiz{padding:22px}}
+.res{display:flex;flex-direction:column;gap:14px}
+.lvl{display:inline-block;align-self:flex-start;background:var(--rose-soft);color:var(--rose-ink);font-weight:700;font-size:13px;border-radius:999px;padding:6px 12px}
+.back{font:500 14px var(--body);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;align-self:flex-start;margin-top:16px}
+
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.vid{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:9/14;max-width:100%;background:#000}
+.vid video{width:100%;height:100%;object-fit:cover;display:block}
+.vid .cap{position:absolute;left:0;right:0;top:0;padding:16px;color:#fff;font-weight:700;font-size:15px;line-height:1.3;background:linear-gradient(#000a,#0000)}
+.vid .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:transparent;border:0;cursor:pointer}
+.vid .play span{width:64px;height:64px;border-radius:50%;background:#fffffff0;display:flex;align-items:center;justify-content:center}
+.vid .play span::after{content:"";border-left:18px solid #2A2338;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+@media (max-width:760px){.vids{grid-template-columns:1fr 1fr}.vids .vid:last-child{display:none}}
+@media (max-width:420px){.vids{grid-template-columns:1fr}.vids .vid:last-child{display:block}}
+
+.men{background:var(--night);color:var(--on-night)}
+.men .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.men .eyebrow{color:color-mix(in srgb,var(--on-night) 70%,transparent)}
+.men p.muted{color:color-mix(in srgb,var(--on-night) 75%,transparent)}
+.men .btn{border-color:var(--on-night);color:var(--on-night)}
+.men ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.men li{border-top:1px solid color-mix(in srgb,var(--on-night) 20%,transparent);padding-top:12px;font-weight:600}
+@media (max-width:760px){.men .wrap{grid-template-columns:1fr}}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:0 20px}
+details+details{margin-top:10px}
+summary{cursor:pointer;list-style:none;font-weight:700;font-size:16px;padding:18px 28px 18px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:14px;font-size:22px;font-weight:500;color:var(--rose-ink)}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:18px;color:var(--muted)}
+.faq{margin-top:28px;max-width:820px}
+
+.ask{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;align-items:start}
+.askf{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.askf textarea{font:15px/1.5 var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px;min-height:130px;resize:vertical;width:100%}
+.askf textarea:focus{outline:none;border-color:var(--rose)}
+.err{font-size:13px;color:#C0392B}
+.empty{border:1.5px dashed var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+@media (max-width:760px){.ask{grid-template-columns:1fr}}
+
+/* приложение-тренажёр в мокапе: свой внутренний стиль, одинаковый в обеих темах */
+.app{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.app-text{display:flex;flex-direction:column;gap:16px;min-width:0}
+.perks{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.perks li{display:flex;flex-direction:column;gap:2px;padding-left:22px;position:relative}
+.perks li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:50%;background:var(--rose)}
+.perks span{color:var(--muted);font-size:15px}
+.phone{--a-bg:#2B2140;--a-bg2:#3E2F5C;--a-ink:#F4EEFF;--a-mut:#BFB2DA;--a-acc:#C9B4F5;--a-soft:#4A3A6B;
+  justify-self:center;width:min(300px,100%);max-width:100%;aspect-ratio:9/19;border-radius:46px;padding:11px;background:#14101C;box-shadow:0 30px 60px -20px color-mix(in srgb,var(--rose) 45%,transparent),inset 0 0 0 2px #2c2538}
+.scr{height:100%;border-radius:36px;overflow:hidden;background:linear-gradient(170deg,var(--a-bg2),var(--a-bg) 60%);color:var(--a-ink);display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 16px 10px}
+.sbar{width:100%;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;color:var(--a-mut);letter-spacing:.04em}
+.isl{width:76px;height:22px;border-radius:999px;background:#0c0912}
+.ahead{width:100%;display:flex;align-items:center;gap:10px;margin-top:4px}
+.ahead b{display:block;font-size:16px}
+.ahead small{display:block;font-size:11px;color:var(--a-mut)}
+.aicon{width:34px;height:34px;border-radius:10px;background:radial-gradient(circle at 50% 50%,var(--a-bg) 0 28%,var(--a-acc) 30% 46%,transparent 48%),var(--a-soft)}
+.modes{display:flex;gap:6px;background:var(--a-soft);border-radius:999px;padding:3px;align-self:stretch}
+.mode{flex:1;font:600 13px var(--body);border:0;background:transparent;color:var(--a-mut);border-radius:999px;padding:7px 10px;cursor:pointer}
+.mode[aria-pressed="true"]{background:var(--a-ink);color:var(--a-bg)}
+.ring{width:62%;aspect-ratio:1;border-radius:50%;margin-top:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--a-soft);color:var(--a-ink);box-shadow:0 0 0 10px color-mix(in srgb,var(--a-acc) 12%,transparent);transition:transform 1.2s ease,background .6s}
+.ring.squeeze{transform:scale(.8);background:var(--a-acc);color:var(--a-bg)}
+.ring.grow{transform:scale(1.06)}
+.ring b{font-size:38px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.ring span{font-size:13px;font-weight:600}
+.adesc{font-size:12px;line-height:1.45;color:var(--a-mut);text-align:center;min-height:5.8em}
+.abtn{align-self:stretch;font:700 14px var(--body);border:0;border-radius:14px;padding:12px;background:var(--a-acc);color:var(--a-bg);cursor:pointer}
+.abtn:focus-visible,.mode:focus-visible{outline:2px solid var(--a-ink);outline-offset:2px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;align-self:stretch}
+.days i{aspect-ratio:1;border-radius:6px;background:color-mix(in srgb,var(--a-soft) 70%,transparent);font-style:normal;font-size:9px;display:flex;align-items:center;justify-content:center;color:var(--a-mut)}
+.days i.on{background:var(--a-acc);color:var(--a-bg);font-weight:700}
+.atabs{margin-top:auto;align-self:stretch;display:flex;justify-content:space-around;border-top:1px solid var(--a-soft);padding-top:8px;font-size:11px;color:var(--a-mut)}
+.atabs .on{color:var(--a-ink);font-weight:700}
+@media (max-width:820px){.app{grid-template-columns:1fr;gap:36px}}
+
+.review{display:grid;grid-template-columns:minmax(0,760px);gap:32px}
+blockquote{margin:0;font-size:clamp(19px,2.4vw,24px);font-weight:600;line-height:1.4}
+@media (max-width:760px){.review{grid-template-columns:1fr}}
+.contact{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;background:var(--night);color:var(--on-night);border-radius:28px;padding:36px}
+.contact p{color:color-mix(in srgb,var(--on-night) 75%,transparent)}
+.contact .soon{color:var(--on-night);border-color:color-mix(in srgb,var(--on-night) 60%,transparent)}
+.contact .soon::before{background:var(--on-night)}
+.cinfo{display:flex;flex-direction:column;gap:12px;font-size:14px}
+.cinfo div{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid color-mix(in srgb,var(--on-night) 20%,transparent);padding-top:12px}
+@media (max-width:760px){.contact{grid-template-columns:1fr;padding:26px}}
+footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.faq-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:40px;align-items:end}
+.faq-wrap .faq{margin-top:28px}
+.cut{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+.contact{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.75fr)!important;overflow:hidden;padding-bottom:0!important}
+.contact>div:not(.cphoto){padding-bottom:36px}
+.cphoto{order:3;align-self:end;display:flex;justify-content:center}
+.cphoto img{width:100%;max-width:280px;height:auto;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+@media (max-width:860px){.hero-photo img{max-height:400px;width:auto;max-width:100%}.faq-wrap{grid-template-columns:1fr;gap:0}.faq-side{order:-1;max-width:300px;margin:24px auto 0}.contact{grid-template-columns:1fr!important}.cphoto{order:-1}.cphoto img{max-width:230px;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}.contact>div:not(.cphoto){padding-bottom:0}.contact>div:last-child{padding-bottom:26px}}
+
+/* v14: иконки, анимации, визуализации */
+.vid .cap{display:none}
+.vid{box-shadow:0 18px 40px -18px color-mix(in srgb,var(--rose) 60%,transparent);transition:transform .35s ease}
+.vid:hover{transform:translateY(-4px)}
+.vid .play span{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #ffffff99}70%{box-shadow:0 0 0 18px #ffffff00}100%{box-shadow:0 0 0 0 #ffffff00}}
+.ico{width:46px;height:46px;flex:none;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--rose-soft),color-mix(in srgb,var(--rose) 22%,var(--surface)));color:var(--rose-ink)}
+.ico svg{width:24px;height:24px}
+.card .ico{margin-bottom:6px}
+.card{transition:transform .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px color-mix(in srgb,var(--rose) 55%,transparent)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.badge{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.hero-photo::before{animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.6;transform:scale(1.06)}}
+.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55;z-index:-2;pointer-events:none}
+.hero{position:relative;isolation:isolate}
+.viz{margin-top:28px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--surface);border-radius:24px;padding:26px}
+.viz .big{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.03em;background:linear-gradient(120deg,var(--rose),#E59AC4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ppl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ppl i{width:26px;height:34px;display:block;background:var(--line);-webkit-mask:var(--fig) center/contain no-repeat;mask:var(--fig) center/contain no-repeat;transition:background .5s}
+.ppl i.on{background:var(--rose)}
+.viz p{margin:0}
+@media (max-width:600px){.viz{grid-template-columns:1fr;gap:10px}.viz .big{font-size:52px}}
+.track{position:relative;height:6px;border-radius:6px;background:var(--line);margin-top:28px;overflow:hidden}
+.track i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#B9A2FF,var(--rose),#E59AC4);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.track.in i{transform:scaleX(1)}
+.track + .grid3{margin-top:16px}
+.men li{display:flex;gap:12px;align-items:center}
+.men li .ico{width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--on-night) 10%,transparent);color:var(--rose-ink)}
+.men li .ico svg{width:18px;height:18px}
+.perks li{flex-direction:row;gap:14px;padding-left:0;align-items:flex-start}
+.perks li::before{display:none}
+.perks li>div{display:flex;flex-direction:column;gap:2px}
+.perks .ico{width:40px;height:40px;border-radius:12px}
+.perks .ico svg{width:20px;height:20px}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.badge,.hero-photo::before,.vid .play span{animation:none}.track i{transform:none}}
+
+/* приложение «Тонус» */
+.scr{position:relative;gap:0;padding:12px 14px 0;align-items:stretch}
+.sbar{padding:0 4px}
+.as{display:none;flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;flex-direction:column;gap:10px;padding:10px 2px 12px;animation:fadein .35s ease}
+.as::-webkit-scrollbar{display:none}
+.as.on{display:flex}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ahead{margin-top:0}
+.abud{width:34px;height:34px;flex:none;border-radius:10px;overflow:hidden;display:block}
+.abud svg{width:100%;height:100%;display:block}
+.ahead .grow{flex:1}
+.ahead .av{width:30px;height:30px;border-radius:50%;background:var(--a-soft);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--a-acc)}
+.acard{background:color-mix(in srgb,var(--a-soft) 75%,transparent);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.acard h4{margin:0;font-size:12px;font-weight:700;color:var(--a-mut)}
+.hero-c{display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:center;background:linear-gradient(140deg,#6B4FB3,#3E2F5C);}
+.pring{position:relative;width:86px;height:86px}
+.pring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.pring circle{fill:none;stroke-width:9}
+.pring .bg{stroke:#ffffff22}.pring .fg{stroke:url(#pg);stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.pring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;font-weight:800;line-height:1}
+.pring b small{font-size:9px;font-weight:600;color:var(--a-mut);margin-top:3px}
+.kpis{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--a-mut)}
+.kpis b{display:block;color:var(--a-ink);font-size:16px}
+.fire{display:inline-flex;align-items:center;gap:4px;background:#ffffff1f;border-radius:99px;padding:3px 8px;color:#FFD27A;font-weight:700;font-size:11px;width:max-content}
+.bars{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:64px}
+.bars div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.bars i{display:block;width:100%;border-radius:6px;background:linear-gradient(#C9B4F5,#8E6CE0);min-height:4px;transition:height .8s ease}
+.bars i.z{background:#ffffff1a}
+.bars span{font-size:9px;color:var(--a-mut)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini b{font-size:18px;display:block}
+.mini small{font-size:10px;color:var(--a-mut)}
+.cyc-bar{height:6px;border-radius:6px;background:#ffffff1a;overflow:hidden}
+.cyc-bar i{display:block;height:100%;background:linear-gradient(90deg,#F2A6C9,#E46FA8);border-radius:6px}
+.tip{background:linear-gradient(140deg,#F2A6C9,#B794F6);color:#2B1450}
+.tip h4{color:#2B1450aa}
+.tip p{margin:0;font-size:12px;font-weight:600;line-height:1.4}
+.achip{font:700 11px var(--body);border:0;border-radius:10px;padding:8px 10px;background:var(--a-acc);color:var(--a-bg);cursor:pointer}
+.ring{width:58%;margin:4px auto 0}
+.tbtns{display:flex;gap:8px}
+.tbtns .abtn{flex:1}
+.abtn.ghost{background:transparent;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.abtn[hidden]{display:none}
+.days i{font-size:8px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal span{font-size:9px;color:var(--a-mut);padding-bottom:2px}
+.cal button{aspect-ratio:1;border:0;border-radius:50%;background:transparent;color:var(--a-ink);font:600 11px var(--body);cursor:pointer;padding:0}
+.cal button.per{background:linear-gradient(140deg,#F2A6C9,#E46FA8);color:#2B1450}
+.cal button.pred{box-shadow:inset 0 0 0 1.5px #F2A6C9;color:#F2A6C9}
+.cal button.today{outline:1.5px solid var(--a-acc);outline-offset:1px}
+.cal button:disabled{visibility:hidden}
+.legend{display:flex;gap:12px;font-size:10px;color:var(--a-mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chips button{flex:none;border:0;border-radius:99px;padding:6px 11px;font:600 11px var(--body);background:var(--a-soft);color:var(--a-mut);cursor:pointer}
+.chips button.on{background:var(--a-ink);color:var(--a-bg)}
+.art{display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:center;background:color-mix(in srgb,var(--a-soft) 75%,transparent);border-radius:14px;padding:8px}
+.art .th{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#2B1450}
+.art .th svg{width:24px;height:24px}
+.art b{font-size:12px;line-height:1.3;display:block}
+.art small{font-size:10px;color:var(--a-mut)}
+.atabs{margin:0 -14px;padding:8px 6px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:color-mix(in srgb,var(--a-bg) 85%,#000);border-top:1px solid var(--a-soft)}
+.atab{border:0;background:transparent;color:var(--a-mut);font:600 9.5px var(--body);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:2px 0}
+.atab svg{width:19px;height:19px}
+.atab.on{color:var(--a-ink)}
+.atab.on svg{color:var(--a-acc)}
+
+.hero-photo.pop{display:block;aspect-ratio:1000/1125;width:min(100%,500px);justify-self:center;align-self:end}
+.hero-photo.pop::before{display:none}
+.stat b .cnt{font-size:inherit;color:inherit;font-weight:inherit}
+.pop-bg{position:absolute;left:7%;right:7%;bottom:0;aspect-ratio:1;border-radius:50%;background-position:0 0,50% 100%;background-size:100% 100%,116.3% auto;background-repeat:no-repeat;background-blend-mode:normal,normal;box-shadow:0 30px 60px -25px #A985E399,inset 0 0 0 6px #ffffff22}
+.hero-photo.pop .pop-fg{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:fill;
+ -webkit-mask-image:linear-gradient(#000 40%,transparent 60%),radial-gradient(closest-side,#000 99%,transparent 100%);
+ -webkit-mask-size:100% 100%,86% 76.44%;-webkit-mask-position:0 0,50% 100%;-webkit-mask-repeat:no-repeat;-webkit-mask-composite:source-over;
+ mask-image:linear-gradient(#000 40%,transparent 60%),radial-gradient(closest-side,#000 99%,transparent 100%);
+ mask-size:100% 100%,86% 76.44%;mask-position:0 0,50% 100%;mask-repeat:no-repeat;mask-composite:add;
+ filter:drop-shadow(0 18px 24px #2B144040)}
+.hero-photo.pop .badge{left:4%;right:auto;bottom:6%;max-width:72%}
+@media (max-width:860px){.hero-photo.pop{width:min(100%,400px)}.hero-photo.pop .pop-fg{max-height:none;width:100%}}
+
+/* v18: нежная палитра */
+.btn.main{background:linear-gradient(120deg,#C3ADFA,#F4B2D2);border-color:transparent;color:#2E2538;box-shadow:0 10px 24px -12px #C08BD9}
+.btn.main:hover{filter:brightness(1.03)}
+.ico{background:linear-gradient(140deg,#F7EEF9,#ECE2FB)!important;color:#8C66C9!important}
+.blob{opacity:.45}
+
+/* v19: чередование белых и градиентных секций, цвета иконки «Линии» */
+:root{--g1:#8F6BDA;--g2:#E59CC6;--grad:linear-gradient(125deg,var(--g1) 0%,#B583D6 48%,var(--g2) 100%)}
+section{background:#fff}
+.band,.men{background:var(--grad);color:#fff;--ink:#fff;--muted:#ffffffe0;--rose-ink:#fff;--on-night:#fff;position:relative;overflow:hidden}
+.band::before,.men::before{content:"";position:absolute;inset:auto -10% -40% auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,#ffffff2e,transparent);pointer-events:none}
+.band .wrap,.men .wrap{position:relative}
+.band .card,.band .viz,.band .askf,.band .faq-a,.band .opt{--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;color:var(--ink)}
+.band .card .ico,.band .viz .ico{color:#7A55B8}
+.men li .ico{background:#ffffff2e;color:#fff}
+.band .btn,.men .btn{border-color:#fff;color:#fff}
+.btn.main{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 12px 26px -12px #9B6FD0}
+.band .btn.main,.men .btn.main{background:#fff;color:#7A55B8;box-shadow:0 12px 26px -14px #4a2a7a88}
+.band .askf .btn.main{background:var(--grad);color:#fff}
+.viz .big{background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.contact{background:var(--grad);color:#fff;--ink:#fff;--muted:#ffffffe0;--on-night:#fff;--rose-ink:#fff}
+.contact .btn.main{background:#fff;color:#7A55B8}
+.hero{background:transparent}
+
+/* v20: цветной первый экран, чередование сдвинуто */
+.herosec{padding:0}
+.herosec .hero{padding-block:48px 0}
+.herosec .blob{display:none}
+.herosec .lead,.herosec .stat span,.herosec small{color:#ffffffe6}
+.herosec .stats{border-color:#ffffff40}
+.herosec .hero-text{padding-bottom:48px}
+.herosec .pop-bg{box-shadow:0 30px 60px -25px #3b238066,0 0 0 12px #ffffff26}
+.herosec .badge{--ink:#2E2538;--muted:#786C86;color:#2E2538}
+header{background:color-mix(in srgb,#fff 88%,transparent)}
+.band details{--ink:#2E2538;--muted:#786C86;color:#2E2538;border-color:transparent}
+.band .card .ico,.band details .ico{color:#7A55B8}
+.band .track{--rose-soft:#ffffff40}
+.men.plain{background:#fff;color:#2E2538;--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;--on-night:#2E2538}
+.men.plain::before{display:none}
+.men.plain li .ico{background:var(--rose-soft);color:#7A55B8}
+.men.plain .btn{border-color:#2E2538;color:#2E2538}
+#trainer.band .phone{box-shadow:0 40px 80px -30px #2b144088}
+
+.band .quiz,.band .app .phone~*{--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;color:#2E2538}
+section:not(.band) .card,section:not(.band) .viz{background:linear-gradient(150deg,#FAF5FD,#F6EEFA);box-shadow:inset 0 0 0 1px #EFE4F3}
+
+/* v21: бейдж ведёт в тренажёр, кнопки приложения */
+a.badge{display:block;text-decoration:none;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
+.badge em{display:block;font-style:normal;font-weight:700;color:#7A55B8;margin-top:6px;font-size:14px}
+.app-cta{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 10px}
+.go-app{display:grid;gap:4px;margin:18px 0 6px;padding:16px 18px;border-radius:18px;background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6);color:#fff;text-decoration:none;box-shadow:0 14px 30px -14px #8F6BDA}
+.go-app span{opacity:.9;font-size:14px}.go-app em{font-style:normal;font-weight:700;margin-top:4px}
+
+/* v22: тренажёр – главное действие */
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.herosec .btn:not(.main){border-color:#fff;color:#fff}
+.hint{display:block;margin-top:12px;font-size:13px;color:var(--muted)}
+.nav-app{background:var(--grad);color:#fff!important;border-radius:999px;padding:6px 14px;font-weight:700}
+.mini-link{margin-top:auto;padding-top:8px;font-weight:700;color:#7A55B8;text-decoration:none}
+.fab{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translate(-50%,120px);z-index:20;background:var(--grad);color:#fff;font:700 15px var(--body);text-decoration:none;padding:14px 24px;border-radius:999px;box-shadow:0 14px 30px -10px #5E3FA3aa;transition:transform .35s ease;white-space:nowrap}
+.fab.on{transform:translate(-50%,0)}
+@media (min-width:861px){.fab{display:none}}
+
+/* v23: минимализм */
+.steps-min{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;counter-reset:s}
+.steps-min li{display:flex;flex-direction:column;gap:4px;border-top:2px solid var(--line);padding-top:16px}
+.steps-min .num{width:34px;height:34px;border-radius:50%;background:var(--grad);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.steps-min b{font-size:18px}.steps-min span{color:var(--muted)}.steps-min small{margin-top:6px;font-weight:700;color:#7A55B8}
+@media (max-width:700px){.steps-min{grid-template-columns:1fr;gap:18px}}
+#stages .head{margin-bottom:0}
+.askf.solo{max-width:640px;margin-top:24px}
+
+.phone{position:relative}
+.demo-tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#ffffff55;box-shadow:0 0 0 2px #ffffffaa;opacity:0;pointer-events:none;z-index:5}
+.demo-tap.go{animation:dtap .7s ease-out}
+@keyframes dtap{0%{opacity:0;transform:scale(.4)}30%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+.demo-chip{position:absolute;left:50%;top:-16px;transform:translateX(-50%);white-space:nowrap;background:#fff;color:#7A55B8;font:700 12px var(--body);padding:7px 14px;border-radius:999px;box-shadow:0 10px 24px -10px #5E3FA388;transition:opacity .4s;z-index:6}
+.demo-chip.off{opacity:0}
+#ring.demo{animation:dring 3s ease-in-out infinite}
+@keyframes dring{0%,100%{transform:scale(1)}50%{transform:scale(.82)}}
+
+.cphoto img{-webkit-mask-image:linear-gradient(#000 85%,transparent);mask-image:linear-gradient(#000 85%,transparent);max-width:320px}
+
+.band .quiz .btn{border-color:#2E2538;color:#2E2538}.band .quiz .btn.main{background:var(--grad);color:#fff;border-color:transparent}.band .askf .btn.main{background:var(--grad);color:#fff}
+</style><style>
+html,body{height:100%}
+body{background:#1E1730;margin:0;overflow:hidden}
+.phone{position:fixed;inset:0;margin:0 auto;width:100%;max-width:480px;height:100%;height:100dvh;border:0;border-radius:0;padding:0;box-shadow:none;background:none;aspect-ratio:auto}
+.phone::before,.phone::after{display:none}
+.scr{border-radius:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 0;font-size:15px}
+.atabs{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 12px);margin:0 -16px}
+.atab{font-size:11px}.atab svg{width:22px;height:22px}
+.av{cursor:pointer}
+.inst{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;background:linear-gradient(125deg,#8F6BDA,#E59CC6);color:#fff;border-radius:16px;padding:12px 14px;margin-bottom:10px;font-size:13px;line-height:1.35}
+.inst[hidden]{display:none}
+.inst b{font-size:14px}
+.inst span{grid-column:1}
+.inst button{font:700 13px Manrope,sans-serif;border:0;border-radius:10px;padding:8px 12px;background:#fff;color:#7A55B8;cursor:pointer}
+#inst-x{grid-column:2;grid-row:1;background:transparent;color:#fff;font-size:20px;padding:0 4px;justify-self:end}
+#inst-b{grid-column:2;grid-row:2}
+@media (min-width:600px){body{background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6)}.phone{top:24px;bottom:24px;height:auto;max-width:420px;border-radius:36px;overflow:hidden;box-shadow:0 40px 90px -30px #2b1440aa}.scr{border-radius:36px}}
+</style>
+</head><body>
+  <div class="phone" aria-label="Приложение «Тонус»">
+    <div class="scr">
+      <div class="inst" id="inst" hidden><b data-kz="Телефонға орнатыңыз">Установите на телефон</b><span id="inst-t"></span><button id="inst-b" hidden data-kz="Орнату">Установить</button><button id="inst-x" aria-label="Закрыть">×</button></div>
+
+      <div class="as on" data-s="today">
+        <div class="ahead"><span class="abud" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><linearGradient id="abg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B7BE0"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs><rect width="100" height="100" fill="url(#abg)"/><path d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="1"/><path d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><path d="M50 30 C68 46.0 65.3 74.0 50 80 C34.7 74.0 32 46.0 50 30Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.7"/><path d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.55"/><path d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" opacity="0.4"/></svg>
+</span><div class="grow"><b>Тонус</b><small id="a-date">сегодня</small></div><span class="av" aria-hidden="true">Я</span></div>
+        <div class="acard hero-c">
+          <div class="pring"><svg viewBox="0 0 100 100"><defs><linearGradient id="pg"><stop offset="0" stop-color="#F2A6C9"/><stop offset="1" stop-color="#C9B4F5"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="a-ring" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/></svg><b><span id="a-day">0</span><small data-kz="21 күннен">из 21 дня</small></b></div>
+          <div class="kpis"><span class="fire">🔥 <span id="a-streak">0</span>&nbsp;<span data-kz="күн қатарынан">дней подряд</span></span><div><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
+        </div>
+        <div class="acard"><h4 data-kz="Апта, минут">Неделя, минут</h4><div class="bars" id="a-bars"></div></div>
+        <div class="row2">
+          <div class="acard mini"><h4 data-kz="Цикл">Цикл</h4><b id="a-cyc">–</b><small id="a-cyc2">отметьте месячные</small><div class="cyc-bar"><i id="a-cycbar" style="width:0"></i></div></div>
+          <div class="acard mini"><h4 data-kz="Бүгін">Сегодня</h4><b id="a-today">0/2</b><small data-kz="жаттығу">подхода</small><button class="achip" data-go="train" data-kz="Бастау">Начать</button></div>
+        </div>
+        <div class="acard tip"><h4 data-kz="Күн кеңесі">Совет дня</h4><p id="a-tip"></p></div>
+      </div>
+
+      <div class="as" data-s="train">
+        <div class="modes" role="group" aria-label="Упражнение">
+          <button class="mode" id="m-kegel" aria-pressed="true" data-kz="Кегель">Кегель</button>
+          <button class="mode" id="m-breath" aria-pressed="false" data-kz="Тыныс алу">Дыхание</button>
+        </div>
+        <div class="ring" id="ring"><b id="tn">10</b><span id="tl">повторов</span></div>
+        <p class="adesc" id="tdesc"></p>
+        <div class="tbtns"><button class="abtn" id="tbtn" data-kz="Жаттығуды бастау">Начать подход</button><button class="abtn ghost" id="tstop" hidden data-kz="Тоқтату">Стоп</button></div>
+        <div class="days" id="days"></div>
+      </div>
+
+      <div class="as" data-s="cycle">
+        <div class="ahead"><div class="grow"><b data-kz="Цикл күнделігі">Дневник цикла</b><small id="c-month"></small></div></div>
+        <div class="acard"><div class="cal" id="cal"></div><div class="legend"><span><i style="background:#E46FA8"></i><span data-kz="етеккір">месячные</span></span><span><i style="box-shadow:inset 0 0 0 1.5px #F2A6C9"></i><span data-kz="болжам">прогноз</span></span></div></div>
+        <div class="acard mini"><h4 data-kz="Келесі етеккір">Следующие месячные</h4><b id="c-next">–</b><small id="c-hint">Нажмите на дни месячных – приложение посчитает цикл</small></div>
+      </div>
+
+      <div class="as" data-s="read">
+        <div class="ahead"><div class="grow"><b data-kz="Кеңестер">Полезное</b><small data-kz="дәрігерден">от врача</small></div></div>
+        <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="t" data-kz="Кеңестер">Советы</button><button data-f="n" data-kz="Жаңалықтар">Новости</button></div>
+        <div id="arts" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+
+      <nav class="atabs" aria-label="Разделы приложения">
+        <button class="atab on" data-go="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg><span data-kz="Бүгін">Сегодня</span></button>
+        <button class="atab" data-go="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><span data-kz="Жаттығу">Тренировка</span></button>
+        <button class="atab" data-go="cycle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><span data-kz="Цикл">Цикл</span></button>
+        <button class="atab" data-go="read"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h4"/></svg><span data-kz="Кеңестер">Полезное</span></button>
+      </nav>
+    </div>
+  </div>
+
+<script>
+let lang='ru';
+const T=(ru,kz)=>lang==='kz'?kz:ru;
+const WA='77001114020';
+const waLink=t=>'https://wa.me/'+WA+'?text='+encodeURIComponent(t);
+
+/* типографика: короткие предлоги и союзы не висят в конце строки */
+const SHORT=/(?<=^|[\s(« ])(в|во|и|о|об|на|с|со|к|ко|у|не|ни|от|до|за|по|а|из|без|для|или|при|но|что|как|мы|вы|её|это|және|мен|бен|пен|тек)[ \t\n]+/giu;
+function typo(root){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&/SCRIPT|STYLE|TEXTAREA/.test(n.parentElement.tagName)?2:1});
+  let n;while((n=w.nextNode())){const v=n.nodeValue.replace(SHORT,'$1 ').replace(/ ([–—]) /g,' $1 ');if(v!==n.nodeValue)n.nodeValue=v}
+}
+
+const L=a=>lang==='kz'?a[1]:a[0];
+/* приложение «Тонус» */
+const ring=document.getElementById('ring'),tn=document.getElementById('tn'),tl=document.getElementById('tl'),tbtn=document.getElementById('tbtn'),tstop=document.getElementById('tstop'),days=document.getElementById('days'),tdesc=document.getElementById('tdesc');
+const MODES={
+ kegel:{reps:10,a:[5000,['сжать','қысу'],'squeeze'],b:[5000,['расслабить','босату'],''],d:['Сжимайте мышцы, когда круг сжимается, и расслабляйте, когда он раскрывается. Никто вокруг не заметит – можно делать в пробке или на работе','Шеңбер кішірейгенде бұлшықетті қысып, ашылғанда босатыңыз. Айналадағылар байқамайды – кептелісте немесе жұмыста жасауға болады']},
+ breath:{reps:8,a:[4000,['вдох','дем алу'],'grow'],b:[6000,['выдох, подтянуть','дем шығару, тарту'],'squeeze'],d:['Медленный вдох животом, пока круг растёт. На выдохе мягко подтяните мышцы тазового дна. Делайте сидя или лёжа','Шеңбер үлкейгенде іштен баяу дем алыңыз. Дем шығарғанда жамбас түбі бұлшықеттерін ақырын тартыңыз. Отырып немесе жатып жасаңыз']}
+};
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=new Date();today.setHours(0,0,0,0);
+let log=ls.get('pf_log',{});            // дата -> число подходов
+let per=ls.get('pf_cycle',[]);          // даты месячных
+let mode='kegel',running=false,paused=false,stopF=false;
+const totalSets=()=>Object.values(log).reduce((a,b)=>a+b,0);
+const doneDays=()=>Object.keys(log).filter(k=>log[k]>0).length;
+function streak(){let n=0;const d=new Date(today);if(!log[iso(d)])d.setDate(d.getDate()-1);while(log[iso(d)]){n++;d.setDate(d.getDate()-1)}return n}
+function drawDays(){const n=Math.min(21,doneDays());days.innerHTML=Array.from({length:21},(_,i)=>'<i class="'+(i<n?'on':'')+'">'+(i+1)+'</i>').join('')}
+function setMode(m){if(running)return;mode=m;const M=MODES[m];
+  document.getElementById('m-kegel').setAttribute('aria-pressed',m==='kegel');document.getElementById('m-breath').setAttribute('aria-pressed',m==='breath');
+  tdesc.textContent=L(M.d);tn.textContent=M.reps;tl.textContent=T('повторов','рет');ring.className='ring';typo(tdesc)}
+document.getElementById('m-kegel').onclick=()=>setMode('kegel');
+document.getElementById('m-breath').onclick=()=>setMode('breath');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function wait(ms){let t=0;while(t<ms){if(stopF)throw 'stop';await sleep(100);if(!paused)t+=100}}
+function idle(msg){running=false;paused=false;stopF=false;tstop.hidden=true;tbtn.textContent=msg;ring.className='ring'}
+tbtn.onclick=async()=>{
+  if(running){paused=!paused;tbtn.textContent=paused?T('Продолжить','Жалғастыру'):T('Пауза','Үзіліс');ring.style.transitionDuration=paused?'0s':'';return}
+  running=true;paused=false;stopF=false;tstop.hidden=false;tbtn.textContent=T('Пауза','Үзіліс');const M=MODES[mode];
+  try{
+    for(let rep=M.reps;rep>0;rep--){tn.textContent=rep;
+      for(const ph of [M.a,M.b]){tl.textContent=L(ph[1]);ring.className='ring'+(ph[2]?' '+ph[2]:'');await wait(ph[0])}}
+    tn.textContent='✓';tl.textContent=T('подход готов','дайын');
+    const k=iso(today);log[k]=(log[k]||0)+1;ls.set('pf_log',log);drawDays();appRender();
+    idle(T('Ещё подход','Тағы бір рет'));ring.className='ring';
+  }catch(e){idle(T('Начать подход','Жаттығуды бастау'));setMode(mode)}
+};
+tstop.onclick=()=>{stopF=true;paused=false};
+
+/* экраны */
+function go(sc){if(running&&sc!=='train'){} document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+
+/* цикл */
+let calM=new Date(today.getFullYear(),today.getMonth(),1);
+function cycleInfo(){
+  const ds=[...per].sort();if(!ds.length)return null;
+  const starts=[];let prev=null;for(const d of ds){const t=new Date(d+'T00:00');if(!prev||(t-prev)/864e5>2)starts.push(t);prev=t}
+  let len=28;if(starts.length>1){const g=[];for(let i=1;i<starts.length;i++)g.push((starts[i]-starts[i-1])/864e5);const avg=Math.round(g.reduce((a,b)=>a+b,0)/g.length);if(avg>=21&&avg<=40)len=avg}
+  const last=starts[starts.length-1];const next=new Date(last);next.setDate(next.getDate()+len);
+  while(next<today)next.setDate(next.getDate()+len);
+  const dayOf=Math.floor((today-last)/864e5)%len+1;
+  return{len,next,inDays:Math.round((next-today)/864e5),dayOf}
+}
+const MON=[['январь','ақпан'],['февраль','ақпан'],['март','наурыз'],['апрель','сәуір'],['май','мамыр'],['июнь','маусым'],['июль','шілде'],['август','тамыз'],['сентябрь','қыркүйек'],['октябрь','қазан'],['ноябрь','қараша'],['декабрь','желтоқсан']];
+MON[0][1]='қаңтар';
+function drawCal(){
+  const c=document.getElementById('cal'),info=cycleInfo();
+  document.getElementById('c-month').textContent=L(MON[calM.getMonth()])+' '+calM.getFullYear();
+  const wd=lang==='kz'?['Дс','Сс','Ср','Бс','Жм','Сн','Жк']:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  let h=wd.map(w=>'<span>'+w+'</span>').join('');
+  const first=(calM.getDay()+6)%7,dim=new Date(calM.getFullYear(),calM.getMonth()+1,0).getDate();
+  for(let i=0;i<first;i++)h+='<button disabled></button>';
+  const pred=new Set();if(info){for(let k=0;k<5;k++){const d=new Date(info.next);d.setDate(d.getDate()+k);pred.add(iso(d))}}
+  for(let d=1;d<=dim;d++){const dt=new Date(calM.getFullYear(),calM.getMonth(),d),k=iso(dt);
+    const cl=[per.includes(k)?'per':'',!per.includes(k)&&pred.has(k)?'pred':'',k===iso(today)?'today':''].join(' ');
+    h+='<button class="'+cl+'" data-d="'+k+'" aria-label="'+d+'">'+d+'</button>'}
+  c.innerHTML=h;
+  c.querySelectorAll('button[data-d]').forEach(b=>b.onclick=()=>{const k=b.dataset.d;per=per.includes(k)?per.filter(x=>x!==k):[...per,k];ls.set('pf_cycle',per);drawCal();appRender()});
+  document.getElementById('c-next').textContent=info?(info.inDays===0?T('сегодня','бүгін'):T('через '+info.inDays+' дн.',info.inDays+' күннен кейін')):'–';
+  document.getElementById('c-hint').textContent=info?T('Средний цикл '+info.len+' дней · день '+info.dayOf,'Орташа цикл '+info.len+' күн · '+info.dayOf+'-күн'):T('Нажмите на дни месячных – приложение посчитает цикл','Етеккір күндерін басыңыз – қосымша циклді есептейді');
+}
+
+/* статьи */
+const ARTS=[
+ ['a','Кегель: как найти нужные мышцы','Кегель: керекті бұлшықетті қалай табу','4',['#F2A6C9','#C9B4F5'],'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>'],
+ ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1',['#FFE08A','#F2A6C9'],'<path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/>'],
+ ['a','Что нормально после родов, а что – повод к врачу','Босанғаннан кейін не қалыпты, не дәрігерге бару себебі','6',['#B9A2FF','#8E6CE0'],'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
+ ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1',['#A6E3D0','#C9B4F5'],'<path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/>'],
+ ['n','Врач отвечает на анонимные вопросы каждую неделю','Дәрігер апта сайын анонимді сұрақтарға жауап береді','2',['#F2A6C9','#E46FA8'],'<path d="M5 5h14v10H9l-4 4z"/>'],
+ ['a','Спорт и недержание: можно ли бегать и прыгать','Спорт және зәр ұстамау: жүгіруге бола ма','5',['#C9B4F5','#F2A6C9'],'<path d="M13 4a2 2 0 1 0 0 .1M7 21l3-6 3 2v5M10 15l1-5 4 2 3-1"/>']
+];
+let artF='all';
+function drawArts(){const box=document.getElementById('arts');
+  const tag={a:['статья','мақала'],t:['совет','кеңес'],n:['новость','жаңалық']};
+  box.innerHTML=ARTS.filter(a=>artF==='all'||a[0]===artF).map(a=>'<div class="art"><span class="th" style="background:linear-gradient(140deg,'+a[4][0]+','+a[4][1]+')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+a[5]+'</svg></span><div><b>'+(lang==='kz'?a[2]:a[1])+'</b><small>'+L(tag[a[0]])+' · '+a[3]+T(' мин',' мин')+'</small></div></div>').join('');typo(box)}
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{artF=b.dataset.f;document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x===b));drawArts()});
+
+/* дашборд */
+const TIPS=[['Делайте подход в одно и то же время – например, после чистки зубов. Так привычка закрепится быстрее','Жаттығуды бір уақытта жасаңыз – мысалы, тіс тазалағаннан кейін. Әдет тезірек қалыптасады'],['Не задерживайте дыхание во время упражнений – дышите ровно','Жаттығу кезінде тынысты ұстамаңыз – бірқалыпты дем алыңыз'],['Пейте воду в течение дня понемногу, а не залпом вечером','Суды кешке бірден емес, күні бойы аздап ішіңіз']];
+function appRender(){
+  const n=Math.min(21,doneDays());document.getElementById('a-day').textContent=n;
+  document.getElementById('a-ring').style.strokeDashoffset=263.9*(1-n/21);
+  document.getElementById('a-streak').textContent=streak();document.getElementById('a-sets').textContent=totalSets();
+  document.getElementById('a-today').textContent=(log[iso(today)]||0)+'/2';
+  const wd=lang==='kz'?['Дс','Сс','Ср','Бс','Жм','Сн','Жк']:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  let h='';for(let i=6;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);const m=(log[iso(d)]||0)*2;h+='<div><i class="'+(m?'':'z')+'" style="height:'+(m?Math.min(100,18+m*8):6)+'%"></i><span>'+wd[(d.getDay()+6)%7]+'</span></div>'}
+  document.getElementById('a-bars').innerHTML=h;
+  const info=cycleInfo();
+  document.getElementById('a-cyc').textContent=info?T('день '+info.dayOf,info.dayOf+'-күн'):'–';
+  document.getElementById('a-cyc2').textContent=info?T('месячные через '+info.inDays+' дн.','етеккірге '+info.inDays+' күн'):T('отметьте месячные','етеккірді белгілеңіз');
+  document.getElementById('a-cycbar').style.width=info?Math.round(info.dayOf/info.len*100)+'%':'0';
+  document.getElementById('a-tip').textContent=L(TIPS[today.getDate()%TIPS.length]);
+  document.getElementById('a-date').textContent=today.toLocaleDateString(lang==='kz'?'kk-KZ':'ru-RU',{weekday:'long',day:'numeric',month:'long'});
+  drawDays();drawCal();drawArts();typo(document.querySelector('.phone'));
+}
+appRender();
+
+
+/* язык из сайта (тот же localStorage) */
+function setLang(l){lang=l;document.documentElement.lang=l==='kz'?'kk':'ru';
+  document.querySelectorAll('[data-kz]').forEach(el=>{if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;el.innerHTML=l==='kz'?el.dataset.kz:el.dataset.ru});
+  setMode(mode);appRender();instText();try{localStorage.setItem('lang',l)}catch(e){}}
+document.querySelector('.av').title='RU / KZ';
+document.querySelector('.av').onclick=()=>setLang(lang==='ru'?'kz':'ru');
+/* установка на экран «Домой» */
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+let dp=null;
+function instText(){document.getElementById('inst-t').textContent=dp?T('Иконка появится на экране телефона, без App Store','Белгіше телефон экранында пайда болады, App Store қажет емес'):ios?T('Нажмите «Поделиться» внизу Safari, затем «На экран Домой»','Safari төменгі «Бөлісу» батырмасын, сосын «Басты экранға» басыңыз'):T('Откройте меню браузера ⋮ и выберите «Добавить на главный экран»','Браузер мәзірін ⋮ ашып, «Басты экранға қосу» таңдаңыз')}
+if(!standalone&&!ls.get('pf_inst_x',false)){document.getElementById('inst').hidden=false;instText()}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;document.getElementById('inst-b').hidden=false;instText()});
+document.getElementById('inst-b').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;document.getElementById('inst').hidden=true};
+document.getElementById('inst-x').onclick=()=>{document.getElementById('inst').hidden=true;ls.set('pf_inst_x',true)};
+if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).catch(()=>{});
+let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
+setLang(start);
+</script>
+</body></html>
