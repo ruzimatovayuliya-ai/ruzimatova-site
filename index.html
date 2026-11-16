@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Юлия Иномовна – гинеколог-хирург, Алматы</title>
+<meta name="description" content="Недержание, опущение, интимная эстетика. Анонимный тест, бесплатный тренажёр мышц тазового дна и запись к врачу в WhatsApp. Алматы.">
+<meta property="og:title" content="Решаю то, о чём вы боитесь говорить вслух">
+<meta property="og:description" content="Анонимный тест за 2 минуты и запись к гинекологу-хирургу Юлии Иномовне. Алматы.">
+<meta property="og:image" content="/media/hero.jpg">
+<meta name="theme-color" content="#FBF7FC">
+<link rel="icon" href="media/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="media/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;800&display=swap">
+<style>
+/* palette: светлая лаванда, только светлая тема; фото врача – вырезанный PNG без фона; без кругов и рамок */
+/* layout: одна колонка, крупные фото-блоки; тест, вопросы и тренажёр как живые модули; RU/KZ */
+:root{
+  --bg:#FBF7FC; --surface:#FFFFFF; --ink:#2E2538; --muted:#786C86; --line:#EFE4F3;
+  --rose:#A88BE0; --on-rose:#FFFFFF; --rose-soft:#F6EDF8; --rose-ink:#7A55B8; --night:#F3E8F6; --on-night:#2A2338;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-weight:800;letter-spacing:-0.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.08}
+h2{font-size:clamp(24px,3.4vw,36px);line-height:1.15}
+h3{font-size:18px;line-height:1.3}
+p{margin:0}
+.muted{color:var(--muted)}
+.nw{white-space:nowrap}
+section{padding-block:56px}
+.eyebrow{font-size:14px;font-weight:700;color:var(--rose-ink);display:inline-flex;align-items:center;gap:8px}.eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor}
+.head{display:flex;flex-direction:column;gap:10px;max-width:720px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 16px var(--body);border-radius:999px;padding:14px 26px;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer;text-decoration:none;text-align:center}
+.btn.main{background:var(--rose);border-color:var(--rose);color:var(--on-rose)}
+.btn:focus-visible,.opt:focus-visible,.lang button:focus-visible,summary:focus-visible{outline:3px solid var(--rose-ink);outline-offset:3px}
+.soon{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--rose-ink);border:1.5px dashed var(--rose);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.soon::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rose)}
+.band{background:var(--rose-soft)}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{font-weight:800;font-size:16px;line-height:1.15}
+.logo small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+nav{display:flex;gap:22px;font-size:14px;font-weight:500}
+nav a{color:var(--ink);text-decoration:none}
+.lang{display:flex;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.lang button{font:700 13px var(--body);border:0;background:transparent;color:var(--muted);border-radius:999px;padding:6px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.hr{display:flex;align-items:center;gap:22px}
+@media (max-width:820px){nav{display:none}}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:40px 56px}
+.hero-text{display:flex;flex-direction:column;gap:20px;min-width:0}
+.lead{font-size:18px;color:var(--muted);max-width:30em}
+.cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cta small{color:var(--muted);font-size:14px}
+.hero-photo{position:relative;aspect-ratio:1/1;max-width:100%;isolation:isolate;display:flex;align-items:flex-end;justify-content:center}
+.hero-photo::before{content:"";position:absolute;inset:4% 0 0;background:radial-gradient(closest-side at 50% 60%,color-mix(in srgb,var(--rose) 22%,transparent),transparent);z-index:-1}
+.hero-photo img{width:100%;height:auto;max-height:100%;object-fit:contain;object-position:50% 100%;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(#000 80%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(#000 80%,transparent);mask-composite:intersect}
+.badge{position:absolute;left:12%;bottom:4%;right:12%;box-shadow:0 8px 30px color-mix(in srgb,var(--rose) 18%,transparent);background:var(--surface);color:var(--ink);border-radius:16px;padding:12px 16px;font-size:14px;line-height:1.35}
+.badge b{display:block;font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;border-top:1px solid var(--line);padding-top:22px}
+.stat b{display:block;font-size:26px;font-weight:800;letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.hero-photo{order:-1;aspect-ratio:auto}}
+@media (max-width:480px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.card{background:var(--surface);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card.line{border:1px solid var(--line)}
+.card .q{font-weight:700;font-size:17px}
+.card .n{font-size:13px;font-weight:700;color:var(--rose-ink)}
+.card .meta{margin-top:auto;padding-top:8px}
+@media (max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+.note{font-size:13px;color:var(--muted)}
+
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:32px;margin-top:28px;max-width:760px}
+.qtop{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:10px}
+.bar{height:6px;border-radius:3px;background:var(--rose-soft);overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;background:var(--rose);transition:width .3s}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.opt{text-align:left;font:500 15px/1.4 var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer}
+.opt:hover{border-color:var(--rose)}
+@media (max-width:560px){.opts{grid-template-columns:1fr}.quiz{padding:22px}}
+.res{display:flex;flex-direction:column;gap:14px}
+.lvl{display:inline-block;align-self:flex-start;background:var(--rose-soft);color:var(--rose-ink);font-weight:700;font-size:13px;border-radius:999px;padding:6px 12px}
+.back{font:500 14px var(--body);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;align-self:flex-start;margin-top:16px}
+
+.vids{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.vid{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:9/14;max-width:100%;background:#000}
+.vid video{width:100%;height:100%;object-fit:cover;display:block}
+.vid .cap{position:absolute;left:0;right:0;top:0;padding:16px;color:#fff;font-weight:700;font-size:15px;line-height:1.3;background:linear-gradient(#000a,#0000)}
+.vid .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:transparent;border:0;cursor:pointer}
+.vid .play span{width:64px;height:64px;border-radius:50%;background:#fffffff0;display:flex;align-items:center;justify-content:center}
+.vid .play span::after{content:"";border-left:18px solid #2A2338;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+@media (max-width:760px){.vids{grid-template-columns:1fr 1fr}.vids .vid:last-child{display:none}}
+@media (max-width:420px){.vids{grid-template-columns:1fr}.vids .vid:last-child{display:block}}
+
+.men{background:var(--night);color:var(--on-night)}
+.men .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.men .eyebrow{color:color-mix(in srgb,var(--on-night) 70%,transparent)}
+.men p.muted{color:color-mix(in srgb,var(--on-night) 75%,transparent)}
+.men .btn{border-color:var(--on-night);color:var(--on-night)}
+.men ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.men li{border-top:1px solid color-mix(in srgb,var(--on-night) 20%,transparent);padding-top:12px;font-weight:600}
+@media (max-width:760px){.men .wrap{grid-template-columns:1fr}}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:0 20px}
+details+details{margin-top:10px}
+summary{cursor:pointer;list-style:none;font-weight:700;font-size:16px;padding:18px 28px 18px 0;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:0;top:14px;font-size:22px;font-weight:500;color:var(--rose-ink)}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:18px;color:var(--muted)}
+.faq{margin-top:28px;max-width:820px}
+
+.ask{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;align-items:start}
+.askf{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:12px}
+.askf textarea{font:15px/1.5 var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px;min-height:130px;resize:vertical;width:100%}
+.askf textarea:focus{outline:none;border-color:var(--rose)}
+.err{font-size:13px;color:#C0392B}
+.empty{border:1.5px dashed var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+@media (max-width:760px){.ask{grid-template-columns:1fr}}
+
+/* приложение-тренажёр в мокапе: свой внутренний стиль, одинаковый в обеих темах */
+.app{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.app-text{display:flex;flex-direction:column;gap:16px;min-width:0}
+.perks{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.perks li{display:flex;flex-direction:column;gap:2px;padding-left:22px;position:relative}
+.perks li::before{content:"";position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:50%;background:var(--rose)}
+.perks span{color:var(--muted);font-size:15px}
+.phone{--a-bg:#2B2140;--a-bg2:#3E2F5C;--a-ink:#F4EEFF;--a-mut:#BFB2DA;--a-acc:#C9B4F5;--a-soft:#4A3A6B;
+  justify-self:center;width:min(300px,100%);max-width:100%;aspect-ratio:9/19;border-radius:46px;padding:11px;background:#14101C;box-shadow:0 30px 60px -20px color-mix(in srgb,var(--rose) 45%,transparent),inset 0 0 0 2px #2c2538}
+.scr{height:100%;border-radius:36px;overflow:hidden;background:linear-gradient(170deg,var(--a-bg2),var(--a-bg) 60%);color:var(--a-ink);display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 16px 10px}
+.sbar{width:100%;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700;color:var(--a-mut);letter-spacing:.04em}
+.isl{width:76px;height:22px;border-radius:999px;background:#0c0912}
+.ahead{width:100%;display:flex;align-items:center;gap:10px;margin-top:4px}
+.ahead b{display:block;font-size:16px}
+.ahead small{display:block;font-size:11px;color:var(--a-mut)}
+.aicon{width:34px;height:34px;border-radius:10px;background:radial-gradient(circle at 50% 50%,var(--a-bg) 0 28%,var(--a-acc) 30% 46%,transparent 48%),var(--a-soft)}
+.modes{display:flex;gap:6px;background:var(--a-soft);border-radius:999px;padding:3px;align-self:stretch}
+.mode{flex:1;font:600 13px var(--body);border:0;background:transparent;color:var(--a-mut);border-radius:999px;padding:7px 10px;cursor:pointer}
+.mode[aria-pressed="true"]{background:var(--a-ink);color:var(--a-bg)}
+.ring{width:62%;aspect-ratio:1;border-radius:50%;margin-top:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:var(--a-soft);color:var(--a-ink);box-shadow:0 0 0 10px color-mix(in srgb,var(--a-acc) 12%,transparent);transition:transform 1.2s ease,background .6s}
+.ring.squeeze{transform:scale(.8);background:var(--a-acc);color:var(--a-bg)}
+.ring.grow{transform:scale(1.06)}
+.ring b{font-size:38px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.ring span{font-size:13px;font-weight:600}
+.adesc{font-size:12px;line-height:1.45;color:var(--a-mut);text-align:center;min-height:5.8em}
+.abtn{align-self:stretch;font:700 14px var(--body);border:0;border-radius:14px;padding:12px;background:var(--a-acc);color:var(--a-bg);cursor:pointer}
+.abtn:focus-visible,.mode:focus-visible{outline:2px solid var(--a-ink);outline-offset:2px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;align-self:stretch}
+.days i{aspect-ratio:1;border-radius:6px;background:color-mix(in srgb,var(--a-soft) 70%,transparent);font-style:normal;font-size:9px;display:flex;align-items:center;justify-content:center;color:var(--a-mut)}
+.days i.on{background:var(--a-acc);color:var(--a-bg);font-weight:700}
+.atabs{margin-top:auto;align-self:stretch;display:flex;justify-content:space-around;border-top:1px solid var(--a-soft);padding-top:8px;font-size:11px;color:var(--a-mut)}
+.atabs .on{color:var(--a-ink);font-weight:700}
+@media (max-width:820px){.app{grid-template-columns:1fr;gap:36px}}
+
+.review{display:grid;grid-template-columns:minmax(0,760px);gap:32px}
+blockquote{margin:0;font-size:clamp(19px,2.4vw,24px);font-weight:600;line-height:1.4}
+@media (max-width:760px){.review{grid-template-columns:1fr}}
+.contact{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;background:var(--night);color:var(--on-night);border-radius:28px;padding:36px}
+.contact p{color:color-mix(in srgb,var(--on-night) 75%,transparent)}
+.contact .soon{color:var(--on-night);border-color:color-mix(in srgb,var(--on-night) 60%,transparent)}
+.contact .soon::before{background:var(--on-night)}
+.cinfo{display:flex;flex-direction:column;gap:12px;font-size:14px}
+.cinfo div{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid color-mix(in srgb,var(--on-night) 20%,transparent);padding-top:12px}
+@media (max-width:760px){.contact{grid-template-columns:1fr;padding:26px}}
+footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.faq-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:40px;align-items:end}
+.faq-wrap .faq{margin-top:28px}
+.cut{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+.contact{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr) minmax(0,.75fr)!important;overflow:hidden;padding-bottom:0!important}
+.contact>div:not(.cphoto){padding-bottom:36px}
+.cphoto{order:3;align-self:end;display:flex;justify-content:center}
+.cphoto img{width:100%;max-width:280px;height:auto;display:block;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+@media (max-width:860px){.hero-photo img{max-height:400px;width:auto;max-width:100%}.faq-wrap{grid-template-columns:1fr;gap:0}.faq-side{order:-1;max-width:300px;margin:24px auto 0}.contact{grid-template-columns:1fr!important}.cphoto{order:-1}.cphoto img{max-width:230px;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}.contact>div:not(.cphoto){padding-bottom:0}.contact>div:last-child{padding-bottom:26px}}
+
+/* v14: иконки, анимации, визуализации */
+.vid .cap{display:none}
+.vid{box-shadow:0 18px 40px -18px color-mix(in srgb,var(--rose) 60%,transparent);transition:transform .35s ease}
+.vid:hover{transform:translateY(-4px)}
+.vid .play span{animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #ffffff99}70%{box-shadow:0 0 0 18px #ffffff00}100%{box-shadow:0 0 0 0 #ffffff00}}
+.ico{width:46px;height:46px;flex:none;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(140deg,var(--rose-soft),color-mix(in srgb,var(--rose) 22%,var(--surface)));color:var(--rose-ink)}
+.ico svg{width:24px;height:24px}
+.card .ico{margin-bottom:6px}
+.card{transition:transform .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px color-mix(in srgb,var(--rose) 55%,transparent)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.badge{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.hero-photo::before{animation:breathe 6s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.6;transform:scale(1.06)}}
+.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55;z-index:-2;pointer-events:none}
+.hero{position:relative;isolation:isolate}
+.viz{margin-top:28px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--surface);border-radius:24px;padding:26px}
+.viz .big{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.03em;background:linear-gradient(120deg,var(--rose),#E59AC4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ppl{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ppl i{width:26px;height:34px;display:block;background:var(--line);-webkit-mask:var(--fig) center/contain no-repeat;mask:var(--fig) center/contain no-repeat;transition:background .5s}
+.ppl i.on{background:var(--rose)}
+.viz p{margin:0}
+@media (max-width:600px){.viz{grid-template-columns:1fr;gap:10px}.viz .big{font-size:52px}}
+.track{position:relative;height:6px;border-radius:6px;background:var(--line);margin-top:28px;overflow:hidden}
+.track i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#B9A2FF,var(--rose),#E59AC4);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.track.in i{transform:scaleX(1)}
+.track + .grid3{margin-top:16px}
+.men li{display:flex;gap:12px;align-items:center}
+.men li .ico{width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--on-night) 10%,transparent);color:var(--rose-ink)}
+.men li .ico svg{width:18px;height:18px}
+.perks li{flex-direction:row;gap:14px;padding-left:0;align-items:flex-start}
+.perks li::before{display:none}
+.perks li>div{display:flex;flex-direction:column;gap:2px}
+.perks .ico{width:40px;height:40px;border-radius:12px}
+.perks .ico svg{width:20px;height:20px}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.badge,.hero-photo::before,.vid .play span{animation:none}.track i{transform:none}}
+
+/* приложение «Тонус» */
+.scr{position:relative;gap:0;padding:12px 14px 0;align-items:stretch}
+.sbar{padding:0 4px}
+.as{display:none;flex:1;min-height:0;overflow-y:auto;scrollbar-width:none;flex-direction:column;gap:10px;padding:10px 2px 12px;animation:fadein .35s ease}
+.as::-webkit-scrollbar{display:none}
+.as.on{display:flex}
+@keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ahead{margin-top:0}
+.abud{width:34px;height:34px;flex:none;border-radius:10px;overflow:hidden;display:block}
+.abud svg{width:100%;height:100%;display:block}
+.ahead .grow{flex:1}
+.ahead .av{width:30px;height:30px;border-radius:50%;background:var(--a-soft);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--a-acc)}
+.acard{background:color-mix(in srgb,var(--a-soft) 75%,transparent);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.acard h4{margin:0;font-size:12px;font-weight:700;color:var(--a-mut)}
+.hero-c{display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:center;background:linear-gradient(140deg,#6B4FB3,#3E2F5C);}
+.pring{position:relative;width:86px;height:86px}
+.pring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.pring circle{fill:none;stroke-width:9}
+.pring .bg{stroke:#ffffff22}.pring .fg{stroke:url(#pg);stroke-linecap:round;transition:stroke-dashoffset 1s ease}
+.pring b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;font-weight:800;line-height:1}
+.pring b small{font-size:9px;font-weight:600;color:var(--a-mut);margin-top:3px}
+.kpis{display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--a-mut)}
+.kpis b{display:block;color:var(--a-ink);font-size:16px}
+.fire{display:inline-flex;align-items:center;gap:4px;background:#ffffff1f;border-radius:99px;padding:3px 8px;color:#FFD27A;font-weight:700;font-size:11px;width:max-content}
+.bars{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:64px}
+.bars div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.bars i{display:block;width:100%;border-radius:6px;background:linear-gradient(#C9B4F5,#8E6CE0);min-height:4px;transition:height .8s ease}
+.bars i.z{background:#ffffff1a}
+.bars span{font-size:9px;color:var(--a-mut)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini b{font-size:18px;display:block}
+.mini small{font-size:10px;color:var(--a-mut)}
+.cyc-bar{height:6px;border-radius:6px;background:#ffffff1a;overflow:hidden}
+.cyc-bar i{display:block;height:100%;background:linear-gradient(90deg,#F2A6C9,#E46FA8);border-radius:6px}
+.tip{background:linear-gradient(140deg,#F2A6C9,#B794F6);color:#2B1450}
+.tip h4{color:#2B1450aa}
+.tip p{margin:0;font-size:12px;font-weight:600;line-height:1.4}
+.achip{font:700 11px var(--body);border:0;border-radius:10px;padding:8px 10px;background:var(--a-acc);color:var(--a-bg);cursor:pointer}
+.ring{width:58%;margin:4px auto 0}
+.tbtns{display:flex;gap:8px}
+.tbtns .abtn{flex:1}
+.abtn.ghost{background:transparent;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.abtn[hidden]{display:none}
+.days i{font-size:8px}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.cal span{font-size:9px;color:var(--a-mut);padding-bottom:2px}
+.cal button{aspect-ratio:1;border:0;border-radius:50%;background:transparent;color:var(--a-ink);font:600 11px var(--body);cursor:pointer;padding:0}
+.cal button.per{background:linear-gradient(140deg,#F2A6C9,#E46FA8);color:#2B1450}
+.cal button.pred{box-shadow:inset 0 0 0 1.5px #F2A6C9;color:#F2A6C9}
+.cal button.today{outline:1.5px solid var(--a-acc);outline-offset:1px}
+.cal button:disabled{visibility:hidden}
+.legend{display:flex;gap:12px;font-size:10px;color:var(--a-mut)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.chips button{flex:none;border:0;border-radius:99px;padding:6px 11px;font:600 11px var(--body);background:var(--a-soft);color:var(--a-mut);cursor:pointer}
+.chips button.on{background:var(--a-ink);color:var(--a-bg)}
+.art{display:grid;grid-template-columns:56px 1fr;gap:10px;align-items:center;background:color-mix(in srgb,var(--a-soft) 75%,transparent);border-radius:14px;padding:8px}
+.art .th{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#2B1450}
+.art .th svg{width:24px;height:24px}
+.art b{font-size:12px;line-height:1.3;display:block}
+.art small{font-size:10px;color:var(--a-mut)}
+.atabs{margin:0 -14px;padding:8px 6px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:color-mix(in srgb,var(--a-bg) 85%,#000);border-top:1px solid var(--a-soft)}
+.atab{border:0;background:transparent;color:var(--a-mut);font:600 9.5px var(--body);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:2px 0}
+.atab svg{width:19px;height:19px}
+.atab.on{color:var(--a-ink)}
+.atab.on svg{color:var(--a-acc)}
+
+.hero-photo.pop{display:block;aspect-ratio:1000/1125;width:min(100%,500px);justify-self:center;align-self:end}
+.hero-photo.pop::before{display:none}
+.stat b .cnt{font-size:inherit;color:inherit;font-weight:inherit}
+.pop-bg{position:absolute;left:7%;right:7%;bottom:0;aspect-ratio:1;border-radius:50%;background-position:0 0,50% 100%;background-size:100% 100%,116.3% auto;background-repeat:no-repeat;background-blend-mode:normal,normal;box-shadow:0 30px 60px -25px #A985E399,inset 0 0 0 6px #ffffff22}
+.hero-photo.pop .pop-fg{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:fill;
+ -webkit-mask-image:linear-gradient(#000 40%,transparent 60%),radial-gradient(closest-side,#000 99%,transparent 100%);
+ -webkit-mask-size:100% 100%,86% 76.44%;-webkit-mask-position:0 0,50% 100%;-webkit-mask-repeat:no-repeat;-webkit-mask-composite:source-over;
+ mask-image:linear-gradient(#000 40%,transparent 60%),radial-gradient(closest-side,#000 99%,transparent 100%);
+ mask-size:100% 100%,86% 76.44%;mask-position:0 0,50% 100%;mask-repeat:no-repeat;mask-composite:add;
+ filter:drop-shadow(0 18px 24px #2B144040)}
+.hero-photo.pop .badge{left:4%;right:auto;bottom:6%;max-width:72%}
+@media (max-width:860px){.hero-photo.pop{width:min(100%,400px)}.hero-photo.pop .pop-fg{max-height:none;width:100%}}
+
+/* v18: нежная палитра */
+.btn.main{background:linear-gradient(120deg,#C3ADFA,#F4B2D2);border-color:transparent;color:#2E2538;box-shadow:0 10px 24px -12px #C08BD9}
+.btn.main:hover{filter:brightness(1.03)}
+.ico{background:linear-gradient(140deg,#F7EEF9,#ECE2FB)!important;color:#8C66C9!important}
+.blob{opacity:.45}
+</style>
+
+<header><div class="wrap hd">
+  <div class="logo">Юлия Иномовна<small data-kz="гинеколог-хирург · Алматы">гинеколог-хирург · Алматы</small></div>
+  <div class="hr">
+    <nav>
+      <a href="#test" data-kz="Тест">Тест</a>
+      <a href="#steps" data-kz="Емдеу">Лечение</a>
+      <a href="#ask" data-kz="Сұрақтар">Вопросы</a>
+      <a href="#trainer" data-kz="Қосымша">Приложение</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Язык сайта"><button id="l-ru" aria-pressed="true">RU</button><button id="l-kz" aria-pressed="false">KZ</button></div>
+  </div>
+</div></header>
+
+<main>
+<div class="wrap hero"><span class="blob" style="width:340px;height:340px;right:6%;top:6%;background:#C9B4F5"></span><span class="blob" style="width:260px;height:260px;right:30%;bottom:0;background:#F2C4E2"></span>
+  <div class="hero-text">
+    <span class="eyebrow" data-kz="Зәр ұстамау · жатыр түсуі · интимдік эстетика">Недержание · опущение · интимная эстетика</span>
+    <h1 data-kz="Айтуға ұялатын мәселеңізді шешемін">Решаю то, о чём вы боитесь говорить вслух</h1>
+    <p class="lead" data-kz="Жөтелгенде, күлгенде немесе спорт кезінде зәр тамады ма? Жақындықта сезім азайды ма? Анонимді тесттен өтіп, не істеу керегін біліңіз">Подтекает при кашле, смехе или спорте? Стало меньше ощущений в близости? Пройдите анонимный тест и узнайте, что с этим делать</p>
+    <div class="cta"><a class="btn main" href="#test" data-kz="Тесттен өту">Пройти тест</a><small data-kz="2 минут, атыңыз бен нөміріңізсіз">2 минуты, без имени и телефона</small></div>
+    <div class="stats">
+      <div class="stat"><b data-kz="15 жыл"><span class="cnt" data-to="15">15</span> лет</b><span data-kz="тәжірибе">практики</span></div>
+      <div class="stat"><b class="nw"><span class="cnt" data-to="1000">1&nbsp;000</span>+</b><span data-kz="операция">операций</span></div>
+      <div class="stat"><b>PhD</b><span data-kz="ғылыми дәреже">учёная степень</span></div>
+      <div class="stat"><b>MMS</b><span data-kz="медицина магистрі">магистр медицины</span></div>
+    </div>
+  </div>
+  <div class="hero-photo pop">
+    <div class="pop-bg" style="background-image:linear-gradient(165deg,#E3D5FCeb,#B897E8eb),url(media/hero-bg.jpg)" aria-hidden="true"></div>
+    <img class="pop-fg" src="media/hero-pop.webp" alt="Юлия Иномовна готовится к операции">
+    <div class="badge"><b data-kz="Алдымен операциясыз">Сначала без операции</b><span data-kz="Ерте кезеңде жаттығулар көмектеседі">На ранних стадиях помогают упражнения</span></div>
+  </div>
+</div>
+
+<section class="band"><div class="wrap">
+  <div class="head"><h2 data-kz="Сіз жалғыз емессіз, тек бұл туралы үндемейді">Вы не одна, просто об этом молчат</h2></div>
+  <div class="grid2">
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/></svg></span><p class="q" data-kz="Жөтелгенде, түшкіргенде зәр тамады">Подтекает при кашле и чихании</p><p class="muted" data-kz="Спорттан бас тартып, күнде төсеніш тағуға тура келеді">Приходится бросать спорт и каждый день носить прокладки</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><p class="q" data-kz="Жақындықта сезім азайды">Меньше ощущений в близости</p><p class="muted" data-kz="Сондықтан ниет жоғалады, ал жұбайыңызға айтуға ұят">Из-за этого пропадает желание, а сказать партнёру стыдно</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span><p class="q" data-kz="Анамды, баламды, су көтердім">Таскала маму, детей и воду</p><p class="muted" data-kz="Жеке үйдегі ауыр жұмыс, қатарынан босану – бұлшықет шыдамайды">Тяжести в частном доме, роды одни за другими – мышцы не выдерживают</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><p class="q" data-kz="Ерте босандым, 30-да ағза көнбейді">Родила рано, а в 30 организм не тянет</p><p class="muted" data-kz="Толық өмір сүргіңіз келеді, бірақ дене қолдамайды">Хочется жить полной жизнью, а тело подводит</p></div>
+  </div>
+  <div class="viz rv">
+    <div class="big" data-kz="3-тің 1-і">1 из 3</div>
+    <div><p style="font-weight:700;font-size:18px" data-kz="Босанған әйелдердің шамамен әр үшіншісінде жамбас түбі бұлшықеттері әлсірейді">Примерно у каждой третьей рожавшей женщины ослабевают мышцы тазового дна</p>
+    <p class="muted" style="font-size:14px" data-kz="Бұл жиі кездеседі және ерте кезеңде жаттығулармен түзеледі">Это частая история, и на ранней стадии она поправима упражнениями</p>
+    <div class="ppl" id="ppl" aria-hidden="true"></div></div>
+  </div>
+
+</div></section>
+
+<section id="test"><div class="wrap">
+  <div class="head"><span class="eyebrow" data-kz="Анонимді тест">Анонимный тест</span>
+  <h2 data-kz="Бұл қаншалықты маңызды">Насколько это серьёзно</h2>
+  <p class="muted" data-kz="6 сұрақ, атыңыз бен нөміріңіз сұралмайды. Нәтижесін тек сіз көресіз">6 вопросов, имя и телефон не спрашиваем. Результат видите только вы</p></div>
+  <div class="quiz" id="quiz" aria-live="polite"></div>
+</div></section>
+
+<section id="video" class="band"><div class="wrap">
+  <div class="head"><h2 data-kz="Дәрігер қарапайым тілмен түсіндіреді">Врач объясняет простыми словами</h2></div>
+  <div class="vids">
+    <div class="vid"><video preload="none" playsinline poster="media/cover1.jpg" src="media/v1.mp4"></video><div class="cap" data-kz="Орнынан тұрғанда зәр тамса">Когда при вставании подтекает моча</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
+    <div class="vid"><video preload="none" playsinline poster="media/cover2.jpg" src="media/v2.mp4"></video><div class="cap" data-kz="Жамбас түбі бұлшықеті әлсіресе">Слабые мышцы тазового дна: признаки</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
+    <div class="vid"><video preload="none" playsinline poster="media/cover3.jpg" src="media/v3.mp4"></video><div class="cap" data-kz="Босанғаннан кейінгі шағымдар">На что жалуются женщины после родов</div><button class="play" aria-label="Смотреть видео"><span></span></button></div>
+  </div>
+  <p class="note" style="margin-top:12px" data-kz="Видеолар орыс тілінде">Видео на русском языке</p>
+</div></section>
+
+<section id="steps"><div class="wrap">
+  <div class="head"><span class="eyebrow" data-kz="Емдеу қалай өтеді">Как проходит лечение</span>
+  <h2 data-kz="Алдымен кеңес, сосын шешім">Сначала консультация, потом решение</h2></div>
+  <div class="grid3">
+    <div class="card line rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14v10H9l-4 4z"/><path d="M9 9h6M9 12h4"/></svg></span><span class="n" data-kz="1-қадам">Шаг 1</span><h3 data-kz="Кеңес">Консультация</h3><p class="muted" data-kz="20 минут, клиникада немесе онлайн. Алдын ала анализ қажет емес">20 минут, в клинике или онлайн. Анализы заранее не нужны</p><div class="meta" style="display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px"><span><b class="nw">20&nbsp;000&nbsp;₸</b> <span class="muted" data-kz="клиникада">в&nbsp;клинике</span></span><span><b class="nw">10&nbsp;000&nbsp;₸</b> <span class="muted" data-kz="онлайн">онлайн</span></span></div></div>
+    <div class="card line rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3"/><path d="M9 3h6M7.5 15h9"/></svg></span><span class="n" data-kz="2-қадам">Шаг 2</span><h3 data-kz="Анализ және уролог">Анализы и уролог</h3><p class="muted" data-kz="Қажет болса, дәрігер тексеруден кейін айтады. Тор қоюдан бұрын уролог міндетті">Если нужны, врач скажет после осмотра. Перед установкой сетки – обязательно уролог</p></div>
+    <div class="card line rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 4h11l-2 4 2 4H6"/></svg></span><span class="n" data-kz="3-қадам">Шаг 3</span><h3 data-kz="Емдеу жоспары">План лечения</h3><p class="muted" data-kz="Жаттығудан операцияға дейін – тек сізге керегі">От упражнений до операции – только то, что нужно именно вам</p></div>
+  </div>
+
+  <div class="head" style="margin-top:56px"><h2 data-kz="Қарапайымнан күрделіге">От простого к сложному</h2></div>
+  <div class="track" id="track"><i></i></div>
+  <div class="grid3">
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l8-8"/></svg></span><span class="n" data-kz="1-кезең">Этап 1</span><h3 data-kz="Процедурасыз">Без процедур</h3><p class="muted" data-kz="Кегель жаттығулары, тыныс алу тәжірибелері, гимнастика, дәрі-дәрмек">Упражнения Кегеля, дыхательные практики, гимнастика, таблетки</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18 16l.8 2.2L21 19l-2.2.8L18 22l-.8-2.2L15 19l2.2-.8z"/></svg></span><span class="n" data-kz="2-кезең">Этап 2</span><h3 data-kz="Тіліксіз">Без разрезов</h3><p class="muted" data-kz="Лазерлік жасарту, филлерлер, серіктес дәрігердегі инерефлексотерапия">Лазерное омоложение, филлеры, иглорефлексотерапия у врача‑партнёра</p></div>
+    <div class="card rv"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="n" data-kz="3-кезең">Этап 3</span><h3 data-kz="Операция">Операция</h3><p class="muted" data-kz="Қынап пластикасы, торлы протез – уролог кеңесінен кейін">Пластика влагалища, сетчатый протез – после консультации уролога</p></div>
+  </div>
+  <p class="note" style="margin-top:14px" data-kz="Филлерлер уақытша әсер береді. Ұзақ нәтиже керек болса, дәрігер операцияны талқылайды">Филлеры дают временный эффект. Если нужен результат надолго, врач обсудит операцию</p>
+</div></section>
+
+<section class="men"><div class="wrap">
+  <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+    <span class="eyebrow" data-kz="Ерлерге">Для мужчин</span>
+    <h2 data-kz="Ол жақындықтан қашқақтаса – мәселе сізде болмауы мүмкін">Если она стала избегать близости – дело может быть не в вас</h2>
+    <p class="muted" data-kz="Босанудан және ауыр жұмыстан кейін әйелдерде күйеуіне де айтуға ұялатын мәселелер пайда болады. Бұл емделеді. Оған анонимді тестті жіберіңіз – ишарасыз, ыңғайсыз әңгімесіз">После родов и тяжёлой работы у женщин появляются проблемы, о которых они стесняются сказать даже мужу. Это лечится. Отправьте ей анонимный тест – без намёков и неловких разговоров</p>
+    <div class="cta"><a class="btn" id="share" href="#" target="_blank" rel="noopener" data-kz="Тестті оған жіберу">Отправить тест ей</a></div>
+  </div>
+  <ul>
+    <li data-kz="Бұл сіздің кінәңіз емес және оның кінәсі емес"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>Это не ваша вина и не её вина</li>
+    <li data-kz="Бұл босанғаннан кейін жиі кездеседі"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>Это часто бывает после родов</li>
+    <li data-kz="Ерте кезеңде операциясыз емделеді"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg></span>На ранних стадиях лечится без операции</li>
+  </ul>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="faq-wrap"><div style="min-width:0">
+  <div class="head"><h2 data-kz="Жиі кездесетін қорқыныштар">Частые страхи</h2></div>
+  <div class="faq">
+    <details><summary data-kz="Тор – бөгде дене ғой. Қауіпті емес пе?">Сетка – это инородное тело. Это опасно?</summary><p data-kz="Алдымен операциясыз әдістерді қолданамыз. Филлерлер уақытша әсер береді, торлы протез – ұзақ мерзімге. Тор қоюдан бұрын міндетті түрде урологқа барасыз. Толығырақ дәрігер қабылдауда айтады">Сначала пробуем методы без операции. Филлеры дают временный эффект, сетчатый протез – надолго. Перед установкой сетки вы обязательно консультируетесь у уролога. Подробно врач расскажет на приёме</p></details>
+    <details><summary data-kz="Маған 35 жас толмаған. Операция жасауға бола ма?">Мне нет 35. Мне можно операцию?</summary><p data-kz="Иә. Алдыңғы пластиканы жас әйелдерге де жасайды. Шешімді дәрігер тексеруден кейін қабылдайды">Да. Переднюю пластику делают и молодым. Решение врач принимает после осмотра</p></details>
+    <details><summary data-kz="Кеңеске дейін анализ тапсыру керек пе?">Нужно ли сдавать анализы до консультации?</summary><p data-kz="Жоқ. Анализ керек болса, дәрігер тексеруден кейін айтады">Нет. Если анализы понадобятся, врач скажет после осмотра</p></details>
+    <details><summary data-kz="Онлайн кеңес алуға бола ма?">Можно ли проконсультироваться онлайн?</summary><p data-kz="Иә, онлайн кеңес бар – 10&nbsp;000&nbsp;₸">Да, онлайн-консультация есть – 10&nbsp;000&nbsp;₸</p></details>
+    <details><summary data-kz="Біреу біліп қоя ма?">Узнает ли кто-то, что я обращалась?</summary><p data-kz="Тест анонимді. WhatsApp-тағы хабарламаны тек дәрігер мен оның менеджері көреді">Тест анонимный. Сообщение в WhatsApp видят только врач и её менеджер</p></details>
+  </div></div>
+  <div class="faq-side"><img class="cut" src="media/doc-triangle.webp" alt="Юлия Иномовна, гинеколог-хирург" loading="lazy"></div>
+  </div>
+</div></section>
+
+<section id="ask" class="band"><div class="wrap">
+  <div class="head"><span class="eyebrow" data-kz="Анонимді">Анонимно</span>
+  <h2 data-kz="Дәрігерге сұрақ қойыңыз">Задайте вопрос врачу</h2>
+  <p class="muted" data-kz="Жеке хабарлама жазуға ұяласыз ба? Сұрағыңызды осында жазыңыз – атсыз және нөмірсіз. Дәрігер аптасына бір рет жауап береді, жауаптар сайтта анонимді жарияланады">Стесняетесь написать в личку? Задайте вопрос здесь – без имени и телефона. Врач отвечает раз в неделю, ответы публикуются на сайте анонимно</p></div>
+  <div class="ask">
+    <form class="askf" id="askf" novalidate>
+      <label for="q" style="font-weight:700" data-kz="Сіздің сұрағыңыз">Ваш вопрос</label>
+      <textarea id="q" placeholder="Например: после третьих родов подтекает при прыжках. Это пройдёт само?" data-kz-ph="Мысалы: үшінші босанудан кейін секіргенде зәр тамады. Бұл өздігінен өте ме?"></textarea>
+      <p class="err" id="qerr" hidden></p>
+      <button class="btn" type="submit" style="align-self:flex-start" data-kz="Сұрақ жіберу">Отправить вопрос</button>
+      <p class="note" data-kz="Атыңыз, нөміріңіз және аккаунтыңыз сақталмайды">Имя, телефон и аккаунт не сохраняются</p>
+    </form>
+    <div class="empty">
+      <h3 data-kz="Дәрігер жауаптары">Ответы врача</h3>
+      <p class="muted" data-kz="Алғашқы жауаптар іске қосылғаннан кейін осында пайда болады. Басқа әйелдердің сұрақтарынан өзіңізді табасыз">Первые ответы появятся здесь после запуска. В вопросах других женщин вы узнаете себя</p>
+      <span class="soon" data-kz="жақында">скоро здесь</span>
+    </div>
+  </div>
+</div></section>
+
+<section id="trainer"><div class="wrap app">
+  <div class="app-text">
+    <span class="eyebrow" data-kz="Тегін · анонимді">Бесплатно · анонимно</span>
+    <h2 data-kz="Жамбас түбіне арналған жеке қосымша">Личное приложение для мышц тазового дна</h2>
+    <p class="muted" data-kz="Телефонның «Үй» экранына орнатылады, App Store қажет емес. Тіркеусіз, атыңыз бен нөміріңізсіз. Күніне 5 минут, 21 күн – прогресс тек сіздің телефоныңызда сақталады">Ставится на экран «Домой» прямо с сайта, без App Store. Без регистрации, имени и телефона. 5 минут в день, 21 день – прогресс хранится только в вашем телефоне</p>
+    <ul class="perks">
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><b data-kz="Бейтарап белгіше">Нейтральная иконка</b><span data-kz="Атауынан ешкім ештеңе түсінбейді">По названию никто ничего не поймёт</span></div></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4z"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg></span><div><b data-kz="Дәрігер бекіткен жаттығулар">Упражнения от врача</b><span data-kz="Кегель, тыныс алу, цикл күнделігі, мақалалар мен кеңестер">Кегель, дыхание, дневник цикла, статьи и советы</span></div></li>
+      <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><div><b data-kz="Ақырын еске салу">Тихие напоминания</b><span data-kz="Күніне бір рет, мәтінсіз">Раз в день, без лишних слов</span></div></li>
+    </ul>
+    <p class="note" data-kz="Қосымша экранын қазір байқап көріңіз. Жаттығулар жиынтығын дәрігер бекітеді">Экран приложения можно попробовать уже сейчас. Набор упражнений утверждает врач</p>
+  </div>
+  <div class="phone" aria-label="Приложение «Тонус», демо">
+    <div class="scr">
+      <div class="sbar"><span>9:41</span><span class="isl"></span><span>●●●</span></div>
+
+      <div class="as on" data-s="today">
+        <div class="ahead"><span class="abud" aria-hidden="true"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#fff"/><g style="mix-blend-mode:multiply"><path d="M35 18 C45 38.5 43.5 74.3 35 82 C26.5 74.3 25 38.5 35 18Z" fill="#B9A2FF" opacity=".9"/><path d="M33 22 C60 16 76 28 72 42 C68 54 52 56 33 54 C39 46 39 30 33 22Z" fill="#F2A6C9" opacity=".85"/><path d="M42 52 C60 54 72 64 74 82 C58 80 46 70 42 52Z" fill="#9B7BE0" opacity=".85"/></g></svg>
+</span><div class="grow"><b>Тонус</b><small id="a-date">сегодня</small></div><span class="av" aria-hidden="true">Я</span></div>
+        <div class="acard hero-c">
+          <div class="pring"><svg viewBox="0 0 100 100"><defs><linearGradient id="pg"><stop offset="0" stop-color="#F2A6C9"/><stop offset="1" stop-color="#C9B4F5"/></linearGradient></defs><circle class="bg" cx="50" cy="50" r="42"/><circle class="fg" id="a-ring" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/></svg><b><span id="a-day">0</span><small data-kz="21 күннен">из 21 дня</small></b></div>
+          <div class="kpis"><span class="fire">🔥 <span id="a-streak">0</span>&nbsp;<span data-kz="күн қатарынан">дней подряд</span></span><div><b id="a-sets">0</b><span data-kz="жаттығу барлығы">подходов всего</span></div></div>
+        </div>
+        <div class="acard"><h4 data-kz="Апта, минут">Неделя, минут</h4><div class="bars" id="a-bars"></div></div>
+        <div class="row2">
+          <div class="acard mini"><h4 data-kz="Цикл">Цикл</h4><b id="a-cyc">–</b><small id="a-cyc2">отметьте месячные</small><div class="cyc-bar"><i id="a-cycbar" style="width:0"></i></div></div>
+          <div class="acard mini"><h4 data-kz="Бүгін">Сегодня</h4><b id="a-today">0/2</b><small data-kz="жаттығу">подхода</small><button class="achip" data-go="train" data-kz="Бастау">Начать</button></div>
+        </div>
+        <div class="acard tip"><h4 data-kz="Күн кеңесі">Совет дня</h4><p id="a-tip"></p></div>
+      </div>
+
+      <div class="as" data-s="train">
+        <div class="modes" role="group" aria-label="Упражнение">
+          <button class="mode" id="m-kegel" aria-pressed="true" data-kz="Кегель">Кегель</button>
+          <button class="mode" id="m-breath" aria-pressed="false" data-kz="Тыныс алу">Дыхание</button>
+        </div>
+        <div class="ring" id="ring"><b id="tn">10</b><span id="tl">повторов</span></div>
+        <p class="adesc" id="tdesc"></p>
+        <div class="tbtns"><button class="abtn" id="tbtn" data-kz="Жаттығуды бастау">Начать подход</button><button class="abtn ghost" id="tstop" hidden data-kz="Тоқтату">Стоп</button></div>
+        <div class="days" id="days"></div>
+      </div>
+
+      <div class="as" data-s="cycle">
+        <div class="ahead"><div class="grow"><b data-kz="Цикл күнделігі">Дневник цикла</b><small id="c-month"></small></div></div>
+        <div class="acard"><div class="cal" id="cal"></div><div class="legend"><span><i style="background:#E46FA8"></i><span data-kz="етеккір">месячные</span></span><span><i style="box-shadow:inset 0 0 0 1.5px #F2A6C9"></i><span data-kz="болжам">прогноз</span></span></div></div>
+        <div class="acard mini"><h4 data-kz="Келесі етеккір">Следующие месячные</h4><b id="c-next">–</b><small id="c-hint">Нажмите на дни месячных – приложение посчитает цикл</small></div>
+      </div>
+
+      <div class="as" data-s="read">
+        <div class="ahead"><div class="grow"><b data-kz="Кеңестер">Полезное</b><small data-kz="дәрігерден">от врача</small></div></div>
+        <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="t" data-kz="Кеңестер">Советы</button><button data-f="n" data-kz="Жаңалықтар">Новости</button></div>
+        <div id="arts" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+
+      <nav class="atabs" aria-label="Разделы приложения">
+        <button class="atab on" data-go="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-5h4v5"/></svg><span data-kz="Бүгін">Сегодня</span></button>
+        <button class="atab" data-go="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><span data-kz="Жаттығу">Тренировка</span></button>
+        <button class="atab" data-go="cycle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg><span data-kz="Цикл">Цикл</span></button>
+        <button class="atab" data-go="read"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h4"/></svg><span data-kz="Кеңестер">Полезное</span></button>
+      </nav>
+    </div>
+  </div>
+</div></section>
+
+<section class="band"><div class="wrap review">
+  <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+    <span class="eyebrow" data-kz="Пациенттің пікірі">Отзыв пациентки</span>
+    <blockquote>«После операции прошло 3 года. Себя чувствую великолепно! Ни о чём не жалею»</blockquote>
+    <p class="muted" data-kz="Дәрігердің Instagram-ынан, аты жасырылған">Из Instagram врача, имя скрыто</p>
+    <span class="soon" data-kz="жаңа пікірлер – жақында">новые отзывы – скоро здесь</span>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="contact">
+    <div class="cphoto"><img src="media/doc-smile.webp" alt="Юлия Иномовна в кабинете" loading="lazy"></div>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <h2 data-kz="Кеңеске жазылыңыз">Запишитесь на консультацию</h2>
+      <p data-kz="WhatsApp-қа жазыңыз – нәзік әрі жылдам жауап береміз. Нөмір: +7 700 111 40 20">Напишите в WhatsApp – ответим деликатно. Номер: <span class="nw">+7&nbsp;700&nbsp;111&nbsp;40&nbsp;20</span></p>
+      <div class="cta"><a class="btn main" id="wa" href="https://wa.me/77001114020" target="_blank" rel="noopener" data-kz="WhatsApp-қа жазу">Написать в WhatsApp</a></div>
+    </div>
+    <div class="cinfo">
+      <div><span data-kz="Клиника мекенжайы">Адрес клиники</span><span class="soon" data-kz="жақында">скоро здесь</span></div>
+      <div><span data-kz="Қабылдау уақыты">Часы приёма</span><span class="soon" data-kz="нақтылаудамыз">уточняем</span></div>
+      <div><span data-kz="Клиникадағы кеңес, 20 минут">Консультация в&nbsp;клинике, 20&nbsp;минут</span><b class="nw">20&nbsp;000&nbsp;₸</b></div>
+      <div><span data-kz="Онлайн кеңес">Онлайн-консультация</span><b class="nw">10&nbsp;000&nbsp;₸</b></div>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="wrap">
+  <p data-kz="Тест пен жаттықтырғыш – алғашқы түсінік үшін ғана, дәрігер кеңесі мен анализдерді алмастырмайды. Қарсы көрсетілімдер бар, маман кеңесі қажет">Тест и тренажёр – для первого понимания и не заменяют консультацию врача и анализы. Есть противопоказания, нужна консультация специалиста</p>
+  <p><span data-kz="Лицензия:">Лицензия:</span> <span class="soon" data-kz="нөмірі – жақында">номер – скоро здесь</span></p>
+</footer>
+
+<script>
+let lang='ru';
+const T=(ru,kz)=>lang==='kz'?kz:ru;
+const WA='77001114020';
+const waLink=t=>'https://wa.me/'+WA+'?text='+encodeURIComponent(t);
+
+/* типографика: короткие предлоги и союзы не висят в конце строки */
+const SHORT=/(?<=^|[\s(« ])(в|во|и|о|об|на|с|со|к|ко|у|не|ни|от|до|за|по|а|из|без|для|или|при|но|что|как|мы|вы|её|это|және|мен|бен|пен|тек)[ \t\n]+/giu;
+function typo(root){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement&&/SCRIPT|STYLE|TEXTAREA/.test(n.parentElement.tagName)?2:1});
+  let n;while((n=w.nextNode())){const v=n.nodeValue.replace(SHORT,'$1 ').replace(/ ([–—]) /g,' $1 ');if(v!==n.nodeValue)n.nodeValue=v}
+}
+
+/* язык */
+function setLang(l){
+  lang=l;document.documentElement.lang=l==='kz'?'kk':'ru';
+  document.getElementById('l-ru').setAttribute('aria-pressed',l==='ru');
+  document.getElementById('l-kz').setAttribute('aria-pressed',l==='kz');
+  document.querySelectorAll('[data-kz]').forEach(el=>{
+    if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;
+    el.innerHTML=l==='kz'?el.dataset.kz:el.dataset.ru;
+  });
+  const q=document.getElementById('q');if(q.dataset.ruPh===undefined)q.dataset.ruPh=q.placeholder;q.placeholder=l==='kz'?q.dataset.kzPh:q.dataset.ruPh;
+  document.getElementById('wa').href=waLink(T('Здравствуйте! Я с сайта, хочу записаться на консультацию','Сәлеметсіз бе! Мен сайттан, кеңеске жазылғым келеді'));
+  document.getElementById('share').href='https://wa.me/?text='+encodeURIComponent(T('Посмотри, тут анонимный тест про женское здоровье от гинеколога. Никто не узнает результат: ','Қарашы, гинекологтың әйел денсаулығы туралы анонимді тесті. Нәтижесін ешкім білмейді: ')+location.href.split('#')[0]+'#test');
+  renderQ();setMode(mode);if(typeof appRender==="function")appRender();typo(document.body);
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+document.getElementById('l-ru').onclick=()=>setLang('ru');
+document.getElementById('l-kz').onclick=()=>setLang('kz');
+
+/* тест: степени по описанию врача */
+const Q=[
+ {q:['Что беспокоит больше всего?','Сізді не көбірек мазалайды?'],o:[[['Меньше ощущений в близости, хлюпание','Жақындықта сезім азайды, шылпыл'],1],[['Подтекает при кашле, чихании, спорте','Жөтелде, түшкіргенде, спортта тамады'],2],[['Подтекает даже в покое','Тыныш отырғанда да тамады'],3,1],[['Пока ничего, хочу проверить себя','Әзірге ештеңе, өзімді тексергім келеді'],0]]},
+ {q:['Когда появляется моча?','Зәр қашан шығады?'],o:[[['Не появляется','Шықпайды'],0],[['При кашле, чихании, смехе','Жөтелгенде, түшкіргенде, күлгенде'],2],[['При спорте и тяжестях','Спортта және ауыр көтергенде'],2],[['Даже в покое, при ходьбе','Тыныштықта да, жүргенде де'],3,1]]},
+ {q:['Как вы с этим справляетесь?','Мұны қалай жеңесіз?'],o:[[['Ничего не нужно','Ештеңе керек емес'],0],[['Иногда прокладка','Кейде төсеніш'],1],[['Прокладки каждый день','Күнде төсеніш'],2],[['Урологические прокладки или памперсы','Урологиялық төсеніш немесе памперс'],3,1]]},
+ {q:['Есть ли неприятный запах?','Жағымсыз иіс бар ма?'],o:[[['Нет','Жоқ'],0],[['Иногда','Кейде'],1],[['Часто, стал сильнее','Жиі, күшейді'],2],[['Не обращала внимания','Назар аудармадым'],1]]},
+ {q:['Сколько у вас было родов?','Неше рет босандыңыз?'],o:[[['Не было','Болған жоқ'],0],[['Одни','Бір рет'],0],[['2-3','2-3 рет'],1],[['4 и больше','4 және одан көп'],2]]},
+ {q:['Насколько это мешает жить?','Бұл өмірге қаншалықты кедергі?'],o:[[['Почти не мешает','Кедергі жоқ дерлік'],0],[['Неловко в близости','Жақындықта ыңғайсыз'],1],[['Отказываюсь от спорта и поездок','Спорт пен сапардан бас тартамын'],2],[['Сложно нормально ходить','Қалыпты жүру қиын'],3,1]]}
+];
+const R={
+ 1:{lvl:['Похоже на лёгкую степень','Жеңіл дәрежеге ұқсайды'],code:['лёгкая степень','жеңіл дәреже'],txt:['Мышцы только начали слабеть – чаще это ощущается как дискомфорт в близости или хлюпание. На этом этапе хорошо помогают упражнения. Начните с тренажёра и покажитесь врачу, чтобы подобрать план','Бұлшықет енді әлсірей бастады – көбіне жақындықтағы ыңғайсыздық немесе шылпыл ретінде сезіледі. Бұл кезеңде жаттығулар жақсы көмектеседі. Жаттықтырғыштан бастап, жоспар құру үшін дәрігерге көрініңіз']},
+ 2:{lvl:['Похоже на среднюю степень','Орташа дәрежеге ұқсайды'],code:['средняя степень','орташа дәреже'],txt:['Моча появляется при кашле, чихании и нагрузке, может усилиться запах. Одних упражнений обычно уже мало – врач подскажет методы без разрезов: лазер, филлеры или другие','Зәр жөтелде, түшкіргенде және жүктемеде шығады, иіс күшеюі мүмкін. Тек жаттығу әдетте жеткіліксіз – дәрігер тіліксіз әдістерді ұсынады: лазер, филлер және т.б.']},
+ 3:{lvl:['Похоже на выраженную степень','Айқын дәрежеге ұқсайды'],code:['выраженная степень','айқын дәреже'],txt:['Моча подтекает даже в покое, приходится носить урологические прокладки. Не откладывайте консультацию – это лечится, и врач подберёт метод именно вам','Зәр тыныштықта да тамады, урологиялық төсеніш тағуға тура келеді. Кеңесті кейінге қалдырмаңыз – бұл емделеді, дәрігер сізге лайық әдісті таңдайды']}
+};
+let qi=0,score=0,hard=false;const box=document.getElementById('quiz');
+const L=a=>lang==='kz'?a[1]:a[0];
+function renderQ(){
+  if(qi>=Q.length)return renderRes();
+  const it=Q[qi];
+  box.innerHTML='<div class="qtop"><span>'+T('Вопрос ','Сұрақ ')+(qi+1)+T(' из ',' / ')+Q.length+'</span><span>'+T('анонимно','анонимді')+'</span></div><div class="bar"><i style="width:'+(qi/Q.length*100)+'%"></i></div><h3>'+L(it.q)+'</h3><div class="opts">'+it.o.map((o,i)=>'<button class="opt" data-i="'+i+'">'+L(o[0])+'</button>').join('')+'</div>'+(qi>0?'<button class="back" id="qback">'+T('← Назад','← Артқа')+'</button>':'');
+  box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const o=it.o[+b.dataset.i];hist.push([score,hard]);score+=o[1];if(o[2])hard=true;qi++;renderQ();box.scrollIntoView({block:'nearest'})});
+  const bk=document.getElementById('qback');if(bk)bk.onclick=()=>{[score,hard]=hist.pop();qi--;renderQ()};
+  typo(box);
+}
+let hist=[];
+function renderRes(){
+  const k=hard||score>=11?3:score>=5?2:1, r=R[k];
+  const msg=T('Здравствуйте! Я с сайта, прошла тест: ','Сәлеметсіз бе! Мен сайттан, тесттен өттім: ')+L(r.code)+T('. Хочу консультацию','. Кеңес алғым келеді');
+  box.innerHTML='<div class="res"><span class="lvl">'+L(r.lvl)+'</span><h3>'+L(r.txt)+'</h3><div class="cta"><a class="btn main" target="_blank" rel="noopener" href="'+waLink(msg)+'">'+T('Обсудить с врачом в WhatsApp','Дәрігермен WhatsApp-та талқылау')+'</a>'+(k===1?'<a class="btn" href="#trainer">'+T('Открыть приложение','Қосымшаны ашу')+'</a>':'')+'</div><p class="note">'+T('Результат теста – не диагноз, точный ответ даст осмотр. Сообщение в WhatsApp уже заполнено – его увидит только врач','Тест нәтижесі – диагноз емес, нақты жауапты тексеру береді. WhatsApp хабарламасы дайын – оны тек дәрігер көреді')+'</p><button class="back" id="again">'+T('Пройти заново','Қайта өту')+'</button></div>';
+  document.getElementById('again').onclick=()=>{qi=0;score=0;hard=false;hist=[];renderQ()};
+  typo(box);
+}
+
+/* анонимные вопросы (в превью не сохраняются) */
+const q=document.getElementById('q'),qerr=document.getElementById('qerr');
+q.addEventListener('input',()=>{qerr.hidden=true});
+document.getElementById('askf').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(q.value.trim().length<10){qerr.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');qerr.hidden=false;return}
+  e.target.innerHTML='<h3>'+T('Вопрос отправлен','Сұрақ жіберілді')+'</h3><p class="muted">'+T('Ответ появится в разделе «Ответы врача» в течение недели. Имя и телефон не сохранены','Жауап бір апта ішінде «Дәрігер жауаптары» бөлімінде шығады. Атыңыз бен нөміріңіз сақталмады')+'</p><p class="note">'+T('Превью: в рабочей версии вопрос придёт врачу','Превью: жұмыс нұсқасында сұрақ дәрігерге жетеді')+'</p>';
+  typo(e.target);
+});
+
+/* видео */
+document.querySelectorAll('.vid').forEach(v=>{
+  const vid=v.querySelector('video'),btn=v.querySelector('.play'),cap=v.querySelector('.cap');
+  btn.onclick=()=>{document.querySelectorAll('.vid video').forEach(o=>{if(o!==vid)o.pause()});vid.controls=true;vid.play().catch(()=>{});btn.hidden=true;cap.hidden=true};vid.onended=()=>{vid.controls=false;vid.load();btn.hidden=false};
+});
+
+/* приложение «Тонус» */
+const ring=document.getElementById('ring'),tn=document.getElementById('tn'),tl=document.getElementById('tl'),tbtn=document.getElementById('tbtn'),tstop=document.getElementById('tstop'),days=document.getElementById('days'),tdesc=document.getElementById('tdesc');
+const MODES={
+ kegel:{reps:10,a:[5000,['сжать','қысу'],'squeeze'],b:[5000,['расслабить','босату'],''],d:['Сжимайте мышцы, когда круг сжимается, и расслабляйте, когда он раскрывается. Никто вокруг не заметит – можно делать в пробке или на работе','Шеңбер кішірейгенде бұлшықетті қысып, ашылғанда босатыңыз. Айналадағылар байқамайды – кептелісте немесе жұмыста жасауға болады']},
+ breath:{reps:8,a:[4000,['вдох','дем алу'],'grow'],b:[6000,['выдох, подтянуть','дем шығару, тарту'],'squeeze'],d:['Медленный вдох животом, пока круг растёт. На выдохе мягко подтяните мышцы тазового дна. Делайте сидя или лёжа','Шеңбер үлкейгенде іштен баяу дем алыңыз. Дем шығарғанда жамбас түбі бұлшықеттерін ақырын тартыңыз. Отырып немесе жатып жасаңыз']}
+};
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const today=new Date();today.setHours(0,0,0,0);
+let log=ls.get('pf_log',{});            // дата -> число подходов
+let per=ls.get('pf_cycle',[]);          // даты месячных
+let mode='kegel',running=false,paused=false,stopF=false;
+const totalSets=()=>Object.values(log).reduce((a,b)=>a+b,0);
+const doneDays=()=>Object.keys(log).filter(k=>log[k]>0).length;
+function streak(){let n=0;const d=new Date(today);if(!log[iso(d)])d.setDate(d.getDate()-1);while(log[iso(d)]){n++;d.setDate(d.getDate()-1)}return n}
+function drawDays(){const n=Math.min(21,doneDays());days.innerHTML=Array.from({length:21},(_,i)=>'<i class="'+(i<n?'on':'')+'">'+(i+1)+'</i>').join('')}
+function setMode(m){if(running)return;mode=m;const M=MODES[m];
+  document.getElementById('m-kegel').setAttribute('aria-pressed',m==='kegel');document.getElementById('m-breath').setAttribute('aria-pressed',m==='breath');
+  tdesc.textContent=L(M.d);tn.textContent=M.reps;tl.textContent=T('повторов','рет');ring.className='ring';typo(tdesc)}
+document.getElementById('m-kegel').onclick=()=>setMode('kegel');
+document.getElementById('m-breath').onclick=()=>setMode('breath');
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function wait(ms){let t=0;while(t<ms){if(stopF)throw 'stop';await sleep(100);if(!paused)t+=100}}
+function idle(msg){running=false;paused=false;stopF=false;tstop.hidden=true;tbtn.textContent=msg;ring.className='ring'}
+tbtn.onclick=async()=>{
+  if(running){paused=!paused;tbtn.textContent=paused?T('Продолжить','Жалғастыру'):T('Пауза','Үзіліс');ring.style.transitionDuration=paused?'0s':'';return}
+  running=true;paused=false;stopF=false;tstop.hidden=false;tbtn.textContent=T('Пауза','Үзіліс');const M=MODES[mode];
+  try{
+    for(let rep=M.reps;rep>0;rep--){tn.textContent=rep;
+      for(const ph of [M.a,M.b]){tl.textContent=L(ph[1]);ring.className='ring'+(ph[2]?' '+ph[2]:'');await wait(ph[0])}}
+    tn.textContent='✓';tl.textContent=T('подход готов','дайын');
+    const k=iso(today);log[k]=(log[k]||0)+1;ls.set('pf_log',log);drawDays();appRender();
+    idle(T('Ещё подход','Тағы бір рет'));ring.className='ring';
+  }catch(e){idle(T('Начать подход','Жаттығуды бастау'));setMode(mode)}
+};
+tstop.onclick=()=>{stopF=true;paused=false};
+
+/* экраны */
+function go(sc){if(running&&sc!=='train'){} document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+
+/* цикл */
+let calM=new Date(today.getFullYear(),today.getMonth(),1);
+function cycleInfo(){
+  const ds=[...per].sort();if(!ds.length)return null;
+  const starts=[];let prev=null;for(const d of ds){const t=new Date(d+'T00:00');if(!prev||(t-prev)/864e5>2)starts.push(t);prev=t}
+  let len=28;if(starts.length>1){const g=[];for(let i=1;i<starts.length;i++)g.push((starts[i]-starts[i-1])/864e5);const avg=Math.round(g.reduce((a,b)=>a+b,0)/g.length);if(avg>=21&&avg<=40)len=avg}
+  const last=starts[starts.length-1];const next=new Date(last);next.setDate(next.getDate()+len);
+  while(next<today)next.setDate(next.getDate()+len);
+  const dayOf=Math.floor((today-last)/864e5)%len+1;
+  return{len,next,inDays:Math.round((next-today)/864e5),dayOf}
+}
+const MON=[['январь','ақпан'],['февраль','ақпан'],['март','наурыз'],['апрель','сәуір'],['май','мамыр'],['июнь','маусым'],['июль','шілде'],['август','тамыз'],['сентябрь','қыркүйек'],['октябрь','қазан'],['ноябрь','қараша'],['декабрь','желтоқсан']];
+MON[0][1]='қаңтар';
+function drawCal(){
+  const c=document.getElementById('cal'),info=cycleInfo();
+  document.getElementById('c-month').textContent=L(MON[calM.getMonth()])+' '+calM.getFullYear();
+  const wd=lang==='kz'?['Дс','Сс','Ср','Бс','Жм','Сн','Жк']:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  let h=wd.map(w=>'<span>'+w+'</span>').join('');
+  const first=(calM.getDay()+6)%7,dim=new Date(calM.getFullYear(),calM.getMonth()+1,0).getDate();
+  for(let i=0;i<first;i++)h+='<button disabled></button>';
+  const pred=new Set();if(info){for(let k=0;k<5;k++){const d=new Date(info.next);d.setDate(d.getDate()+k);pred.add(iso(d))}}
+  for(let d=1;d<=dim;d++){const dt=new Date(calM.getFullYear(),calM.getMonth(),d),k=iso(dt);
+    const cl=[per.includes(k)?'per':'',!per.includes(k)&&pred.has(k)?'pred':'',k===iso(today)?'today':''].join(' ');
+    h+='<button class="'+cl+'" data-d="'+k+'" aria-label="'+d+'">'+d+'</button>'}
+  c.innerHTML=h;
+  c.querySelectorAll('button[data-d]').forEach(b=>b.onclick=()=>{const k=b.dataset.d;per=per.includes(k)?per.filter(x=>x!==k):[...per,k];ls.set('pf_cycle',per);drawCal();appRender()});
+  document.getElementById('c-next').textContent=info?(info.inDays===0?T('сегодня','бүгін'):T('через '+info.inDays+' дн.',info.inDays+' күннен кейін')):'–';
+  document.getElementById('c-hint').textContent=info?T('Средний цикл '+info.len+' дней · день '+info.dayOf,'Орташа цикл '+info.len+' күн · '+info.dayOf+'-күн'):T('Нажмите на дни месячных – приложение посчитает цикл','Етеккір күндерін басыңыз – қосымша циклді есептейді');
+}
+
+/* статьи */
+const ARTS=[
+ ['a','Кегель: как найти нужные мышцы','Кегель: керекті бұлшықетті қалай табу','4',['#F2A6C9','#C9B4F5'],'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>'],
+ ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1',['#FFE08A','#F2A6C9'],'<path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/>'],
+ ['a','Что нормально после родов, а что – повод к врачу','Босанғаннан кейін не қалыпты, не дәрігерге бару себебі','6',['#B9A2FF','#8E6CE0'],'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
+ ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1',['#A6E3D0','#C9B4F5'],'<path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/>'],
+ ['n','Врач отвечает на анонимные вопросы каждую неделю','Дәрігер апта сайын анонимді сұрақтарға жауап береді','2',['#F2A6C9','#E46FA8'],'<path d="M5 5h14v10H9l-4 4z"/>'],
+ ['a','Спорт и недержание: можно ли бегать и прыгать','Спорт және зәр ұстамау: жүгіруге бола ма','5',['#C9B4F5','#F2A6C9'],'<path d="M13 4a2 2 0 1 0 0 .1M7 21l3-6 3 2v5M10 15l1-5 4 2 3-1"/>']
+];
+let artF='all';
+function drawArts(){const box=document.getElementById('arts');
+  const tag={a:['статья','мақала'],t:['совет','кеңес'],n:['новость','жаңалық']};
+  box.innerHTML=ARTS.filter(a=>artF==='all'||a[0]===artF).map(a=>'<div class="art"><span class="th" style="background:linear-gradient(140deg,'+a[4][0]+','+a[4][1]+')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+a[5]+'</svg></span><div><b>'+(lang==='kz'?a[2]:a[1])+'</b><small>'+L(tag[a[0]])+' · '+a[3]+T(' мин',' мин')+'</small></div></div>').join('');typo(box)}
+document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{artF=b.dataset.f;document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x===b));drawArts()});
+
+/* дашборд */
+const TIPS=[['Делайте подход в одно и то же время – например, после чистки зубов. Так привычка закрепится быстрее','Жаттығуды бір уақытта жасаңыз – мысалы, тіс тазалағаннан кейін. Әдет тезірек қалыптасады'],['Не задерживайте дыхание во время упражнений – дышите ровно','Жаттығу кезінде тынысты ұстамаңыз – бірқалыпты дем алыңыз'],['Пейте воду в течение дня понемногу, а не залпом вечером','Суды кешке бірден емес, күні бойы аздап ішіңіз']];
+function appRender(){
+  const n=Math.min(21,doneDays());document.getElementById('a-day').textContent=n;
+  document.getElementById('a-ring').style.strokeDashoffset=263.9*(1-n/21);
+  document.getElementById('a-streak').textContent=streak();document.getElementById('a-sets').textContent=totalSets();
+  document.getElementById('a-today').textContent=(log[iso(today)]||0)+'/2';
+  const wd=lang==='kz'?['Дс','Сс','Ср','Бс','Жм','Сн','Жк']:['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+  let h='';for(let i=6;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);const m=(log[iso(d)]||0)*2;h+='<div><i class="'+(m?'':'z')+'" style="height:'+(m?Math.min(100,18+m*8):6)+'%"></i><span>'+wd[(d.getDay()+6)%7]+'</span></div>'}
+  document.getElementById('a-bars').innerHTML=h;
+  const info=cycleInfo();
+  document.getElementById('a-cyc').textContent=info?T('день '+info.dayOf,info.dayOf+'-күн'):'–';
+  document.getElementById('a-cyc2').textContent=info?T('месячные через '+info.inDays+' дн.','етеккірге '+info.inDays+' күн'):T('отметьте месячные','етеккірді белгілеңіз');
+  document.getElementById('a-cycbar').style.width=info?Math.round(info.dayOf/info.len*100)+'%':'0';
+  document.getElementById('a-tip').textContent=L(TIPS[today.getDate()%TIPS.length]);
+  document.getElementById('a-date').textContent=today.toLocaleDateString(lang==='kz'?'kk-KZ':'ru-RU',{weekday:'long',day:'numeric',month:'long'});
+  drawDays();drawCal();drawArts();typo(document.querySelector('.phone'));
+}
+appRender();
+
+/* анимации сайта */
+(function(){
+  const ppl=document.getElementById('ppl');
+  if(ppl){const fig="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 34'%3E%3Ccircle cx='13' cy='7' r='6'/%3E%3Cpath d='M13 14c-6 0-10 5-11 12l-1 8h24l-1-8c-1-7-5-12-11-12z'/%3E%3C/svg%3E\")";
+    ppl.style.setProperty('--fig',fig);ppl.innerHTML='<i></i>'.repeat(9)}
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els=document.querySelectorAll('.rv,.track,#ppl,.stats');
+  const on=el=>{el.classList.add('in');
+    if(el.id==='ppl')[...el.children].forEach((x,i)=>{if(i%3===0)setTimeout(()=>x.classList.add('on'),reduce?0:300+i*120)});
+    if(el.classList.contains('stats'))el.querySelectorAll('.cnt').forEach(c=>{const to=+c.dataset.to;if(reduce)return;const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1400),v=Math.round(to*(1-Math.pow(1-p,3)));c.textContent=v>=1000?v.toLocaleString('ru-RU').replace(/\s/g,' '):v;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})};
+  if(!('IntersectionObserver' in window)){els.forEach(on);return}
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){on(e.target);io.unobserve(e.target)}}),{threshold:.2});
+  els.forEach(el=>io.observe(el));
+})();
+
+let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
+setLang(start);
+</script>
+
+</body></html>
