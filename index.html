@@ -522,6 +522,51 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .fig a{display:inline-flex;align-items:center;gap:8px;color:inherit;font-weight:600;text-decoration:none}.fig a:hover{color:var(--ink)}.fig .igi{width:18px;height:18px}
 @media (max-width:860px){.faq-side{order:1;margin:28px auto 0}.faq-side .cut{aspect-ratio:715/730;object-fit:cover;object-position:top}.cphoto{order:3}.contact>div:last-child{padding-bottom:0}}
 .phone,.phone *{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.phone button,.phone a,.phone [role=tab],.phone [tabindex]{outline:none!important}.phone input,.phone textarea{-webkit-user-select:text;user-select:text}
+
+.mgdefs{position:absolute;width:0;height:0;overflow:hidden}
+.tv{display:flex;flex-direction:column;gap:10px;flex:1 0 auto;min-height:100%}
+.tv[hidden]{display:none}
+.as[data-s=train]{justify-content:flex-start;gap:0}
+.grp{font-size:11px;font-weight:700;color:var(--a-mut);letter-spacing:.04em;margin:6px 2px 0}
+.mlist{display:flex;flex-direction:column;gap:7px}
+.mc{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center;text-align:left;width:100%;border:0;border-radius:16px;padding:9px 11px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);color:var(--a-ink);font:inherit;cursor:pointer}
+.mc b{display:block;font-size:13px;font-weight:700;line-height:1.25}.mc small{display:block;font-size:10.5px;color:var(--a-mut);margin-top:2px;line-height:1.3}
+.mc em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--a-acc);white-space:nowrap}
+.mi{width:38px;height:38px;border-radius:50%;background:#ffffff1a;display:flex;align-items:center;justify-content:center;flex:none}
+.mi svg{width:21px;height:21px}
+.back{border:0;background:#ffffff1a;color:var(--a-ink);width:32px;height:32px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex:none;padding:0}
+.back svg{width:17px;height:17px}
+#tv-play{justify-content:space-between;align-items:stretch}
+#tv-play .ring{flex:none;margin:8px auto}
+#tv-play .adesc{min-height:0;margin:0}
+.steps{display:flex;gap:4px;justify-content:center;min-height:4px}.steps i{width:20px;height:4px;border-radius:2px;background:#ffffff1f}.steps i.on{background:linear-gradient(90deg,#C9B4F5,#F2A6C9)}
+.ring.lv1{transform:scale(.9);background:#8f78c4;color:var(--a-ink)}
+.ring.lv2{transform:scale(.8);background:#ad96e0;color:var(--a-bg)}
+.ring.lv3{transform:scale(.7);background:var(--a-acc);color:var(--a-bg)}
+.ring.flash{transition-duration:.25s}
+.bcard{align-items:center;text-align:center;gap:4px!important}
+.bcard small{color:var(--a-mut);font-size:12px}
+.bbig{font-size:40px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em;line-height:1.1}
+.bbar{align-self:stretch;height:8px;border-radius:4px;background:#ffffff14;overflow:hidden;margin-top:6px}.bbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#C9B4F5,#F2A6C9);transition:width .5s}
+.plan{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.plan div{border-radius:12px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);padding:8px 4px;text-align:center;font-size:10.5px;color:var(--a-mut)}
+.plan div b{display:block;font-size:14px;color:var(--a-ink)}
+.plan div.on{background:linear-gradient(140deg,#6B4FB3,#4A3A6B);color:var(--a-ink)}
+.vsec{display:flex;flex-direction:column;gap:8px}.vsec[hidden],#arts[hidden]{display:none!important}
+.vrow{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -2px;padding:0 2px 2px}.vrow::-webkit-scrollbar{display:none}
+.vc{flex:none;width:112px;aspect-ratio:9/14;border:0;border-radius:14px;background:center/cover no-repeat linear-gradient(160deg,#4A3A6B,#3E2F5C);position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:0;overflow:hidden;cursor:pointer;color:#fff;font:inherit;text-align:left}
+.vc b{position:relative;font-size:10.5px;font-weight:700;line-height:1.25;padding:20px 8px 8px;width:100%;background:linear-gradient(transparent,#1d1629d9)}
+.vc .vp{position:absolute;right:7px;bottom:7px;width:28px;height:28px;display:flex;filter:drop-shadow(0 4px 8px #1d162980)}.vc.soon .vp{left:50%;top:40%;right:auto;bottom:auto;transform:translate(-50%,-50%);width:34px;height:34px}
+.vc .vp svg{width:100%;height:100%}
+.vc.soon{cursor:default;background:linear-gradient(160deg,#4A3A6B,#33284A)}
+.vc.soon .vp{opacity:.55}
+.vc.soon small{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;color:var(--a-acc);background:#ffffff14;border-radius:99px;padding:3px 7px}
+.art{grid-template-columns:44px 1fr!important;padding:9px 10px!important}
+.art .mi{width:44px;height:44px}.art .mi svg{width:23px;height:23px}
+.vov{position:absolute;inset:0;z-index:30;background:#0c0912;display:flex;align-items:center;justify-content:center}
+.vov video{width:100%;height:100%;object-fit:contain;background:#0c0912}
+.vx{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;width:36px;height:36px;border-radius:50%;border:0;background:#ffffff26;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.vx svg{width:18px;height:18px}
 </style>
 
 <header><div class="wrap hd">
@@ -615,15 +660,29 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
         <div class="acard tip"><h4 data-kz="Күн кеңесі">Совет дня</h4><p id="a-tip"></p></div>
       </div>
 
+      <svg class="mgdefs" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C9B4F5"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs></svg>
       <div class="as" data-s="train">
-        <div class="modes" role="group" aria-label="Упражнение">
-          <button class="mode" id="m-kegel" aria-pressed="true" data-kz="Кегель">Кегель</button>
-          <button class="mode" id="m-breath" aria-pressed="false" data-kz="Тыныс алу">Дыхание</button>
+        <div class="tv" id="tv-list">
+          <div class="ahead"><div class="grow"><b data-kz="Жаттығу">Тренировка</b><small data-kz="Күніне 5 минут – режимді таңдаңыз">5 минут в день – выберите режим</small></div></div>
+          <div class="mlist" id="mlist"></div>
+          <div class="grp" data-kz="21 күн">21 день</div>
+          <div class="days" id="days"></div>
         </div>
-        <div class="ring" id="ring"><b id="tn">10</b><span id="tl">повторов</span></div>
-        <p class="adesc" id="tdesc"></p>
-        <div class="tbtns"><button class="abtn" id="tbtn" data-kz="Жаттығуды бастау">Начать подход</button><button class="abtn ghost" id="tstop" hidden data-kz="Тоқтату">Стоп</button></div>
-        <div class="days" id="days"></div>
+        <div class="tv" id="tv-play" hidden>
+          <div class="ahead"><button class="back" id="t-back" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><div class="grow"><b id="t-name"></b><small id="t-meta"></small></div></div>
+          <div class="ring" id="ring"><b id="tn">10</b><span id="tl">повторов</span></div>
+          <div class="steps" id="tsteps"></div>
+          <p class="adesc" id="tdesc"></p>
+          <div class="tbtns"><button class="abtn" id="tbtn" data-kz="Жаттығуды бастау">Начать подход</button><button class="abtn ghost" id="tstop" hidden data-kz="Тоқтату">Стоп</button></div>
+        </div>
+        <div class="tv" id="tv-bl" hidden>
+          <div class="ahead"><button class="back" id="b-back" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><div class="grow"><b data-kz="Дәретхана режимі">Режим туалета</b><small id="b-meta"></small></div></div>
+          <div class="acard bcard"><small id="b-sub"></small><b class="bbig" id="b-t">60:00</b><div class="bbar"><i id="b-bar"></i></div></div>
+          <div class="tbtns"><button class="abtn" id="b-done"></button><button class="abtn ghost" id="b-urge" data-kz="Шақыру – тыныс аламын">Позыв – дышу</button></div>
+          <p class="adesc" id="b-tip"></p>
+          <div class="grp" data-kz="Жоспар">План</div>
+          <div class="plan" id="b-plan"></div>
+        </div>
       </div>
 
       <div class="as" data-s="cycle">
@@ -634,7 +693,8 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
       <div class="as" data-s="read">
         <div class="ahead"><div class="grow"><b data-kz="Кеңестер">Полезное</b><small data-kz="дәрігерден">от врача</small></div></div>
-        <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="t" data-kz="Кеңестер">Советы</button><button data-f="n" data-kz="Жаңалықтар">Новости</button></div>
+        <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="v" data-kz="Бейне">Видео</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="t" data-kz="Кеңестер">Советы</button><button data-f="n" data-kz="Жаңалықтар">Новости</button></div>
+        <div class="vsec" id="vsec"><div class="grp" data-kz="Дәрігердің бейнесабақтары">Видеоуроки от врача</div><div class="vrow" id="vrow"></div></div>
         <div id="arts" style="display:flex;flex-direction:column;gap:8px"></div>
       </div>
 
@@ -765,7 +825,7 @@ function setLang(l){
   document.getElementById('wa').href=waLink(T('Здравствуйте! Я с сайта, хочу записаться на консультацию','Сәлеметсіз бе! Мен сайттан, кеңеске жазылғым келеді'));
   (document.getElementById('share')||{}).href='https://wa.me/?text='+encodeURIComponent(T('Посмотри, тут анонимный тест про женское здоровье от гинеколога. Никто не узнает результат: ','Қарашы, гинекологтың әйел денсаулығы туралы анонимді тесті. Нәтижесін ешкім білмейді: ')+location.href.split('#')[0]+'#test');
   document.querySelectorAll('.av').forEach(a=>a.textContent=l==='kz'?'KZ':'RU');
-  renderQ();setMode(mode);if(typeof appRender==="function")appRender();typo(document.body);
+  renderQ();setMode();if(cur>=0&&MODES[cur].bl)blRender();if(typeof appRender==="function")appRender();typo(document.body);
   try{localStorage.setItem('lang',l)}catch(e){}
 }
 document.getElementById('l-ru').onclick=()=>setLang('ru');
@@ -822,10 +882,23 @@ document.querySelectorAll('.vid').forEach(v=>{
 
 /* приложение «Тонус» */
 const ring=document.getElementById('ring'),tn=document.getElementById('tn'),tl=document.getElementById('tl'),tbtn=document.getElementById('tbtn'),tstop=document.getElementById('tstop'),days=document.getElementById('days'),tdesc=document.getElementById('tdesc');
-const MODES={
- kegel:{reps:10,a:[5000,['сжать','қысу'],'squeeze'],b:[5000,['расслабить','босату'],''],d:['Сжимайте мышцы, когда круг сжимается, и расслабляйте, когда он раскрывается. Никто вокруг не заметит – можно делать в пробке или на работе','Шеңбер кішірейгенде бұлшықетті қысып, ашылғанда босатыңыз. Айналадағылар байқамайды – кептелісте немесе жұмыста жасауға болады']},
- breath:{reps:8,a:[4000,['вдох','дем алу'],'grow'],b:[6000,['выдох, подтянуть','дем шығару, тарту'],'squeeze'],d:['Медленный вдох животом, пока круг растёт. На выдохе мягко подтяните мышцы тазового дна. Делайте сидя или лёжа','Шеңбер үлкейгенде іштен баяу дем алыңыз. Дем шығарғанда жамбас түбі бұлшықеттерін ақырын тартыңыз. Отырып немесе жатып жасаңыз']}
-};
+const MICON={"kegel": "<circle cx=\"12\" cy=\"12\" r=\"8.5\" fill=\"url(#mg)\"/><circle cx=\"12\" cy=\"12\" r=\"3.6\" fill=\"#3E2F5C\" opacity=\".45\"/>", "breath": "<path fill=\"url(#mg)\" d=\"M10.8 7.2c0-1.2-1.1-1.8-2.2-1.2C5.7 7.6 3.8 11.4 3.8 15.6c0 2.4 1.4 3.6 3.4 3.6 2.4 0 3.6-1.5 3.6-3.9z\"/><path fill=\"url(#mg)\" d=\"M13.2 7.2c0-1.2 1.1-1.8 2.2-1.2 2.9 1.6 4.8 5.4 4.8 9.6 0 2.4-1.4 3.6-3.4 3.6-2.4 0-3.6-1.5-3.6-3.9z\"/><path d=\"M12 3v7.5\" stroke=\"url(#mg)\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><path d=\"M7.6 12.5c.8-.8 1.6-1.2 2.2-1.3M16.4 12.5c-.8-.8-1.6-1.2-2.2-1.3\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.5\" stroke-linecap=\"round\" fill=\"none\"/>", "lift": "<rect x=\"5\" y=\"3\" width=\"14\" height=\"18\" rx=\"3.6\" fill=\"url(#mg)\"/><path d=\"M12 6.2l3.1 3.6H8.9zM12 17.8l-3.1-3.6h6.2z\" fill=\"#3E2F5C\" opacity=\".45\"/>", "quick": "<path fill=\"url(#mg)\" d=\"M14 2.2L5.2 13.6h5.6l-1.3 8.2 8.8-11.4h-5.6z\"/><path fill=\"#3E2F5C\" opacity=\".45\" d=\"M11.3 13.6h2.2l-1.6 4.3z\"/>", "long": "<path fill=\"url(#mg)\" d=\"M6 2.8h12v2.8c0 3-2.4 4.9-4.4 6.4 2 1.5 4.4 3.4 4.4 6.4v2.8H6v-2.8c0-3 2.4-4.9 4.4-6.4C8.4 10.5 6 8.6 6 5.6z\"/><path fill=\"#3E2F5C\" opacity=\".45\" d=\"M8.6 19.2c.3-1.9 1.8-3.1 3.4-4.1 1.6 1 3.1 2.2 3.4 4.1z\"/>", "knack": "<path fill=\"url(#mg)\" d=\"M12 2.3l7.6 3v6.2c0 5-3.3 8.4-7.6 10.2-4.3-1.8-7.6-5.2-7.6-10.2V5.3z\"/><path d=\"M12 7.4v5.2\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"2.2\" stroke-linecap=\"round\"/><circle cx=\"12\" cy=\"16.1\" r=\"1.35\" fill=\"#3E2F5C\" opacity=\".45\"/>", "bridge": "<path fill=\"url(#mg)\" d=\"M2.5 19.8V17C4 10.9 7.6 7.2 12 7.2s8 3.7 9.5 9.8v2.8z\"/><path fill=\"#3E2F5C\" opacity=\".45\" d=\"M7 19.8c.6-4.1 2.6-6.7 5-6.7s4.4 2.6 5 6.7z\"/>", "wall": "<rect x=\"17.2\" y=\"2.5\" width=\"4\" height=\"19\" rx=\"2\" fill=\"url(#mg)\"/><circle cx=\"9.6\" cy=\"5.2\" r=\"2.6\" fill=\"url(#mg)\"/><path fill=\"url(#mg)\" d=\"M8.3 9.2h3.4a2.3 2.3 0 0 1 2.3 2.3v2.6h1.6a1.6 1.6 0 0 1 1.6 1.6v5.6h-3.2v-4.2H8.6a2.3 2.3 0 0 1-2.3-2.3v-3.3a2.3 2.3 0 0 1 2-2.3z\"/>", "ball": "<circle cx=\"12\" cy=\"12\" r=\"8.5\" fill=\"url(#mg)\"/><path d=\"M4.4 9.3c5 1.6 10.2 1.6 15.2 0M4.4 14.7c5-1.6 10.2-1.6 15.2 0\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.6\" fill=\"none\"/>", "core": "<path fill=\"url(#mg)\" d=\"M6 3h12c-1.6 3-1.6 5.4 0 9-1.6 3.6-1.6 6 0 9H6c1.6-3 1.6-5.4 0-9 1.6-3.6 1.6-6 0-9z\"/><path d=\"M12 6v12M9.7 9h4.6M9.7 12h4.6M9.7 15h4.6\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>", "relax": "<path fill=\"url(#mg)\" d=\"M4.5 19.5C4.5 10 10 4.5 19.5 4.5 19.5 14 14 19.5 4.5 19.5z\"/><path d=\"M5.8 18.2l8.6-8.6\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.6\" stroke-linecap=\"round\"/>", "bladder": "<path fill=\"url(#mg)\" d=\"M12 2.3c3.3 4.3 6.6 8 6.6 12.1a6.6 6.6 0 0 1-13.2 0c0-4.1 3.3-7.8 6.6-12.1z\"/><path d=\"M12 11.2v3.8l2.3 1.5\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.8\" stroke-linecap=\"round\" fill=\"none\"/>", "heart": "<path fill=\"url(#mg)\" d=\"M12 20.6s-8.2-4.8-8.2-11.1A4.6 4.6 0 0 1 12 6.7a4.6 4.6 0 0 1 8.2 2.8c0 6.3-8.2 11.1-8.2 11.1z\"/><path fill=\"#3E2F5C\" opacity=\".45\" d=\"M12 17.2s-4-2.5-4-5.6c0-1.3 1-2.2 2-2.2s1.6.6 2 1.3c.4-.7 1-1.3 2-1.3s2 .9 2 2.2c0 3.1-4 5.6-4 5.6z\"/>", "bag": "<path fill=\"url(#mg)\" d=\"M5 8.6h14l1.4 12H3.6z\"/><path d=\"M9 8.6a3 3 0 0 1 6 0\" stroke=\"url(#mg)\" stroke-width=\"1.9\" fill=\"none\"/><path d=\"M9.5 13h5\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.8\" stroke-linecap=\"round\"/>", "chat": "<path fill=\"url(#mg)\" d=\"M4 5.6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9.6L5 20.6v-4.2a2 2 0 0 1-1-1.8z\"/><path d=\"M8 9h8M8 12h5\" stroke=\"#3E2F5C\" stroke-opacity=\".45\" stroke-width=\"1.6\" stroke-linecap=\"round\"/>", "play": "<circle cx=\"12\" cy=\"12\" r=\"9\" fill=\"url(#mg)\"/><path fill=\"#3E2F5C\" opacity=\".55\" d=\"M10 8.2v7.6l6-3.8z\"/>"};
+const mic=k=>'<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">'+MICON[k]+'</svg>';
+const P=(t,ru,kz,c)=>({t,l:[ru,kz],c:c||''});
+const MODES=[
+ {g:['Основа','Негіз'],id:'kegel',n:['Кегель','Кегель'],s:['Сжать – расслабить','Қысу – босату'],reps:10,ph:[P(5000,'сжать','қысу','squeeze'),P(5000,'расслабить','босату')],d:['Сжимайте мышцы, когда круг сжимается, и расслабляйте, когда он раскрывается. Никто вокруг не заметит – можно делать в пробке или на работе','Шеңбер кішірейгенде бұлшықетті қысып, ашылғанда босатыңыз. Айналадағылар байқамайды – кептелісте немесе жұмыста жасауға болады']},
+ {g:['Основа','Негіз'],id:'breath',n:['Дыхание','Тыныс алу'],s:['Вдох животом, на выдохе подтянуть','Іштен дем алу, дем шығарғанда тарту'],reps:8,ph:[P(4000,'вдох','дем алу','grow'),P(6000,'выдох, подтянуть','дем шығару, тарту','squeeze')],d:['Медленный вдох животом, пока круг растёт. На выдохе мягко подтяните мышцы тазового дна. Делайте сидя или лёжа','Шеңбер үлкейгенде іштен баяу дем алыңыз. Дем шығарғанда жамбас түбі бұлшықеттерін ақырын тартыңыз. Отырып немесе жатып жасаңыз']},
+ {g:['Сила и контроль','Күш және бақылау'],id:'lift',n:['Лифт','Лифт'],s:['Сжатие по этажам вверх и вниз','Қабат-қабатпен жоғары және төмен'],reps:4,ph:[P(2000,'1 этаж','1-қабат','lv1'),P(2000,'2 этаж','2-қабат','lv2'),P(2000,'3 этаж','3-қабат','lv3'),P(3000,'держать','ұстау','lv3'),P(2000,'вниз – 2','төмен – 2','lv2'),P(2000,'вниз – 1','төмен – 1','lv1'),P(4000,'отпустить','босату')],d:['Сжимайте мышцы постепенно, как лифт поднимается по этажам, и так же плавно опускайте. Учит управлять силой сжатия','Бұлшықетті лифт қабаттан қабатқа көтерілгендей біртіндеп қысыңыз да, солай баяу түсіріңіз. Қысу күшін басқаруға үйретеді']},
+ {g:['Сила и контроль','Күш және бақылау'],id:'quick',n:['Быстрые сжатия','Жылдам қысу'],s:['1 секунда – резко сжать и отпустить','1 секунд – қатты қысып, босату'],reps:10,ph:[P(1000,'сжать!','қыс!','squeeze flash'),P(1000,'отпустить','босат','flash')],d:['Быстро и сильно сожмите, сразу отпустите. Тренирует мышцы, которые срабатывают при кашле и смехе','Тез әрі қатты қысып, бірден босатыңыз. Жөтел мен күлкі кезінде іске қосылатын бұлшықеттерді жаттықтырады']},
+ {g:['Сила и контроль','Күш және бақылау'],id:'long',n:['Долгое удержание','Ұзақ ұстау'],s:['10 секунд держать, 10 отдыхать','10 секунд ұстау, 10 демалу'],reps:5,ph:[P(10000,'держать','ұстау','squeeze'),P(10000,'отдых','демалыс')],d:['Сожмите и держите, дышите спокойно. Отдых такой же длинный, как удержание. Развивает выносливость','Қысып ұстаңыз, тынысты бірқалыпты алыңыз. Демалыс ұстау уақытымен бірдей. Төзімділікті дамытады']},
+ {g:['Сила и контроль','Күш және бақылау'],id:'knack',n:['Перед кашлем','Жөтел алдында'],s:['Сжать заранее – потом кашлянуть','Алдын ала қысып, сосын жөтелу'],reps:6,ph:[P(2000,'сжать заранее','алдын ала қысу','squeeze'),P(1500,'кашель','жөтел','squeeze flash'),P(4000,'отпустить','босату')],d:['Привычка «сначала сжать»: перед кашлем, чиханием или подъёмом тяжёлого. Со временем срабатывает сама','«Алдымен қысу» әдеті: жөтел, түшкіру немесе ауыр көтеру алдында. Уақыт өте өзі іске қосылады']},
+ {g:['С движением','Қозғалыспен'],id:'bridge',n:['Мостик','Көпір'],s:['Лёжа: поднять таз и сжать','Жатып: жамбасты көтеріп, қысу'],reps:10,ph:[P(3000,'поднять таз, сжать','жамбасты көтеру, қысу','squeeze'),P(3000,'держать','ұстау','squeeze'),P(3000,'опуститься','түсу')],d:['Лягте на спину, колени согнуты. Поднимите таз и сожмите мышцы, задержитесь, мягко опуститесь','Шалқаңыздан жатып, тізені бүгіңіз. Жамбасты көтеріп, бұлшықетті қысыңыз, ұстап тұрып, баяу түсіңіз']},
+ {g:['С движением','Қозғалыспен'],id:'wall',n:['Присед у стены','Қабырға жанында отыру'],s:['Присесть со сжатием, встать – отпустить','Қысып отыру, тұрғанда босату'],reps:8,ph:[P(3000,'присесть, сжать','отыру, қысу','squeeze'),P(5000,'держать','ұстау','squeeze'),P(4000,'встать, отпустить','тұру, босату')],d:['Спиной к стене, ноги на ширине плеч. Опускайтесь как на стул и сжимайте мышцы, вставая – расслабляйте','Арқаңызды қабырғаға тіреп, аяқты иық кеңдігінде қойыңыз. Орындыққа отырғандай түсіп, бұлшықетті қысыңыз, тұрғанда босатыңыз']},
+ {g:['С движением','Қозғалыспен'],id:'ball',n:['Мяч между колен','Тізе арасындағы доп'],s:['Сжать мяч и мышцы вместе','Доп пен бұлшықетті бірге қысу'],reps:10,ph:[P(5000,'сжать мяч и мышцы','доп пен бұлшықетті қысу','squeeze'),P(5000,'отпустить','босату')],d:['Сидя или лёжа зажмите мяч или подушку между коленями. Сжимайте его вместе с мышцами тазового дна','Отырып немесе жатып, тізе арасына доп не жастық қысыңыз. Оны жамбас түбі бұлшықеттерімен бірге қысыңыз']},
+ {g:['Глубокие мышцы','Терең бұлшықеттер'],id:'core',n:['Глубокий пресс','Терең пресс'],s:['Втянуть живот к позвоночнику','Ішті омыртқаға қарай тарту'],reps:8,ph:[P(4000,'вдох животом','іштен дем алу','grow'),P(4000,'выдох, втянуть живот','дем шығару, ішті тарту','squeeze'),P(5000,'держать, дышать','ұстау, тыныс алу','squeeze'),P(3000,'отпустить','босату')],d:['На выдохе мягко втяните низ живота к позвоночнику и подтяните тазовое дно. Работают вместе, как корсет','Дем шығарғанда іштің төменгі бөлігін омыртқаға қарай жұмсақ тартып, жамбас түбін көтеріңіз. Олар корсет сияқты бірге жұмыс істейді']},
+ {g:['Расслабление и привычки','Босаңсу және әдеттер'],id:'relax',n:['Расслабление','Босаңсу'],s:['Обратный Кегель с дыханием','Тыныспен кері Кегель'],reps:6,ph:[P(4000,'вдох – мышцы мягко опускаются','дем алу – бұлшықет жұмсақ түседі','grow'),P(6000,'выдох – отпустить','дем шығару – босату')],d:['Не сжимать, а отпускать. Полезно при напряжении и боли в близости. Хорошо в конце тренировки','Қысу емес, босату. Кернеу мен жақындық кезіндегі ауырсынуда пайдалы. Жаттығудың соңында жасаған жөн']},
+ {g:['Расслабление и привычки','Босаңсу және әдеттер'],id:'bladder',n:['Режим туалета','Дәретхана режимі'],s:['Плавно увеличивать время между походами','Барулар арасын біртіндеп ұзарту'],bl:1}
+];
 const ls={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const today=new Date();today.setHours(0,0,0,0);
@@ -836,26 +909,48 @@ const totalSets=()=>Object.values(log).reduce((a,b)=>a+b,0);
 const doneDays=()=>Object.keys(log).filter(k=>log[k]>0).length;
 function streak(){let n=0;const d=new Date(today);if(!log[iso(d)])d.setDate(d.getDate()-1);while(log[iso(d)]){n++;d.setDate(d.getDate()-1)}return n}
 function drawDays(){const n=Math.min(21,doneDays());days.innerHTML=Array.from({length:21},(_,i)=>'<i class="'+(i<n?'on':'')+'">'+(i+1)+'</i>').join('')}
-function setMode(m){if(running)return;mode=m;const M=MODES[m];
-  document.getElementById('m-kegel').setAttribute('aria-pressed',m==='kegel');document.getElementById('m-breath').setAttribute('aria-pressed',m==='breath');
-  tdesc.textContent=L(M.d);tn.textContent=M.reps;tl.textContent=T('повторов','рет');ring.className='ring';typo(tdesc)}
-document.getElementById('m-kegel').onclick=()=>setMode('kegel');
-document.getElementById('m-breath').onclick=()=>setMode('breath');
+const mdur=m=>m.bl?T('4 апта'.replace('апта','нед.'),'4 апта'):Math.max(1,Math.round(m.reps*m.ph.reduce((a,p)=>a+p.t,0)/60000))+T(' мин',' мин');
+function drawModes(){let h='',last='';MODES.forEach((m,i)=>{const g=L(m.g);if(g!==last){h+='<div class="grp">'+g+'</div>';last=g}h+='<button class="mc" data-i="'+i+'"><span class="mi">'+mic(m.id)+'</span><span class="mt"><b>'+L(m.n)+'</b><small>'+L(m.s)+'</small></span><em>'+mdur(m)+'</em></button>'});
+  const box=document.getElementById('mlist');box.innerHTML=h;box.querySelectorAll('.mc').forEach(b=>b.onclick=()=>openMode(+b.dataset.i));typo(box)}
+function tview(v){['tv-list','tv-play','tv-bl'].forEach(x=>document.getElementById(x).hidden=x!==v);const sc=document.querySelector('.as[data-s=train]');if(sc)sc.scrollTop=0}
+let cur=-1;
+function openMode(i){if(running)return;const M=MODES[i];if(M.bl){cur=i;tview('tv-bl');blRender();return}cur=i;mode=M.id;tview('tv-play');setMode()}
+function setMode(){if(cur<0||MODES[cur].bl){drawModes();return}const M=MODES[cur];
+  document.getElementById('t-name').textContent=L(M.n);document.getElementById('t-meta').textContent=mdur(M)+' · '+M.reps+' '+T('повторов','рет');
+  tdesc.textContent=L(M.d);tn.textContent=M.reps;tl.textContent=T('повторов','рет');ring.className='ring';
+  document.getElementById('tsteps').innerHTML=M.ph.length>2?M.ph.map(()=>'<i></i>').join(''):'';typo(tdesc);drawModes()}
+document.getElementById('t-back').onclick=()=>{if(running){stopF=true;paused=false}cur=-1;tview('tv-list')};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function wait(ms){let t=0;while(t<ms){if(stopF)throw 'stop';await sleep(100);if(!paused)t+=100}}
-function idle(msg){running=false;paused=false;stopF=false;tstop.hidden=true;tbtn.textContent=msg;ring.className='ring'}
+function idle(msg){running=false;paused=false;stopF=false;tstop.hidden=true;tbtn.textContent=msg;ring.className='ring';document.querySelectorAll('#tsteps i').forEach(s=>s.classList.remove('on'))}
 tbtn.onclick=async()=>{
   if(running){paused=!paused;tbtn.textContent=paused?T('Продолжить','Жалғастыру'):T('Пауза','Үзіліс');ring.style.transitionDuration=paused?'0s':'';return}
-  running=true;paused=false;stopF=false;tstop.hidden=false;tbtn.textContent=T('Пауза','Үзіліс');const M=MODES[mode];
+  if(cur<0)return;running=true;paused=false;stopF=false;tstop.hidden=false;tbtn.textContent=T('Пауза','Үзіліс');const M=MODES[cur];const st=[...document.querySelectorAll('#tsteps i')];
   try{
     for(let rep=M.reps;rep>0;rep--){tn.textContent=rep;
-      for(const ph of [M.a,M.b]){tl.textContent=L(ph[1]);ring.className='ring'+(ph[2]?' '+ph[2]:'');await wait(ph[0])}}
+      for(let k=0;k<M.ph.length;k++){const ph=M.ph[k];tl.textContent=L(ph.l);ring.className='ring'+(ph.c?' '+ph.c:'');st.forEach((s,j)=>s.classList.toggle('on',j<=k));await wait(ph.t)}}
     tn.textContent='✓';tl.textContent=T('подход готов','дайын');
     const k=iso(today);log[k]=(log[k]||0)+1;ls.set('pf_log',log);drawDays();appRender();
-    idle(T('Ещё подход','Тағы бір рет'));ring.className='ring';
-  }catch(e){idle(T('Начать подход','Жаттығуды бастау'));setMode(mode)}
+    idle(T('Ещё подход','Тағы бір рет'));
+  }catch(e){idle(T('Начать подход','Жаттығуды бастау'));setMode()}
 };
 tstop.onclick=()=>{stopF=true;paused=false};
+/* режим туалета */
+let bl=ls.get('pf_bl',null),blT=0;
+const blWeek=()=>bl?Math.min(4,Math.floor((today-new Date(bl.start+'T00:00'))/6048e5)+1):1;
+const blInt=()=>45+15*blWeek();
+function blRender(){clearInterval(blT);const w=blWeek(),iv=blInt();
+  document.getElementById('b-meta').textContent=bl?T('Неделя '+w+' из 4 – интервал '+iv+' минут',w+'/4 апта – аралық '+iv+' минут'):T('План на 4 недели','4 аптаға жоспар');
+  document.getElementById('b-plan').innerHTML=[1,2,3,4].map(n=>'<div class="'+(bl&&n===w?'on':'')+'"><b>'+(45+15*n)+'</b>'+T('нед. ','апта ')+n+'</div>').join('');
+  document.getElementById('b-done').textContent=bl?T('Сходила','Бардым'):T('Начать план','Жоспарды бастау');
+  document.getElementById('b-tip').textContent=T('Если позыв раньше времени – остановитесь, сожмите мышцы 5 раз быстро и сделайте 3 медленных выдоха. Обычно позыв стихает','Шақыру ерте келсе – тоқтаңыз, бұлшықетті 5 рет тез қысып, 3 рет баяу дем шығарыңыз. Әдетте шақыру басылады');
+  const sub=document.getElementById('b-sub'),bt=document.getElementById('b-t'),bar=document.getElementById('b-bar');
+  if(!bl){sub.textContent=T('Интервал первой недели','Бірінші апта аралығы');bt.textContent=iv+':00';bar.style.width='0';return}
+  const tick=()=>{const left=Math.max(0,Math.round((bl.last+iv*6e4-Date.now())/1000));sub.textContent=left?T('До следующего похода','Келесі баруға дейін'):T('Можно идти','Баруға болады');bt.textContent=String(Math.floor(left/60)).padStart(2,'0')+':'+String(left%60).padStart(2,'0');bar.style.width=(100-left/(iv*60)*100)+'%'};
+  tick();blT=setInterval(tick,1000)}
+document.getElementById('b-done').onclick=()=>{if(!bl)bl={start:iso(today),last:Date.now()};else bl.last=Date.now();ls.set('pf_bl',bl);blRender()};
+document.getElementById('b-urge').onclick=()=>{document.getElementById('b-tip').textContent=T('Сожмите мышцы 5 раз быстро, затем 3 медленных выдоха. Позыв обычно стихает за минуту','Бұлшықетті 5 рет тез қысып, сосын 3 рет баяу дем шығарыңыз. Шақыру әдетте бір минутта басылады')};
+document.getElementById('b-back').onclick=()=>{clearInterval(blT);cur=-1;tview('tv-list')};
 
 /* экраны */
 function go(sc){if(running&&sc!=='train'){} document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
@@ -893,17 +988,35 @@ function drawCal(){
 
 /* статьи */
 const ARTS=[
- ['a','Кегель: как найти нужные мышцы','Кегель: керекті бұлшықетті қалай табу','4',['#F2A6C9','#C9B4F5'],'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/>'],
- ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1',['#C9B4F5','#F2A6C9'],'<path d="M12 3c3 4 6 7.5 6 11a6 6 0 0 1-12 0c0-3.5 3-7 6-11z"/>'],
- ['a','Что нормально после родов, а что – повод к врачу','Босанғаннан кейін не қалыпты, не дәрігерге бару себебі','6',['#B9A2FF','#8E6CE0'],'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
- ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1',['#F2A6C9','#C9B4F5'],'<path d="M6 8h12l1.5 12h-15z"/><path d="M9 8a3 3 0 0 1 6 0"/>'],
- ['n','Врач отвечает на анонимные вопросы каждую неделю','Дәрігер апта сайын анонимді сұрақтарға жауап береді','2',['#F2A6C9','#E46FA8'],'<path d="M5 5h14v10H9l-4 4z"/>'],
- ['a','Спорт и недержание: можно ли бегать и прыгать','Спорт және зәр ұстамау: жүгіруге бола ма','5',['#C9B4F5','#F2A6C9'],'<path d="M13 4a2 2 0 1 0 0 .1M7 21l3-6 3 2v5M10 15l1-5 4 2 3-1"/>']
+ ['a','Кегель: как найти нужные мышцы','Кегель: керекті бұлшықетті қалай табу','4','kegel'],
+ ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1','bladder'],
+ ['a','Что нормально после родов, а что – повод к врачу','Босанғаннан кейін не қалыпты, не дәрігерге бару себебі','6','heart'],
+ ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1','bag'],
+ ['n','Врач отвечает на анонимные вопросы каждую неделю','Дәрігер апта сайын анонимді сұрақтарға жауап береді','2','chat'],
+ ['a','Спорт и недержание: можно ли бегать и прыгать','Спорт және зәр ұстамау: жүгіруге бола ма','5','quick']
+];
+const MB=location.pathname.indexOf('/app')>-1?'../media/':'media/';
+const VIDS=[
+ ['v1','cover1','Почему подтекает, когда встаёте','Орнынан тұрғанда неге тамады'],
+ ['v2','cover2','Как понять, что мышцы ослабли','Бұлшықет әлсірегенін қалай білуге болады'],
+ ['v3','cover3','Что меняется после родов','Босанғаннан кейін не өзгереді'],
+ ['','','Как найти мышцы тазового дна','Жамбас түбі бұлшықеттерін қалай табу'],
+ ['','','Кегель: техника за 2 минуты','Кегель: 2 минуттағы техника'],
+ ['','','Мостик и присед правильно','Көпір мен отыруды дұрыс жасау']
 ];
 let artF='all';
+function drawVids(){const r=document.getElementById('vrow');
+  r.innerHTML=VIDS.map((v,i)=>v[0]?'<button class="vc" data-v="'+i+'" style="background-image:url('+MB+v[1]+'.jpg)"><span class="vp">'+mic('play')+'</span></button>':'<div class="vc soon"><span class="vp">'+mic('play')+'</span><small>'+T('скоро','жақында')+'</small></div>').join('');
+  r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]);if(VIDS[i][0])c.setAttribute('aria-label',n);else c.insertAdjacentHTML('beforeend','<b>'+n+'</b>')});
+  r.querySelectorAll('button.vc').forEach(b=>b.onclick=()=>playVid(VIDS[+b.dataset.v]));typo(r)}
+function playVid(v){const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
+  o=document.createElement('div');o.id='vov';o.className='vov';o.innerHTML='<video playsinline controls autoplay src="'+MB+v[0]+'.mp4" poster="'+MB+v[1]+'.jpg"></video><button class="vx" aria-label="'+T('Закрыть','Жабу')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+  scr.appendChild(o);o.querySelector('.vx').onclick=()=>o.remove();const vd=o.querySelector('video');vd.play().catch(()=>{});vd.onended=()=>o.remove()}
 function drawArts(){const box=document.getElementById('arts');
   const tag={a:['статья','мақала'],t:['совет','кеңес'],n:['новость','жаңалық']};
-  box.innerHTML=ARTS.filter(a=>artF==='all'||a[0]===artF).map(a=>'<div class="art"><span class="th" style="background:linear-gradient(140deg,'+a[4][0]+','+a[4][1]+')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+a[5]+'</svg></span><div><b>'+(lang==='kz'?a[2]:a[1])+'</b><small>'+L(tag[a[0]])+' · '+a[3]+T(' мин',' мин')+'</small></div></div>').join('');typo(box)}
+  document.getElementById('vsec').hidden=!(artF==='all'||artF==='v');drawVids();
+  box.hidden=artF==='v';
+  box.innerHTML=ARTS.filter(a=>artF==='all'||a[0]===artF).map(a=>'<div class="art"><span class="mi">'+mic(a[4])+'</span><div><b>'+(lang==='kz'?a[2]:a[1])+'</b><small>'+L(tag[a[0]])+' · '+a[3]+T(' мин',' мин')+'</small></div></div>').join('');typo(box)}
 document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{artF=b.dataset.f;document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x===b));drawArts()});
 
 /* дашборд */
