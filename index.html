@@ -6,7 +6,12 @@
 <meta name="description" content="Недержание, опущение, интимная эстетика. Анонимный тест, бесплатный тренажёр мышц тазового дна и запись к врачу в WhatsApp. Алматы.">
 <meta property="og:title" content="Решаю то, о чём вы боитесь говорить вслух">
 <meta property="og:description" content="Анонимный тест за 2 минуты и запись к гинекологу-хирургу Юлии Иномовне. Алматы.">
-<meta property="og:image" content="/media/hero.jpg">
+<meta property="og:image" content="https://www.ruzimatova.kz/media/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.ruzimatova.kz/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FBF7FC">
 <link rel="icon" href="media/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="media/favicon-32.png" sizes="32x32" type="image/png">
@@ -312,6 +317,24 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
 .btn.main:hover{filter:brightness(1.03)}
 .ico{background:linear-gradient(140deg,#F7EEF9,#ECE2FB)!important;color:#8C66C9!important}
 .blob{opacity:.45}
+
+/* v19: чередование белых и градиентных секций, цвета иконки «Линии» */
+:root{--g1:#8F6BDA;--g2:#E59CC6;--grad:linear-gradient(125deg,var(--g1) 0%,#B583D6 48%,var(--g2) 100%)}
+section{background:#fff}
+.band,.men{background:var(--grad);color:#fff;--ink:#fff;--muted:#ffffffe0;--rose-ink:#fff;--on-night:#fff;position:relative;overflow:hidden}
+.band::before,.men::before{content:"";position:absolute;inset:auto -10% -40% auto;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,#ffffff2e,transparent);pointer-events:none}
+.band .wrap,.men .wrap{position:relative}
+.band .card,.band .viz,.band .askf,.band .faq-a,.band .opt{--ink:#2E2538;--muted:#786C86;--rose-ink:#7A55B8;color:var(--ink)}
+.band .card .ico,.band .viz .ico{color:#7A55B8}
+.men li .ico{background:#ffffff2e;color:#fff}
+.band .btn,.men .btn{border-color:#fff;color:#fff}
+.btn.main{background:var(--grad);border-color:transparent;color:#fff;box-shadow:0 12px 26px -12px #9B6FD0}
+.band .btn.main,.men .btn.main{background:#fff;color:#7A55B8;box-shadow:0 12px 26px -14px #4a2a7a88}
+.band .askf .btn.main{background:var(--grad);color:#fff}
+.viz .big{background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.contact{background:var(--grad);color:#fff;--ink:#fff;--muted:#ffffffe0;--on-night:#fff;--rose-ink:#fff}
+.contact .btn.main{background:#fff;color:#7A55B8}
+.hero{background:transparent}
 </style>
 
 <header><div class="wrap hd">
