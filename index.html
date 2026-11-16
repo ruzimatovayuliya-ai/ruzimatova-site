@@ -510,7 +510,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .qlock{width:14px;height:14px;vertical-align:-2px}
 
 /* первый экран: круг с фото по центру текстового блока */
-@media (min-width:821px){.herosec .hero-photo.pop{position:relative;top:var(--lift,0px)}.herosec .hero-text{padding-bottom:0}.herosec .hero{padding-block:72px 64px}}
+@media (min-width:821px){.herosec .hero-photo.pop{position:relative;top:var(--lift,0px);left:var(--shift,0px)}.herosec .hero-text{padding-bottom:0}.herosec .hero{padding-block:72px 64px}}
 </style>
 
 <header><div class="wrap hd">
@@ -975,7 +975,7 @@ function lockSizes(again){
 
 /* центр круга = центр текста слева */
 (function(){const ph=document.querySelector('.herosec .hero-photo.pop'),bg=ph&&ph.querySelector('.pop-bg'),tx=document.querySelector('.herosec .hero-text');if(!ph||!bg||!tx)return;
- const fit=()=>{ph.style.setProperty('--lift','0px');if(innerWidth<821)return;const k=[...tx.children].filter(e=>e.offsetParent),a={top:k[0].getBoundingClientRect().top,bottom:k[k.length-1].getBoundingClientRect().bottom},c=bg.getBoundingClientRect();const d=(a.top+a.bottom)/2-(c.top+c.bottom)/2;ph.style.setProperty('--lift',Math.round(d)+'px')};
+ const fit=()=>{ph.style.setProperty('--lift','0px');ph.style.setProperty('--shift','0px');if(innerWidth<821)return;const k=[...tx.children].filter(e=>e.offsetParent),a={top:k[0].getBoundingClientRect().top,bottom:k[k.length-1].getBoundingClientRect().bottom},c=bg.getBoundingClientRect();const d=(a.top+a.bottom)/2-(c.top+c.bottom)/2;ph.style.setProperty('--lift',Math.round(d)+'px');const h=ph.parentElement,cs=getComputedStyle(h),edge=h.getBoundingClientRect().right-parseFloat(cs.paddingRight);ph.style.setProperty('--shift',Math.round(edge-c.right)+'px')};
  fit();addEventListener('resize',fit);addEventListener('load',fit);(document.fonts?document.fonts.ready:Promise.resolve()).then(fit)})();
 </script>
 
