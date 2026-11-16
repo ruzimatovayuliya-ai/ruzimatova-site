@@ -404,6 +404,26 @@ a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
 @media (max-width:480px){.badge em{font-size:13px;white-space:nowrap}}
 
 .pain-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* v24: тест поярче */
+.quiz{padding:0;overflow:hidden;max-width:880px}
+.quiz .res{padding:32px}
+.qwrap{display:grid;grid-template-columns:220px 1fr;min-height:340px}
+.qside{position:relative;background:var(--grad);color:#fff;padding:28px 24px;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.qpet{position:absolute;right:-50px;bottom:-40px;width:230px;height:230px;opacity:.35}
+.qn{font-size:64px;font-weight:800;line-height:1;letter-spacing:-.03em}.qn small{font-size:24px;opacity:.7;margin-left:2px}
+.qlab{opacity:.85;font-weight:600}
+.qdots{display:flex;gap:6px;margin-top:14px}.qdots i{width:22px;height:5px;border-radius:3px;background:#ffffff44;transition:background .3s}.qdots i.d{background:#fff}.qdots i.c{background:#fff;animation:qpulse 1.4s ease-in-out infinite}
+@keyframes qpulse{50%{opacity:.4}}
+.qanon{margin-top:auto;font-size:13px;opacity:.9;position:relative}
+.qmain{padding:30px 32px;display:flex;flex-direction:column}
+.qmain h3{font-size:22px;margin:0 0 4px}
+.qin{animation:qin .4s ease both}@keyframes qin{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.opt{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);transition:border-color .2s,transform .2s,box-shadow .2s}
+.opt:hover{border-color:#B583D6;transform:translateY(-2px);box-shadow:0 10px 22px -14px #8F6BDA}
+.ol{flex:none;width:30px;height:30px;border-radius:10px;background:var(--rose-soft);color:#7A55B8;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.opt:hover .ol{background:var(--grad);color:#fff}
+@media (max-width:700px){.qwrap{grid-template-columns:1fr;min-height:0}.qside{flex-direction:row;align-items:center;gap:12px;padding:16px 20px}.qn{font-size:34px}.qn small{font-size:15px}.qdots{margin:0 0 0 auto}.qdots i{width:12px}.qanon,.qpet{display:none}.qlab{display:none}.qmain{padding:22px 20px}.qmain h3{font-size:19px}}
 </style>
 
 <header><div class="wrap hd">
@@ -668,7 +688,7 @@ const L=a=>lang==='kz'?a[1]:a[0];
 function renderQ(){
   if(qi>=Q.length)return renderRes();
   const it=Q[qi];
-  box.innerHTML='<div class="qtop"><span>'+T('Вопрос ','Сұрақ ')+(qi+1)+T(' из ',' / ')+Q.length+'</span><span>'+T('анонимно','анонимді')+'</span></div><div class="bar"><i style="width:'+(qi/Q.length*100)+'%"></i></div><h3>'+L(it.q)+'</h3><div class="opts">'+it.o.map((o,i)=>'<button class="opt" data-i="'+i+'">'+L(o[0])+'</button>').join('')+'</div>'+(qi>0?'<button class="back" id="qback">'+T('← Назад','← Артқа')+'</button>':'');
+  box.innerHTML='<div class="qwrap"><div class="qside"><svg class="qpet" viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width=".8"><path d="M50 18 C80 37.84 75.5 72.56 50 80 C24.5 72.56 20 37.84 50 18Z"/><path d="M50 24 C74 41.92 70.4 73.28 50 80 C29.6 73.28 26 41.92 50 24Z"/><path d="M50 30 C68 46 65.3 74 50 80 C34.7 74 32 46 50 30Z"/><path d="M50 36 C62 50.08 60.2 74.72 50 80 C39.8 74.72 38 50.08 50 36Z"/><path d="M50 42 C56 54.16 55.1 75.44 50 80 C44.9 75.44 44 54.16 50 42Z"/></svg><span class="qn">'+(qi+1)+'<small>/'+Q.length+'</small></span><span class="qlab">'+T('вопрос','сұрақ')+'</span><div class="qdots">'+Q.map((_,i)=>'<i class="'+(i<qi?'d':i===qi?'c':'')+'"></i>').join('')+'</div><span class="qanon">🔒 '+T('анонимно','анонимді')+'</span></div><div class="qmain qin"><h3>'+L(it.q)+'</h3><div class="opts">'+it.o.map((o,i)=>'<button class="opt" data-i="'+i+'"><span class="ol">'+'АБВГД'[i]+'</span><span>'+L(o[0])+'</span></button>').join('')+'</div>'+(qi>0?'<button class="back" id="qback">'+T('← Назад','← Артқа')+'</button>':'')+'</div></div>';
   box.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{const o=it.o[+b.dataset.i];hist.push([score,hard]);score+=o[1];if(o[2])hard=true;qi++;renderQ();box.scrollIntoView({block:'nearest'})});
   const bk=document.getElementById('qback');if(bk)bk.onclick=()=>{[score,hard]=hist.pop();qi--;renderQ()};
   typo(box);
