@@ -600,6 +600,8 @@ body::before{display:none!important}
 :root{padding:0!important}
 html,body{overscroll-behavior:none}
 @media (max-width:599px){html,body{background:#251C36!important}}
+html.gap .atabs{padding-top:12px!important;padding-bottom:2px!important}html.gap .atab{font-size:12.5px!important;gap:5px!important}html.gap .atab svg{width:27px!important;height:27px!important}
+
 .phone{position:fixed;inset:0;margin:0 auto;width:100%;max-width:480px;height:auto;border:0;border-radius:0;padding:0;box-shadow:none;background:none;aspect-ratio:auto}
 .phone::before,.phone::after{display:none}
 .scr{border-radius:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 0;font-size:15px}
@@ -1022,6 +1024,8 @@ addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;instText();co
 document.getElementById('inst-b').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;document.getElementById('inst').hidden=true};
 document.getElementById('inst-h').onclick=()=>{const t=document.getElementById('inst-t');t.hidden=!t.hidden};
 document.getElementById('inst-x').onclick=()=>{document.getElementById('inst').hidden=true;ls.set('pf_inst_x',true)};
+/* iPhone с экрана «Домой»: если система не отдаёт сайту полосу внизу, меню крупнее и без своего нижнего отступа */
+(function(){if(!standalone)return;const fit=()=>{const portrait=innerHeight>innerWidth,sh=portrait?Math.max(screen.width,screen.height):Math.min(screen.width,screen.height);const gap=sh-innerHeight;document.documentElement.classList.toggle('gap',portrait&&gap>20&&gap<=70)};fit();addEventListener('resize',fit)})();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).catch(()=>{});
 let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
 setLang(start);
