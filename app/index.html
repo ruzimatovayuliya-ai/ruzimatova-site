@@ -599,6 +599,7 @@ html{background:#2B2140}body{background:#2B2140;margin:0;overflow:hidden}
 body::before{display:none!important}
 :root{padding:0!important}
 html,body{overscroll-behavior:none}
+@media (max-width:599px){html,body{background:#251C36!important}}
 .phone{position:fixed;inset:0;margin:0 auto;width:100%;max-width:480px;height:auto;border:0;border-radius:0;padding:0;box-shadow:none;background:none;aspect-ratio:auto}
 .phone::before,.phone::after{display:none}
 .scr{border-radius:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 16px 0;font-size:15px}
@@ -1021,12 +1022,6 @@ addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;instText();co
 document.getElementById('inst-b').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;document.getElementById('inst').hidden=true};
 document.getElementById('inst-h').onclick=()=>{const t=document.getElementById('inst-t');t.hidden=!t.hidden};
 document.getElementById('inst-x').onclick=()=>{document.getElementById('inst').hidden=true;ls.set('pf_inst_x',true)};
-/* iPhone с экрана «Домой»: окно бывает ниже экрана на высоту статус-бара – дотягиваем приложение до самого низа */
-(function(){const ph=document.querySelector('.phone');if(!ph||!standalone)return;
- const fit=()=>{if(matchMedia('(min-width:600px)').matches){ph.style.bottom='';return}
-  const portrait=innerHeight>innerWidth,sh=portrait?Math.max(screen.width,screen.height):Math.min(screen.width,screen.height);
-  const gap=Math.round(sh-innerHeight);ph.style.bottom=(gap>0&&gap<=70)?(-gap)+'px':''};
- fit();addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,300))})();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'}).catch(()=>{});
 let start='ru';try{start=localStorage.getItem('lang')||'ru'}catch(e){}
 setLang(start);
