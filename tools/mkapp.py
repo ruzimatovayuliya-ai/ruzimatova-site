@@ -29,7 +29,7 @@ html,body{overscroll-behavior:none}
 #inst-x{grid-column:2;grid-row:1;background:transparent;color:#fff;font-size:20px;padding:0 4px;justify-self:end}
 #inst-b{grid-column:2;grid-row:2}
 .iph{width:15px;height:15px;vertical-align:-3px;margin-right:2px}
-@media (max-height:600px){.as[data-s=today] .tip{display:none}}
+@media (max-height:600px) and (max-width:899px){.as[data-s=today] .tip{display:none}}
 @media (min-width:600px){body{background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6)}.phone{top:24px;bottom:24px;height:auto;max-width:420px;border-radius:36px;overflow:hidden;box-shadow:0 40px 90px -30px #2b1440aa}.scr{border-radius:36px}}
 
 .ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:#3E2F5C;box-shadow:0 8px 24px -8px #0009,inset 0 0 0 1px #ffffff1a;display:flex;align-items:center;justify-content:center;transform:translateY(-70px);opacity:0;pointer-events:none}
@@ -65,6 +65,14 @@ html,body{overscroll-behavior:none}
  .as[data-s=today]{overflow-y:auto}
  .as[data-s=today] .acard:has(#a-bars){flex:none!important;max-height:none!important}
  .as[data-s=today] .bars{flex:none!important;height:84px!important}
+ /* главная на компьютере: две колонки, всё помещается без прокрутки */
+ .as[data-s=today].on{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-content:center;align-items:stretch;max-width:900px!important;gap:12px}
+ .as[data-s=today] .ahead{grid-column:1/-1}
+ .as[data-s=today] .row2{align-self:stretch}
+ .as[data-s=today] .tip{justify-content:center}
+ .as[data-s=today] .tip p{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:13px}
+ .rd .rdbar{padding:16px 32px 12px}
+ .rd .rdc{zoom:1.2;padding-top:10px}
  .as[data-s=cycle] .acard:has(#cal){flex:none!important}
  .as[data-s=cycle] .cal{grid-auto-rows:auto!important}
  .as[data-s=cycle] .cal button{height:auto!important;width:min(100%,40px)!important}
@@ -86,6 +94,7 @@ inst_js=r'''
 /* язык из сайта (тот же localStorage) */
 function setLang(l){lang=l;document.documentElement.lang=l==='kz'?'kk':'ru';
   document.querySelectorAll('[data-kz]').forEach(el=>{if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;el.innerHTML=l==='kz'?el.dataset.kz:el.dataset.ru});
+  document.querySelectorAll('[data-kz-ph]').forEach(q=>{if(q.dataset.ruPh===undefined)q.dataset.ruPh=q.placeholder;q.placeholder=l==='kz'?q.dataset.kzPh:q.dataset.ruPh});
   setMode(mode);appRender();instText();document.querySelector('.av').textContent=l==='kz'?'KZ':'RU';try{localStorage.setItem('lang',l)}catch(e){}}
 document.querySelector('.av').title='RU / KZ';
 document.querySelector('.av').onclick=()=>setLang(lang==='ru'?'kz':'ru');
@@ -128,7 +137,7 @@ html=f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Тонус</title>
-<meta name="description" content="Упражнения для мышц тазового дна, дневник цикла и советы врача. Анонимно, без регистрации.">
+<meta name="description" content="Упражнения для мышц тазового дна, дневник цикла, статьи и вопросы врачу. Анонимно, без регистрации.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2B2140">
 <meta name="apple-mobile-web-app-capable" content="yes">

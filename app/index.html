@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Тонус</title>
-<meta name="description" content="Упражнения для мышц тазового дна, дневник цикла и советы врача. Анонимно, без регистрации.">
+<meta name="description" content="Упражнения для мышц тазового дна, дневник цикла, статьи и вопросы врачу. Анонимно, без регистрации.">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#2B2140">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -566,6 +566,34 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .vov video{width:100%;height:100%;object-fit:contain;background:#0c0912}
 .vx{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:12px;width:36px;height:36px;border-radius:50%;border:0;background:#ffffff26;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .vx svg{width:18px;height:18px}
+button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor:pointer;grid-template-columns:44px 1fr 16px!important}
+.art .chev{width:16px;height:16px;color:var(--a-mut)}
+.qsec{display:flex;flex-direction:column;gap:8px}.qsec[hidden],#arts-h[hidden]{display:none!important}
+.qcard{gap:10px!important}
+.qcard textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:76px;border:0;border-radius:12px;padding:10px 12px;font:500 12.5px/1.45 var(--body);background:#ffffff12;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.qcard textarea::placeholder{color:var(--a-mut)}
+.qcard textarea:focus{outline:none;box-shadow:inset 0 0 0 1.5px var(--a-acc)}
+.aqerr{margin:0;font-size:11px;color:#F2A6C9}.aqerr[hidden]{display:none}
+.aqnote{font-size:10.5px;line-height:1.4;color:var(--a-mut)}
+.answers{display:flex;flex-direction:column;gap:8px}.answers:empty{display:none}
+.ans summary{font-size:12.5px;font-weight:700;cursor:pointer;line-height:1.35}.ans p{margin:0;font-size:12px;line-height:1.5;color:var(--a-ink)}
+.rd{position:absolute;inset:0;z-index:28;background:var(--a-bg);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;animation:fadein .25s ease;color:var(--a-ink)}
+.rd::-webkit-scrollbar{display:none}
+.rdbar{position:sticky;top:0;z-index:1;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 12px) 14px 10px;background:color-mix(in srgb,var(--a-bg) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:12px;font-weight:700;color:var(--a-mut)}
+.rdc{max-width:640px;margin:0 auto;padding:6px 16px calc(28px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px}
+.rdc .mi.big{align-self:flex-start;width:52px;height:52px}.rdc .mi.big svg{width:28px;height:28px}
+.rdm{font-size:11px;color:var(--a-mut);font-weight:600}
+.rdc h2{margin:-6px 0 0;font-size:21px;line-height:1.25;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.rdc h3{margin:8px 0 -2px;font-size:15px;font-weight:800}
+.rdc p,.rdc li{margin:0;font-size:14px;line-height:1.6;color:color-mix(in srgb,var(--a-ink) 88%,transparent)}
+.rdc .rdl{font-size:15px;font-weight:600;color:var(--a-ink)}
+.rdc ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.rdc li{position:relative;padding-left:18px}.rdc li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:linear-gradient(140deg,#C9B4F5,#F2A6C9)}
+.rdc .abtn{margin-top:4px}
+.rdsrc{display:flex;flex-direction:column;gap:6px;margin-top:8px;padding-top:14px;border-top:1px solid var(--a-soft);font-size:11.5px;line-height:1.4}
+.rdsrc b{font-size:12px;color:var(--a-mut)}.rdsrc a{color:var(--a-acc);text-decoration:none;word-break:break-word}.rdsrc a:hover{text-decoration:underline}
+.rdc .rdn{font-size:11.5px;color:var(--a-mut)}
+#trainer .rdc{zoom:.85}
 
 .atabs{grid-template-columns:repeat(5,1fr)!important}
 .ccard{gap:10px!important}
@@ -620,7 +648,7 @@ html,body{overscroll-behavior:none}
 #inst-x{grid-column:2;grid-row:1;background:transparent;color:#fff;font-size:20px;padding:0 4px;justify-self:end}
 #inst-b{grid-column:2;grid-row:2}
 .iph{width:15px;height:15px;vertical-align:-3px;margin-right:2px}
-@media (max-height:600px){.as[data-s=today] .tip{display:none}}
+@media (max-height:600px) and (max-width:899px){.as[data-s=today] .tip{display:none}}
 @media (min-width:600px){body{background:linear-gradient(125deg,#8F6BDA,#B583D6 50%,#E59CC6)}.phone{top:24px;bottom:24px;height:auto;max-width:420px;border-radius:36px;overflow:hidden;box-shadow:0 40px 90px -30px #2b1440aa}.scr{border-radius:36px}}
 
 .ptr{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:30;width:44px;height:44px;margin-left:-22px;border-radius:50%;background:#3E2F5C;box-shadow:0 8px 24px -8px #0009,inset 0 0 0 1px #ffffff1a;display:flex;align-items:center;justify-content:center;transform:translateY(-70px);opacity:0;pointer-events:none}
@@ -656,6 +684,14 @@ html,body{overscroll-behavior:none}
  .as[data-s=today]{overflow-y:auto}
  .as[data-s=today] .acard:has(#a-bars){flex:none!important;max-height:none!important}
  .as[data-s=today] .bars{flex:none!important;height:84px!important}
+ /* главная на компьютере: две колонки, всё помещается без прокрутки */
+ .as[data-s=today].on{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-content:center;align-items:stretch;max-width:900px!important;gap:12px}
+ .as[data-s=today] .ahead{grid-column:1/-1}
+ .as[data-s=today] .row2{align-self:stretch}
+ .as[data-s=today] .tip{justify-content:center}
+ .as[data-s=today] .tip p{display:block;-webkit-line-clamp:unset;overflow:visible;font-size:13px}
+ .rd .rdbar{padding:16px 32px 12px}
+ .rd .rdc{zoom:1.2;padding-top:10px}
  .as[data-s=cycle] .acard:has(#cal){flex:none!important}
  .as[data-s=cycle] .cal{grid-auto-rows:auto!important}
  .as[data-s=cycle] .cal button{height:auto!important;width:min(100%,40px)!important}
@@ -734,10 +770,20 @@ html,body{overscroll-behavior:none}
       </div>
 
       <div class="as" data-s="read">
-        <div class="ahead"><div class="grow"><b data-kz="Кеңестер">Полезное</b><small data-kz="дәрігерден">от врача</small></div></div>
-        <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="v" data-kz="Бейне">Видео</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="t" data-kz="Кеңестер">Советы</button><button data-f="n" data-kz="Жаңалықтар">Новости</button></div>
+        <div class="ahead"><div class="grow"><b data-kz="Пайдалы">Полезное</b><small data-kz="дәрігерден">от врача</small></div></div>
+        <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="v" data-kz="Бейне">Видео</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="q" data-kz="Дәрігерге сұрақ">Вопрос врачу</button></div>
         <div class="vsec" id="vsec"><div class="grp" data-kz="Дәрігердің бейнесабақтары">Видеоуроки от врача</div><div class="vrow" id="vrow"></div></div>
-        <div id="arts" style="display:flex;flex-direction:column;gap:8px"></div>
+        <div class="grp" id="arts-h" data-kz="Мақалалар">Статьи</div><div id="arts" style="display:flex;flex-direction:column;gap:8px"></div>
+        <div class="qsec" id="qsec">
+          <div class="grp" data-kz="Дәрігерге сұрақ">Вопрос врачу</div>
+          <div class="acard qcard"><div class="chd"><span class="mi" id="q-ic"></span><div><h4 data-kz="Ұялмай сұраңыз">Спросите то, что стесняетесь</h4><small data-kz="Дәрігер аптасына бір рет жауап береді">Врач отвечает раз в неделю</small></div></div>
+            <textarea id="aq" rows="3" placeholder="Например: после родов подтекает при прыжках. Это пройдёт само?" data-kz-ph="Мысалы: босанғаннан кейін секіргенде зәр тамады. Бұл өздігінен өте ме?"></textarea>
+            <p class="aqerr" id="aqerr" hidden></p>
+            <button class="abtn" id="aq-go" data-kz="WhatsApp арқылы жіберу">Отправить в WhatsApp</button>
+            <small class="aqnote" data-kz="Атыңызды жазудың қажеті жоқ. Хатты тек дәрігер мен оның менеджері көреді. Сұрақ басқаларға пайдалы болса, жауабы атсыз осында шығады">Имя писать не нужно. Сообщение увидят только врач и её менеджер. Если вопрос полезен другим, ответ без имени появится здесь</small>
+          </div>
+          <div id="answers" class="answers"></div>
+        </div>
       </div>
 
       <div class="as" data-s="club">
@@ -767,7 +813,7 @@ html,body{overscroll-behavior:none}
         <button class="atab on" data-go="today"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M3.6 10.6L12 3.4l8.4 7.2V19a2 2 0 0 1-2 2H5.6a2 2 0 0 1-2-2z"/><path class="d" d="M9.8 21v-4.6a2.2 2.2 0 0 1 4.4 0V21z"/></svg><span data-kz="Бүгін">Сегодня</span></button>
         <button class="atab" data-go="train"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="f" cx="12" cy="12" r="8.6"/><circle class="d" cx="12" cy="12" r="3.7"/></svg><span data-kz="Жаттығу">Тренировка</span></button>
         <button class="atab" data-go="cycle"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="f" x="3.6" y="4.6" width="16.8" height="16" rx="3.4"/><rect class="d" x="3.6" y="9" width="16.8" height="1.6"/><rect class="f" x="7" y="2.6" width="2.2" height="4.6" rx="1.1"/><rect class="f" x="14.8" y="2.6" width="2.2" height="4.6" rx="1.1"/><circle class="d" cx="8.4" cy="14.4" r="1.4"/><circle class="d" cx="12" cy="14.4" r="1.4"/></svg><span data-kz="Цикл">Цикл</span></button>
-        <button class="atab" data-go="read"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M5 3.4h9.4l4.6 4.6V19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path class="d" d="M8.6 12h6.8v1.7H8.6zM8.6 15.6h4.6v1.7H8.6z"/></svg><span data-kz="Кеңестер">Полезное</span></button>
+        <button class="atab" data-go="read"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M5 3.4h9.4l4.6 4.6V19a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path class="d" d="M8.6 12h6.8v1.7H8.6zM8.6 15.6h4.6v1.7H8.6z"/></svg><span data-kz="Пайдалы">Полезное</span></button>
         <button class="atab" data-go="club"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M12 2.6c4.6 3.3 7 7.4 7 11.4a7 7 0 0 1-14 0c0-4 2.4-8.1 7-11.4z"/><path class="d" d="M12 9.2c2 1.6 3 3.4 3 5.1a3 3 0 0 1-6 0c0-1.7 1-3.5 3-5.1z"/></svg><span data-kz="Клуб">Клуб</span></button>
       </nav>
     </div>
@@ -953,14 +999,155 @@ function drawCal(){
   document.getElementById('c-hint').textContent=info?T('Средний цикл '+info.len+' дней · день '+info.dayOf,'Орташа цикл '+info.len+' күн · '+info.dayOf+'-күн'):T('Нажмите на дни месячных – приложение посчитает цикл','Етеккір күндерін басыңыз – қосымша циклді есептейді');
 }
 
-/* статьи */
+/* статьи «Полезное»
+   Как добавить статью: скопируйте любой блок {...} целиком, поменяйте id, иконку, тексты и источники.
+   Новая статья наверху списка – первой в приложении. Время чтения считается само.
+   Абзац – просто строка; ['h','Подзаголовок']; ['ul',['пункт','пункт']].
+   ex – id упражнения из MODES: под статьёй появится кнопка «Попробовать в тренажёре».
+   ok:false – текст ещё не утвердил врач (на экране не видно, только для нас). */
 const ARTS=[
- ['a','Кегель: как найти нужные мышцы','Кегель: керекті бұлшықетті қалай табу','4','kegel'],
- ['t','Не бегайте в туалет «на всякий случай»','Дәретханаға «әйтеуір» бара бермеңіз','1','bladder'],
- ['a','Что нормально после родов, а что – повод к врачу','Босанғаннан кейін не қалыпты, не дәрігерге бару себебі','6','heart'],
- ['t','Поднимаете тяжёлое? Сначала выдох и подтянуть мышцы','Ауыр көтересіз бе? Алдымен дем шығарып, бұлшықетті тартыңыз','1','bag'],
- ['n','Врач отвечает на анонимные вопросы каждую неделю','Дәрігер апта сайын анонимді сұрақтарға жауап береді','2','chat'],
- ['a','Спорт и недержание: можно ли бегать и прыгать','Спорт және зәр ұстамау: жүгіруге бола ма','5','quick']
+{id:'kegel',ic:'kegel',ex:'kegel',ok:false,
+ ru:{t:'Кегель: как найти нужные мышцы',
+  lead:'Мышцы тазового дна, как гамак, поддерживают мочевой пузырь, матку и кишечник. Когда они слабеют, появляется подтекание при кашле, смехе или прыжках. Хорошая новость: эти мышцы тренируются так же, как любые другие.',
+  b:[['h','Как их найти'],
+   ['ul',['Сядьте удобно, расслабьте живот, ягодицы и бёдра.','Представьте, что одновременно сдерживаете газы и мочеиспускание. Сожмите эти мышцы и мягко подтяните их внутрь и вверх.','Если внутри чувствуется лёгкий подъём, а живот и ягодицы остаются мягкими, вы нашли нужные мышцы.']],
+   'Не тренируйтесь, останавливая струю мочи в туалете. Так мочевой пузырь может опорожняться не до конца.',
+   ['h','Как тренировать'],
+   ['ul',['Медленные сжатия: сожмите и держите до 10 секунд, затем полностью расслабьте. Если пока получается только 3-4 секунды, начните с них.','Быстрые сжатия: сжали и сразу отпустили, 10 раз подряд.','Минимум 8 сжатий, 3 раза в день. Сначала сидя или лёжа, потом стоя и при ходьбе.','Дышите ровно и не задерживайте дыхание.']],
+   ['h','Когда ждать результат'],
+   'Заниматься нужно не меньше 3 месяцев. Заметные изменения обычно приходят через 3-5 месяцев регулярных занятий. Когда стало лучше, достаточно поддерживать результат одним подходом в день.',
+   ['h','Когда показаться врачу'],
+   'Если не получается почувствовать мышцы, при сжатии появляется боль или за 3 месяца ничего не изменилось. Иногда мышцы сначала нужно найти вместе со специалистом, и это нормально.']},
+ kz:{t:'Кегель: керекті бұлшықетті қалай табу',
+  lead:'Жамбас түбі бұлшықеттері гамак сияқты қуықты, жатырды және ішекті ұстап тұрады. Олар әлсіресе, жөтелгенде, күлгенде немесе секіргенде зәр тамуы мүмкін. Жақсы жаңалық: бұл бұлшықеттер де басқалары сияқты жаттығады.',
+  b:[['h','Оларды қалай табуға болады'],
+   ['ul',['Ыңғайлы отырыңыз, ішті, бөкселер мен жамбасты босатыңыз.','Газ бен зәрді бір мезгілде ұстап тұрғаныңызды елестетіңіз. Осы бұлшықеттерді қысып, ішке және жоғары қарай жайлап тартыңыз.','Іште жеңіл көтерілу сезілсе, ал іш пен бөкселер жұмсақ қалса, керекті бұлшықетті таптыңыз.']],
+   'Дәретханада зәр ағынын тоқтатып жаттықпаңыз. Бұлай қуық толық босамауы мүмкін.',
+   ['h','Қалай жаттығу керек'],
+   ['ul',['Баяу қысу: қысып, 10 секундқа дейін ұстаңыз, сосын толық босатыңыз. Әзірге 3-4 секунд қана шықса, солардан бастаңыз.','Жылдам қысу: қысып, бірден босату, қатарынан 10 рет.','Кемінде 8 қысу, күніне 3 рет. Алдымен отырып немесе жатып, кейін тұрып және жүріп.','Бірқалыпты дем алыңыз, тынысты ұстамаңыз.']],
+   ['h','Нәтижені қашан күту керек'],
+   'Кемінде 3 ай жаттығу керек. Байқалатын өзгерістер әдетте тұрақты жаттығудың 3-5 айында келеді. Жақсарғанда нәтижені күніне бір жаттығумен ұстап тұру жеткілікті.',
+   ['h','Қашан дәрігерге бару керек'],
+   'Бұлшықетті сезе алмасаңыз, қысқанда ауырсыну болса немесе 3 айда ештеңе өзгермесе. Кейде бұлшықетті алдымен маманмен бірге табу керек, бұл қалыпты жағдай.']},
+ src:[['NHS – Urinary incontinence: treatment','https://www.nhs.uk/conditions/urinary-incontinence/treatment/'],['POGP – Pelvic floor muscles','https://thepogp.co.uk/pelvic_health_advice/pelvic_floor_muscles.aspx'],['NICE NG123 – Urinary incontinence and pelvic organ prolapse in women','https://www.nice.org.uk/guidance/ng123']]},
+
+{id:'postpartum',ic:'heart',ex:'kegel',ok:false,
+ ru:{t:'После родов: что нормально, а что – повод к врачу',
+  lead:'После родов тело восстанавливается месяцами, и многое из того, что пугает в первые недели, – обычная часть этого пути. Но есть сигналы, которые нельзя терпеть и откладывать.',
+  b:[['h','Что бывает часто'],
+   ['ul',['Подтекание при кашле, чихании или смехе в первые недели и месяцы. Мышцы тазового дна растянулись и постепенно восстанавливаются.','Расхождение мышц живота примерно на 2 пальца. Обычно к 8 неделям после родов оно уменьшается.','Кровянистые выделения, которые несколько недель постепенно светлеют и становятся скуднее.','Усталость и тяжесть внизу живота к вечеру.']],
+   ['h','Что помогает'],
+   ['ul',['Упражнения для тазового дна: начинайте мягко, когда почувствуете себя готовой. Цель – до 10 повторов каждого упражнения 3 раза в день.','Первое время без скручиваний, планки, прыжков и подъёма тяжёлого.','Не тужьтесь в туалете: больше клетчатки и воды.']],
+   ['h','Срочно к врачу или в скорую'],
+   ['ul',['Сильное кровотечение: прокладка промокает за час или выходят крупные сгустки.','Температура, озноб, выделения с неприятным запахом.','Сильная боль внизу живота или в области швов, которая усиливается.','Боль, отёк или покраснение одной ноги, одышка, боль в груди.','Сильная головная боль или нарушение зрения.']],
+   ['h','Повод записаться на приём'],
+   ['ul',['Подтекание не уменьшается через несколько месяцев занятий.','Ощущение тяжести или «чего-то лишнего» во влагалище.','Боль при близости, которая не проходит.','Не удаётся удерживать газы или стул.']],
+   'Плановый осмотр после родов обычно проходит через 6-8 недель. Это хороший момент спокойно рассказать врачу обо всём, что беспокоит, даже если кажется, что так у всех.']},
+ kz:{t:'Босанғаннан кейін: не қалыпты, ал не дәрігерге бару себебі',
+  lead:'Босанғаннан кейін дене айлар бойы қалпына келеді, және алғашқы апталарда қорқытатын көп нәрсе – осы жолдың қалыпты бөлігі. Бірақ шыдауға және кейінге қалдыруға болмайтын белгілер бар.',
+  b:[['h','Жиі кездесетін жағдайлар'],
+   ['ul',['Алғашқы апталар мен айларда жөтелгенде, түшкіргенде немесе күлгенде зәр тамуы. Жамбас түбі бұлшықеттері созылып, біртіндеп қалпына келеді.','Іш бұлшықеттерінің шамамен 2 саусақтай ажырауы. Әдетте босанғаннан кейін 8 аптаға қарай азаяды.','Бірнеше апта бойы біртіндеп ағарып, азая беретін қанды бөліністер.','Кешке қарай шаршау және іштің төменгі жағындағы ауырлық.']],
+   ['h','Не көмектеседі'],
+   ['ul',['Жамбас түбіне арналған жаттығулар: дайын екеніңізді сезгенде жайлап бастаңыз. Мақсат – әр жаттығуды күніне 3 рет 10 қайталауға дейін.','Алғашқы уақытта бұралу, планка, секіру және ауыр көтеруге болмайды.','Дәретханада күшенбеңіз: көбірек клетчатка мен су.']],
+   ['h','Шұғыл дәрігерге немесе жедел жәрдемге'],
+   ['ul',['Қатты қан кету: төсеме бір сағатта толып кетеді немесе ірі ұйындылар шығады.','Дене қызуы, қалтырау, жағымсыз иісті бөліністер.','Іштің төменгі жағында немесе тігістерде күшейе түскен қатты ауырсыну.','Бір аяқтың ауыруы, ісінуі немесе қызаруы, ентігу, кеудедегі ауырсыну.','Қатты бас ауыруы немесе көрудің бұзылуы.']],
+   ['h','Қабылдауға жазылу себебі'],
+   ['ul',['Бірнеше ай жаттыққаннан кейін де зәр тамуы азаймайды.','Қынапта ауырлық немесе «бөгде бір нәрсе» сезімі.','Жақындықтағы өтпейтін ауырсыну.','Газ немесе нәжісті ұстай алмау.']],
+   'Босанғаннан кейінгі жоспарлы тексеру әдетте 6-8 аптада өтеді. Бұл – мазалайтын нәрсенің бәрін дәрігерге сабырмен айтуға жақсы сәт, тіпті бәрінде солай сияқты көрінсе де.']},
+ src:[['NHS – Your post-pregnancy body','https://www.nhs.uk/conditions/baby/support-and-services/your-post-pregnancy-body/'],['ACOG Committee Opinion 736 – Optimizing postpartum care','https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2018/05/optimizing-postpartum-care'],['CDC – Urgent maternal warning signs','https://www.cdc.gov/hearher/maternal-warning-signs/index.html']]},
+
+{id:'sport',ic:'quick',ex:'quick',ok:false,
+ ru:{t:'Спорт и подтекание: можно ли бегать и прыгать',
+  lead:'Подтекание во время бега, прыжков или на скакалке бывает даже у молодых и тренированных женщин, в том числе у тех, кто не рожал. Это не повод бросать спорт, но повод позаботиться о тазовом дне.',
+  b:[['h','Почему так происходит'],
+   'При прыжке и приземлении давление в животе резко растёт и давит на мочевой пузырь сверху. Если мышцы тазового дна не успевают включиться, часть мочи выходит. Чаще всего это заметно там, где много прыжков и ударной нагрузки: бег, батут, скакалка, аэробика.',
+   ['h','Что делать'],
+   ['ul',['Не бросайте движение. На время замените ударную нагрузку на мягкую: ходьба, велосипед, плавание, пилатес.','Тренируйте тазовое дно каждый день. Исследования показывают, что это помогает и спортсменкам.','Перед прыжком или рывком выдохните и подтяните мышцы тазового дна заранее.','Возвращайте бег постепенно: короткие отрезки, мягкая поверхность.','Не ограничивайте воду совсем: слишком мало воды тоже раздражает мочевой пузырь.']],
+   ['h','Когда сначала к врачу'],
+   'Если подтекание бывает на каждой тренировке, усиливается или появилось ощущение тяжести и выпячивания во влагалище. При опущении бег и прыжки на батуте временно не рекомендуют, поэтому важно сначала его исключить.']},
+ kz:{t:'Спорт және зәр тамуы: жүгіруге, секіруге бола ма',
+  lead:'Жүгіргенде, секіргенде немесе секіртпеде зәр тамуы тіпті жас әрі жаттыққан әйелдерде, оның ішінде босанбағандарда да болады. Бұл спортты тастауға себеп емес, бірақ жамбас түбіне көңіл бөлуге себеп.',
+  b:[['h','Неге бұлай болады'],
+   'Секіріп, жерге түскенде іштегі қысым күрт өсіп, қуыққа жоғарыдан басады. Жамбас түбі бұлшықеттері уақытында қосылмаса, зәрдің бір бөлігі шығып кетеді. Бұл көбіне секіру мен соққы жүктемесі көп жерде байқалады: жүгіру, батут, секіртпе, аэробика.',
+   ['h','Не істеу керек'],
+   ['ul',['Қозғалысты тастамаңыз. Уақытша соққы жүктемесін жұмсағына ауыстырыңыз: жаяу жүру, велосипед, жүзу, пилатес.','Жамбас түбін күн сайын жаттықтырыңыз. Зерттеулер бұл спортшыларға да көмектесетінін көрсетеді.','Секірер немесе серпер алдында дем шығарып, жамбас түбі бұлшықеттерін алдын ала тартыңыз.','Жүгіруге біртіндеп оралыңыз: қысқа қашықтық, жұмсақ жер.','Суды мүлдем шектемеңіз: су тым аз болса да қуықты тітіркендіреді.']],
+   ['h','Қашан алдымен дәрігерге'],
+   'Зәр әр жаттығуда тамса, күшейсе немесе қынапта ауырлық пен шығып тұру сезімі пайда болса. Түсу кезінде жүгіру мен батутта секіру уақытша ұсынылмайды, сондықтан алдымен оны жоққа шығару маңызды.']},
+ src:[['Bø K. Urinary incontinence, pelvic floor dysfunction, exercise and sport. Sports Med. 2004;34(7):451-464','https://pubmed.ncbi.nlm.nih.gov/15233598/'],['NHS – Pelvic organ prolapse','https://www.nhs.uk/conditions/pelvic-organ-prolapse/'],['NHS – Urinary incontinence: treatment','https://www.nhs.uk/conditions/urinary-incontinence/treatment/']]},
+
+{id:'bladder',ic:'bladder',ex:'bladder',ok:false,
+ ru:{t:'«На всякий случай»: как переучить мочевой пузырь',
+  lead:'Привычка заходить в туалет «на всякий случай», перед выходом из дома или каждый час, кажется безобидной. Но мочевой пузырь быстро к ней привыкает и начинает просить опорожнения при всё меньшем объёме.',
+  b:[['h','Что такое тренировка мочевого пузыря'],
+   'Это способ постепенно увеличить время между позывом и походом в туалет. Её часто предлагают первой при сильных внезапных позывах, а при смешанном недержании сочетают с упражнениями для тазового дна. Курс длится не меньше 6 недель.',
+   ['h','Как начать'],
+   ['ul',['2-3 дня записывайте, когда ходите в туалет. Так станет виден ваш обычный интервал.','Когда приходит позыв, не бегите сразу. Сядьте, несколько раз быстро сожмите мышцы тазового дна, медленно выдохните и подождите, пока позыв ослабнет.','Каждые несколько дней добавляйте к интервалу 10-15 минут. Цель – днём примерно раз в 3-4 часа.','В «Тренировке» есть «Режим туалета» – он поможет держать план.']],
+   ['h','Что ещё влияет'],
+   ['ul',['Кофеин в чае, кофе и коле усиливает выработку мочи.','И слишком много, и слишком мало воды ухудшает ситуацию. Пейте понемногу в течение дня, а не залпом вечером.','Лишний вес усиливает давление на мочевой пузырь.']],
+   ['h','Когда сначала к врачу'],
+   'Если позывы сопровождаются жжением, болью, кровью в моче или температурой. Это может быть инфекция, и тогда тренировка не поможет, пока её не вылечить.']},
+ kz:{t:'«Әйтеуір»: қуықты қалай қайта үйрету',
+  lead:'Дәретханаға «әйтеуір», үйден шығар алдында немесе әр сағат сайын кіру әдеті зиянсыз сияқты. Бірақ қуық оған тез үйреніп, барған сайын азырақ көлемде босауды сұрай бастайды.',
+  b:[['h','Қуықты жаттықтыру деген не'],
+   'Бұл шақыру мен дәретханаға бару арасындағы уақытты біртіндеп ұзарту тәсілі. Оны көбіне кенеттен болатын күшті шақыруларда бірінші ұсынады, ал аралас зәр ұстамауда жамбас түбі жаттығуларымен бірге қолданады. Курс кемінде 6 аптаға созылады.',
+   ['h','Қалай бастау керек'],
+   ['ul',['2-3 күн дәретханаға қашан барғаныңызды жазып отырыңыз. Сонда әдеттегі аралығыңыз көрінеді.','Шақыру келгенде бірден жүгірмеңіз. Отырып, жамбас түбі бұлшықеттерін бірнеше рет жылдам қысыңыз, баяу дем шығарып, шақыру басылғанша күтіңіз.','Бірнеше күн сайын аралыққа 10-15 минут қосыңыз. Мақсат – күндіз шамамен 3-4 сағатта бір рет.','«Жаттығу» бөлімінде «Дәретхана режимі» бар – ол жоспарды ұстауға көмектеседі.']],
+   ['h','Тағы не әсер етеді'],
+   ['ul',['Шай, кофе және коладағы кофеин зәр түзілуін күшейтеді.','Судың тым көп те, тым аз да болуы жағдайды нашарлатады. Кешке бірден емес, күні бойы аздап ішіңіз.','Артық салмақ қуыққа түсетін қысымды күшейтеді.']],
+   ['h','Қашан алдымен дәрігерге'],
+   'Шақырумен бірге ашып-күю, ауырсыну, зәрде қан немесе дене қызуы болса. Бұл инфекция болуы мүмкін, сонда ол емделмейінше жаттығу көмектеспейді.']},
+ src:[['NHS – Urinary incontinence: treatment','https://www.nhs.uk/conditions/urinary-incontinence/treatment/'],['BAUS – Bladder training (patient leaflet)','https://www.baus.org.uk/_userfiles/pages/files/Patients/Leaflets/Bladder%20training.pdf']]},
+
+{id:'knack',ic:'knack',ex:'knack',ok:false,
+ ru:{t:'Кашель, смех, тяжёлая сумка: приём «замок»',
+  lead:'Есть простой приём, который помогает уже сейчас, пока мышцы тазового дна только набирают силу. В англоязычной литературе его называют the knack, по-нашему – «замок».',
+  b:[['h','Как это работает'],
+   'Перед нагрузкой, будь то кашель, чихание, подъём ребёнка или сумки, вы заранее сжимаете и подтягиваете мышцы тазового дна и держите их, пока нагрузка не пройдёт. Мышцы закрывают выход из мочевого пузыря раньше, чем по нему ударит давление.',
+   'В исследовании Мичиганского университета женщины с лёгким недержанием при кашле освоили приём за неделю. При кашле средней силы подтекание уменьшилось в среднем на 98%, при сильном кашле – на 73%.',
+   ['h','Как делать'],
+   ['ul',['Почувствовали, что сейчас чихнёте или кашлянете, – сразу сожмите и подтяните мышцы.','Держите их во время кашля или чиха, потом расслабьтесь.','Перед подъёмом тяжёлого: встаньте ближе к предмету, согните колени, на выдохе подтяните мышцы и только потом поднимайте.','Не задерживайте дыхание и не тужьтесь.']],
+   'Сначала о приёме приходится помнить, через несколько недель он становится привычкой. Отработать его можно в упражнении «Перед кашлем».']},
+ kz:{t:'Жөтел, күлкі, ауыр сөмке: «құлып» тәсілі',
+  lead:'Жамбас түбі бұлшықеттері күш жинап жатқанда дәл қазір көмектесетін қарапайым тәсіл бар. Ағылшын әдебиетінде оны the knack деп атайды, біздіңше – «құлып».',
+  b:[['h','Бұл қалай жұмыс істейді'],
+   'Жүктеме алдында, мейлі жөтел, түшкіру, баланы немесе сөмкені көтеру болсын, жамбас түбі бұлшықеттерін алдын ала қысып, тартып, жүктеме өткенше ұстайсыз. Бұлшықеттер қуықтан шығатын жолды қысым соқпай тұрып жабады.',
+   'Мичиган университетінің зерттеуінде жөтелгенде жеңіл зәр ұстамайтын әйелдер бұл тәсілді бір аптада меңгерді. Орташа жөтелде зәр тамуы орта есеппен 98%-ға, қатты жөтелде 73%-ға азайды.',
+   ['h','Қалай жасау керек'],
+   ['ul',['Қазір түшкіретініңізді немесе жөтелетініңізді сезген сәтте бұлшықетті бірден қысып, тартыңыз.','Жөтел немесе түшкіру кезінде ұстап тұрыңыз, сосын босатыңыз.','Ауыр зат көтерер алдында: затқа жақын тұрыңыз, тізені бүгіңіз, дем шығарғанда бұлшықетті тартып, содан кейін ғана көтеріңіз.','Тынысты ұстамаңыз және күшенбеңіз.']],
+   'Алғашында тәсілді есте ұстау керек, бірнеше аптадан кейін ол әдетке айналады. Оны «Жөтел алдында» жаттығуында пысықтауға болады.']},
+ src:[['Miller JM, Ashton-Miller JA, DeLancey JO. A pelvic muscle precontraction can reduce cough-related urine loss in selected women with mild SUI. J Am Geriatr Soc. 1998;46(7):870-874','https://pubmed.ncbi.nlm.nih.gov/9670874/'],['POGP – Pelvic floor muscles','https://thepogp.co.uk/pelvic_health_advice/pelvic_floor_muscles.aspx']]},
+
+{id:'prolapse',ic:'lift',ok:false,
+ ru:{t:'Опущение: какие признаки не стоит терпеть',
+  lead:'Опущение органов малого таза – это когда мочевой пузырь, матка или кишка смещаются вниз и давят на стенки влагалища. Это частое состояние, особенно после родов и в менопаузу, но о нём часто молчат из-за стеснения.',
+  b:[['h','Признаки'],
+   ['ul',['Тяжесть или давление внизу живота и во влагалище, особенно к вечеру.','Ощущение, что во влагалище что-то есть, или выпячивание, которое можно увидеть или нащупать.','Подтекание при кашле, смехе или нагрузке.','Трудности с опорожнением кишечника.','Дискомфорт или меньше ощущений при близости.']],
+   'Иногда опущение не даёт никаких симптомов и обнаруживается только на осмотре.',
+   ['h','Что повышает риск'],
+   ['ul',['Беременность и роды.','Возраст и менопауза.','Лишний вес.','Долгие запоры и натуживание.','Хронический кашель.','Операции на органах малого таза.']],
+   ['h','Что помогает'],
+   ['ul',['Регулярные упражнения для тазового дна.','Нормальный вес, клетчатка, вода и прогулки против запоров.','Отказ от курения: хронический кашель усиливает давление на тазовое дно.','Пока нет осмотра, лучше не поднимать тяжёлое, не бегать и не прыгать на батуте.']],
+   'Лечение подбирают по степени: от упражнений и пессария до операции. Начинать всегда с осмотра.',
+   ['h','Когда к врачу'],
+   'Если заметили выпячивание или «шарик» во влагалище, запишитесь к гинекологу. Это не срочно, но откладывать не стоит: на ранних стадиях помогает больше способов.']},
+ kz:{t:'Түсу: шыдауға болмайтын белгілер',
+  lead:'Кіші жамбас ағзаларының түсуі – қуық, жатыр немесе ішек төмен ығысып, қынап қабырғаларына басатын жағдай. Бұл жиі кездеседі, әсіресе босанғаннан кейін және менопаузада, бірақ ұялғандықтан ол туралы көбіне үндемейді.',
+  b:[['h','Белгілері'],
+   ['ul',['Іштің төменгі жағында және қынапта ауырлық немесе қысым, әсіресе кешке қарай.','Қынапта бір нәрсе бар сияқты сезім немесе көзге көрінетін не қолға сезілетін шығыңқылық.','Жөтелгенде, күлгенде немесе жүктемеде зәр тамуы.','Ішекті босатудың қиындауы.','Жақындықта жайсыздық немесе сезімнің азаюы.']],
+   'Кейде түсу ешқандай белгі бермей, тек тексеруде анықталады.',
+   ['h','Қаупін не арттырады'],
+   ['ul',['Жүктілік пен босану.','Жас және менопауза.','Артық салмақ.','Ұзақ іш қату және күшену.','Созылмалы жөтел.','Кіші жамбас ағзаларына жасалған операциялар.']],
+   ['h','Не көмектеседі'],
+   ['ul',['Жамбас түбіне арналған тұрақты жаттығулар.','Қалыпты салмақ, клетчатка, су және іш қатуға қарсы серуен.','Темекіні тастау: созылмалы жөтел жамбас түбіне қысымды күшейтеді.','Тексерілгенше ауыр көтермеген, жүгірмеген және батутта секірмеген дұрыс.']],
+   'Ем дәрежесіне қарай таңдалады: жаттығулар мен пессарийден операцияға дейін. Әрқашан тексеруден бастау керек.',
+   ['h','Қашан дәрігерге'],
+   'Қынапта шығыңқылық немесе «шар» байқасаңыз, гинекологқа жазылыңыз. Бұл шұғыл емес, бірақ кейінге қалдырмаған жөн: ерте кезеңде көмектесетін тәсілдер көбірек.']},
+ src:[['NHS – Pelvic organ prolapse','https://www.nhs.uk/conditions/pelvic-organ-prolapse/'],['NICE NG123 – Urinary incontinence and pelvic organ prolapse in women','https://www.nice.org.uk/guidance/ng123']]}
+];
+/* ответы врача на анонимные вопросы
+   Как добавить: {d:'2026-11-25',ru:{q:'вопрос',a:'ответ врача'},kz:{q:'...',a:'...'}} – новый ответ наверх.
+   Пока список пуст, в приложении видно приглашение задать первый вопрос. */
+const ANSWERS=[
 ];
 const MB=location.pathname.indexOf('/app')>-1?'../media/':'media/';
 const VIDS=[
@@ -979,11 +1166,36 @@ function drawVids(){const r=document.getElementById('vrow');
 function playVid(v){const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
   o=document.createElement('div');o.id='vov';o.className='vov';o.innerHTML='<video playsinline controls autoplay src="'+MB+v[0]+'.mp4" poster="'+MB+v[1]+'.jpg"></video><button class="vx" aria-label="'+T('Закрыть','Жабу')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   scr.appendChild(o);o.querySelector('.vx').onclick=()=>o.remove();const vd=o.querySelector('video');vd.play().catch(()=>{});vd.onended=()=>o.remove()}
+const words=a=>[a.lead,...a.b.map(x=>typeof x==='string'?x:x[0]==='ul'?x[1].join(' '):x[1])].join(' ').split(/\s+/).length;
+const artMin=a=>Math.max(2,Math.round(words(a.ru)/120));
 function drawArts(){const box=document.getElementById('arts');
-  const tag={a:['статья','мақала'],t:['совет','кеңес'],n:['новость','жаңалық']};
-  document.getElementById('vsec').hidden=!(artF==='all'||artF==='v');drawVids();
-  box.hidden=artF==='v';
-  box.innerHTML=ARTS.filter(a=>artF==='all'||a[0]===artF).map(a=>'<div class="art"><span class="mi">'+mic(a[4])+'</span><div><b>'+(lang==='kz'?a[2]:a[1])+'</b><small>'+L(tag[a[0]])+' · '+a[3]+T(' мин',' мин')+'</small></div></div>').join('');typo(box)}
+  const sv=artF==='all'||artF==='v',sa=artF==='all'||artF==='a',sq=artF==='all'||artF==='q';
+  document.getElementById('vsec').hidden=!sv;if(sv)drawVids();
+  box.hidden=!sa;document.getElementById('arts-h').hidden=!sa;document.getElementById('qsec').hidden=!sq;
+  box.innerHTML=ARTS.map((a,i)=>'<button class="art" data-a="'+i+'"><span class="mi">'+mic(a.ic)+'</span><div><b>'+(lang==='kz'?a.kz:a.ru).t+'</b><small>'+T('статья','мақала')+' · '+artMin(a)+T(' мин',' мин')+'</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>').join('');
+  box.querySelectorAll('.art').forEach(b=>b.onclick=()=>openArt(+b.dataset.a));
+  document.getElementById('q-ic').innerHTML=mic('chat');
+  const an=document.getElementById('answers');an.innerHTML=ANSWERS.map(x=>{const v=lang==='kz'?x.kz:x.ru;return '<details class="acard ans"><summary>'+v.q+'</summary><p>'+v.a+'</p></details>'}).join('');
+  typo(box);typo(an)}
+function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySelector('.phone .scr');let o=document.getElementById('rd');if(o)o.remove();
+  const body=v.b.map(x=>typeof x==='string'?'<p>'+x+'</p>':x[0]==='h'?'<h3>'+x[1]+'</h3>':'<ul>'+x[1].map(li=>'<li>'+li+'</li>').join('')+'</ul>').join('');
+  const exi=a.ex?MODES.findIndex(m=>m.id===a.ex):-1;
+  o=document.createElement('div');o.id='rd';o.className='rd';o.setAttribute('role','dialog');o.setAttribute('aria-label',v.t);
+  o.innerHTML='<div class="rdbar"><button class="back" id="rd-x" aria-label="'+T('Назад','Артқа')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><span>'+T('Полезное','Пайдалы')+'</span></div>'
+   +'<article class="rdc"><span class="mi big">'+mic(a.ic)+'</span><small class="rdm">'+T('статья','мақала')+' · '+artMin(a)+T(' мин',' мин')+'</small><h2>'+v.t+'</h2><p class="rdl">'+v.lead+'</p>'+body
+   +(exi>-1?'<button class="abtn" id="rd-ex">'+T('Попробовать в тренажёре: ','Жаттықтырғышта байқап көру: ')+L(MODES[exi].n)+'</button>':'')
+   +'<button class="abtn ghost" id="rd-q">'+T('Задать вопрос врачу','Дәрігерге сұрақ қою')+'</button>'
+   +'<div class="rdsrc"><b>'+T('Источники','Дереккөздер')+'</b>'+a.src.map(s=>'<a href="'+s[1]+'" target="_blank" rel="noopener">'+s[0]+'</a>').join('')+'</div>'
+   +'<p class="rdn">'+T('Статья для общего понимания и не заменяет консультацию врача.','Мақала жалпы түсінік үшін, дәрігер кеңесін алмастырмайды.')+'</p></article>';
+  scr.appendChild(o);typo(o);o.scrollTop=0;
+  const close=()=>o.remove();o.querySelector('#rd-x').onclick=close;
+  const ex=o.querySelector('#rd-ex');if(ex)ex.onclick=()=>{close();go('train');const b=document.querySelector('.mc[data-i="'+exi+'"]');if(b)b.click()};
+  o.querySelector('#rd-q').onclick=()=>{close();artF='all';document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x.dataset.f==='q'));artF='q';drawArts();const t=document.getElementById('aq');if(t)setTimeout(()=>t.focus(),50)};
+  const k=e=>{if(e.key==='Escape'&&document.getElementById('rd')){close();removeEventListener('keydown',k)}};addEventListener('keydown',k)}
+/* вопрос врачу: уходит в WhatsApp врача */
+(function(){const t=document.getElementById('aq'),er=document.getElementById('aqerr');if(!t)return;t.addEventListener('input',()=>{er.hidden=true});
+  document.getElementById('aq-go').onclick=()=>{const v=t.value.trim();if(v.length<10){er.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');er.hidden=false;return}
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(T('Анонимный вопрос из приложения «Тонус»:\n\n','«Тонус» қосымшасынан анонимді сұрақ:\n\n')+v),'_blank');t.value=''}})();
 document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{artF=b.dataset.f;document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x===b));drawArts()});
 
 /* дашборд */
@@ -1010,6 +1222,7 @@ appRender();
 /* язык из сайта (тот же localStorage) */
 function setLang(l){lang=l;document.documentElement.lang=l==='kz'?'kk':'ru';
   document.querySelectorAll('[data-kz]').forEach(el=>{if(el.dataset.ru===undefined)el.dataset.ru=el.innerHTML;el.innerHTML=l==='kz'?el.dataset.kz:el.dataset.ru});
+  document.querySelectorAll('[data-kz-ph]').forEach(q=>{if(q.dataset.ruPh===undefined)q.dataset.ruPh=q.placeholder;q.placeholder=l==='kz'?q.dataset.kzPh:q.dataset.ruPh});
   setMode(mode);appRender();instText();document.querySelector('.av').textContent=l==='kz'?'KZ':'RU';try{localStorage.setItem('lang',l)}catch(e){}}
 document.querySelector('.av').title='RU / KZ';
 document.querySelector('.av').onclick=()=>setLang(lang==='ru'?'kz':'ru');
