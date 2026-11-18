@@ -578,7 +578,8 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 .qcard textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:76px;border:0;border-radius:12px;padding:10px 12px;font:500 12.5px/1.45 var(--body);background:#ffffff12;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
 .qcard textarea::placeholder{color:var(--a-mut)}
 .qcard textarea:focus{outline:none;box-shadow:inset 0 0 0 1.5px var(--a-acc)}
-.aqerr{margin:0;font-size:11px;color:#F2A6C9}.aqerr[hidden]{display:none}
+.aqerr{margin:0;font-size:11.5px;line-height:1.4;color:#F2A6C9}.aqerr[hidden]{display:none}.aqerr.good{color:var(--a-acc)}.aqerr a{color:inherit;font-weight:700}
+#aq-go:disabled{opacity:.6}
 .aqnote{font-size:10.5px;line-height:1.4;color:var(--a-mut)}
 .answers{display:flex;flex-direction:column;gap:8px}.answers:empty{display:none}
 .ans summary{font-size:12.5px;font-weight:700;cursor:pointer;line-height:1.35}.ans p{margin:0;font-size:12px;line-height:1.5;color:var(--a-ink)}
@@ -765,10 +766,10 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
           <div class="acard qcard"><div class="chd"><span class="mi" id="q-ic"></span><div><h4 data-kz="Ұялмай сұраңыз">Спросите то, что стесняетесь</h4><small data-kz="Дәрігер аптасына бір рет жауап береді">Врач отвечает раз в неделю</small></div></div>
             <textarea id="aq" rows="3" placeholder="Например: после родов подтекает при прыжках. Это пройдёт само?" data-kz-ph="Мысалы: босанғаннан кейін секіргенде зәр тамады. Бұл өздігінен өте ме?"></textarea>
             <p class="aqerr" id="aqerr" hidden></p>
-            <button class="abtn" id="aq-go" data-kz="WhatsApp арқылы жіберу">Отправить в WhatsApp</button>
-            <small class="aqnote" data-kz="Атыңызды жазудың қажеті жоқ. Хатты тек дәрігер мен оның менеджері көреді. Сұрақ басқаларға пайдалы болса, жауабы атсыз осында шығады">Имя писать не нужно. Сообщение увидят только врач и её менеджер. Если вопрос полезен другим, ответ без имени появится здесь</small>
+            <button class="abtn" id="aq-go" data-kz="Анонимді жіберу">Отправить анонимно</button>
+            <small class="aqnote" data-kz="Атсыз және нөмірсіз. Сұрақты тек дәрігер көреді. Басқаларға пайдалы болса, жауабы атсыз осында шығады">Без имени и телефона. Вопрос увидит только врач. Если он полезен другим, ответ без имени появится здесь</small>
           </div>
-          <div id="answers" class="answers"></div>
+          <div class="grp" id="ans-h" hidden data-kz="Дәрігердің жауаптары">Ответы врача</div><div id="answers" class="answers"></div>
         </div>
       </div>
 
@@ -963,14 +964,17 @@ function renderRes(){
   typo(box);
 }
 
-/* анонимные вопросы (в превью не сохраняются) */
+/* анонимные вопросы: сохраняются на сервере (api/ask), врач отвечает на /vrach */
 const q=document.getElementById('q'),qerr=document.getElementById('qerr');
 q.addEventListener('input',()=>{qerr.hidden=true});
-document.getElementById('askf').addEventListener('submit',e=>{
-  e.preventDefault();
-  if(q.value.trim().length<10){qerr.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');qerr.hidden=false;return}
-  e.target.innerHTML='<h3>'+T('Вопрос отправлен','Сұрақ жіберілді')+'</h3><p class="muted">'+T('Ответ появится в разделе «Ответы врача» в течение недели. Имя и телефон не сохранены','Жауап бір апта ішінде «Дәрігер жауаптары» бөлімінде шығады. Атыңыз бен нөміріңіз сақталмады')+'</p><p class="note">'+T('Превью: в рабочей версии вопрос придёт врачу','Превью: жұмыс нұсқасында сұрақ дәрігерге жетеді')+'</p>';
-  typo(e.target);
+document.getElementById('askf').addEventListener('submit',async e=>{
+  e.preventDefault();const f=e.target,v=q.value.trim(),btn=f.querySelector('button');
+  if(v.length<10){qerr.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');qerr.hidden=false;return}
+  btn.disabled=true;let ok=false;try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:v,lang,src:'site'})});ok=r.ok}catch(err){}
+  btn.disabled=false;
+  if(!ok){qerr.innerHTML=T('Не получилось отправить. Попробуйте ещё раз или ','Жіберу мүмкін болмады. Қайталап көріңіз немесе ')+'<a href="'+waLink(v)+'" target="_blank" rel="noopener">'+T('напишите врачу в WhatsApp','дәрігерге WhatsApp-қа жазыңыз')+'</a>';qerr.hidden=false;return}
+  f.innerHTML='<h3>'+T('Вопрос отправлен','Сұрақ жіберілді')+'</h3><p class="muted">'+T('Имя и телефон не сохранены. Врач отвечает раз в неделю, ответы без имён появляются в приложении «Тонус», в разделе «Полезное»','Атыңыз бен нөміріңіз сақталмады. Дәрігер аптасына бір рет жауап береді, атсыз жауаптар «Тонус» қосымшасының «Пайдалы» бөлімінде шығады')+'</p><a class="btn main" href="/app/" style="align-self:flex-start">'+T('Открыть тренажёр','Жаттықтырғышты ашу')+'</a>';
+  typo(f);
 });
 
 /* видео */
@@ -1290,9 +1294,8 @@ const ARTS=[
    'Қынапта шығыңқылық немесе «шар» байқасаңыз, гинекологқа жазылыңыз. Бұл шұғыл емес, бірақ кейінге қалдырмаған жөн: ерте кезеңде көмектесетін тәсілдер көбірек.']},
  src:[['NHS – Pelvic organ prolapse','https://www.nhs.uk/conditions/pelvic-organ-prolapse/'],['NICE NG123 – Urinary incontinence and pelvic organ prolapse in women','https://www.nice.org.uk/guidance/ng123']]}
 ];
-/* ответы врача на анонимные вопросы
-   Как добавить: {d:'2026-11-25',ru:{q:'вопрос',a:'ответ врача'},kz:{q:'...',a:'...'}} – новый ответ наверх.
-   Пока список пуст, в приложении видно приглашение задать первый вопрос. */
+/* ответы врача: обычно врач публикует их сама на ruzimatova.kz/vrach, они приходят с сервера.
+   Сюда можно вписать ответ вручную: {ru:{q:'вопрос',a:'ответ'},kz:{q:'...',a:'...'}} */
 const ANSWERS=[
 ];
 const MB=location.pathname.indexOf('/app')>-1?'../media/':'media/';
@@ -1321,8 +1324,8 @@ function drawArts(){const box=document.getElementById('arts');
   box.innerHTML=ARTS.map((a,i)=>'<button class="art" data-a="'+i+'"><span class="mi">'+mic(a.ic)+'</span><div><b>'+(lang==='kz'?a.kz:a.ru).t+'</b><small>'+T('статья','мақала')+' · '+artMin(a)+T(' мин',' мин')+'</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>').join('');
   box.querySelectorAll('.art').forEach(b=>b.onclick=()=>openArt(+b.dataset.a));
   document.getElementById('q-ic').innerHTML=mic('chat');
-  const an=document.getElementById('answers');an.innerHTML=ANSWERS.map(x=>{const v=lang==='kz'?x.kz:x.ru;return '<details class="acard ans"><summary>'+v.q+'</summary><p>'+v.a+'</p></details>'}).join('');
-  typo(box);typo(an)}
+  drawAns();
+  typo(box)}
 function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySelector('.phone .scr');let o=document.getElementById('rd');if(o)o.remove();
   const body=v.b.map(x=>typeof x==='string'?'<p>'+x+'</p>':x[0]==='h'?'<h3>'+x[1]+'</h3>':'<ul>'+x[1].map(li=>'<li>'+li+'</li>').join('')+'</ul>').join('');
   const exi=a.ex?MODES.findIndex(m=>m.id===a.ex):-1;
@@ -1338,10 +1341,21 @@ function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySe
   const ex=o.querySelector('#rd-ex');if(ex)ex.onclick=()=>{close();go('train');const b=document.querySelector('.mc[data-i="'+exi+'"]');if(b)b.click()};
   o.querySelector('#rd-q').onclick=()=>{close();artF='all';document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x.dataset.f==='q'));artF='q';drawArts();const t=document.getElementById('aq');if(t)setTimeout(()=>t.focus(),50)};
   const k=e=>{if(e.key==='Escape'&&document.getElementById('rd')){close();removeEventListener('keydown',k)}};addEventListener('keydown',k)}
-/* вопрос врачу: уходит в WhatsApp врача */
-(function(){const t=document.getElementById('aq'),er=document.getElementById('aqerr');if(!t)return;t.addEventListener('input',()=>{er.hidden=true});
-  document.getElementById('aq-go').onclick=()=>{const v=t.value.trim();if(v.length<10){er.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');er.hidden=false;return}
-  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(T('Анонимный вопрос из приложения «Тонус»:\n\n','«Тонус» қосымшасынан анонимді сұрақ:\n\n')+v),'_blank');t.value=''}})();
+/* ответы врача: с сервера (то, что врач опубликовала на /vrach) + запас в ANSWERS, хранятся на устройстве для офлайна */
+const escH=x=>String(x||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let SANS=ls.get('pf_ans',[]);
+function drawAns(){const an=document.getElementById('answers');if(!an)return;
+  const all=[...SANS.map(x=>({q:x.q,a:x.a})),...ANSWERS.map(x=>lang==='kz'?x.kz:x.ru)];
+  document.getElementById('ans-h').hidden=!all.length;
+  an.innerHTML=all.map(v=>'<details class="acard ans"><summary>'+escH(v.q)+'</summary><p>'+escH(v.a).replace(/\n/g,'<br>')+'</p></details>').join('');typo(an)}
+fetch('/api/answers').then(r=>r.ok?r.json():null).then(j=>{if(Array.isArray(j)){SANS=j;ls.set('pf_ans',j);drawAns()}}).catch(()=>{});
+/* вопрос врачу: анонимно сохраняется на сервере, врач отвечает на /vrach */
+(function(){const t=document.getElementById('aq'),er=document.getElementById('aqerr'),bt=document.getElementById('aq-go');if(!t)return;t.addEventListener('input',()=>{er.hidden=true});
+  bt.onclick=async()=>{const v=t.value.trim();er.classList.remove('good');if(v.length<10){er.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');er.hidden=false;return}
+  bt.disabled=true;let ok=false;try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:v,lang,src:'app'})});ok=r.ok}catch(e){}
+  bt.disabled=false;er.hidden=false;
+  if(ok){t.value='';er.classList.add('good');er.textContent=T('Вопрос отправлен анонимно. Врач отвечает раз в неделю, ответ появится здесь','Сұрақ анонимді жіберілді. Дәрігер аптасына бір рет жауап береді, жауабы осында шығады');return}
+  er.innerHTML=T('Не получилось отправить. Проверьте интернет и попробуйте ещё раз или ','Жіберу мүмкін болмады. Интернетті тексеріп, қайталап көріңіз немесе ')+'<a href="https://wa.me/'+WA+'?text='+encodeURIComponent(v)+'" target="_blank" rel="noopener">'+T('напишите врачу в WhatsApp','дәрігерге WhatsApp-қа жазыңыз')+'</a>'}})();
 document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{artF=b.dataset.f;document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x===b));drawArts()});
 
 /* дашборд */
