@@ -513,6 +513,9 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 
 .bars{position:relative}
 .bars.bz::before{content:attr(data-empty);position:absolute;left:0;right:0;top:0;bottom:22px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:var(--a-mut);opacity:.8;padding:0 12px}
+/* пустой график: подпись не наезжает на дни недели; календарь цикла не вылезает за карточку */
+.bars.bz,.as[data-s=today] .bars.bz{min-height:56px}.bars.bz::before{bottom:18px;font-size:11px;line-height:1.3}
+.cal{grid-template-columns:repeat(7,minmax(0,1fr))!important}.cal button{max-width:100%}
 .btn.ig .igi{flex:none;stroke:currentColor}.btn.ig .igi circle[stroke=none]{fill:currentColor}
 .fig a{display:inline-flex;align-items:center;gap:8px;color:inherit;font-weight:600;text-decoration:none}.fig a:hover{color:var(--ink)}.fig .igi{width:18px;height:18px}
 @media (max-width:860px){.faq-side{order:1;margin:28px auto 0}.faq-side .cut{aspect-ratio:715/730;object-fit:cover;object-position:top}.cphoto{order:3}.contact>div:last-child{padding-bottom:0}}
@@ -632,19 +635,33 @@ html,body{overscroll-behavior:none}
 .ccard.hl{box-shadow:0 0 0 2px var(--a-acc)}
 .desk{display:none}
 @media (min-width:900px){
- body{display:flex;align-items:center;justify-content:center;gap:clamp(48px,7vw,104px);height:100dvh;padding:24px 32px;box-sizing:border-box}
- .phone{position:relative;inset:auto;transform:none;margin:0;flex:none;height:min(760px,calc(100dvh - 56px))!important;width:auto;max-width:none;aspect-ratio:9/19.5;padding:12px;box-sizing:border-box;background:#14101C;border-radius:58px;overflow:visible;box-shadow:inset 0 0 0 2px #2c2538,0 0 0 1px #ffffff1f,0 50px 100px -30px #2b1440b3}
- .phone::before{display:block;content:"";position:absolute;top:24px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:999px;background:#0c0912;z-index:5}
- .phone .scr{border-radius:46px;padding-top:52px;height:100%}
- .desk{display:flex;flex-direction:column;gap:18px;position:static;transform:none;flex:0 1 440px;min-width:0;color:#fff;font-family:Manrope,sans-serif}
- .desk .dlogo{width:64px;height:64px;border-radius:18px;box-shadow:0 14px 30px -12px #2b144088}
- .desk h1{margin:0;font-size:clamp(28px,3vw,40px);line-height:1.12;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
- .desk p{margin:0;font-size:17px;line-height:1.5;color:#ffffffe6;max-width:40ch}
- .desk .qr{display:flex;align-items:center;gap:16px;background:#fff;color:#2A2140;border-radius:20px;padding:14px 18px 14px 14px;font-size:14px;font-weight:600;line-height:1.4;max-width:380px}
- .desk .qr svg{width:104px;height:104px;flex:none}
- .desk a{color:#fff;font-weight:700;text-decoration:none;opacity:.9}.desk a:hover{opacity:1;text-decoration:underline}
+ /* компьютер: полноценная версия во весь экран, слева описание и QR для телефона */
+ body{display:grid;grid-template-columns:minmax(280px,340px) minmax(0,1fr);height:100dvh;padding:20px;gap:24px;box-sizing:border-box}
+ .desk{display:flex;flex-direction:column;gap:16px;min-height:0;overflow:auto;padding:12px 4px 12px 16px;color:#fff;font-family:Manrope,sans-serif;scrollbar-width:none}
+ .desk .dlogo{width:56px;height:56px;border-radius:16px;flex:none;box-shadow:0 14px 30px -12px #2b144088}
+ .desk h1{margin:0;font-size:clamp(24px,2.1vw,30px);line-height:1.15;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+ .desk p{margin:0;font-size:15px;line-height:1.5;color:#ffffffe6}
+ .desk .qr{margin-top:auto;display:flex;align-items:center;gap:14px;background:#fff;color:#2A2140;border-radius:18px;padding:12px 14px 12px 12px;font-size:13px;font-weight:600;line-height:1.4}
+ .desk .qr svg{width:84px;height:84px;flex:none}
+ .desk a{color:#fff;font-weight:700;font-size:14px;text-decoration:none;opacity:.9}.desk a:hover{opacity:1;text-decoration:underline}
+ .phone{position:relative;inset:auto;transform:none;margin:0;width:100%;max-width:none;height:100%!important;min-height:0;aspect-ratio:auto;padding:0;border:0;border-radius:28px;overflow:hidden;background:none;box-shadow:0 40px 90px -30px #2b1440b3}
+ .phone::before,.phone::after{display:none!important}
+ .phone .scr{height:100%;border-radius:28px;padding:0 32px}
+ .atabs{order:-1;margin:0 -32px!important;padding:14px 24px!important;display:flex!important;justify-content:center;gap:6px!important;border-top:0!important;border-bottom:1px solid var(--a-soft);background:color-mix(in srgb,var(--a-bg) 70%,#000)!important}
+ .atab{flex-direction:row!important;gap:8px!important;font-size:14px!important;padding:10px 18px!important;border-radius:999px;white-space:nowrap}
+ .atab svg{width:20px!important;height:20px!important}
+ .atab:hover{color:var(--a-ink)}.atab.on{background:#ffffff14}
+ .as{width:100%;max-width:560px!important;margin:0 auto!important;align-self:center;padding:20px 2px 28px;zoom:1.25}
+ .as[data-s=today]{overflow-y:auto}
+ .as[data-s=today] .acard:has(#a-bars){flex:none!important;max-height:none!important}
+ .as[data-s=today] .bars{flex:none!important;height:84px!important}
+ .as[data-s=cycle] .acard:has(#cal){flex:none!important}
+ .as[data-s=cycle] .cal{grid-auto-rows:auto!important}
+ .as[data-s=cycle] .cal button{height:auto!important;width:min(100%,40px)!important}
+ .sheet .shc{max-width:520px;margin:0 auto;zoom:1.15}
  #inst{display:none!important}
 }
+@media (min-width:1500px) and (min-height:860px){.as{zoom:1.4}}
 .splash{position:fixed;inset:0;z-index:50;background:radial-gradient(60% 40% at 50% 48%,#3E2F5C,#231A36);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .45s ease,visibility .45s}
 .splash svg{width:112px;height:112px;overflow:visible;transform:translateY(-14px)}
 .splash path{stroke-dasharray:100;stroke-dashoffset:100;animation:spdraw 1.1s cubic-bezier(.4,0,.2,1) forwards;animation-delay:calc(var(--i)*.12s)}
@@ -983,7 +1000,7 @@ function appRender(){
   document.getElementById('a-cyc2').textContent=info?T('месячные через '+info.inDays+' дн.','етеккірге '+info.inDays+' күн'):T('отметьте месячные','етеккірді белгілеңіз');
   document.getElementById('a-cycbar').style.width=info?Math.round(info.dayOf/info.len*100)+'%':'0';
   document.getElementById('a-tip').textContent=L(TIPS[today.getDate()%TIPS.length]);
-  document.getElementById('a-date').textContent=today.toLocaleDateString(lang==='kz'?'kk-KZ':'ru-RU',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('a-date').textContent=lang==='kz'?today.getDate()+' '+['қаңтар','ақпан','наурыз','сәуір','мамыр','маусым','шілде','тамыз','қыркүйек','қазан','қараша','желтоқсан'][today.getMonth()]+', '+['жексенбі','дүйсенбі','сейсенбі','сәрсенбі','бейсенбі','жұма','сенбі'][today.getDay()]:today.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
   drawDays();drawCal();drawArts();typo(document.querySelector('.phone'));
 }
 appRender();
