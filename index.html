@@ -623,7 +623,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .vc b{position:relative;font-size:10.5px;font-weight:700;line-height:1.25;padding:20px 8px 8px;width:100%;background:linear-gradient(transparent,#1d1629d9)}
 .vc .vp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;display:flex;filter:drop-shadow(0 4px 8px #1d162980)}.vc.later .vp{top:40%}
 .vc .vp svg{width:100%;height:100%}
-.vc{box-shadow:inset 0 0 0 1.5px #ffffff1f}.vc.later{cursor:default;background:linear-gradient(165deg,#56447D,#3E2F5C)}.vc.later b{background:none;padding-top:8px}
+.vc{box-shadow:inset 0 0 0 1.5px #ffffff1f}.vc.later{cursor:default;background:linear-gradient(165deg,#56447D,#3E2F5C)}.vc.later b{background:none;padding:0 9.5px 11px;font-size:12px;font-weight:800;line-height:14.5px;letter-spacing:-.01em;color:#fff;text-wrap:wrap}.vc.later b i{font-style:normal;color:#FFD6EC}/* как надпись на настоящих обложках: тот же размер и место, вторая часть – розовая */
 .vc.later .vp{opacity:.55}
 .vc.later small{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;color:var(--a-acc);background:#ffffff14;border-radius:99px;padding:3px 7px}
 .art{grid-template-columns:44px 1fr!important;padding:9px 10px!important}
@@ -821,7 +821,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
       <div class="as" data-s="read">
         <div class="ahead"><div class="grow"><b data-kz="Пайдалы">Полезное</b><small data-kz="дәрігерден">от врача</small></div></div>
         <div class="chips" id="chips"><button class="on" data-f="all" data-kz="Барлығы">Всё</button><button data-f="v" data-kz="Бейне">Видео</button><button data-f="a" data-kz="Мақалалар">Статьи</button><button data-f="q" data-kz="Дәрігерге сұрақ">Вопрос врачу</button></div>
-        <div class="vsec" id="vsec"><div class="grp" data-kz="Дәрігердің бейнесабақтары">Видеоуроки от врача</div><div class="vrow" id="vrow"></div></div>
+        <div class="vsec" id="vsec"><div class="grp" data-kz="Дәрігерден бейне">Видео от врача</div><div class="vrow" id="vrow"></div></div>
         <div class="grp" id="arts-h" data-kz="Мақалалар">Статьи</div><div id="arts" style="display:flex;flex-direction:column;gap:8px"></div>
         <div class="qsec" id="qsec">
           <div class="grp" data-kz="Дәрігерге сұрақ">Вопрос врачу</div>
@@ -1471,14 +1471,14 @@ const VIDS=[
  ['v1','cover1','Почему подтекает, когда встаёте','Орнынан тұрғанда неге тамады'],
  ['v2','cover2','Как понять, что мышцы ослабли','Бұлшықет әлсірегенін қалай білуге болады'],
  ['v3','cover3','Что меняется после родов','Босанғаннан кейін не өзгереді'],
- ['','','Как найти мышцы тазового дна','Жамбас түбі бұлшықетін табу'],
- ['','','Кегель: техника за 2 минуты','Кегель: 2 минут техникасы'],
- ['','','Мостик и присед правильно','Көпір мен отыру дұрыс']
+ ['','','Найти мышцы|тазового дна','Бұлшықетті|қалай табу'],
+ ['','','Кегель|за 2 минуты','Кегель|2 минутта'],
+ ['','','Мостик|и присед','Көпір|және отыру']
 ];
 let artF='all';
 function drawVids(){const r=document.getElementById('vrow');
   r.innerHTML=VIDS.map((v,i)=>v[0]?'<button class="vc" data-v="'+i+'" style="background-image:url('+MB+v[1]+'.jpg)"><span class="vp">'+mic('play')+'</span></button>':'<div class="vc later"><span class="vp">'+mic('play')+'</span><small>'+T('скоро','жақында')+'</small></div>').join('');
-  r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]);if(VIDS[i][0])c.setAttribute('aria-label',n);else c.insertAdjacentHTML('beforeend','<b>'+n+'</b>')});
+  r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]),q=n.split('|');if(VIDS[i][0])c.setAttribute('aria-label',n);else{c.setAttribute('aria-label',q.join(' '));c.insertAdjacentHTML('beforeend','<b>'+q[0]+(q[1]?' <i>'+q[1]+'</i>':'')+'</b>')}});
   r.querySelectorAll('button.vc').forEach(b=>b.onclick=()=>playVid(VIDS[+b.dataset.v]));typo(r)}
 function playVid(v){const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
   o=document.createElement('div');o.id='vov';o.className='vov';o.innerHTML='<video playsinline controls autoplay src="'+MB+v[0]+'.mp4" poster="'+MB+v[1]+'.jpg"></video><button class="vx" aria-label="'+T('Закрыть','Жабу')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
