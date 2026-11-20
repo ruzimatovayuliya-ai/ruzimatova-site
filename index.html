@@ -623,7 +623,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .vc b{position:relative;font-size:10.5px;font-weight:700;line-height:1.25;padding:20px 8px 8px;width:100%;background:linear-gradient(transparent,#1d1629d9)}
 .vc .vp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;display:flex;filter:drop-shadow(0 4px 8px #1d162980)}
 .vc .vp svg{width:100%;height:100%}
-.vc{box-shadow:inset 0 0 0 1.5px #ffffff1f}.vc.later{cursor:default;background:linear-gradient(165deg,#56447D,#3E2F5C)}.vc.later b{background:none;padding:0 9.5px 11px;font-size:12px;font-weight:800;line-height:14.5px;letter-spacing:-.01em;color:#fff;text-wrap:wrap}.vc.later b i{font-style:normal;color:#FFD6EC}/* как надпись на настоящих обложках: тот же размер и место, вторая часть – розовая */
+.vsec.grid .vrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.vsec.grid .vc{width:auto}/* фильтр «Видео» – сетка 3×3 вместо слайдера */.vc{box-shadow:inset 0 0 0 1.5px #ffffff1f}.vc.later{cursor:default;background:linear-gradient(165deg,#56447D,#3E2F5C)}.vc.later b{background:none;padding:0 9.5px 11px;font-size:12px;font-weight:800;line-height:14.5px;letter-spacing:-.01em;color:#fff;text-wrap:wrap}.vc.later b i{font-style:normal;color:#FFD6EC}/* как надпись на настоящих обложках: тот же размер и место, вторая часть – розовая */
 .vc.later .vp{opacity:.55}
 .vc.later small{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;color:var(--a-acc);background:#ffffff14;border-radius:99px;padding:3px 7px}
 .art{grid-template-columns:44px 1fr!important;padding:9px 10px!important}
@@ -1491,7 +1491,7 @@ const artMin=a=>Math.max(1,Math.ceil(words(lang==='kz'?a.kz:a.ru)/150));
 const artTime=a=>artMin(a)+T(' мин чтения',' мин оқу');
 function drawArts(){const box=document.getElementById('arts');
   const sv=artF==='all'||artF==='v',sa=artF==='all'||artF==='a',sq=artF==='all'||artF==='q';
-  document.getElementById('vsec').hidden=!sv;if(sv)drawVids();
+  document.getElementById('vsec').hidden=!sv;document.getElementById('vsec').classList.toggle('grid',artF==='v');if(sv)drawVids();
   box.hidden=!sa;document.getElementById('arts-h').hidden=!sa;document.getElementById('qsec').hidden=!sq;
   box.innerHTML=ARTS.map((a,i)=>'<button class="art" data-a="'+i+'"><span class="mi">'+mic(a.ic)+'</span><div><b>'+(lang==='kz'?a.kz:a.ru).t+'</b><small>'+artTime(a)+'</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>').join('');
   box.querySelectorAll('.art').forEach(b=>b.onclick=()=>openArt(+b.dataset.a));
