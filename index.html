@@ -560,6 +560,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 #tv-list .mgrid.n1{grid-template-columns:minmax(0,1fr)}
 #tv-list .mgrid.n3 .tile:last-child{grid-column:1/-1}
 /* календарь 21 дня: карточка внизу экрана, прогресс, дни кружками; сделанные – градиент, сегодняшний – обводка */
+#tv-list .dgrp{margin-top:auto}#tv-list .dgrp+.dcard{margin-top:-2px}#tv-list.nolab .dgrp{display:none}#tv-list.nolab .dcard{margin-top:auto}
 #tv-list .dcard{margin-top:auto;background:#ffffff0d;border-radius:20px;padding:14px 14px 16px;display:flex;flex-direction:column;gap:10px}
 #tv-list .dhead{display:flex;align-items:center;justify-content:space-between;gap:10px}
 #tv-list .dhead b{font-size:15px;color:var(--a-ink)}
@@ -791,7 +792,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
         <div class="tv" id="tv-list">
           <div class="ahead"><div class="grow"><b data-kz="Жаттығу">Тренировка</b><small data-kz="Күніне 5 минут – бөлімді таңдаңыз">5 минут в день – выберите раздел</small></div></div>
           <div class="mlist" id="mlist"></div>
-          <div class="dcard"><div class="dhead"><b id="d-t">21 день</b><small id="d-s"></small></div><div class="dbar"><i id="d-bar"></i></div><div class="days" id="days"></div></div>
+          <div class="grp dgrp" data-kz="Күнтізбе">Календарь</div><div class="dcard"><div class="dhead"><b id="d-t">21 день</b><small id="d-s"></small></div><div class="dbar"><i id="d-bar"></i></div><div class="days" id="days"></div></div>
         </div>
         <div class="tv" id="tv-play" hidden>
           <button class="ahead bk" id="t-back"><span class="back" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></span><span class="grow"><b id="t-name"></b><small id="t-meta"></small></span></button>
@@ -1099,9 +1100,9 @@ function drawModes(nofit){const c=TCATS[tcat];
 /* подписи в плитках и крупный календарь – если всё влезает на экран; иначе компактный вид (класс cmp) */
 /* уровень один на все разделы (по самому высокому), чтобы при переключении разделов ничего не прыгало; пересчёт – при смене высоты экрана или языка */
 var fitH=-1,fitL='',fitMH={};function fitTrain(){const tl=document.getElementById('tv-list'),as=tl&&tl.closest('.as');if(!as||tl.hidden||!as.clientHeight){fitH=-1;return}if(as.clientHeight===fitH&&lang===fitL)return;fitH=as.clientHeight;fitL=lang;
-  const keep=tcat,st=as.scrollTop,over=()=>{if(as.scrollHeight>as.clientHeight)return true;const m=document.getElementById('mlist').getBoundingClientRect(),c=tl.querySelector('.dcard').getBoundingClientRect();return c.top-m.bottom<16+7};let lv=0;/* запас 16px: между плитками и календарём всегда есть воздух, календарь не упирается в меню */
+  const keep=tcat,st=as.scrollTop,over=()=>{if(as.scrollHeight>as.clientHeight)return true;const m=document.getElementById('mlist').getBoundingClientRect(),c=tl.querySelector('.dgrp').getBoundingClientRect();return c.top-m.bottom<16};let lv=0;/* запас 16px: между плитками и календарём всегда есть воздух, календарь не упирается в меню */
   tl.style.removeProperty('--mlh');tl.style.removeProperty('--th');
-  for(let i=0;i<TCATS.length;i++){tcat=i;drawModes(true);tl.classList.remove('cc','cmp');if(over()){lv=Math.max(lv,1);tl.classList.add('cc');if(over())lv=2}}
+  for(let i=0;i<TCATS.length;i++){tcat=i;drawModes(true);tl.classList.remove('cc','cmp','nolab');if(over()){lv=Math.max(lv,1);tl.classList.add('cc');if(over())lv=2}}
   tl.classList.remove('cc','cmp');if(lv>0)tl.classList.add('cc');if(lv>1)tl.classList.add('cmp');
   /* место под плитки – по самому высокому разделу, чтобы календарь не сдвигался при переключении */
   let mh=0;for(let i=0;i<TCATS.length;i++){tcat=i;drawModes(true);{const m=document.getElementById('mlist');mh=Math.max(mh,m.getBoundingClientRect().height/(m.currentCSSZoom||1))}}
@@ -1110,7 +1111,9 @@ var fitH=-1,fitL='',fitMH={};function fitTrain(){const tl=document.getElementByI
   /* проверка с зарезервированным местом: если не влезает – следующий уровень */
   if(lv<2&&over()){lv++;tl.classList.add(lv>1?'cmp':'cc');tl.style.removeProperty('--mlh');mh=0;for(let i=0;i<TCATS.length;i++){tcat=i;drawModes(true);const m=document.getElementById('mlist');mh=Math.max(mh,m.getBoundingClientRect().height/(m.currentCSSZoom||1))}fitMH[fitH]=mh;tl.style.setProperty('--mlh',Math.ceil(mh)+'px')}
   /* лишнее место между плитками и календарём отдаём плиткам (не больше 32px на плитку), между ними остаётся ровно 24px */
-  {const m=document.getElementById('mlist'),c=tl.querySelector('.dcard'),t=m.querySelector('.mc.tile'),z=m.currentCSSZoom||1;
+  /* совсем низкий экран: подпись «Календарь» убираем, чтобы не было прокрутки */
+  tl.classList.toggle('nolab',lv>1&&over());
+  {const m=document.getElementById('mlist'),c=tl.querySelector('.dgrp'),t=m.querySelector('.mc.tile'),z=m.currentCSSZoom||1;
    const gap=(c.getBoundingClientRect().top-m.getBoundingClientRect().bottom)/z,rows=Math.max(1,Math.round((m.querySelector('.mgrid').getBoundingClientRect().height+8)/(t.getBoundingClientRect().height+8))),ex=Math.min(32,Math.floor((gap-24)/rows));
    if(ex>2&&as.scrollHeight<=as.clientHeight){tl.style.setProperty('--th',Math.round(t.getBoundingClientRect().height/z+ex)+'px');tl.style.setProperty('--mlh',Math.ceil(mh+ex*rows)+'px')}}
   tcat=keep;drawModes(true);as.scrollTop=st}
