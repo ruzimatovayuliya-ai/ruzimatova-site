@@ -930,7 +930,7 @@ function drawModes(){const c=TCATS[tcat];
   const ms=MODES.filter(m=>m.g[0]===c.g[0]).length;
   h+='<div class="grp">'+L(c.g)+'</div><div class="mgrid n'+ms+'">';
   MODES.forEach((m,i)=>{if(m.g[0]!==c.g[0])return;h+='<button class="mc tile" data-i="'+i+'"><span class="mi">'+mic(m.id)+'</span><b>'+L(m.n)+'</b><small>'+L(m.s)+'</small><em>'+mdur(m)+'</em></button>'});
-  h+='</div>';
+  h+='</div><div class="tart" aria-hidden="true">'+(()=>{try{const k=TSHORT[tcat][3];return ILL[k]?ILL[k]():''}catch(e){return ''}})()+'</div>';
   const box=document.getElementById('mlist');box.innerHTML=h;
   box.querySelectorAll('.mc').forEach(b=>b.onclick=()=>openMode(+b.dataset.i));
   box.querySelectorAll('.tcat').forEach(b=>b.onclick=()=>{tcat=+b.dataset.c;drawModes()});typo(box)}
