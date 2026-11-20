@@ -543,11 +543,23 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .mc.tile em{margin-top:auto}
 /* плитки заполняют экран до «21 дня»: всегда две строки, при двух упражнениях – по одному в строке, при трёх – третье на всю ширину */
 #tv-list .mlist{display:flex;flex-direction:column;gap:7px}
-#tv-list .mlist+.grp{margin-top:auto;padding-top:6px}
 
 #tv-list .mgrid.n2{grid-template-columns:minmax(0,1fr)}
 #tv-list .mgrid.n1{grid-template-columns:minmax(0,1fr)}
 #tv-list .mgrid.n3 .tile:last-child{grid-column:1/-1}
+/* календарь 21 дня: карточка внизу экрана, прогресс, дни кружками; сделанные – градиент, сегодняшний – обводка */
+#tv-list .dcard{margin-top:auto;background:#ffffff0d;border-radius:20px;padding:14px 14px 16px;display:flex;flex-direction:column;gap:10px}
+#tv-list .dhead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#tv-list .dhead b{font-size:15px;color:var(--a-ink)}
+#tv-list .dhead small{font-size:12px;color:var(--a-mut);white-space:nowrap}
+#tv-list .dbar{height:6px;border-radius:3px;background:#ffffff14;overflow:hidden}
+#tv-list .dbar i{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,#C9B4F5,#F2A6C9);transition:width .5s ease}
+#tv-list .days{gap:8px 6px;margin-top:2px}
+#tv-list .days i{aspect-ratio:1;max-width:46px;width:100%;justify-self:center;border-radius:50%;background:#ffffff12;font-size:13px;font-weight:600;color:var(--a-mut)}
+#tv-list .days i.on{background:linear-gradient(135deg,#C9B4F5,#F2A6C9);color:#3E2F5C;font-weight:800}
+#tv-list .days i.nx{background:transparent;box-shadow:inset 0 0 0 2px #C9B4F5;color:var(--a-ink);font-weight:800}
+@container (max-height:700px){#tv-list .dcard{padding:10px 12px 12px;gap:7px}#tv-list .days{gap:5px 6px;margin-top:0}#tv-list .days i{max-width:34px;font-size:12px}}
+@container (max-height:700px) and (min-width:520px){#tv-list .days i{aspect-ratio:auto;max-width:none;height:24px;border-radius:12px}#tv-list .dcard{gap:5px;padding:6px 14px 7px}#tv-list .days{gap:4px 6px}}
 /* невысокий экран: без подписи в плитке, плитки делят оставшуюся высоту */
 .as:has(#tv-list:not([hidden])){container-type:size}
 @container (max-height:700px){#tv-list .mc.tile small{display:none}#tv-list .mc.tile{min-height:0}#tv-list .mc.tile{padding:11px 12px;gap:4px}#tv-list .mc.tile .mi{margin-bottom:2px}}
@@ -798,8 +810,7 @@ html,body{overscroll-behavior:none}
         <div class="tv" id="tv-list">
           <div class="ahead"><div class="grow"><b data-kz="Жаттығу">Тренировка</b><small data-kz="Күніне 5 минут – бөлімді таңдаңыз">5 минут в день – выберите раздел</small></div></div>
           <div class="mlist" id="mlist"></div>
-          <div class="grp" data-kz="21 күн">21 день</div>
-          <div class="days" id="days"></div>
+          <div class="dcard"><div class="dhead"><b id="d-t">21 день</b><small id="d-s"></small></div><div class="dbar"><i id="d-bar"></i></div><div class="days" id="days"></div></div>
         </div>
         <div class="tv" id="tv-play" hidden>
           <button class="ahead bk" id="t-back"><span class="back" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></span><span class="grow"><b id="t-name"></b><small id="t-meta"></small></span></button>
@@ -919,7 +930,13 @@ let mode='kegel',running=false,paused=false,stopF=false;
 const totalSets=()=>Object.values(log).reduce((a,b)=>a+b,0);
 const doneDays=()=>Object.keys(log).filter(k=>log[k]>0).length;
 function streak(){let n=0;const d=new Date(today);if(!log[iso(d)])d.setDate(d.getDate()-1);while(log[iso(d)]){n++;d.setDate(d.getDate()-1)}return n}
-function drawDays(){const n=Math.min(21,doneDays());days.innerHTML=Array.from({length:21},(_,i)=>'<i class="'+(i<n?'on':'')+'">'+(i+1)+'</i>').join('')}
+/* после 21 дня начинается новый круг: счёт дней внутри круга, общий итог и лепестки не сбрасываются */
+const dayR=()=>{const t=doneDays(),r=t>0?Math.ceil(t/21):1;return {r,n:t-(r-1)*21}};
+function drawDays(){const {r,n}=dayR(),done=(log[iso(today)]||0)>0;
+  days.innerHTML=Array.from({length:21},(_,i)=>'<i class="'+(i<n?'on':(i===n&&!done&&n<21?'nx':''))+'">'+(i+1)+'</i>').join('');
+  const t=document.getElementById('d-t');if(t)t.textContent=r>1?T('Круг '+r+' · 21 день','Шеңбер '+r+' · 21 күн'):T('21 день','21 күн');
+  const st=document.getElementById('d-s');if(st)st.textContent=T('пройдено '+n+' из 21',n+' / 21 өтті');
+  const bar=document.getElementById('d-bar');if(bar)bar.style.width=(n/21*100)+'%'}
 const mdur=m=>m.bl?T('4 апта'.replace('апта','нед.'),'4 апта'):Math.max(1,Math.round(m.reps*m.ph.reduce((a,p)=>a+p.t,0)/60000))+T(' мин',' мин');
 /* разделы: короткая подпись под иконкой и иконка раздела */
 const TCATS=[];MODES.forEach(m=>{if(!TCATS.some(c=>c.g[0]===m.g[0]))TCATS.push({g:m.g})});
@@ -930,7 +947,7 @@ function drawModes(){const c=TCATS[tcat];
   const ms=MODES.filter(m=>m.g[0]===c.g[0]).length;
   h+='<div class="grp">'+L(c.g)+'</div><div class="mgrid n'+ms+'">';
   MODES.forEach((m,i)=>{if(m.g[0]!==c.g[0])return;h+='<button class="mc tile" data-i="'+i+'"><span class="mi">'+mic(m.id)+'</span><b>'+L(m.n)+'</b><small>'+L(m.s)+'</small><em>'+mdur(m)+'</em></button>'});
-  h+='</div><div class="tart" aria-hidden="true">'+(()=>{try{const k=TSHORT[tcat][3];return ILL[k]?ILL[k]():''}catch(e){return ''}})()+'</div>';
+  h+='</div>';
   const box=document.getElementById('mlist');box.innerHTML=h;
   box.querySelectorAll('.mc').forEach(b=>b.onclick=()=>openMode(+b.dataset.i));
   box.querySelectorAll('.tcat').forEach(b=>b.onclick=()=>{tcat=+b.dataset.c;drawModes()});typo(box)}
@@ -1032,7 +1049,7 @@ document.getElementById('rem-ntf').onclick=async()=>{if(!('Notification' in wind
 document.getElementById('fr-go').onclick=async()=>{const url='https://ruzimatova.kz/app/?from=friend';const txt=T('Давай вместе 21 день по 5 минут – тренажёр бесплатный и анонимный: ','Бірге 21 күн, күніне 5 минут – жаттықтырғыш тегін әрі анонимді: ');
   if(navigator.share){try{await navigator.share({title:'Тонус',text:txt,url})}catch(e){}}else window.open('https://wa.me/?text='+encodeURIComponent(txt+url),'_blank')};
 /* похвала после подхода */
-function showDone(before){const n=Math.min(21,doneDays()),todayN=log[iso(today)]||0,got=petalsN()>before;
+function showDone(before){const n=dayR().n,todayN=log[iso(today)]||0,got=petalsN()>before;
   document.getElementById('dn-i').innerHTML=mic('petal');
   const praise=[['Отлично!','Керемет!'],['Так держать!','Осылай жалғастырыңыз!'],['Вы молодец!','Жарайсыз!']][todayN%3];
   document.getElementById('dn-h').textContent=L(praise);
@@ -1345,7 +1362,7 @@ document.querySelectorAll('#chips button').forEach(b=>b.onclick=()=>{artF=b.data
 /* дашборд */
 const TIPS=[['Делайте подход в одно и то же время – например, после чистки зубов. Так привычка закрепится быстрее','Жаттығуды бір уақытта жасаңыз – мысалы, тіс тазалағаннан кейін. Әдет тезірек қалыптасады'],['Не задерживайте дыхание во время упражнений – дышите ровно','Жаттығу кезінде тынысты ұстамаңыз – бірқалыпты дем алыңыз'],['Пейте воду в течение дня понемногу, а не залпом вечером','Суды кешке бір-ақ рет емес, күні бойы аздап-аздап ішіңіз']];
 function appRender(){
-  const n=Math.min(21,doneDays());document.getElementById('a-day').textContent=n;
+  drawDays();  const n=dayR().n;document.getElementById('a-day').textContent=n;
   document.getElementById('a-ring').style.strokeDashoffset=263.9*(1-n/21);
   document.getElementById('a-streak').textContent=streak();document.getElementById('a-sets').textContent=totalSets();
   document.getElementById('a-today').textContent=(log[iso(today)]||0)+'/2';
