@@ -528,6 +528,28 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .as[data-s=train]{justify-content:flex-start;gap:0}
 .grp{font-size:11px;font-weight:700;color:var(--a-mut);letter-spacing:.04em;margin:6px 2px 0}
 .mlist{display:flex;flex-direction:column;gap:7px}
+/* разделы тренировки – иконки в ряд, упражнения раздела – плитки в две колонки */
+.tcats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:2px 0 4px}
+.tcat{display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:2px 0;color:var(--a-mut);font:600 10.5px/1.2 Manrope,sans-serif;cursor:pointer;text-align:center;-webkit-tap-highlight-color:transparent}
+.tcat .mi{width:48px;height:48px;border-radius:16px;transition:box-shadow .2s,background .2s}
+.tcat .mi svg{width:24px;height:24px}
+.tcat.on{color:var(--a-ink)}
+.tcat.on .mi{background:#ffffff26;box-shadow:inset 0 0 0 2px #C9B4F5}
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mc.tile{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;padding:12px;min-height:112px}
+.mc.tile b{font-size:13.5px}
+.mc.tile em{margin-top:auto}
+/* вступление: что это и как делать, потом подход */
+.tintro{display:flex;flex-direction:column;gap:10px;margin-bottom:auto}
+.tintro .mi.big{align-self:flex-start}
+.tintro[hidden]{display:none}
+.tintro .acard{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.tintro .acard p{margin:0;font-size:13px;line-height:1.5;color:var(--a-ink)}
+.tintro ol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;counter-reset:st}
+.tintro li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--a-ink);counter-increment:st}
+.tintro li::before{content:counter(st);flex:none;width:24px;height:24px;border-radius:50%;background:#ffffff1a;color:var(--a-acc);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+.tintro li span{margin-left:auto;color:var(--a-mut);font-size:12px;white-space:nowrap}
+.tintro .tnote{margin:0;font-size:12px;color:var(--a-mut)}
 .mc{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center;text-align:left;width:100%;border:0;border-radius:16px;padding:9px 11px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);color:var(--a-ink);font:inherit;cursor:pointer}
 .mc b{display:block;font-size:13px;font-weight:700;line-height:1.25}.mc small{display:block;font-size:10.5px;color:var(--a-mut);margin-top:2px;line-height:1.3}
 .mc em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--a-acc);white-space:nowrap}
@@ -755,13 +777,14 @@ html,body{overscroll-behavior:none}
       <svg class="mgdefs" aria-hidden="true"><defs><linearGradient id="mg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C9B4F5"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs></svg>
       <div class="as" data-s="train">
         <div class="tv" id="tv-list">
-          <div class="ahead"><div class="grow"><b data-kz="Жаттығу">Тренировка</b><small data-kz="Күніне 5 минут – режимді таңдаңыз">5 минут в день – выберите режим</small></div></div>
+          <div class="ahead"><div class="grow"><b data-kz="Жаттығу">Тренировка</b><small data-kz="Күніне 5 минут – бөлімді таңдаңыз">5 минут в день – выберите раздел</small></div></div>
           <div class="mlist" id="mlist"></div>
           <div class="grp" data-kz="21 күн">21 день</div>
           <div class="days" id="days"></div>
         </div>
         <div class="tv" id="tv-play" hidden>
           <div class="ahead"><button class="back" id="t-back" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><div class="grow"><b id="t-name"></b><small id="t-meta"></small></div></div>
+          <div class="tintro" id="tintro"></div>
           <div class="ring" id="ring"><b id="tn">10</b><span id="tl">повторов</span></div>
           <div class="steps" id="tsteps"></div>
           <p class="adesc" id="tdesc"></p>
@@ -878,22 +901,41 @@ const doneDays=()=>Object.keys(log).filter(k=>log[k]>0).length;
 function streak(){let n=0;const d=new Date(today);if(!log[iso(d)])d.setDate(d.getDate()-1);while(log[iso(d)]){n++;d.setDate(d.getDate()-1)}return n}
 function drawDays(){const n=Math.min(21,doneDays());days.innerHTML=Array.from({length:21},(_,i)=>'<i class="'+(i<n?'on':'')+'">'+(i+1)+'</i>').join('')}
 const mdur=m=>m.bl?T('4 апта'.replace('апта','нед.'),'4 апта'):Math.max(1,Math.round(m.reps*m.ph.reduce((a,p)=>a+p.t,0)/60000))+T(' мин',' мин');
-function drawModes(){let h='',last='';MODES.forEach((m,i)=>{const g=L(m.g);if(g!==last){h+='<div class="grp">'+g+'</div>';last=g}h+='<button class="mc" data-i="'+i+'"><span class="mi">'+mic(m.id)+'</span><span class="mt"><b>'+L(m.n)+'</b><small>'+L(m.s)+'</small></span><em>'+mdur(m)+'</em></button>'});
-  const box=document.getElementById('mlist');box.innerHTML=h;box.querySelectorAll('.mc').forEach(b=>b.onclick=()=>openMode(+b.dataset.i));typo(box)}
+/* разделы: короткая подпись под иконкой и иконка раздела */
+const TCATS=[];MODES.forEach(m=>{if(!TCATS.some(c=>c.g[0]===m.g[0]))TCATS.push({g:m.g})});
+const TSHORT=[['Основа','Негіз','kegel'],['Сила','Күш','lift'],['Движение','Қозғалыс','bridge'],['Глубокие','Терең','core'],['Покой','Босаңсу','relax']];
+let tcat=0;
+function drawModes(){const c=TCATS[tcat];
+  let h='<div class="tcats">'+TCATS.map((x,i)=>{const sh=TSHORT[i]||[x.g[0],x.g[1],'kegel'];return '<button class="tcat'+(i===tcat?' on':'')+'" data-c="'+i+'" aria-pressed="'+(i===tcat)+'"><span class="mi">'+mic(sh[2])+'</span><span>'+L(sh)+'</span></button>'}).join('')+'</div>';
+  h+='<div class="grp">'+L(c.g)+'</div><div class="mgrid">';
+  MODES.forEach((m,i)=>{if(m.g[0]!==c.g[0])return;h+='<button class="mc tile" data-i="'+i+'"><span class="mi">'+mic(m.id)+'</span><b>'+L(m.n)+'</b><em>'+mdur(m)+'</em></button>'});
+  h+='</div>';
+  const box=document.getElementById('mlist');box.innerHTML=h;
+  box.querySelectorAll('.mc').forEach(b=>b.onclick=()=>openMode(+b.dataset.i));
+  box.querySelectorAll('.tcat').forEach(b=>b.onclick=()=>{tcat=+b.dataset.c;drawModes()});typo(box)}
 function tview(v){['tv-list','tv-play','tv-bl'].forEach(x=>document.getElementById(x).hidden=x!==v);const sc=document.querySelector('.as[data-s=train]');if(sc)sc.scrollTop=0}
-let cur=-1;
-function openMode(i){if(running)return;const M=MODES[i];if(M.bl){cur=i;tview('tv-bl');blRender();return}cur=i;mode=M.id;tview('tv-play');setMode()}
+let cur=-1,intro=true;
+function openMode(i){if(running)return;const M=MODES[i];const ci=TCATS.findIndex(c=>c.g[0]===M.g[0]);if(ci>-1)tcat=ci;if(M.bl){cur=i;tview('tv-bl');blRender();return}cur=i;mode=M.id;intro=true;tview('tv-play');setMode()}
+/* вступление видно до первого подхода; круг, шаги и подсказка – после «Начать подход» */
+function showIntro(){const on=intro&&!running;document.getElementById('tintro').hidden=!on;ring.hidden=on;document.getElementById('tsteps').hidden=on;tdesc.hidden=on}
 function setMode(){if(cur<0||MODES[cur].bl){drawModes();return}const M=MODES[cur];
   document.getElementById('t-name').textContent=L(M.n);document.getElementById('t-meta').textContent=mdur(M)+' · '+M.reps+' '+T('повторов','рет');
   tdesc.textContent=L(M.d);tn.textContent=M.reps;tl.textContent=T('повторов','рет');ring.className='ring';
-  document.getElementById('tsteps').innerHTML=M.ph.length>2?M.ph.map(()=>'<i></i>').join(''):'';typo(tdesc);drawModes()}
+  document.getElementById('tsteps').innerHTML=M.ph.length>2?M.ph.map(()=>'<i></i>').join(''):'';typo(tdesc);
+  const sec=ms=>Math.round(ms/1000)+T(' с',' с');
+  const ti=document.getElementById('tintro');
+  ti.innerHTML='<div class="acard"><span class="mi big">'+mic(M.id)+'</span><p>'+L(M.d)+'</p></div>'
+   +'<div class="grp">'+T('Как делать','Қалай жасау керек')+'</div>'
+   +'<ol>'+M.ph.map(ph=>'<li>'+L(ph.l).replace(/^./,x=>x.toUpperCase())+'<span>'+sec(ph.t)+'</span></li>').join('')+'</ol>'
+   +'<p class="tnote">'+T('Повторить '+M.reps+' раз – около '+mdur(M),M.reps+' рет қайталау – шамамен '+mdur(M))+'</p>';
+  typo(ti);showIntro();drawModes()}
 document.getElementById('t-back').onclick=()=>{if(running){stopF=true;paused=false}cur=-1;tview('tv-list')};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function wait(ms){let t=0;while(t<ms){if(stopF)throw 'stop';await sleep(100);if(!paused)t+=100}}
 function idle(msg){running=false;paused=false;stopF=false;tstop.hidden=true;tbtn.textContent=msg;ring.className='ring';document.querySelectorAll('#tsteps i').forEach(s=>s.classList.remove('on'))}
 tbtn.onclick=async()=>{
   if(running){paused=!paused;tbtn.textContent=paused?T('Продолжить','Жалғастыру'):T('Пауза','Үзіліс');ring.style.transitionDuration=paused?'0s':'';return}
-  if(cur<0)return;running=true;paused=false;stopF=false;tstop.hidden=false;tbtn.textContent=T('Пауза','Үзіліс');const M=MODES[cur];const st=[...document.querySelectorAll('#tsteps i')];
+  if(cur<0)return;intro=false;running=true;showIntro();paused=false;stopF=false;tstop.hidden=false;tbtn.textContent=T('Пауза','Үзіліс');const M=MODES[cur];const st=[...document.querySelectorAll('#tsteps i')];
   try{
     for(let rep=M.reps;rep>0;rep--){tn.textContent=rep;
       for(let k=0;k<M.ph.length;k++){const ph=M.ph[k];tl.textContent=L(ph.l);ring.className='ring'+(ph.c?' '+ph.c:'');st.forEach((s,j)=>s.classList.toggle('on',j<=k));await wait(ph.t)}}
@@ -1259,7 +1301,7 @@ function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySe
    +'<p class="rdn">'+T('Статья для общего понимания и не заменяет консультацию врача.','Мақала жалпы түсінік үшін, дәрігер кеңесін алмастырмайды.')+'</p></article>';
   scr.appendChild(o);typo(o);o.scrollTop=0;
   const close=()=>o.remove();o.querySelector('#rd-x').onclick=close;
-  const ex=o.querySelector('#rd-ex');if(ex)ex.onclick=()=>{close();go('train');const b=document.querySelector('.mc[data-i="'+exi+'"]');if(b)b.click()};
+  const ex=o.querySelector('#rd-ex');if(ex)ex.onclick=()=>{close();go('train');openMode(exi)};
   o.querySelector('#rd-q').onclick=()=>{close();artF='all';document.querySelectorAll('#chips button').forEach(x=>x.classList.toggle('on',x.dataset.f==='q'));artF='q';drawArts();const t=document.getElementById('aq');if(t)setTimeout(()=>t.focus(),50)};
   const k=e=>{if(e.key==='Escape'&&document.getElementById('rd')){close();removeEventListener('keydown',k)}};addEventListener('keydown',k)}
 /* ответы врача: с сервера (то, что врач опубликовала на /vrach) + запас в ANSWERS, хранятся на устройстве для офлайна */
