@@ -614,7 +614,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .plan div.on{background:linear-gradient(140deg,#6B4FB3,#4A3A6B);color:var(--a-ink)}
 .vsec{display:flex;flex-direction:column;gap:8px}.vsec[hidden],#arts[hidden]{display:none!important}
 .vrow{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -2px;padding:0 2px 2px}.vrow::-webkit-scrollbar{display:none}
-.vc{flex:none;width:112px;aspect-ratio:9/14;border:0;border-radius:14px;background:center/cover no-repeat linear-gradient(160deg,#4A3A6B,#3E2F5C);position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:0;overflow:hidden;cursor:pointer;color:#fff;font:inherit;text-align:left}
+.vc{flex:none;width:calc((100% - 16px)/3);aspect-ratio:9/16;background-position:0 50%!important;border:0;border-radius:14px;background:center/cover no-repeat linear-gradient(160deg,#4A3A6B,#3E2F5C);position:relative;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:0;overflow:hidden;cursor:pointer;color:#fff;font:inherit;text-align:left}
 .vc b{position:relative;font-size:10.5px;font-weight:700;line-height:1.25;padding:20px 8px 8px;width:100%;background:linear-gradient(transparent,#1d1629d9)}
 .vc .vp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;display:flex;filter:drop-shadow(0 4px 8px #1d162980)}
 .vc .vp svg{width:100%;height:100%}
@@ -986,7 +986,7 @@ function fitVids(){const v=document.getElementById('vsec'),r=document.getElement
   if(!as||v.hidden||!v.classList.contains('grid')||!as.clientHeight||as.scrollHeight>as.clientHeight)return;
   const c=r.querySelector('.vc');if(!c)return;const z=r.currentCSSZoom||1,w=c.getBoundingClientRect().width/z,h=c.getBoundingClientRect().height/z,rows=Math.ceil(r.children.length/3);
   const pb=parseFloat(getComputedStyle(as).paddingBottom)||0,spare=(as.getBoundingClientRect().bottom-r.getBoundingClientRect().bottom)/z-pb,nh=Math.min(w*16/9,h+spare/rows);
-  if(nh>h+2){r.style.setProperty('--vch',Math.floor(nh)+'px');const left=spare-rows*(Math.floor(nh)-h);if(rows>1&&left>2)r.style.setProperty('--vgap',8+Math.min(8,Math.floor(left/(rows-1)))+'px')}}
+  const add=nh>h+2?Math.floor(nh)-h:0;if(add)r.style.setProperty('--vch',Math.floor(nh)+'px');const left=spare-rows*add;if(rows>1&&left>2)r.style.setProperty('--vgap',8+Math.min(8,Math.floor(left/(rows-1)))+'px')}
 if(window.ResizeObserver)document.querySelectorAll('.phone .as').forEach(a=>new ResizeObserver(()=>{fitTrain();fitVids()}).observe(a));
 function tview(v){['tv-list','tv-play','tv-bl'].forEach(x=>document.getElementById(x).hidden=x!==v);const sc=document.querySelector('.as[data-s=train]');if(sc)sc.scrollTop=0}
 let cur=-1,intro=true;
