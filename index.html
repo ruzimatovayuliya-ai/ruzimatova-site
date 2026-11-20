@@ -623,7 +623,7 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .vc b{position:relative;font-size:10.5px;font-weight:700;line-height:1.25;padding:20px 8px 8px;width:100%;background:linear-gradient(transparent,#1d1629d9)}
 .vc .vp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;display:flex;filter:drop-shadow(0 4px 8px #1d162980)}
 .vc .vp svg{width:100%;height:100%}
-.vsec.grid .vrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.vsec.grid .vc{width:auto}/* фильтр «Видео» – сетка 3×3 вместо слайдера */.vc{box-shadow:inset 0 0 0 1.5px #ffffff1f}.vc.later{cursor:default;background:linear-gradient(165deg,#56447D,#3E2F5C)}.vc.later b{background:none;padding:0 9.5px 11px;font-size:12px;font-weight:800;line-height:14.5px;letter-spacing:-.01em;color:#fff;text-wrap:wrap}.vc.later b i{font-style:normal;color:#FFD6EC}/* как надпись на настоящих обложках: тот же размер и место, вторая часть – розовая */
+.vsec.grid .vrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}.vsec.grid .vc{width:auto;background-position:0 50%}.vsec.grid .vrow[style*=--vch] .vc{aspect-ratio:auto;height:var(--vch)}.vsec.grid .vrow{row-gap:var(--vgap,8px)}/* фильтр «Видео» – сетка 3×3 вместо слайдера */.vc{box-shadow:inset 0 0 0 1.5px #ffffff1f}.vc.later{cursor:default;background:linear-gradient(165deg,#56447D,#3E2F5C)}.vc.later b{background:none;padding:0 9.5px 11px;font-size:12px;font-weight:800;line-height:14.5px;letter-spacing:-.01em;color:#fff;text-wrap:wrap}.vc.later b i{font-style:normal;color:#FFD6EC}/* как надпись на настоящих обложках: тот же размер и место, вторая часть – розовая */
 .vc.later .vp{opacity:.55}
 .vc.later small{position:absolute;top:8px;left:8px;font-size:9.5px;font-weight:700;color:var(--a-acc);background:#ffffff14;border-radius:99px;padding:3px 7px}
 .art{grid-template-columns:44px 1fr!important;padding:9px 10px!important}
@@ -1118,7 +1118,13 @@ var fitH=-1,fitL='',fitMH={};function fitTrain(){const tl=document.getElementByI
    if(ex>2&&as.scrollHeight<=as.clientHeight){tl.style.setProperty('--th',Math.round(t.getBoundingClientRect().height/z+ex)+'px');tl.style.setProperty('--mlh',Math.ceil(mh+ex*rows)+'px')}}
   tcat=keep;drawModes(true);as.scrollTop=st}
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{fitH=-1;fitMH={};fitTrain()});
-if(window.ResizeObserver)document.querySelectorAll('.phone .as').forEach(a=>new ResizeObserver(()=>fitTrain()).observe(a));
+/* сетка «Видео»: лишнее место под сеткой отдаём карточкам (до 9:16, как сами ролики), снизу остаётся ~16px */
+function fitVids(){const v=document.getElementById('vsec'),r=document.getElementById('vrow'),as=v&&v.closest('.as');if(!r)return;r.style.removeProperty('--vch');r.style.removeProperty('--vgap');
+  if(!as||v.hidden||!v.classList.contains('grid')||!as.clientHeight||as.scrollHeight>as.clientHeight)return;
+  const c=r.querySelector('.vc');if(!c)return;const z=r.currentCSSZoom||1,w=c.getBoundingClientRect().width/z,h=c.getBoundingClientRect().height/z,rows=Math.ceil(r.children.length/3);
+  const pb=parseFloat(getComputedStyle(as).paddingBottom)||0,spare=(as.getBoundingClientRect().bottom-r.getBoundingClientRect().bottom)/z-pb,nh=Math.min(w*16/9,h+spare/rows);
+  if(nh>h+2){r.style.setProperty('--vch',Math.floor(nh)+'px');const left=spare-rows*(Math.floor(nh)-h);if(rows>1&&left>2)r.style.setProperty('--vgap',8+Math.min(8,Math.floor(left/(rows-1)))+'px')}}
+if(window.ResizeObserver)document.querySelectorAll('.phone .as').forEach(a=>new ResizeObserver(()=>{fitTrain();fitVids()}).observe(a));
 function tview(v){['tv-list','tv-play','tv-bl'].forEach(x=>document.getElementById(x).hidden=x!==v);const sc=document.querySelector('.as[data-s=train]');if(sc)sc.scrollTop=0}
 let cur=-1,intro=true;
 function openMode(i){if(running)return;const M=MODES[i];const ci=TCATS.findIndex(c=>c.g[0]===M.g[0]);if(ci>-1){tcat=ci;saveTcat()}if(M.bl){cur=i;tview('tv-bl');blRender();return}cur=i;mode=M.id;intro=true;tview('tv-play');setMode()}
@@ -1482,7 +1488,7 @@ let artF='all';
 function drawVids(){const r=document.getElementById('vrow');
   r.innerHTML=VIDS.map((v,i)=>v[0]?'<button class="vc" data-v="'+i+'" style="background-image:url('+MB+v[1]+'.jpg)"><span class="vp">'+mic('play')+'</span></button>':'<div class="vc later"><span class="vp">'+mic('play')+'</span><small>'+T('скоро','жақында')+'</small></div>').join('');
   r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]),q=n.split('|');if(VIDS[i][0])c.setAttribute('aria-label',n);else{c.setAttribute('aria-label',q.join(' '));c.insertAdjacentHTML('beforeend','<b>'+q[0]+(q[1]?'<br><i>'+q[1]+'</i>':'')+'</b>')}});
-  r.querySelectorAll('button.vc').forEach(b=>b.onclick=()=>playVid(VIDS[+b.dataset.v]));typo(r)}
+  r.querySelectorAll('button.vc').forEach(b=>b.onclick=()=>playVid(VIDS[+b.dataset.v]));typo(r);requestAnimationFrame(fitVids)}
 function playVid(v){const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
   o=document.createElement('div');o.id='vov';o.className='vov';o.innerHTML='<video playsinline controls autoplay src="'+MB+v[0]+'.mp4" poster="'+MB+v[1]+'.jpg"></video><button class="vx" aria-label="'+T('Закрыть','Жабу')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   scr.appendChild(o);o.querySelector('.vx').onclick=()=>o.remove();const vd=o.querySelector('video');vd.play().catch(()=>{});vd.onended=()=>o.remove()}
