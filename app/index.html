@@ -1334,17 +1334,17 @@ const VIDS=[
  ['v1','cover1','Почему подтекает, когда встаёте','Орнынан тұрғанда неге тамады'],
  ['v2','cover2','Как понять, что мышцы ослабли','Бұлшықет әлсірегенін қалай білуге болады'],
  ['v3','cover3','Что меняется после родов','Босанғаннан кейін не өзгереді'],
- ['','','Найти мышцы|тазового дна','Бұлшықетті|қалай табу'],
- ['','','Кегель|за 2 минуты','Кегель|2 минутта'],
- ['','','Мостик|и присед','Көпір|және отыру'],
- ['','','Сжать|перед кашлем','Жөтел алдында|қысу'],
- ['','','Можно ли|бегать?','Жүгіруге|бола ма?'],
- ['','','Когда идти|к врачу','Дәрігерге|қашан бару']
+ ['','','Почему|21 день','Неге|21 күн'],
+ ['','','Первый приём|без страха','Дәрігерге|қорықпай'],
+ ['','','Тазовое дно|и цикл','Жамбас түбі|және цикл'],
+ ['','','После родов|что в норме','Босанғаннан|кейін'],
+ ['','','Климакс:|что меняется','Климакс:|не өзгереді'],
+ ['','','Близость|без боли','Жақындық|ауырсынусыз']
 ];
 let artF='all';
 function drawVids(){const r=document.getElementById('vrow');
   r.innerHTML=VIDS.map((v,i)=>v[0]?'<button class="vc" data-v="'+i+'" style="background-image:url('+MB+v[1]+'.jpg)"><span class="vp">'+mic('play')+'</span></button>':'<div class="vc later"><span class="vp">'+mic('play')+'</span><small>'+T('скоро','жақында')+'</small></div>').join('');
-  r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]),q=n.split('|');if(VIDS[i][0])c.setAttribute('aria-label',n);else{c.setAttribute('aria-label',q.join(' '));c.insertAdjacentHTML('beforeend','<b>'+q[0]+(q[1]?' <i>'+q[1]+'</i>':'')+'</b>')}});
+  r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]),q=n.split('|');if(VIDS[i][0])c.setAttribute('aria-label',n);else{c.setAttribute('aria-label',q.join(' '));c.insertAdjacentHTML('beforeend','<b>'+q[0]+(q[1]?'<br><i>'+q[1]+'</i>':'')+'</b>')}});
   r.querySelectorAll('button.vc').forEach(b=>b.onclick=()=>playVid(VIDS[+b.dataset.v]));typo(r)}
 function playVid(v){const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
   o=document.createElement('div');o.id='vov';o.className='vov';o.innerHTML='<video playsinline controls autoplay src="'+MB+v[0]+'.mp4" poster="'+MB+v[1]+'.jpg"></video><button class="vx" aria-label="'+T('Закрыть','Жабу')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
