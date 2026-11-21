@@ -61,7 +61,7 @@ export async function rebuildAnswers() {
 export const publishedAnswers = async () => (await load('pub/answers.json')) || [];
 
 // пароль врача хранится только как хэш
-const HASH = 'eeb14dcd99336876c1964fa7951af04e243e9e6a79364052d3ca95d0df1dbdb8';
+const HASH = 'b5b6864b6f7f02e0e687050886400cfb3343a6998bc60a0c94d34411bf89a3f6';
 export const checkKey = k => typeof k === 'string' && k.length > 0 &&
   crypto.timingSafeEqual(Buffer.from(crypto.createHash('sha256').update('ruz:' + k).digest('hex')), Buffer.from(HASH));
 export const clean = (s, n) => String(s || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, n);
