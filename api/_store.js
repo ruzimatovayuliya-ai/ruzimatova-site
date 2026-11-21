@@ -74,7 +74,7 @@ export async function mine(ids) {
 export const publishedAnswers = async () => (await load('pub/answers.json')) || [];
 
 // пароли кабинета хранятся только как хэши: врач, SMM, Ильяс (у всех одинаковые права)
-const KEYS = { 'b5b6864b6f7f02e0e687050886400cfb3343a6998bc60a0c94d34411bf89a3f6': 'врач', 'd362d8d03bb24626320904f286c37213e9d6fab0eb24c48aea33354b453f0bb6': 'SMM', '3e30ce15bd64d6363fb0774539c7a6b1de2174b96cfd6e296c6e8d9f515173b4': 'Ильяс' };
+const KEYS = { 'de08b5cc93beb28db9135a58708e6e549d66fa862f4ceecf8196040c97fadef7': 'команда' };
 export const role = k => { if (typeof k !== 'string' || !k) return null; const d = crypto.createHash('sha256').update('ruz:' + k).digest('hex'); return KEYS[d] || null; };
 export const checkKey = k => !!role(k);
 export const clean = (s, n) => String(s || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, n);

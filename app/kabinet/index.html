@@ -132,7 +132,7 @@ async function load(){const j=await api({action:'list'});
   if(j.status===401){key='';try{localStorage.removeItem('vk')}catch(e){};show(false,'Неверный пароль');return}
   if(j.status===503){show(true);document.getElementById('list').innerHTML='<p class="empty">Хранилище ещё не подключено в Vercel</p>';return}
   if(!j.ok){show(true);document.getElementById('list').innerHTML='<p class="empty">Не удалось загрузить. Обновите страницу</p>';return}
-  items=j.items;if(j.role)document.getElementById('who').textContent='вы вошли как '+j.role;show(true);draw();stats();visits()}
+  items=j.items;if(j.role&&j.role!=='команда')document.getElementById('who').textContent='вы вошли как '+j.role;show(true);draw();stats();visits()}
 function show(on,err){document.getElementById('login').hidden=on;document.getElementById('main').hidden=!on;document.getElementById('out').hidden=!on;const e=document.getElementById('lerr');e.hidden=!err;e.textContent=err||''}
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>{view=b.dataset.v;document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x===b));['q','s','v'].forEach(v=>document.getElementById('v-'+v).hidden=v!==view)});
 document.getElementById('out').onclick=()=>{key='';try{localStorage.removeItem('vk')}catch(e){};show(false)};
@@ -141,7 +141,7 @@ function draw(){
   document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw()});
   const l=items.filter(x=>grp(x)===tab);
   document.getElementById('list').innerHTML=l.length?l.map(x=>{const a=inApp(x),s=onSite(x),done=grp(x)==='answered';
-    return '<div class="q" data-id="'+x.id+'"><div class="meta"><span class="tag'+(done?' pub':'')+'">'+ST[x.status]+'</span><span>'+new Date(x.ts).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+'</span><span>'+(x.src==='app'?'из приложения':'с сайта')+'</span><span>'+(x.lang==='kz'?'на казахском':'на русском')+'</span>'+(done?'<span>· видит автор'+(a?', все в приложении':'')+(s?', все на сайте':'')+'</span>':'')+(x.by?'<span>· ответил: '+esc(x.by)+'</span>':'')+'</div>'
+    return '<div class="q" data-id="'+x.id+'"><div class="meta"><span class="tag'+(done?' pub':'')+'">'+ST[x.status]+'</span><span>'+new Date(x.ts).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+'</span><span>'+(x.src==='app'?'из приложения':'с сайта')+'</span><span>'+(x.lang==='kz'?'на казахском':'на русском')+'</span>'+(done?'<span>· видит автор'+(a?', все в приложении':'')+(s?', все на сайте':'')+'</span>':'')+(x.by&&x.by!=='команда'?'<span>· ответил: '+esc(x.by)+'</span>':'')+'</div>'
     +'<div class="qt">'+esc(x.q)+'</div>'
     +'<label>Вопрос для показа всем (уберите личные детали)<textarea class="aq" rows="2">'+esc(x.aq||x.q)+'</textarea></label>'
     +'<label>Ответ<textarea class="a" rows="5" placeholder="Ваш ответ">'+esc(x.a)+'</textarea></label>'
