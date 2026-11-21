@@ -1085,7 +1085,7 @@ function setLang(l){
   document.getElementById('wa').href=waLink(T('Здравствуйте! Я с сайта, хочу записаться на консультацию','Сәлеметсіз бе! Мен сайттан, кеңеске жазылғым келеді'));
   (document.getElementById('share')||{}).href='https://wa.me/?text='+encodeURIComponent(T('Посмотри, тут анонимный тест про женское здоровье от гинеколога. Никто не узнает результат: ','Қарашы, гинекологтың әйел денсаулығы туралы анонимді тесті. Нәтижесін ешкім білмейді: ')+location.href.split('#')[0]+'#test');
   document.querySelectorAll('.av').forEach(a=>a.textContent=l==='kz'?'KZ':'RU');
-  renderQ();setMode();if(cur>=0&&MODES[cur].bl)blRender();drawClub();if(typeof appRender==="function")appRender();typo(document.body);
+  renderQ();setMode();if(cur>=0&&MODES[cur].bl)blRender();drawClub();if(typeof appRender==="function")appRender();if(typeof drawSiteFaq==="function")drawSiteFaq();typo(document.body);
   try{localStorage.setItem('lang',l)}catch(e){}
 }
 document.getElementById('l-ru').onclick=()=>setLang('ru');
@@ -1127,6 +1127,12 @@ function renderRes(){
 /* анонимные вопросы: сохраняются на сервере (api/ask), врач отвечает на /vrach */
 const q=document.getElementById('q'),qerr=document.getElementById('qerr');
 q.addEventListener('input',()=>{qerr.hidden=true});
+/* частые вопросы на сайте: ответы врача, которые она отметила «На сайте» в кабинете /vrach */
+var SFAQ=[];
+function drawSiteFaq(){const box=document.querySelector('#faq .faq');if(!box)return;box.querySelectorAll('.dq').forEach(x=>x.remove());
+  const e=x=>String(x||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  SFAQ.filter(x=>(x.lang==='kz')===(lang==='kz')).forEach(x=>{const d=document.createElement('details');d.className='dq';d.innerHTML='<summary>'+e(x.q)+'</summary><p>'+e(x.a).replace(/\n/g,'<br>')+'</p>';box.appendChild(d)});typo(box)}
+fetch('/api/answers?for=site').then(r=>r.ok?r.json():null).then(j=>{if(Array.isArray(j)){SFAQ=j;drawSiteFaq()}}).catch(()=>{});
 document.getElementById('askf').addEventListener('submit',async e=>{
   e.preventDefault();const f=e.target,v=q.value.trim(),btn=f.querySelector('button');
   if(v.length<10){qerr.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');qerr.hidden=false;return}

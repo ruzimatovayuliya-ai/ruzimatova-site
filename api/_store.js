@@ -52,9 +52,12 @@ export const saveQuestion = it => save('q/' + it.id + '.json', it);
 export const deleteQuestion = id => del('q/' + id + '.json').catch(async () => {
   const r = await list({ prefix: 'q/' + id }); if (r.blobs[0]) await del(r.blobs[0].url);
 });
+// куда показан ответ: it.app – «Полезное» в «Тонусе», it.site – частые вопросы на сайте (старое status:'published' = в приложении)
+export const inApp = x => !!(x.a && (x.app || x.status === 'published'));
+export const onSite = x => !!(x.a && x.site);
 export async function rebuildAnswers() {
   const qs = await allQuestions();
-  const pub = qs.filter(x => x.status === 'published' && x.a).map(x => ({ id: x.id, d: new Date(x.ts).toISOString().slice(0, 10), lang: x.lang, q: x.aq || x.q, a: x.a }));
+  const pub = qs.filter(x => x.status !== 'hidden' && (inApp(x) || onSite(x))).map(x => ({ id: x.id, d: new Date(x.ts).toISOString().slice(0, 10), lang: x.lang, q: x.aq || x.q, a: x.a, app: inApp(x), site: onSite(x) }));
   await save('pub/answers.json', pub);
   return pub;
 }
@@ -63,15 +66,15 @@ export async function mine(ids) {
   const out = [];
   for (const id of ids) {
     const it = await load('q/' + id + '.json'); if (!it) continue;
-    const ans = (it.status === 'answered' || it.status === 'published') && it.a;
+    const ans = it.a && (it.status === 'answered' || it.status === 'published' || it.app || it.site);
     out.push({ id: it.id, a: ans ? it.a : '', st: ans ? 'ans' : 'wait' });
   }
   return out;
 }
 export const publishedAnswers = async () => (await load('pub/answers.json')) || [];
 
-// пароль врача хранится только как хэш
-const HASH = 'b5b6864b6f7f02e0e687050886400cfb3343a6998bc60a0c94d34411bf89a3f6';
-export const checkKey = k => typeof k === 'string' && k.length > 0 &&
-  crypto.timingSafeEqual(Buffer.from(crypto.createHash('sha256').update('ruz:' + k).digest('hex')), Buffer.from(HASH));
+// пароли кабинета хранятся только как хэши: врач, SMM, Ильяс (у всех одинаковые права)
+const KEYS = { 'b5b6864b6f7f02e0e687050886400cfb3343a6998bc60a0c94d34411bf89a3f6': 'врач', 'd362d8d03bb24626320904f286c37213e9d6fab0eb24c48aea33354b453f0bb6': 'SMM', '3e30ce15bd64d6363fb0774539c7a6b1de2174b96cfd6e296c6e8d9f515173b4': 'Ильяс' };
+export const role = k => { if (typeof k !== 'string' || !k) return null; const d = crypto.createHash('sha256').update('ruz:' + k).digest('hex'); return KEYS[d] || null; };
+export const checkKey = k => !!role(k);
 export const clean = (s, n) => String(s || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, n);
