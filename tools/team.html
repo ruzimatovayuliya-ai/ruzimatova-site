@@ -1,6 +1,6 @@
 <!--KAB-SCREENS-->
       <div class="as" data-s="kq">
-        <div class="ahead"><div class="grow"><b>Вопросы</b><small id="kq-sub">кабинет команды</small></div><button class="kab" data-kexit>Приложение</button></div>
+        <div class="ahead"><div class="grow"><b>Вопросы</b><small id="kq-sub">кабинет команды</small></div></div>
         <form class="acard klogin" id="k-login" hidden>
           <h4>Вход в кабинет</h4><small>Пароль вводится один раз, дальше телефон его помнит</small>
           <input type="password" id="k-key" placeholder="Пароль" autocomplete="current-password">
@@ -8,16 +8,16 @@
           <button class="abtn" type="submit">Войти</button>
         </form>
         <div id="k-qwrap" hidden>
-          <div class="ktabs" id="k-tabs"></div>
+          <div class="kseg kseg2" id="k-tabs"></div>
           <div class="klist" id="k-list"></div>
           <div class="acard khint"><small><b>Ответить лично</b> – увидит только автор, в «Мои вопросы». <b>В приложении</b> – все в «Полезном». <b>На сайте</b> – в «Частых страхах» на ruzimatova.kz. Перед показом всем уберите личные детали.</small></div>
           <button class="kout" id="k-out">Выйти из кабинета</button>
         </div>
       </div>
       <div class="as" data-s="ks">
-        <div class="ahead"><div class="grow"><b>Статистика</b><small id="ks-sub">за 30 дней</small></div><button class="kab" data-kexit>Приложение</button></div>
+        <div class="ahead"><div class="grow"><b>Статистика</b><small id="ks-sub">за 30 дней</small></div></div>
         <div class="kseg" id="ks-tabs"><button data-v="o" class="on">Обзор</button><button data-v="a">Аудитория</button><button data-v="b">Поведение</button><button data-v="q">Вопросы</button></div>
-        <div class="kper ktabs" id="ks-per"></div>
+        <div class="kseg kseg3" id="ks-per"></div>
         <div id="ks-body"></div>
       </div>
       <nav class="atabs ktabbar" aria-label="Разделы кабинета">
@@ -39,6 +39,8 @@
 .ktabs button.on{background:var(--a-acc);color:var(--a-bg)}.ktabs b{margin-left:4px}
 #k-qwrap{display:flex;flex-direction:column;gap:10px}#k-qwrap[hidden]{display:none}
 .klist{display:flex;flex-direction:column;gap:10px}
+.kq{cursor:pointer}.kq .ked{display:none;flex-direction:column;gap:8px}.kq.open{cursor:default}.kq.open .ked{display:flex}.kq.open .kmore{display:none}
+.kmore{align-self:flex-start;font-size:12px;font-weight:700;color:var(--a-acc)}.kmore::after{content:" ›"}
 .kq .meta{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:11.5px;color:var(--a-mut)}
 .kq .tag{background:#ffffff1a;color:var(--a-ink);border-radius:99px;padding:1px 8px;font-weight:700}.kq .tag.pub{background:#F2A6C933;color:#F7C6DC}
 .kq .qt{font-size:14.5px;font-weight:700;color:var(--a-ink);white-space:pre-wrap;word-break:break-word}
@@ -67,6 +69,8 @@
 .kseg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);flex:none}
 .kseg button{border:0;border-radius:10px;padding:8px 2px;font:700 12px var(--body);background:transparent;color:var(--a-mut);cursor:pointer}
 .kseg button.on{background:var(--a-acc);color:var(--a-bg)}
+.kseg[hidden]{display:none}.kseg3{grid-template-columns:repeat(3,1fr)}
+.kseg2 button{display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 2px;font-size:11px}.kseg2 b{font-size:16px;font-weight:800;line-height:1.1}
 .kbig{display:flex;align-items:baseline;gap:8px}.kbig b{font-size:34px;font-weight:800;color:var(--a-ink);line-height:1}.kbig span{font-size:12px;color:var(--a-mut)}
 .ktip{min-height:18px;font-size:12px;color:var(--a-ink);font-weight:700}
 .kbars>div{cursor:pointer}.kbars>div.sel i{filter:brightness(1.25)}.kbars>div.sel em{color:var(--a-ink);font-weight:700}
@@ -84,7 +88,7 @@
 .kfun .s{position:relative;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;font-size:12.5px;color:var(--a-ink);overflow:hidden;background:#ffffff0d}
 .kfun .s::before{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:linear-gradient(90deg,#9B7BE055,#F2A6C955)}
 .kfun .s>*{position:relative}.kfun .s b{font-weight:800}.kfun .s em{font-style:normal;color:var(--a-mut);margin-left:6px;font-weight:600}
-.ksw{display:flex;gap:6px;margin-left:auto}.ksw button{border:0;border-radius:99px;padding:4px 10px;font:700 11.5px var(--body);background:#ffffff12;color:var(--a-mut);cursor:pointer}.ksw button.on{background:var(--a-acc);color:var(--a-bg)}
+.ksw{margin-left:auto;padding:3px;border-radius:12px}.ksw button{padding:5px 10px;font-size:11.5px;border-radius:9px}
 .khd{display:flex;align-items:center;gap:8px}
 .kcol{display:flex;flex-direction:column;gap:10px}
 .ksoon{color:var(--a-mut);font-size:12.5px;margin:0}
@@ -98,7 +102,7 @@ const TABS=[['new','Новые'],['draft','Черновики'],['answered','О�
 const grp=x=>x.status==='published'?'answered':x.status;
 const inApp=x=>!!(x.a&&(x.app||x.status==='published')),onSite=x=>!!(x.a&&x.site);
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let key='',items=[],tab='new',vd=30,loaded=false;try{key=localStorage.getItem('vk')||''}catch(e){}
+let openId=null,key='',items=[],tab='new',vd=30,loaded=false;try{key=localStorage.getItem('vk')||''}catch(e){}
 const api=async b=>{try{const r=await fetch('/api/vrach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,...b})});const j=await r.json().catch(()=>({}));j.status=r.status;return j}catch(e){return{status:0}}};
 function kgo(s){ph.classList.add('kabm');document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===s));document.querySelectorAll('.ktabbar .atab').forEach(a=>a.classList.toggle('on',a.dataset.kgo===s));
   try{sessionStorage.setItem('kab',s)}catch(e){}if(!loaded&&key)load();if(s==='ks'&&key)visits()}
@@ -116,17 +120,19 @@ async function load(){const j=await api({action:'list'});
 $('k-login').onsubmit=e=>{e.preventDefault();key=$('k-key').value.trim();if(!key)return;try{localStorage.setItem('vk',key)}catch(e){}$('k-key').blur();load()};
 $('k-out').onclick=()=>{key='';loaded=false;items=[];try{localStorage.removeItem('vk')}catch(e){}show(false)};
 function draw(){const nw=items.filter(x=>grp(x)==='new').length;$('k-dot').hidden=!nw;$('kq-sub').textContent=nw?'новых: '+nw:'кабинет команды';
-  $('k-tabs').innerHTML=TABS.map(([k,n])=>'<button class="'+(k===tab?'on':'')+'" data-t="'+k+'">'+n+'<b>'+items.filter(x=>grp(x)===k).length+'</b></button>').join('');
+  $('k-tabs').innerHTML=TABS.map(([k,n])=>'<button class="'+(k===tab?'on':'')+'" data-t="'+k+'"><b>'+items.filter(x=>grp(x)===k).length+'</b>'+n+'</button>').join('');
   $('k-tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw()});
   const l=items.filter(x=>grp(x)===tab);
   $('k-list').innerHTML=l.length?l.map(x=>{const a=inApp(x),s=onSite(x),done=grp(x)==='answered';
     return '<div class="acard kq" data-id="'+x.id+'"><div class="meta"><span class="tag'+(done?' pub':'')+'">'+ST[x.status]+'</span><span>'+new Date(x.ts).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+'</span><span>'+(x.src==='app'?'из «Тонуса»':'с сайта')+'</span><span>'+(x.lang==='kz'?'KZ':'RU')+'</span></div>'
-    +'<div class="qt">'+esc(x.q)+'</div>'
+    +'<div class="qt">'+esc(x.q)+'</div><div class="ked">'
     +'<label>Вопрос для показа всем (без личных деталей)<textarea class="aq" rows="2">'+esc(x.aq||x.q)+'</textarea></label>'
     +'<label>Ответ<textarea class="a" rows="4" placeholder="Ваш ответ">'+esc(x.a)+'</textarea></label>'
     +'<div class="row"><button class="rp">'+(done?'Сохранить ответ':'Ответить лично')+'</button><button class="tg ap'+(a?' on':'')+'">В приложении</button><button class="tg st'+(s?' on':'')+'">На сайте</button>'
-    +(done?'':'<button class="sv">Черновик</button>')+(x.status!=='hidden'?'<button class="hd">Скрыть</button>':'')+'<button class="dl">Удалить</button></div><span class="ok"></span></div>'}).join(''):'<p class="kempty">Здесь пока пусто</p>';
-  $('k-list').querySelectorAll('.kq').forEach(c=>{const id=c.dataset.id,ok=c.querySelector('.ok'),it=items.find(x=>x.id===id);
+    +(done?'':'<button class="sv">Черновик</button>')+(x.status!=='hidden'?'<button class="hd">Скрыть</button>':'')+'<button class="dl">Удалить</button></div><span class="ok"></span></div><span class="kmore">'+(x.a?'Открыть ответ':'Ответить')+'</span></div>'}).join(''):'<p class="kempty">Здесь пока пусто</p>';
+  $('k-list').querySelectorAll('.kq').forEach(c=>{c.onclick=e=>{if(c.classList.contains('open'))return;$('k-list').querySelectorAll('.kq.open').forEach(o=>o.classList.remove('open'));c.classList.add('open');openId=c.dataset.id};
+    if(c.dataset.id===openId)c.classList.add('open');
+    const id=c.dataset.id,ok=c.querySelector('.ok'),it=items.find(x=>x.id===id);
     const send=async(action,extra)=>{c.querySelectorAll('button').forEach(b=>b.disabled=true);
       const j=await api({action,id,a:c.querySelector('.a').value,aq:c.querySelector('.aq').value,...(extra||{})});
       c.querySelectorAll('button').forEach(b=>b.disabled=false);
@@ -156,7 +162,7 @@ const don=(o,lbl,f)=>{let t=ents(o,6);const all=sum(o);if(!all)return empty;cons
   return '<div class="kdon"><div class="d" style="background:conic-gradient('+g+')"><span><b>'+all+'</b>'+lbl+'</span></div><ul>'+t.map(([k,v],i)=>'<li><i style="background:'+COL[i%COL.length]+'"></i><span>'+esc(k==='__'?'другое':(f?f(k):nm(k)))+'</span><b>'+Math.round(v/all*100)+'%</b></li>').join('')+'</ul></div>'};
 /* столбики с подсказкой по нажатию */
 function tapBars(el,tipEl,tips){el.querySelectorAll('.kbars>div').forEach((d,i)=>d.onclick=()=>{el.querySelectorAll('.kbars>div').forEach(x=>x.classList.toggle('sel',x===d));tipEl.textContent=tips[i]})}
-const sw=(id,opts,cur)=>'<div class="ksw" data-sw="'+id+'">'+opts.map(([k,n])=>'<button data-k="'+k+'" class="'+(k===cur?'on':'')+'">'+n+'</button>').join('')+'</div>';
+const sw=(id,opts,cur)=>'<div class="kseg ksw" style="grid-template-columns:repeat('+opts.length+',auto)" data-sw="'+id+'">'+opts.map(([k,n])=>'<button data-k="'+k+'" class="'+(k===cur?'on':'')+'">'+n+'</button>').join('')+'</div>';
 let sv='o',R=null,geo='g',cnt='art';
 document.querySelectorAll('#ks-tabs button').forEach(b=>b.onclick=()=>{sv=b.dataset.v;document.querySelectorAll('#ks-tabs button').forEach(x=>x.classList.toggle('on',x===b));render();$('ks-body').parentElement.scrollTop=0});
 function per(){$('ks-per').innerHTML=[7,30,90].map(n=>'<button data-d="'+n+'" class="'+(n===vd?'on':'')+'">'+n+' дней</button>').join('');$('ks-per').hidden=sv==='q';
