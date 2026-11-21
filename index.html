@@ -644,6 +644,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 #aq-go:disabled{opacity:.6}
 .aqnote{font-size:10.5px;line-height:1.4;color:var(--a-mut)}
 .answers{display:flex;flex-direction:column;gap:8px}.answers:empty{display:none}
+.team{display:block;text-align:center;margin:18px 0 6px;font-size:12px;color:var(--a-mut);text-decoration:none;opacity:.8}
 .ans .mst{display:block;margin-top:4px;font-size:11px;font-weight:600;color:var(--a-mut)}.ans.got .mst{color:var(--a-acc)}
 .atab{position:relative}.atab .ndot{position:absolute;top:0;left:calc(50% + 7px);width:8px;height:8px;border-radius:50%;background:#F2A6C9;box-shadow:0 0 0 2px var(--a-bg,#2B2140)}
 .ans summary{font-size:12.5px;font-weight:700;cursor:pointer;line-height:1.35}.ans p{margin:0;font-size:12px;line-height:1.5;color:var(--a-ink)}
@@ -880,6 +881,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
         <div class="acard ccard"><div class="chd"><span class="mi" id="cl-fi"></span><div><h4 data-kz="Құрбыңмен челлендж">Челлендж с подругой</h4><small data-kz="21 күнді бірге өтіңіздер – сілтемені жіберіңіз">Пройдите 21 день вместе – отправьте ссылку</small></div></div><button class="abtn ghost" id="fr-go" data-kz="Құрбыма жіберу">Отправить подруге</button></div>
         <div class="grp" data-kz="Тәжірибелер">Практики</div>
         <div class="mlist" id="prac"></div>
+        <a class="team" href="/app/kabinet/" data-kz="Дәрігер мен команда үшін кіру">Вход для врача и команды</a>
       </div>
 
       <div class="sheet" id="sh-done" hidden><div class="shc">
@@ -1060,6 +1062,19 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 
 <script>
 let lang='ru';
+/* статистика для кабинета врача: только общие счётчики – без имени, телефона и IP. Случайный номер устройства нужен, чтобы считать уникальных посетителей */
+const EVP=location.pathname.indexOf('/app')===0?'app':'site';
+let EVID='';try{EVID=localStorage.getItem('ev_id')||'';if(!EVID){EVID=Math.random().toString(36).slice(2,12);localStorage.setItem('ev_id',EVID)}}catch(e){}
+function ev(t,x){try{const b=JSON.stringify({t,p:EVP,v:EVID,x:String(x||''),sa:(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone?1:0});
+  if(navigator.sendBeacon&&navigator.sendBeacon('/api/ev',new Blob([b],{type:'application/json'})))return;fetch('/api/ev',{method:'POST',body:b,keepalive:true,headers:{'Content-Type':'application/json'}}).catch(()=>{})}catch(e){}}
+let evT=0,evS=Date.now();
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){evT+=Date.now()-evS;if(evT>3000)ev('time',Math.round(evT/1000));evT=0}else evS=Date.now()});
+function evSrc(){try{const q=new URLSearchParams(location.search),u=(q.get('utm_source')||q.get('from')||'').toLowerCase();if(u)return u;
+  const r=document.referrer?new URL(document.referrer).hostname:'';if(!r||r===location.hostname||r.endsWith('ruzimatova.kz'))return r?'site':'direct';
+  const m=[['instagram','instagram'],['facebook','facebook'],['fb.','facebook'],['google','google'],['yandex','yandex'],['whatsapp','whatsapp'],['wa.me','whatsapp'],['t.me','telegram'],['telegram','telegram'],['tiktok','tiktok'],['2gis','2gis']].find(([k])=>r.indexOf(k)>-1);return m?m[1]:'other'}catch(e){return 'direct'}}
+addEventListener('load',()=>ev('view',evSrc()));
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="wa.me"]');if(a)ev('wa',a.id||'')},true);
+
 const T=(ru,kz)=>lang==='kz'?kz:ru;
 const WA='77001114020';
 const waLink=t=>'https://wa.me/'+WA+'?text='+encodeURIComponent(t);
@@ -1118,6 +1133,7 @@ function renderQ(){
 let hist=[];
 function renderRes(){
   const k=hard||score>=11?3:score>=5?2:1, r=R[k];
+  ev('test','l'+k);
   const msg=T('Здравствуйте! Я с сайта, прошла тест: ','Сәлеметсіз бе! Мен сайттан, тесттен өттім: ')+L(r.code)+T('. Хочу консультацию','. Кеңес алғым келеді');
   box.innerHTML='<div class="res"><span class="lvl">'+L(r.lvl)+'</span><h3>'+L(r.txt)+'</h3><div class="cta"><a class="btn main" href="/app/?from=test">'+T('Начать упражнения в тренажёре','Жаттықтырғышта бастау')+'</a><a class="btn" target="_blank" rel="noopener" href="'+waLink(msg)+'">'+T('Спросить врача в WhatsApp','Дәрігерден WhatsApp-та сұрау')+'</a></div><p class="note">'+(k===3?T('При такой степени упражнения дополняют лечение, но не заменяют осмотр – лучше показаться врачу. ','Мұндай дәрежеде жаттығу емді толықтырады, бірақ тексеруді алмастырмайды – дәрігерге көріну жақсы. '):k===2?T('Упражнения – хорошее начало, пока вы решаете насчёт консультации. ','Кеңес туралы шешкенше жаттығу – жақсы бастама. '):T('На этой стадии регулярные упражнения часто дают заметный результат. ','Бұл кезеңде тұрақты жаттығу жиі жақсы нәтиже береді. '))+T('Результат теста – не диагноз, точный ответ даст осмотр. Сообщение в WhatsApp уже заполнено – его увидит только врач','Тест нәтижесі – диагноз емес, нақты жауапты тексеру береді. WhatsApp хабарламасы дайын – оны тек дәрігер көреді')+'</p><button class="back" id="again">'+T('Пройти заново','Қайта өту')+'</button></div>';
   document.getElementById('again').onclick=()=>{qi=0;score=0;hard=false;hist=[];renderQ()};
@@ -1257,7 +1273,7 @@ tbtn.onclick=async()=>{
     for(let rep=M.reps;rep>0;rep--){tn.textContent=rep;
       for(let k=0;k<M.ph.length;k++){const ph=M.ph[k];tl.textContent=L(ph.l);ring.className='ring'+(ph.c?' '+ph.c:'');st.forEach((s,j)=>s.classList.toggle('on',j<=k));await wait(ph.t)}}
     tn.textContent='✓';tl.textContent=T('подход готов','дайын');
-    const k=iso(today);const before=petalsN();log[k]=(log[k]||0)+1;ls.set('pf_log',log);drawDays();appRender();
+    const k=iso(today);const before=petalsN();log[k]=(log[k]||0)+1;ls.set('pf_log',log);drawDays();appRender();if(EVP==='app')ev('ex',MODES[cur].id);
     idle(T('Ещё подход','Тағы бір рет'));showDone(before);
   }catch(e){idle(T('Начать подход','Жаттығуды бастау'));setMode()}
 };
@@ -1339,7 +1355,7 @@ function showDone(before){const n=dayR().n,todayN=log[iso(today)]||0,got=petalsN
   typo(document.getElementById('sh-done'));document.getElementById('sh-done').hidden=false;drawClub()}
 document.getElementById('dn-x').onclick=()=>document.getElementById('sh-done').hidden=true;
 /* экраны */
-function go(sc){if(sc==='read'&&typeof seenMine==='function')seenMine();if(sc==='club')drawClub();document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
+function go(sc){if(EVP==='app')ev('sec',sc);if(sc==='read'&&typeof seenMine==='function')seenMine();if(sc==='club')drawClub();document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
 
 /* цикл */
@@ -1594,7 +1610,7 @@ function drawVids(){const r=document.getElementById('vrow');
   r.innerHTML=VIDS.map((v,i)=>v[0]?'<button class="vc" data-v="'+i+'" style="background-image:url('+MB+v[1]+'.jpg)"><span class="vp">'+mic('play')+'</span></button>':'<div class="vc later"><span class="vp">'+mic('play')+'</span><small>'+T('скоро','жақында')+'</small></div>').join('');
   r.querySelectorAll('.vc').forEach((c,i)=>{const n=L([VIDS[i][2],VIDS[i][3]]),q=n.split('|');if(VIDS[i][0])c.setAttribute('aria-label',n);else{c.setAttribute('aria-label',q.join(' '));c.insertAdjacentHTML('beforeend','<b>'+q[0]+(q[1]?'<br><i>'+q[1]+'</i>':'')+'</b>')}});
   r.querySelectorAll('button.vc').forEach(b=>b.onclick=()=>playVid(VIDS[+b.dataset.v]));typo(r);requestAnimationFrame(fitVids)}
-function playVid(v){const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
+function playVid(v){if(EVP==='app')ev('vid',v[0]);const scr=document.querySelector('.phone .scr');let o=document.getElementById('vov');if(o)o.remove();
   o=document.createElement('div');o.id='vov';o.className='vov';o.innerHTML='<video playsinline controls autoplay src="'+MB+v[0]+'.mp4" poster="'+MB+v[1]+'.jpg"></video><button class="vx" aria-label="'+T('Закрыть','Жабу')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
   scr.appendChild(o);o.querySelector('.vx').onclick=()=>o.remove();const vd=o.querySelector('video');vd.play().catch(()=>{});vd.onended=()=>o.remove()}
 const words=a=>[a.lead,...a.b.map(x=>typeof x==='string'?x:x[0]==='ul'?x[1].join(' '):x[0]==='img'?'':x[1])].join(' ').split(/\s+/).length;
@@ -1610,7 +1626,7 @@ function drawArts(){const box=document.getElementById('arts');
   {const w=document.getElementById('aq-wa');if(w)w.href='https://wa.me/77001114020?text='+encodeURIComponent(T('Здравствуйте! Пишу из «Тонуса», хочу задать вопрос','Сәлеметсіз бе! «Тонус»-тан жазып отырмын, сұрағым бар'))}
   drawAns();if(typeof drawMine==='function')drawMine();
   typo(box)}
-function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySelector('.phone .scr');let o=document.getElementById('rd');if(o)o.remove();
+function openArt(i){if(EVP==='app')ev('art',i);const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySelector('.phone .scr');let o=document.getElementById('rd');if(o)o.remove();
   const body=v.b.map(x=>typeof x==='string'?'<p>'+x+'</p>':x[0]==='h'?'<h3>'+x[1]+'</h3>':x[0]==='img'?'<figure class="ill">'+(ILL[x[1]]?ILL[x[1]]():'')+(x[2]?'<figcaption>'+x[2]+'</figcaption>':'')+'</figure>':'<ul>'+x[1].map(li=>'<li>'+li+'</li>').join('')+'</ul>').join('');
   const exi=a.ex?MODES.findIndex(m=>m.id===a.ex):-1;
   o=document.createElement('div');o.id='rd';o.className='rd';o.setAttribute('role','dialog');o.setAttribute('aria-label',v.t);
