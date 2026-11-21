@@ -9,12 +9,13 @@ export default async function handler(req, res) {
   if (!ready()) return res.status(503).json({ ok: false, error: 'not_configured' });
   try {
     if (b.action === 'list') return res.json({ ok: true, items: await allQuestions() });
-    if (b.action === 'save' || b.action === 'publish' || b.action === 'hide') {
+    if (b.action === 'save' || b.action === 'publish' || b.action === 'reply' || b.action === 'hide') {
       const it = await getQuestion(String(b.id || ''));
       if (!it) return res.status(404).json({ ok: false });
       if (b.a !== undefined) it.a = clean(b.a, 6000);
       if (b.aq !== undefined) it.aq = clean(b.aq, 2000);
       if (b.action === 'publish') { if (!it.a) return res.status(400).json({ ok: false, error: 'empty' }); it.status = 'published'; }
+      if (b.action === 'reply') { if (!it.a) return res.status(400).json({ ok: false, error: 'empty' }); it.status = 'answered'; }
       if (b.action === 'hide') it.status = 'hidden';
       if (b.action === 'save' && it.status === 'new' && it.a) it.status = 'draft';
       await saveQuestion(it);

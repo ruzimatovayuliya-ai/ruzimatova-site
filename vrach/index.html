@@ -54,14 +54,14 @@ label{font-size:12px;font-weight:700;color:var(--mut);display:flex;flex-directio
 </form>
 
 <main id="main" hidden>
-  <p class="hint">Перед публикацией можно поправить текст вопроса, чтобы в нём не осталось личных деталей. Опубликованный ответ появится в приложении «Тонус» в разделе «Полезное» в течение минуты.</p>
+  <p class="hint">«Ответить лично» – ответ увидит только автор вопроса в своём «Тонусе». «Опубликовать» – ответ увидят все в разделе «Полезное», автор тоже. Перед публикацией уберите из вопроса личные детали.</p>
   <div class="tabs" id="tabs"></div>
   <div class="list" id="list"></div>
 </main>
 </div>
 <script>
-const ST={new:'новый',draft:'черновик',published:'опубликован',hidden:'скрыт'};
-const TABS=[['new','Новые'],['draft','Черновики'],['published','Опубликованы'],['hidden','Скрытые']];
+const ST={new:'новый',draft:'черновик',answered:'отвечен лично',published:'опубликован',hidden:'скрыт'};
+const TABS=[['new','Новые'],['draft','Черновики'],['answered','Отвечены лично'],['published','Опубликованы'],['hidden','Скрытые']];
 let key='',items=[],tab='new';
 try{key=localStorage.getItem('vk')||''}catch(e){}
 const api=async(body)=>{const r=await fetch('/api/vrach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,...body})});const j=await r.json().catch(()=>({}));j.status=r.status;return j};
@@ -80,7 +80,7 @@ function draw(){
     +'<div class="qt">'+esc(x.q)+'</div>'
     +'<label>Вопрос для публикации<textarea class="aq" rows="2">'+esc(x.aq||x.q)+'</textarea></label>'
     +'<label>Ответ<textarea class="a" rows="5" placeholder="Ваш ответ">'+esc(x.a)+'</textarea></label>'
-    +'<div class="row">'+(x.status==='published'?'<button class="pb">Обновить ответ</button><button class="gh hd">Снять с публикации</button>':'<button class="pb">Опубликовать</button><button class="gh sv">Сохранить черновик</button>'+(x.status!=='hidden'?'<button class="gh hd">Скрыть</button>':''))+'<button class="dl">Удалить</button><span class="ok"></span></div></div>').join(''):'<p class="empty">Здесь пока пусто</p>';
+    +'<div class="row">'+(x.status==='published'?'<button class="pb">Обновить ответ</button><button class="gh hd">Снять с публикации</button>':'<button class="pb">Опубликовать</button><button class="gh rp">'+(x.status==='answered'?'Обновить личный ответ':'Ответить лично')+'</button><button class="gh sv">Сохранить черновик</button>'+(x.status!=='hidden'?'<button class="gh hd">Скрыть</button>':''))+'<button class="dl">Удалить</button><span class="ok"></span></div></div>').join(''):'<p class="empty">Здесь пока пусто</p>';
   document.querySelectorAll('.q').forEach(c=>{const id=c.dataset.id,ok=c.querySelector('.ok');
     const send=async(action)=>{c.querySelectorAll('button').forEach(b=>b.disabled=true);
       const j=await api({action,id,a:c.querySelector('.a').value,aq:c.querySelector('.aq').value});
@@ -89,7 +89,7 @@ function draw(){
       if(action==='delete')items=items.filter(x=>x.id!==id);else items=items.map(x=>x.id===id?j.item:x);
       ok.textContent='Сохранено';setTimeout(draw,700)};
     const on=(s,a)=>{const b=c.querySelector(s);if(b)b.onclick=()=>send(a)};
-    on('.pb','publish');on('.sv','save');on('.hd','hide');
+    on('.pb','publish');on('.rp','reply');on('.sv','save');on('.hd','hide');
     c.querySelector('.dl').onclick=()=>{if(c.dataset.sure){send('delete')}else{c.dataset.sure=1;c.querySelector('.dl').textContent='Точно удалить?'}}})}
 document.getElementById('login').onsubmit=e=>{e.preventDefault();key=document.getElementById('key').value.trim();try{localStorage.setItem('vk',key)}catch(e){}load()};
 if(key)load();

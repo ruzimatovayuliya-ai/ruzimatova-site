@@ -639,6 +639,8 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 #aq-go:disabled{opacity:.6}
 .aqnote{font-size:10.5px;line-height:1.4;color:var(--a-mut)}
 .answers{display:flex;flex-direction:column;gap:8px}.answers:empty{display:none}
+.ans .mst{display:block;margin-top:4px;font-size:11px;font-weight:600;color:var(--a-mut)}.ans.got .mst{color:var(--a-acc)}
+.atab{position:relative}.atab .ndot{position:absolute;top:0;left:calc(50% + 7px);width:8px;height:8px;border-radius:50%;background:#F2A6C9;box-shadow:0 0 0 2px var(--a-bg,#2B2140)}
 .ans summary{font-size:12.5px;font-weight:700;cursor:pointer;line-height:1.35}.ans p{margin:0;font-size:12px;line-height:1.5;color:var(--a-ink)}
 .rd{position:absolute;inset:0;z-index:28;background:var(--a-bg);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;animation:fadein .25s ease;color:var(--a-ink)}
 .rd::-webkit-scrollbar{display:none}
@@ -890,7 +892,7 @@ html,body{overscroll-behavior:none}
             <small class="aqnote" data-kz="Атсыз және нөмірсіз. Сұрақты тек дәрігер көреді. Басқаларға пайдалы болса, жауабы атсыз осында шығады">Без имени и телефона. Вопрос увидит только врач. Если он полезен другим, ответ без имени появится здесь</small>
             <a class="abtn ghost aqwa" id="aq-wa" href="https://wa.me/77001114020" target="_blank" rel="noopener" data-kz="Дәрігерге WhatsApp-қа жазу">Написать врачу в WhatsApp</a>
           </div>
-          <div class="grp" id="ans-h" hidden data-kz="Дәрігердің жауаптары">Ответы врача</div><div id="answers" class="answers"></div>
+          <div class="grp" id="mine-h" hidden data-kz="Менің сұрақтарым">Мои вопросы</div><div id="mine" class="answers"></div><div class="grp" id="ans-h" hidden data-kz="Дәрігердің жауаптары">Ответы врача</div><div id="answers" class="answers"></div>
         </div>
       </div>
 
@@ -1131,7 +1133,7 @@ function showDone(before){const n=dayR().n,todayN=log[iso(today)]||0,got=petalsN
   typo(document.getElementById('sh-done'));document.getElementById('sh-done').hidden=false;drawClub()}
 document.getElementById('dn-x').onclick=()=>document.getElementById('sh-done').hidden=true;
 /* экраны */
-function go(sc){if(sc==='club')drawClub();document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
+function go(sc){if(sc==='read'&&typeof seenMine==='function')seenMine();if(sc==='club')drawClub();document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===sc));document.querySelectorAll('.atab').forEach(a=>a.classList.toggle('on',a.dataset.go===sc))}
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
 
 /* цикл */
@@ -1400,7 +1402,7 @@ function drawArts(){const box=document.getElementById('arts');
   box.querySelectorAll('.art').forEach(b=>b.onclick=()=>openArt(+b.dataset.a));
   document.getElementById('q-ic').innerHTML=mic('chat');
   {const w=document.getElementById('aq-wa');if(w)w.href='https://wa.me/77001114020?text='+encodeURIComponent(T('Здравствуйте! Пишу из «Тонуса», хочу задать вопрос','Сәлеметсіз бе! «Тонус»-тан жазып отырмын, сұрағым бар'))}
-  drawAns();
+  drawAns();if(typeof drawMine==='function')drawMine();
   typo(box)}
 function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySelector('.phone .scr');let o=document.getElementById('rd');if(o)o.remove();
   const body=v.b.map(x=>typeof x==='string'?'<p>'+x+'</p>':x[0]==='h'?'<h3>'+x[1]+'</h3>':x[0]==='img'?'<figure class="ill">'+(ILL[x[1]]?ILL[x[1]]():'')+(x[2]?'<figcaption>'+x[2]+'</figcaption>':'')+'</figure>':'<ul>'+x[1].map(li=>'<li>'+li+'</li>').join('')+'</ul>').join('');
@@ -1425,10 +1427,22 @@ function drawAns(){const an=document.getElementById('answers');if(!an)return;
   document.getElementById('ans-h').hidden=!all.length;
   an.innerHTML=all.map(v=>'<details class="acard ans"><summary>'+escH(v.q)+'</summary><p>'+escH(v.a).replace(/\n/g,'<br>')+'</p></details>').join('');typo(an)}
 fetch('/api/answers').then(r=>r.ok?r.json():null).then(j=>{if(Array.isArray(j)){SANS=j;ls.set('pf_ans',j);drawAns()}}).catch(()=>{});
+/* мои вопросы: телефон помнит только номера своих вопросов, ответ врача приходит сюда (лично или опубликованный) */
+let MINE=ls.get('pf_myq',[]);
+function drawMine(){const m=document.getElementById('mine');if(!m)return;document.getElementById('mine-h').hidden=!MINE.length;
+  m.innerHTML=MINE.map(x=>'<details class="acard ans'+(x.st==='ans'?' got':'')+'"'+(x.st==='ans'&&!x.seen?' open':'')+'><summary>'+escH(x.q)+'<span class="mst">'+(x.st==='ans'?T('Врач ответила','Дәрігер жауап берді'):T('Ждёт ответа врача','Дәрігердің жауабын күтуде'))+'</span></summary>'+(x.st==='ans'?'<p>'+escH(x.a).replace(/\n/g,'<br>')+'</p>':'')+'</details>').join('');typo(m);
+  const nw=MINE.some(x=>x.st==='ans'&&!x.seen),tb=document.querySelector('.atab[data-go=read]');if(tb){let d=tb.querySelector('.ndot');if(nw&&!d){d=document.createElement('i');d.className='ndot';tb.appendChild(d)}if(!nw&&d)d.remove()}}
+function seenMine(){if(MINE.some(x=>x.st==='ans'&&!x.seen)){setTimeout(()=>{MINE.forEach(x=>{if(x.st==='ans')x.seen=1});ls.set('pf_myq',MINE);const d=document.querySelector('.atab .ndot');if(d)d.remove()},1500)}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')syncMine()});
+function syncMine(){try{const sq=JSON.parse(localStorage.getItem('pf_myq_site')||'[]');if(sq.length){sq.forEach(x=>{if(!MINE.some(y=>y.id===x.id))MINE.unshift({id:x.id,q:x.q,ts:x.ts,st:'wait',a:''})});localStorage.removeItem('pf_myq_site');MINE=MINE.slice(0,20);ls.set('pf_myq',MINE)}}catch(e){}
+  drawMine();if(!MINE.length)return;
+  fetch('/api/mine',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ids:MINE.map(x=>x.id)})}).then(r=>r.ok?r.json():null).then(j=>{if(!j||!j.ok)return;const got={};j.items.forEach(x=>got[x.id]=x);
+    MINE=MINE.filter(x=>got[x.id]).map(x=>{const g=got[x.id];return {...x,st:g.st,a:g.a,seen:g.st==='ans'&&x.st==='ans'&&x.a===g.a?x.seen:0}});ls.set('pf_myq',MINE);drawMine()}).catch(()=>{})}
+syncMine();
 /* вопрос врачу: анонимно сохраняется на сервере, врач отвечает на /vrach */
 (function(){const t=document.getElementById('aq'),er=document.getElementById('aqerr'),bt=document.getElementById('aq-go');if(!t)return;t.addEventListener('input',()=>{er.hidden=true});
   bt.onclick=async()=>{const v=t.value.trim();er.classList.remove('good');if(v.length<10){er.textContent=T('Напишите вопрос хотя бы в одно предложение','Сұрағыңызды кемінде бір сөйлеммен жазыңыз');er.hidden=false;return}
-  bt.disabled=true;let ok=false;try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:v,lang,src:'app'})});ok=r.ok}catch(e){}
+  bt.disabled=true;let ok=false;try{const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:v,lang,src:'app'})});ok=r.ok;if(ok){const j=await r.json().catch(()=>({}));if(j.id){MINE=[{id:j.id,q:v,ts:Date.now(),st:'wait',a:''},...MINE].slice(0,20);ls.set('pf_myq',MINE);drawMine()}}}catch(e){}
   bt.disabled=false;er.hidden=false;
   if(ok){t.value='';er.classList.add('good');er.textContent=T('Вопрос отправлен анонимно. Врач отвечает раз в неделю, ответ появится здесь','Сұрақ анонимді жіберілді. Дәрігер аптасына бір рет жауап береді, жауабы осында шығады');return}
   er.innerHTML=T('Не получилось отправить. Проверьте интернет и попробуйте ещё раз или ','Жіберу мүмкін болмады. Интернетті тексеріп, қайталап көріңіз немесе ')+'<a href="https://wa.me/'+WA+'?text='+encodeURIComponent(v)+'" target="_blank" rel="noopener">'+T('напишите врачу в WhatsApp','дәрігерге WhatsApp-қа жазыңыз')+'</a>'}})();

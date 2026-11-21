@@ -58,6 +58,16 @@ export async function rebuildAnswers() {
   await save('pub/answers.json', pub);
   return pub;
 }
+// ответы конкретной автору: по номерам вопросов, которые помнит её телефон (номер случайный, имени нет)
+export async function mine(ids) {
+  const out = [];
+  for (const id of ids) {
+    const it = await load('q/' + id + '.json'); if (!it) continue;
+    const ans = (it.status === 'answered' || it.status === 'published') && it.a;
+    out.push({ id: it.id, a: ans ? it.a : '', st: ans ? 'ans' : 'wait' });
+  }
+  return out;
+}
 export const publishedAnswers = async () => (await load('pub/answers.json')) || [];
 
 // пароль врача хранится только как хэш
