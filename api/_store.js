@@ -3,7 +3,11 @@
 import { put, get, list, del } from '@vercel/blob';
 import crypto from 'node:crypto';
 
-export const ready = () => !!process.env.BLOB_READ_WRITE_TOKEN;
+// ключ: либо BLOB_READ_WRITE_TOKEN, либо новый способ Vercel – BLOB_STORE_ID + OIDC (библиотека берёт токен сама)
+export const ready = () => !!(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
+export const via = () => process.env.BLOB_READ_WRITE_TOKEN ? 'token' : process.env.BLOB_STORE_ID ? 'oidc' : 'none';
+// проверка связи с хранилищем без записи (для GET /api/ask)
+export async function check() { try { await list({ prefix: 'q/', limit: 1 }); return { ok: true }; } catch (e) { return { ok: false, error: String(e && e.message || e).slice(0, 300) }; } }
 let mode = process.env.BLOB_ACCESS || 'private';
 
 async function save(pathname, data) {
