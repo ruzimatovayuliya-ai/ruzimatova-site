@@ -694,6 +694,25 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 .atab svg{width:21px;height:21px}
 .as[data-s=read]>*,.as[data-s=club]>*{flex-shrink:0}
 .phone .scr,.phone .as,.vsec,.vrow,#arts{min-width:0;max-width:100%}.vsec{width:100%}
+
+/* v22: отзывы пациенток */
+.reviews .head{margin-bottom:28px}
+.rgrid{columns:3 300px;column-gap:18px}
+.rcard{break-inside:avoid;margin:0 0 18px;display:flex;flex-direction:column;gap:14px;padding:22px 22px 18px;border-radius:22px;border:1.5px solid transparent;background:linear-gradient(150deg,#FDFAFE,#F6EEFA) padding-box,linear-gradient(135deg,#9B7BE0,#C9A0E8 50%,#F2A6C9) border-box;box-shadow:0 18px 34px -26px #8F6BDA88;color:#2E2538}
+.rtop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rq{width:30px;height:22px;flex:none}
+.rtag{font-size:12.5px;font-weight:700;color:#7A55B8;background:#F1E6F9;border-radius:999px;padding:5px 12px;white-space:nowrap}
+.rcard blockquote{margin:0;font-size:15.5px;font-weight:500;line-height:1.6;text-wrap:pretty}
+.rcard figcaption{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#786C86;padding-top:12px;border-top:1px solid #EFE4F3}
+.rcard figcaption svg{width:16px;height:16px;color:#A88BE0;flex:none}
+.reviews.band .rcard{background:#fff;border-color:#fff;box-shadow:0 24px 44px -28px #3b238088}
+.rmore{display:none}
+@media (max-width:760px){
+  .rgrid{columns:auto;display:flex;flex-direction:column;gap:12px}
+  .rcard{margin:0}
+  .rgrid:not(.all) .rcard:nth-child(n+4){display:none}
+  .rmore{display:flex;justify-content:center;margin-top:16px}
+}
 </style>
 
 <header><div class="wrap hd">
@@ -926,13 +945,42 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 </div></section>
 
 
-<section><div class="wrap review">
-  <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
-    <span class="eyebrow" data-kz="Пациенттің пікірі">Отзыв пациентки</span>
-    <blockquote>«После операции прошло 3 года. Себя чувствую великолепно! Ни о чём не жалею»</blockquote>
-    <p class="muted" data-kz="Дәрігердің Instagram-ынан, аты жасырылған">Из Instagram врача, имя скрыто</p>
-    <span class="soon" data-kz="жаңа пікірлер – жақында">новые отзывы – скоро здесь</span>
+<section id="reviews" class="reviews"><div class="wrap">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rqg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B7BE0"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs></svg>
+  <div class="head"><span class="eyebrow" data-kz="Пікірлер">Отзывы</span>
+  <h2 data-kz="Пациенттер не жазады">Что пишут пациентки</h2>
+  <p class="muted" data-kz="Instagram пікірлері мен дәрігерге хаттар. Аттары жасырылған">Комментарии в Instagram и сообщения врачу. Имена скрыты</p></div>
+  <div class="rgrid" id="rgrid">
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Зәр ұстамау · 2 ай">Недержание · 2 месяца</span></div>
+      <blockquote>Уже два месяца после операции – всё хорошо, хожу без прокладки. Огромное спасибо вам! Дай Аллах вам долгих лет жизни и счастья</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.1A8 8 0 1 1 20 12z"/></svg><span data-kz="WhatsApp, хабарлама">WhatsApp, сообщение</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Вагинопластика · 3 жыл">Вагинопластика · 3 года</span></div>
+      <blockquote>Самый лучший эндоскопический пластический гинеколог в Алматы! После вагинопластики прошло 3 года – чувствую себя великолепно, ни о чём не жалею. Әйел денсаулығы үшін күнде күресіп жүрген мықты дәрігер!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, пікір">Instagram, комментарий</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Миома · ағзалар сақталды">Миома · органы сохранены</span></div>
+      <blockquote>Много лет хотела забеременеть, но ничего не получалось, а потом сбился цикл. Гинеколог нашла большую миому, и я была в отчаянии: везде писали, что это ведёт к удалению матки. Я попала к Юлии Иномовне – миому удалили и сохранили все органы. Прошло три месяца, планирую беременность. Спасибо, что даёте женщинам надежду быть здоровыми!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, хабарлама">Instagram, сообщение</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Қолдау">Поддержка</span></div>
+      <blockquote>Вы остановили меня, когда я плакала: успокоили, поговорили, направили и дали сил. Хотелось всё бросить и пустить на самотёк, но ваши слова, добрые глаза и грамотная речь меня образумили. Спасибо, что вы есть в моей жизни!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, пікір">Instagram, комментарий</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Жатырдан тыс · түтік аман">Внематочная · труба цела</span></div>
+      <blockquote>Хочу выразить огромную благодарность за сохранение трубы в 2024 году. У меня была внематочная беременность, и я боялась, что не смогу забеременеть. Сейчас я в положении, и, как сказали на УЗИ, беременность наступила через ту трубу, где была операция. У вас золотые руки!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, хабарлама">Instagram, сообщение</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Қамқорлық">Забота</span></div>
+      <blockquote>Не устану благодарить вас за доброе сердце, поддержку, заботу и тепло, которое лечит лучше таблеток. Вы самый лучший врач и прекрасный человек!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, пікір">Instagram, комментарий</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Аналық без кистасы">Киста яичника</span></div>
+      <blockquote>Сәлеметсіз бе! Тура бір жыл бұрын аналық бездің дермоидты кистасымен сізге жүгіндім. Өзім акушер болсам да, қорқыныш болды, бірақ Аллаға шүкір, операциям сондай жеңіл өтті. Сіздей жас, білікті дәрігерге түскеніме қуандым. Өзімнен кейін қаншама әйелді жібердім!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, хабарлама">Instagram, сообщение</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Операция">Операция</span></div>
+      <blockquote>Мой самый лучший доктор, мой спаситель! Меня ждёт ещё одна операция, и делать её будете только вы. Спасибо, что вы есть, у вас золотые руки!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, пікір">Instagram, комментарий</span></figcaption></figure>
+    <figure class="rcard rv"><div class="rtop"><svg class="rq" viewBox="0 0 32 24" aria-hidden="true"><path fill="url(#rqg)" d="M0 24V14C0 6 4.5 1.2 12 0l1.3 3.4C9 4.8 7 7.6 6.8 11H12v13zm18 0V14c0-8 4.5-12.8 12-14l1.3 3.4C27 4.8 25 7.6 24.8 11H30v13z"/></svg><span class="rtag" data-kz="Алғыс">Благодарность</span></div>
+      <blockquote>Спасибо, что вы выбрали эту профессию! Вы мой лучший доктор. Пусть в нашей стране будет больше таких сильных врачей!</blockquote>
+      <figcaption><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></svg><span data-kz="Instagram, пікір">Instagram, комментарий</span></figcaption></figure>
   </div>
+  <div class="rmore"><button class="btn" type="button" id="rmore" data-kz="Тағы 6 пікір">Ещё 6 отзывов</button></div>
+  <div class="cta pain-cta"><a class="btn main" href="/app/" data-kz="Тегін жаттықтырғышты ашу">Открыть бесплатный тренажёр</a></div>
 </div></section>
 
 <section><div class="wrap">
@@ -1640,4 +1688,5 @@ if(document.getElementById('ptr'))['go','drawArts','drawVids','drawAns','openArt
  fit();addEventListener('resize',fit);addEventListener('load',fit);(document.fonts?document.fonts.ready:Promise.resolve()).then(fit)})();
 </script>
 
+<script>(function(){const b=document.getElementById('rmore');if(b)b.onclick=()=>{document.getElementById('rgrid').classList.add('all');b.parentNode.remove()}})();</script>
 </body></html>
