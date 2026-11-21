@@ -1,8 +1,17 @@
 // Счётчики посещений в Upstash Redis (Vercel Storage → Upstash for Redis). Без IP, имён и телефонов – только общие цифры.
+// Переменные могут прийти с любой приставкой (KV_, STORAGE_KV_, UPSTASH_REDIS_ и т.п.) – ищем пару «…_REST_API_URL/TOKEN» или «…_REST_URL/TOKEN»
 const cfg = () => {
-  const u = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-  const t = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-  return u && t ? { u: u.replace(/\/$/, ''), t } : null;
+  const e = process.env;
+  const u0 = e.KV_REST_API_URL || e.UPSTASH_REDIS_REST_URL;
+  const t0 = e.KV_REST_API_TOKEN || e.UPSTASH_REDIS_REST_TOKEN;
+  if (u0 && t0) return { u: u0.replace(/\/$/, ''), t: t0 };
+  for (const k of Object.keys(e)) {
+    const m = k.match(/^(.*)_(KV_REST_API|REDIS_REST)_URL$/);
+    if (!m) continue;
+    const t = e[m[1] + '_' + m[2] + '_TOKEN'];
+    if (e[k] && t && /^https:/.test(e[k])) return { u: e[k].replace(/\/$/, ''), t };
+  }
+  return null;
 };
 export const statsReady = () => !!cfg();
 export async function redis(cmds) {
