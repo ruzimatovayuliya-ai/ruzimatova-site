@@ -196,3 +196,27 @@ html=f'''<!doctype html>
 </body></html>'''
 open('app/index.html','w',encoding='utf-8').write(html)
 print(len(html))
+
+# версия для команды: ruzimatova.kz/app/vrach/ – то же приложение + кнопка «Кабинет» (кабинет открывается поверх, внутри того же приложения).
+# Свою статистику и PostHog команда не засоряет (window.TEAM).
+t=html.replace('<link rel="manifest" href="/app/manifest.webmanifest">','<link rel="manifest" href="/app/vrach/manifest.webmanifest">',1)
+t=t.replace('<meta name="apple-mobile-web-app-title" content="Тонус">','<meta name="apple-mobile-web-app-title" content="Тонус команда"><meta name="robots" content="noindex,nofollow">',1)
+t=t.replace('<script>','<script>window.TEAM=1;\n',1)
+t=t.replace('<span class="av" aria-hidden="true">RU</span>','<button class="kab" id="kab">Кабинет</button><span class="av" aria-hidden="true">RU</span>',1)
+team='''<div id="kabv" hidden><iframe id="kabf" title="Кабинет"></iframe></div>
+<style>
+.kab{flex:none;height:30px;padding:0 12px;border:0;border-radius:999px;background:linear-gradient(125deg,#8F6BDA,#E59CC6);color:#fff;font:700 12px Manrope,sans-serif;cursor:pointer}
+#kabv{position:fixed;inset:0;z-index:9999;background:#F5F1FB;padding-top:env(safe-area-inset-top,0px);box-sizing:border-box}#kabv[hidden]{display:none}
+#kabv iframe{width:100%;height:100%;border:0;display:block}
+</style>
+<script>
+(()=>{const v=document.getElementById('kabv'),f=document.getElementById('kabf');
+window.kabOpen=()=>{if(!f.src)f.src='/app/vrach/kabinet.html';v.hidden=false;try{sessionStorage.setItem('kab','1')}catch(e){}};
+window.kabClose=()=>{v.hidden=true;try{sessionStorage.removeItem('kab')}catch(e){}};
+document.getElementById('kab').onclick=kabOpen;
+try{if(sessionStorage.getItem('kab')==='1')kabOpen()}catch(e){}})();
+</script>
+</body></html>'''
+t=t[:t.rindex('</body></html>')]+team
+assert t.count('id="kab"')==1 and 'window.TEAM=1' in t
+open('app/vrach/index.html','w',encoding='utf-8').write(t)
