@@ -272,7 +272,7 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--muted);display:flex;fl
 .ring{width:58%;margin:4px auto 0}
 .tbtns{display:flex;gap:8px}
 .tbtns .abtn{flex:1}
-.abtn.ghost{background:transparent;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.abtn.ghost{background:transparent;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}a.abtn{display:block;text-align:center;text-decoration:none;box-sizing:border-box}/* прямой WhatsApp врачу под анонимным вопросом */
 .abtn[hidden]{display:none}
 .days i{font-size:8px}
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
@@ -382,7 +382,7 @@ a.badge:hover{box-shadow:0 14px 34px -10px #5E3FA366}
 .steps-min b{font-size:18px}.steps-min span{color:var(--muted)}.steps-min small{margin-top:6px;font-weight:700;color:#7A55B8}
 @media (max-width:700px){.steps-min{grid-template-columns:1fr;gap:18px}}
 #stages .head{margin-bottom:0}
-.askf.solo{max-width:640px;margin-top:24px}
+.askf.solo{max-width:640px;margin-top:24px}.askrow{display:flex;flex-wrap:wrap;gap:10px}.askf .btn.wa-q{border-color:#C3ADFA;color:#7A55B8;background:transparent}
 
 .phone{position:relative}
 .demo-tap{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:#ffffff55;box-shadow:0 0 0 2px #ffffffaa;opacity:0;pointer-events:none;z-index:5}
@@ -862,6 +862,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
             <p class="aqerr" id="aqerr" hidden></p>
             <button class="abtn" id="aq-go" data-kz="Анонимді жіберу">Отправить анонимно</button>
             <small class="aqnote" data-kz="Атсыз және нөмірсіз. Сұрақты тек дәрігер көреді. Басқаларға пайдалы болса, жауабы атсыз осында шығады">Без имени и телефона. Вопрос увидит только врач. Если он полезен другим, ответ без имени появится здесь</small>
+            <a class="abtn ghost aqwa" id="aq-wa" href="https://wa.me/77001114020" target="_blank" rel="noopener" data-kz="Дәрігерге WhatsApp-қа жазу">Написать врачу в WhatsApp</a>
           </div>
           <div class="grp" id="ans-h" hidden data-kz="Дәрігердің жауаптары">Ответы врача</div><div id="answers" class="answers"></div>
         </div>
@@ -953,7 +954,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
   <form class="askf solo" id="askf" novalidate>
     <textarea id="q" aria-label="Ваш вопрос" placeholder="Например: после третьих родов подтекает при прыжках. Это пройдёт само?" data-kz-ph="Мысалы: үшінші босанудан кейін секіргенде зәр тамады. Бұл өздігінен өте ме?"></textarea>
     <p class="err" id="qerr" hidden></p>
-    <button class="btn main" type="submit" style="align-self:flex-start" data-kz="Сұрақ жіберу">Отправить вопрос</button>
+    <div class="askrow"><button class="btn main" type="submit" data-kz="Сұрақ жіберу">Отправить вопрос</button><a class="btn wa-q" id="q-wa" href="https://wa.me/77001114020" target="_blank" rel="noopener" data-kz="Дәрігерге WhatsApp-қа жазу">Написать врачу в WhatsApp</a></div>
   </form>
 </div></section>
 
@@ -1078,6 +1079,7 @@ function setLang(l){
     el.innerHTML=l==='kz'?el.dataset.kz:el.dataset.ru;
   });
   document.querySelectorAll('[data-kz-ph]').forEach(q=>{if(q.dataset.ruPh===undefined)q.dataset.ruPh=q.placeholder;q.placeholder=l==='kz'?q.dataset.kzPh:q.dataset.ruPh});
+  {const t=T('Здравствуйте! Хочу задать вопрос врачу','Сәлеметсіз бе! Дәрігерге сұрақ қойғым келеді');const a=document.getElementById('q-wa');if(a)a.href=waLink(t)}
   document.getElementById('wa').href=waLink(T('Здравствуйте! Я с сайта, хочу записаться на консультацию','Сәлеметсіз бе! Мен сайттан, кеңеске жазылғым келеді'));
   (document.getElementById('share')||{}).href='https://wa.me/?text='+encodeURIComponent(T('Посмотри, тут анонимный тест про женское здоровье от гинеколога. Никто не узнает результат: ','Қарашы, гинекологтың әйел денсаулығы туралы анонимді тесті. Нәтижесін ешкім білмейді: ')+location.href.split('#')[0]+'#test');
   document.querySelectorAll('.av').forEach(a=>a.textContent=l==='kz'?'KZ':'RU');
@@ -1597,6 +1599,7 @@ function drawArts(){const box=document.getElementById('arts');
   box.innerHTML=ARTS.map((a,i)=>'<button class="art" data-a="'+i+'"><span class="mi">'+mic(a.ic)+'</span><div><b>'+(lang==='kz'?a.kz:a.ru).t+'</b><small>'+artTime(a)+'</small></div><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>').join('');
   box.querySelectorAll('.art').forEach(b=>b.onclick=()=>openArt(+b.dataset.a));
   document.getElementById('q-ic').innerHTML=mic('chat');
+  {const w=document.getElementById('aq-wa');if(w)w.href='https://wa.me/77001114020?text='+encodeURIComponent(T('Здравствуйте! Пишу из «Тонуса», хочу задать вопрос','Сәлеметсіз бе! «Тонус»-тан жазып отырмын, сұрағым бар'))}
   drawAns();
   typo(box)}
 function openArt(i){const a=ARTS[i],v=lang==='kz'?a.kz:a.ru,scr=document.querySelector('.phone .scr');let o=document.getElementById('rd');if(o)o.remove();
