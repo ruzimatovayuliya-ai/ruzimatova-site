@@ -1,0 +1,206 @@
+<!--KAB-SCREENS-->
+      <div class="as" data-s="kq">
+        <div class="ahead"><div class="grow"><b>Вопросы</b><small id="kq-sub">кабинет команды</small></div><button class="kab" data-kexit>Приложение</button></div>
+        <form class="acard klogin" id="k-login" hidden>
+          <h4>Вход в кабинет</h4><small>Пароль вводится один раз, дальше телефон его помнит</small>
+          <input type="password" id="k-key" placeholder="Пароль" autocomplete="current-password">
+          <p class="aqerr" id="k-lerr" hidden></p>
+          <button class="abtn" type="submit">Войти</button>
+        </form>
+        <div id="k-qwrap" hidden>
+          <div class="ktabs" id="k-tabs"></div>
+          <div class="klist" id="k-list"></div>
+          <div class="acard khint"><small><b>Ответить лично</b> – увидит только автор, в «Мои вопросы». <b>В приложении</b> – все в «Полезном». <b>На сайте</b> – в «Частых страхах» на ruzimatova.kz. Перед показом всем уберите личные детали.</small></div>
+          <button class="kout" id="k-out">Выйти из кабинета</button>
+        </div>
+      </div>
+      <div class="as" data-s="ks">
+        <div class="ahead"><div class="grow"><b>Статистика</b><small id="ks-sub">за 30 дней</small></div><button class="kab" data-kexit>Приложение</button></div>
+        <div class="kseg" id="ks-tabs"><button data-v="o" class="on">Обзор</button><button data-v="a">Аудитория</button><button data-v="b">Поведение</button><button data-v="q">Вопросы</button></div>
+        <div class="kper ktabs" id="ks-per"></div>
+        <div id="ks-body"></div>
+      </div>
+      <nav class="atabs ktabbar" aria-label="Разделы кабинета">
+        <button class="atab" data-kgo="kq"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M4 5.6A2.6 2.6 0 0 1 6.6 3h10.8A2.6 2.6 0 0 1 20 5.6v8.8a2.6 2.6 0 0 1-2.6 2.6H11l-4.6 3.8V17h0A2.4 2.4 0 0 1 4 14.6z"/><path class="d" d="M8 8.4h8v1.7H8zM8 11.6h5.4v1.7H8z"/></svg><span>Вопросы</span><i class="kdot" id="k-dot" hidden></i></button>
+        <button class="atab" data-kgo="ks"><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="f" x="3.6" y="11" width="4.4" height="9.4" rx="1.4"/><rect class="f" x="9.8" y="4" width="4.4" height="16.4" rx="1.4"/><rect class="f" x="16" y="8" width="4.4" height="12.4" rx="1.4"/><rect class="d" x="9.8" y="15" width="4.4" height="5.4" rx="1.2"/></svg><span>Статистика</span></button>
+        <button class="atab" data-kexit><svg viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M12 2.6c4.6 3.3 7 7.4 7 11.4a7 7 0 0 1-14 0c0-4 2.4-8.1 7-11.4z"/><path class="d" d="M12 9.2c2 1.6 3 3.4 3 5.1a3 3 0 0 1-6 0c0-1.7 1-3.5 3-5.1z"/></svg><span>Приложение</span></button>
+      </nav>
+<!--KAB-STYLE-->
+<style>
+.kab{flex:none;height:30px;padding:0 13px;border:0;border-radius:999px;background:linear-gradient(125deg,#8F6BDA,#E59CC6);color:#fff;font:700 12px var(--body);cursor:pointer}
+.ktabbar{display:none}
+.phone.kabm .atabs:not(.ktabbar){display:none}.phone.kabm .ktabbar{display:flex}
+.ktabbar .atab{position:relative}
+.kdot{position:absolute;top:2px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:#F2A6C9}
+.klogin input{width:100%;box-sizing:border-box;border:0;border-radius:12px;padding:12px;font:500 16px var(--body);background:#ffffff12;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.acard h4{margin:0;font-size:14px}.acard>small,.khint small{color:var(--a-mut);font-size:12.5px;line-height:1.45}.khint b{color:var(--a-ink)}
+.ktabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:none}
+.ktabs button{flex:none;border:0;border-radius:999px;padding:8px 12px;font:700 12.5px var(--body);background:color-mix(in srgb,var(--a-soft) 75%,transparent);color:var(--a-mut);cursor:pointer}
+.ktabs button.on{background:var(--a-acc);color:var(--a-bg)}.ktabs b{margin-left:4px}
+#k-qwrap{display:flex;flex-direction:column;gap:10px}#k-qwrap[hidden]{display:none}
+.klist{display:flex;flex-direction:column;gap:10px}
+.kq .meta{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:11.5px;color:var(--a-mut)}
+.kq .tag{background:#ffffff1a;color:var(--a-ink);border-radius:99px;padding:1px 8px;font-weight:700}.kq .tag.pub{background:#F2A6C933;color:#F7C6DC}
+.kq .qt{font-size:14.5px;font-weight:700;color:var(--a-ink);white-space:pre-wrap;word-break:break-word}
+.kq label{font-size:11.5px;font-weight:700;color:var(--a-mut);display:flex;flex-direction:column;gap:4px}
+.kq textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:70px;border:0;border-radius:12px;padding:10px 12px;font:500 16px/1.45 var(--body);background:#ffffff12;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.kq .row{display:flex;flex-wrap:wrap;gap:6px}
+.kq .row button{flex:1 1 auto;border:0;border-radius:12px;padding:10px 12px;font:700 13px var(--body);cursor:pointer;background:transparent;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft)}
+.kq .row .rp{flex-basis:100%;background:var(--a-acc);color:var(--a-bg);box-shadow:none}
+.kq .row .tg.on{background:#F2A6C933;color:#F7C6DC;box-shadow:inset 0 0 0 1.5px #F2A6C966}.kq .row .tg.on::before{content:"✓ "}
+.kq .row .dl{color:#F2A6C9}
+.kq .row button:disabled{opacity:.5}
+.kq .ok{font-size:12px;font-weight:700;color:var(--a-acc)}
+.kempty{color:var(--a-mut);text-align:center;font-size:13px;padding:30px 0}
+.kout{align-self:center;background:none;border:0;color:var(--a-mut);font:600 12.5px var(--body);padding:8px;cursor:pointer}
+.kkpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kkpi{background:color-mix(in srgb,var(--a-soft) 75%,transparent);border-radius:16px;padding:11px 12px}
+.kkpi b{display:block;font-size:22px;font-weight:800;color:var(--a-ink);line-height:1.15}.kkpi span{font-size:11.5px;color:var(--a-mut)}
+.kper{display:flex;gap:6px}
+.kbars{display:flex;align-items:flex-end;gap:4px;height:120px;overflow:hidden}
+.kbars>div{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:3px;height:100%}
+.kbars i{display:block;width:100%;max-width:30px;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#F2A6C9,#9B7BE0);min-height:3px}
+.kbars em{font-style:normal;font-size:9.5px;color:var(--a-mut);white-space:nowrap}.kbars b{font-size:11px;color:var(--a-ink)}
+.kbars.two{gap:2px}.kbars.two .pair{display:flex;gap:2px;align-items:flex-end;justify-content:center;width:100%;height:100%}.kbars.two .pair i{max-width:10px}.kbars.two i.s{background:#C9B4F5}
+.klg{display:flex;gap:12px;font-size:11.5px;color:var(--a-mut)}.klg i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
+.kline{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid #ffffff14;font-size:13px;color:var(--a-ink)}.kline:first-of-type{border-top:0}.kline b{color:var(--a-acc)}
+.kseg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);flex:none}
+.kseg button{border:0;border-radius:10px;padding:8px 2px;font:700 12px var(--body);background:transparent;color:var(--a-mut);cursor:pointer}
+.kseg button.on{background:var(--a-acc);color:var(--a-bg)}
+.kbig{display:flex;align-items:baseline;gap:8px}.kbig b{font-size:34px;font-weight:800;color:var(--a-ink);line-height:1}.kbig span{font-size:12px;color:var(--a-mut)}
+.ktip{min-height:18px;font-size:12px;color:var(--a-ink);font-weight:700}
+.kbars>div{cursor:pointer}.kbars>div.sel i{filter:brightness(1.25)}.kbars>div.sel em{color:var(--a-ink);font-weight:700}
+.khb{display:flex;flex-direction:column;gap:9px}
+.khb .r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;font-size:12.5px;color:var(--a-ink)}
+.khb .r b{color:var(--a-acc);font-size:12.5px}.khb .r i{grid-column:1/-1;display:block;height:7px;border-radius:99px;background:#ffffff12;overflow:hidden}
+.khb .r i::after{content:"";display:block;height:100%;width:var(--w);border-radius:99px;background:linear-gradient(90deg,#9B7BE0,#F2A6C9)}
+.kdon{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;align-items:center}
+.kdon .d{width:104px;height:104px;border-radius:50%;display:grid;place-items:center;position:relative}
+.kdon .d::before{content:"";position:absolute;inset:16px;border-radius:50%;background:var(--a-bg)}
+.kdon .d span{position:relative;text-align:center;font-size:10.5px;color:var(--a-mut);line-height:1.2}.kdon .d span b{display:block;font-size:20px;color:var(--a-ink)}
+.kdon ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--a-ink)}
+.kdon li{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center}.kdon li i{width:10px;height:10px;border-radius:3px}.kdon li b{color:var(--a-mut);font-weight:600}
+.kfun{display:flex;flex-direction:column;gap:6px}
+.kfun .s{position:relative;border-radius:12px;padding:9px 12px;display:flex;justify-content:space-between;font-size:12.5px;color:var(--a-ink);overflow:hidden;background:#ffffff0d}
+.kfun .s::before{content:"";position:absolute;inset:0 auto 0 0;width:var(--w);background:linear-gradient(90deg,#9B7BE055,#F2A6C955)}
+.kfun .s>*{position:relative}.kfun .s b{font-weight:800}.kfun .s em{font-style:normal;color:var(--a-mut);margin-left:6px;font-weight:600}
+.ksw{display:flex;gap:6px;margin-left:auto}.ksw button{border:0;border-radius:99px;padding:4px 10px;font:700 11.5px var(--body);background:#ffffff12;color:var(--a-mut);cursor:pointer}.ksw button.on{background:var(--a-acc);color:var(--a-bg)}
+.khd{display:flex;align-items:center;gap:8px}
+.kcol{display:flex;flex-direction:column;gap:10px}
+.ksoon{color:var(--a-mut);font-size:12.5px;margin:0}
+</style>
+<!--KAB-SCRIPT-->
+<script>
+/* кабинет команды внутри «Тонуса»: вопросы и статистика, тот же дизайн; пароль запоминается навсегда (до «Выйти») */
+(()=>{const ph=document.querySelector('.phone');const $=id=>document.getElementById(id);
+const ST={new:'новый',draft:'черновик',answered:'отвечен',published:'отвечен',hidden:'скрыт'};
+const TABS=[['new','Новые'],['draft','Черновики'],['answered','Отвечены'],['hidden','Скрытые']];
+const grp=x=>x.status==='published'?'answered':x.status;
+const inApp=x=>!!(x.a&&(x.app||x.status==='published')),onSite=x=>!!(x.a&&x.site);
+const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let key='',items=[],tab='new',vd=30,loaded=false;try{key=localStorage.getItem('vk')||''}catch(e){}
+const api=async b=>{try{const r=await fetch('/api/vrach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,...b})});const j=await r.json().catch(()=>({}));j.status=r.status;return j}catch(e){return{status:0}}};
+function kgo(s){ph.classList.add('kabm');document.querySelectorAll('.as').forEach(a=>a.classList.toggle('on',a.dataset.s===s));document.querySelectorAll('.ktabbar .atab').forEach(a=>a.classList.toggle('on',a.dataset.kgo===s));
+  try{sessionStorage.setItem('kab',s)}catch(e){}if(!loaded&&key)load();if(s==='ks'&&key)visits()}
+function kexit(){ph.classList.remove('kabm');try{sessionStorage.removeItem('kab')}catch(e){}go('today')}
+document.querySelectorAll('[data-kgo]').forEach(b=>b.onclick=()=>kgo(b.dataset.kgo));
+document.querySelectorAll('[data-kexit]').forEach(b=>b.onclick=kexit);
+const kb=$('kab');if(kb)kb.onclick=()=>kgo('kq');
+function show(on,err){$('k-login').hidden=on;$('k-qwrap').hidden=!on;$('k-lerr').hidden=!err;$('k-lerr').textContent=err||''}
+async function load(){const j=await api({action:'list'});
+  if(j.status===401){key='';try{localStorage.removeItem('vk')}catch(e){};show(false,'Неверный пароль');return}
+  show(true);
+  if(j.status===503){$('k-list').innerHTML='<p class="kempty">Хранилище вопросов не подключено</p>';return}
+  if(!j.ok){$('k-list').innerHTML='<p class="kempty">Нет связи. Потяните экран вниз, чтобы обновить</p>';return}
+  loaded=true;items=j.items||[];draw();qstats()}
+$('k-login').onsubmit=e=>{e.preventDefault();key=$('k-key').value.trim();if(!key)return;try{localStorage.setItem('vk',key)}catch(e){}$('k-key').blur();load()};
+$('k-out').onclick=()=>{key='';loaded=false;items=[];try{localStorage.removeItem('vk')}catch(e){}show(false)};
+function draw(){const nw=items.filter(x=>grp(x)==='new').length;$('k-dot').hidden=!nw;$('kq-sub').textContent=nw?'новых: '+nw:'кабинет команды';
+  $('k-tabs').innerHTML=TABS.map(([k,n])=>'<button class="'+(k===tab?'on':'')+'" data-t="'+k+'">'+n+'<b>'+items.filter(x=>grp(x)===k).length+'</b></button>').join('');
+  $('k-tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw()});
+  const l=items.filter(x=>grp(x)===tab);
+  $('k-list').innerHTML=l.length?l.map(x=>{const a=inApp(x),s=onSite(x),done=grp(x)==='answered';
+    return '<div class="acard kq" data-id="'+x.id+'"><div class="meta"><span class="tag'+(done?' pub':'')+'">'+ST[x.status]+'</span><span>'+new Date(x.ts).toLocaleString('ru-RU',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})+'</span><span>'+(x.src==='app'?'из «Тонуса»':'с сайта')+'</span><span>'+(x.lang==='kz'?'KZ':'RU')+'</span></div>'
+    +'<div class="qt">'+esc(x.q)+'</div>'
+    +'<label>Вопрос для показа всем (без личных деталей)<textarea class="aq" rows="2">'+esc(x.aq||x.q)+'</textarea></label>'
+    +'<label>Ответ<textarea class="a" rows="4" placeholder="Ваш ответ">'+esc(x.a)+'</textarea></label>'
+    +'<div class="row"><button class="rp">'+(done?'Сохранить ответ':'Ответить лично')+'</button><button class="tg ap'+(a?' on':'')+'">В приложении</button><button class="tg st'+(s?' on':'')+'">На сайте</button>'
+    +(done?'':'<button class="sv">Черновик</button>')+(x.status!=='hidden'?'<button class="hd">Скрыть</button>':'')+'<button class="dl">Удалить</button></div><span class="ok"></span></div>'}).join(''):'<p class="kempty">Здесь пока пусто</p>';
+  $('k-list').querySelectorAll('.kq').forEach(c=>{const id=c.dataset.id,ok=c.querySelector('.ok'),it=items.find(x=>x.id===id);
+    const send=async(action,extra)=>{c.querySelectorAll('button').forEach(b=>b.disabled=true);
+      const j=await api({action,id,a:c.querySelector('.a').value,aq:c.querySelector('.aq').value,...(extra||{})});
+      c.querySelectorAll('button').forEach(b=>b.disabled=false);
+      if(!j.ok){ok.textContent=j.error==='empty'?'Сначала напишите ответ':'Не получилось, попробуйте ещё раз';return}
+      if(action==='delete')items=items.filter(x=>x.id!==id);else items=items.map(x=>x.id===id?j.item:x);
+      ok.textContent=action==='delete'?'Удалено':'Сохранено';setTimeout(()=>{draw();qstats()},700)};
+    const on=(s,f)=>{const b=c.querySelector(s);if(b)b.onclick=f};
+    on('.rp',()=>send('reply'));on('.sv',()=>send('save'));on('.hd',()=>send('hide'));
+    on('.ap',()=>send('app',{on:!inApp(it)}));on('.st',()=>send('site',{on:!onSite(it)}));
+    on('.dl',()=>{if(c.dataset.sure)send('delete');else{c.dataset.sure=1;c.querySelector('.dl').textContent='Точно удалить?'}})})}
+const kp=a=>a.map(([v,t])=>'<div class="kkpi"><b>'+v+'</b><span>'+t+'</span></div>').join('');
+const card=(h,b,sw)=>'<div class="acard">'+(h?'<div class="khd"><h4>'+h+'</h4>'+(sw||'')+'</div>':'')+b+'</div>';
+const NM={today:'Сегодня',train:'Тренировка',cycle:'Цикл',read:'Полезное',club:'Клуб',kegel:'Кегель',breath:'Дыхание',lift:'Лифт',quick:'Быстрые сжатия',long:'Долгое удержание',knack:'Перед кашлем',bridge:'Мостик',wall:'Присед у стены',ball:'Мяч между колен',core:'Глубокий пресс',heel:'Скольжение пяткой',relax:'Расслабление',bladder:'Режим туалета',
+ '0':'Кегель: как найти мышцы','1':'После родов: что нормально','2':'Спорт и подтекание','3':'«На всякий случай»','4':'Приём «замок»','5':'Опущение',v1:'Почему подтекает, когда встаёте',v2:'Как понять, что мышцы ослабли',v3:'Что меняется после родов',
+ l1:'1 степень',l2:'2 степень',l3:'3 степень',direct:'Прямой заход',site:'С сайта',instagram:'Instagram',facebook:'Facebook',google:'Google',yandex:'Яндекс',whatsapp:'WhatsApp',telegram:'Telegram',tiktok:'TikTok',test:'После теста',friend:'От подруги',other:'Другие сайты','2gis':'2ГИС',
+ KZ:'Казахстан',RU:'Россия',UZ:'Узбекистан',KG:'Кыргызстан',US:'США',DE:'Германия',TR:'Турция',AE:'ОАЭ',TJ:'Таджикистан',BY:'Беларусь',UA:'Украина'};
+const nm=k=>NM[k]||k;
+const COL=['#C9B4F5','#F2A6C9','#8F6BDA','#FFE0EE','#6E58A8','#D9709F','#B9A5E6','#5A4A7A'];
+const ents=(o,n)=>Object.entries(o||{}).sort((a,b)=>b[1]-a[1]).slice(0,n||8);
+const sum=o=>Object.values(o||{}).reduce((a,b)=>a+b,0);
+const empty='<p class="ksoon">Пока нет данных</p>';
+/* горизонтальные полосы */
+const hb=(o,f,n)=>{const t=ents(o,n);if(!t.length)return empty;const m=t[0][1];return '<div class="khb">'+t.map(([k,v])=>'<div class="r"><span>'+esc(f?f(k):nm(k))+'</span><b>'+v+'</b><i style="--w:'+Math.max(3,Math.round(v/m*100))+'%"></i></div>').join('')+'</div>'};
+/* кольцо с долями */
+const don=(o,lbl,f)=>{let t=ents(o,6);const all=sum(o);if(!all)return empty;const rest=all-t.reduce((a,x)=>a+x[1],0);if(rest>0)t.push(['__','другое',rest].slice(0,1).concat([rest]));
+  let acc=0;const g=t.map(([k,v],i)=>{const a0=acc/all*360;acc+=v;return COL[i%COL.length]+' '+a0+'deg '+(acc/all*360)+'deg'}).join(',');
+  return '<div class="kdon"><div class="d" style="background:conic-gradient('+g+')"><span><b>'+all+'</b>'+lbl+'</span></div><ul>'+t.map(([k,v],i)=>'<li><i style="background:'+COL[i%COL.length]+'"></i><span>'+esc(k==='__'?'другое':(f?f(k):nm(k)))+'</span><b>'+Math.round(v/all*100)+'%</b></li>').join('')+'</ul></div>'};
+/* столбики с подсказкой по нажатию */
+function tapBars(el,tipEl,tips){el.querySelectorAll('.kbars>div').forEach((d,i)=>d.onclick=()=>{el.querySelectorAll('.kbars>div').forEach(x=>x.classList.toggle('sel',x===d));tipEl.textContent=tips[i]})}
+const sw=(id,opts,cur)=>'<div class="ksw" data-sw="'+id+'">'+opts.map(([k,n])=>'<button data-k="'+k+'" class="'+(k===cur?'on':'')+'">'+n+'</button>').join('')+'</div>';
+let sv='o',R=null,geo='g',cnt='art';
+document.querySelectorAll('#ks-tabs button').forEach(b=>b.onclick=()=>{sv=b.dataset.v;document.querySelectorAll('#ks-tabs button').forEach(x=>x.classList.toggle('on',x===b));render();$('ks-body').parentElement.scrollTop=0});
+function per(){$('ks-per').innerHTML=[7,30,90].map(n=>'<button data-d="'+n+'" class="'+(n===vd?'on':'')+'">'+n+' дней</button>').join('');$('ks-per').hidden=sv==='q';
+  $('ks-per').querySelectorAll('button').forEach(b=>b.onclick=()=>{vd=+b.dataset.d;visits()});$('ks-sub').textContent=sv==='q'?'анонимные вопросы врачу':'за '+vd+' дней'}
+function qstats(){if(sv==='q')render()}
+function qview(){const n=items.length,wait=items.filter(x=>x.status==='new'||x.status==='draft').length,done=items.filter(x=>grp(x)==='answered');
+  const rt=done.filter(x=>x.ut).map(x=>(x.ut-x.ts)/864e5),avg=rt.length?rt.reduce((a,b)=>a+b,0)/rt.length:null;
+  const now=new Date();now.setHours(0,0,0,0);const mon=new Date(now);mon.setDate(now.getDate()-((now.getDay()+6)%7));const wk=[];
+  for(let i=7;i>=0;i--){const s=new Date(mon);s.setDate(mon.getDate()-7*i);const e=new Date(s);e.setDate(s.getDate()+7);wk.push({s,c:items.filter(x=>x.ts>=s&&x.ts<e).length})}
+  const mx=Math.max(1,...wk.map(w=>w.c)),dd=d=>String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0');
+  const h='<div class="kkpis">'+kp([[n,'вопросов всего'],[wait,'ждут ответа'],[done.length,'отвечено'],[avg===null?'–':(avg<1?'< 1':Math.round(avg))+' дн.','среднее время ответа']])+'</div>'
+   +card('По неделям','<div class="ktip" id="kq-tip">Нажмите на столбик</div><div class="kbars" id="kq-b">'+wk.map(w=>'<div><b>'+w.c+'</b><i style="height:'+Math.round(w.c/mx*100)+'%"></i><em>'+dd(w.s)+'</em></div>').join('')+'</div>')
+   +card('Откуда вопросы',don({app:items.filter(x=>x.src==='app').length,site:items.filter(x=>x.src!=='app').length},'вопросов',k=>k==='app'?'Из «Тонуса»':'С сайта'))
+   +card('Где показаны ответы',hb({a:done.filter(x=>!inApp(x)&&!onSite(x)).length,b:items.filter(inApp).length,c:items.filter(onSite).length,d:items.filter(x=>x.status==='hidden').length},k=>({a:'Только автору',b:'В приложении',c:'На сайте',d:'Скрыто'})[k]));
+  $('ks-body').innerHTML='<div class="kcol">'+h+'</div>';const b=$('kq-b');if(b)tapBars(b.parentElement,$('kq-tip'),wk.map(w=>'Неделя с '+dd(w.s)+': '+w.c+' вопр.'))}
+function render(){per();if(sv==='q')return qview();const box=$('ks-body');const r=R;
+  if(!r){box.innerHTML=card('','<p class="ksoon">Загружаю…</p>');return}
+  if(r.err){box.innerHTML=card('',r.err);return}
+  const S=r.sum,D=S.d||{},sec=D['sec:app']||0,ss=D['sess:app']||0,avg=ss?Math.round(sec/ss/60*10)/10:0,wa=(D['wa:site']||0)+(D['wa:app']||0),tests=sum(S.test);
+  let h='';
+  if(sv==='o'){const mx=Math.max(1,...r.per.map(x=>x.us+x.ua)),step=r.per.length>14?Math.ceil(r.per.length/7):1,dd=x=>x.d.slice(8)+'.'+x.d.slice(5,7);
+    const f0=r.uniq.all||0,fr=v=>f0?Math.max(4,Math.round(v/f0*100)):0,pc=v=>f0?Math.round(v/f0*100)+'%':'';
+    h='<div class="acard"><div class="kbig"><b>'+(r.uniq.all||0)+'</b><span>человек зашли за '+vd+' дней</span></div><div class="ktip" id="ko-tip">Нажмите на день</div>'
+     +'<div class="kbars two" id="ko-b">'+r.per.map((x,i)=>'<div><div class="pair"><i class="s" style="height:'+Math.round(x.us/mx*100)+'%"></i><i style="height:'+Math.round(x.ua/mx*100)+'%"></i></div><em>'+(i%step===0?dd(x):'&nbsp;')+'</em></div>').join('')+'</div>'
+     +'<div class="klg"><span><i style="background:#C9B4F5"></i>сайт</span><span><i style="background:linear-gradient(#F2A6C9,#9B7BE0)"></i>«Тонус»</span></div></div>'
+     +'<div class="kkpis">'+kp([[r.uniq.app||0,'в «Тонусе»'],[r.uniq.pwa||0,'установили на экран'],[avg?String(avg).replace('.',',')+' мин':'–','в среднем за заход'],[wa,'нажали WhatsApp']])+'</div>'
+     +card('Путь пациентки','<div class="kfun">'+[['Зашли на сайт или в «Тонус»',f0],['Открыли «Тонус»',r.uniq.app||0],['Прошли тест',tests],['Установили на экран',r.uniq.pwa||0],['Написали в WhatsApp',wa]].map(([t,v])=>'<div class="s" style="--w:'+fr(v)+'%"><span>'+t+'</span><span><b>'+v+'</b><em>'+pc(v)+'</em></span></div>').join('')+'</div>');
+    box.innerHTML='<div class="kcol">'+h+'</div>';tapBars($('ko-b').parentElement,$('ko-tip'),r.per.map(x=>dd(x)+': сайт '+x.us+', «Тонус» '+x.ua));return}
+  if(sv==='a'){h=card('Откуда пришли',don(S.src,'заходов'))
+     +card(geo==='g'?'Страны':'Города',hb(geo==='g'?S.g:S.c,geo==='g'?null:c=>c.replace(/^[A-Z]{2} /,'')),sw('geo',[['g','Страны'],['c','Города']],geo))
+     +card('Устройства',don(S.dv,'заходов'));}
+  if(sv==='b'){const C={art:S.art,vid:S.vid,test:S.test};
+    h='<div class="kkpis">'+kp([[sum(S.ex),'подходов сделано'],[avg?String(avg).replace('.',',')+' мин':'–','в среднем за заход'],[sum(S.art),'статей открыли'],[tests,'прошли тест']])+'</div>'
+     +card('Разделы «Тонуса»',hb(S.sec))+card('Упражнения',hb(S.ex,null,6))
+     +card('Материалы',cnt==='test'?don(C.test,'тестов'):hb(C[cnt]),sw('cnt',[['art','Статьи'],['vid','Видео'],['test','Тест']],cnt));}
+  box.innerHTML='<div class="kcol">'+h+'</div>';
+  box.querySelectorAll('[data-sw]').forEach(w=>w.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(w.dataset.sw==='geo')geo=b.dataset.k;else cnt=b.dataset.k;render()}))}
+async function visits(){R=null;render();
+  const r=await fetch('/api/stats',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,days:vd})}).then(r=>r.json()).catch(()=>null);
+  if(!r||!r.ok)R={err:'<p class="ksoon">Нет связи. Потяните экран вниз, чтобы обновить</p>'};
+  else if(!r.configured)R={err:'<p class="ksoon">Статистика посетителей включится после подключения Upstash for Redis в Vercel</p>'};
+  else R=r;render()}
+if(key)show(true);else show(false);
+let s0=null;try{s0=sessionStorage.getItem('kab')}catch(e){}
+if(s0==='kq'||s0==='ks')kgo(s0);else if(key)load();
+})();
+</script>
