@@ -1058,6 +1058,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
   <p class="fig"><a href="https://www.instagram.com/dr.ruzimatova/" target="_blank" rel="noopener"><svg class="igi" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="url(#igg2)" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><defs><linearGradient id="igg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9B7BE0"/><stop offset="1" stop-color="#F2A6C9"/></linearGradient></defs><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r=".6" fill="#C9A0E8" stroke="none"/></svg><span>Instagram @dr.ruzimatova</span></a></p>
   <p data-kz="Тест пен жаттықтырғыш – алғашқы түсінік үшін ғана, дәрігер кеңесі мен анализдерді алмастырмайды. Қарсы көрсетілімдер бар, маман кеңесі қажет">Тест и тренажёр – для первого понимания и не заменяют консультацию врача и анализы. Есть противопоказания, нужна консультация специалиста</p>
   <p data-kz="Маман сертификаты: акушерлік-гинекология, № KZ50VBM02010918, 20.04.2023 берілген, 20.04.2028 дейін жарамды. Тексеру – &lt;a href=&quot;https://elicense.kz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;elicense.kz&lt;/a&gt;">Сертификат специалиста: акушерство-гинекология, №&nbsp;KZ50VBM02010918, выдан 20.04.2023, действителен до&nbsp;20.04.2028. Проверить – <a href="https://elicense.kz" target="_blank" rel="noopener">elicense.kz</a></p>
+  <p data-kz="Сайтты жақсарту үшін жасырын статистика жиналады: аты-жөні, телефоны мен сұрақ мәтінінсіз">Для улучшения сайта собираем обезличенную статистику: без имени, телефона и текста вопросов</p>
 </footer>
 
 <script>
@@ -1065,7 +1066,8 @@ let lang='ru';
 /* статистика для кабинета врача: только общие счётчики – без имени, телефона и IP. Случайный номер устройства нужен, чтобы считать уникальных посетителей */
 const EVP=location.pathname.indexOf('/app')===0?'app':'site';
 let EVID='';try{EVID=localStorage.getItem('ev_id')||'';if(!EVID){EVID=Math.random().toString(36).slice(2,12);localStorage.setItem('ev_id',EVID)}}catch(e){}
-function ev(t,x){try{const b=JSON.stringify({t,p:EVP,v:EVID,x:String(x||''),sa:(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone?1:0});
+function ev(t,x){try{if(t!=='view'&&t!=='time'&&window.posthog&&posthog.capture)posthog.capture(t,{x:String(x||'')})}catch(e){}
+  try{const b=JSON.stringify({t,p:EVP,v:EVID,x:String(x||''),sa:(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone?1:0});
   if(navigator.sendBeacon&&navigator.sendBeacon('/api/ev',new Blob([b],{type:'application/json'})))return;fetch('/api/ev',{method:'POST',body:b,keepalive:true,headers:{'Content-Type':'application/json'}}).catch(()=>{})}catch(e){}}
 let evT=0,evS=Date.now();
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){evT+=Date.now()-evS;if(evT>3000)ev('time',Math.round(evT/1000));evT=0}else evS=Date.now()});
@@ -1074,6 +1076,10 @@ function evSrc(){try{const q=new URLSearchParams(location.search),u=(q.get('utm_
   const m=[['instagram','instagram'],['facebook','facebook'],['fb.','facebook'],['google','google'],['yandex','yandex'],['whatsapp','whatsapp'],['wa.me','whatsapp'],['t.me','telegram'],['telegram','telegram'],['tiktok','tiktok'],['2gis','2gis']].find(([k])=>r.indexOf(k)>-1);return m?m[1]:'other'}catch(e){return 'direct'}}
 addEventListener('load',()=>ev('view',evSrc()));
 document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="wa.me"]');if(a)ev('wa',a.id||'')},true);
+/* PostHog: карта кликов, записи сессий и воронки. Анонимно, без профилей; текст вопросов и ответов в записях скрыт */
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+try{if(navigator.onLine!==false)posthog.init('phc_pvc9NPFNBzuzaRqJJh6KHM3iPxUrCxvWdac9sBE5KWHc',{api_host:'https://eu.i.posthog.com',person_profiles:'identified_only',persistence:'localStorage',
+  session_recording:{maskAllInputs:true,maskTextSelector:'#mine,#answers,#faq .dq,textarea'},loaded:p=>p.register({part:EVP})})}catch(e){}
 
 const T=(ru,kz)=>lang==='kz'?kz:ru;
 const WA='77001114020';
