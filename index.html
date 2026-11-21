@@ -1738,15 +1738,8 @@ if(b)b.onclick=()=>{g.classList.add('all');b.parentNode.remove()};
 const C=[...g.querySelectorAll('.rcard')],held=new Set();
 const flip=c=>c.classList.toggle('on');
 C.forEach(c=>{c.addEventListener('click',()=>{held.add(c);flip(c)});c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();held.add(c);flip(c)}})});
-if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-let vis=false,last=null,t=null;
-const vis1=c=>c.offsetParent!==null&&(()=>{const r=c.getBoundingClientRect();return r.bottom>60&&r.top<innerHeight-60})();
-function step(){t=null;if(!vis||document.hidden){return}
-  const pool=C.filter(c=>!held.has(c)&&!c.matches(':hover')&&!c.classList.contains('on')&&c!==last&&vis1(c));
-  if(!pool.length){t=setTimeout(step,2500);return}
-  const c=pool[Math.floor(Math.random()*pool.length)];last=c;c.classList.add('on');
-  setTimeout(()=>{if(!held.has(c))c.classList.remove('on');t=setTimeout(step,4500)},8000)}
-if('IntersectionObserver' in window)new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!t)t=setTimeout(step,3000)},{threshold:.15}).observe(g);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&vis&&!t)t=setTimeout(step,1200)});
+/* один раз показываем, что карточку можно перевернуть: на телефоне – первая, на компьютере – верхняя в средней колонке; обратно не возвращаем */
+const demo=innerWidth>760?g.querySelector('.rcol:nth-child(2) .rcard'):C[0];
+if(demo&&'IntersectionObserver' in window){const io=new IntersectionObserver(e=>{if(!e[0].isIntersecting)return;io.disconnect();setTimeout(()=>{if(!held.has(demo)){held.add(demo);demo.classList.add('on')}},1200)},{threshold:.7});io.observe(demo)}
 })();</script>
 </body></html>
