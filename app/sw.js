@@ -1,5 +1,5 @@
-const C='tonus-v12';
-const FILES=['/app/','/app/manifest.webmanifest','/media/icon-192.png','/media/icon-512.png','/media/favicon.svg','/media/apple-touch-icon.png'];
+const C='tonus-v13';
+const FILES=['/app/','/app/manifest.webmanifest','/media/icon-192.png','/media/icon-512.png','/media/favicon.svg','/media/apple-touch-icon.png','/media/cover1.jpg','/media/cover2.jpg','/media/cover3.jpg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;
