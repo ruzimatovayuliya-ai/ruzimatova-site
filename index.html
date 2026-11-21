@@ -708,7 +708,7 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 .reviews.band .rcard{background:#fff;border-color:#fff;box-shadow:0 24px 44px -28px #3b238088}
 .rmore{display:none}
 .rcard{perspective:1400px;background:none!important;border:0!important;padding:0!important;box-shadow:none!important;cursor:pointer;outline:none}
-.rin{position:relative;display:grid;transition:transform .9s cubic-bezier(.4,.1,.2,1);transform-style:preserve-3d}
+.rin{position:relative;display:grid;transition:transform 1.4s cubic-bezier(.4,.1,.2,1);transform-style:preserve-3d}
 .rcard.on .rin{transform:rotateY(180deg)}
 .rf,.rb{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;border:1.5px solid transparent;box-shadow:0 18px 34px -26px #8F6BDA88}
 .rf{display:flex;flex-direction:column;gap:14px;padding:22px 22px 18px;background:linear-gradient(150deg,#FDFAFE,#F6EEFA) padding-box,linear-gradient(135deg,#9B7BE0,#C9A0E8 50%,#F2A6C9) border-box;color:#2E2538}
@@ -1742,11 +1742,11 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 let vis=false,last=null,t=null;
 const vis1=c=>c.offsetParent!==null&&(()=>{const r=c.getBoundingClientRect();return r.bottom>60&&r.top<innerHeight-60})();
 function step(){t=null;if(!vis||document.hidden){return}
-  const pool=C.filter(c=>!held.has(c)&&!c.classList.contains('on')&&c!==last&&vis1(c));
+  const pool=C.filter(c=>!held.has(c)&&!c.matches(':hover')&&!c.classList.contains('on')&&c!==last&&vis1(c));
   if(!pool.length){t=setTimeout(step,2500);return}
   const c=pool[Math.floor(Math.random()*pool.length)];last=c;c.classList.add('on');
-  setTimeout(()=>{if(!held.has(c))c.classList.remove('on');t=setTimeout(step,1600)},3600)}
-if('IntersectionObserver' in window)new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!t)t=setTimeout(step,1200)},{threshold:.15}).observe(g);
+  setTimeout(()=>{if(!held.has(c))c.classList.remove('on');t=setTimeout(step,4500)},8000)}
+if('IntersectionObserver' in window)new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!t)t=setTimeout(step,3000)},{threshold:.15}).observe(g);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&vis&&!t)t=setTimeout(step,1200)});
 })();</script>
 </body></html>
