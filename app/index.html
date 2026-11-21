@@ -582,7 +582,8 @@ nav{align-items:center}nav a{display:inline-flex;align-items:center;justify-cont
 .tintro li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--a-ink);counter-increment:st}
 .tintro li::before{content:counter(st);flex:none;width:24px;height:24px;border-radius:50%;background:#ffffff1a;color:var(--a-acc);font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
 .tintro li span{margin-left:auto;color:var(--a-mut);font-size:12px;white-space:nowrap}
-.tintro .tnote{margin:0;font-size:12px;color:var(--a-mut)}
+.tintro .tnote{margin:0;font-size:12px;color:var(--a-mut)}.tintro .tsafe{opacity:.85}
+@media (max-height:700px){.tintro{gap:8px}.tintro ol{gap:3px}.tintro li::before{width:22px;height:22px}}
 .mc{display:grid;grid-template-columns:38px 1fr auto;gap:11px;align-items:center;text-align:left;width:100%;border:0;border-radius:16px;padding:9px 11px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);color:var(--a-ink);font:inherit;cursor:pointer}
 .mc b{display:block;font-size:13px;font-weight:700;line-height:1.25}.mc small{display:block;font-size:10.5px;color:var(--a-mut);margin-top:2px;line-height:1.3}
 .mc em{font-style:normal;font-size:10.5px;font-weight:700;color:var(--a-acc);white-space:nowrap}
@@ -689,6 +690,37 @@ button.art{border:0;width:100%;text-align:left;color:inherit;font:inherit;cursor
 .atab svg{width:21px;height:21px}
 .as[data-s=read]>*,.as[data-s=club]>*{flex-shrink:0}
 .phone .scr,.phone .as,.vsec,.vrow,#arts{min-width:0;max-width:100%}.vsec{width:100%}
+
+/* v22: отзывы пациенток */
+.reviews .head{margin-bottom:28px}
+.rgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}.rcol{display:flex;flex-direction:column;gap:18px;min-width:0}
+.rcard{margin:0;display:flex;flex-direction:column;gap:14px;padding:22px 22px 18px;border-radius:22px;border:1.5px solid transparent;background:linear-gradient(150deg,#FDFAFE,#F6EEFA) padding-box,linear-gradient(135deg,#9B7BE0,#C9A0E8 50%,#F2A6C9) border-box;box-shadow:0 18px 34px -26px #8F6BDA88;color:#2E2538}
+.rtop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rq{width:30px;height:22px;flex:none}
+.rtag{font-size:12.5px;font-weight:700;color:#7A55B8;background:#F1E6F9;border-radius:999px;padding:5px 12px;white-space:nowrap}
+.rcard blockquote{margin:0;font-size:15.5px;font-weight:500;line-height:1.6;text-wrap:pretty}
+.rcard figcaption{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#786C86;padding-top:12px;border-top:1px solid #EFE4F3}
+.rcard figcaption svg{width:16px;height:16px;color:#A88BE0;flex:none}
+.reviews.band .rcard{background:#fff;border-color:#fff;box-shadow:0 24px 44px -28px #3b238088}
+.rmore{display:none}
+.rcard{perspective:1400px;background:none!important;border:0!important;padding:0!important;box-shadow:none!important;cursor:pointer;outline:none}
+.rin{position:relative;display:grid;transition:transform 1.4s cubic-bezier(.4,.1,.2,1);transform-style:preserve-3d}
+.rcard.on .rin{transform:rotateY(180deg)}
+.rf,.rb{grid-area:1/1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;border:1.5px solid transparent;box-shadow:0 18px 34px -26px #8F6BDA88}
+.rf{display:flex;flex-direction:column;gap:14px;padding:22px 22px 18px;background:linear-gradient(150deg,#FDFAFE,#F6EEFA) padding-box,linear-gradient(135deg,#9B7BE0,#C9A0E8 50%,#F2A6C9) border-box;color:#2E2538}
+.rb{transform:rotateY(180deg);background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,#9B7BE0,#C9A0E8 50%,#F2A6C9) border-box;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:10px 10px 40px;position:absolute;inset:0}
+.rb img{display:block;max-width:100%;max-height:100%;object-fit:contain;border-radius:12px}
+.rbl{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,#9B7BE0,#F2A6C9);border-radius:999px;padding:4px 12px;white-space:nowrap}
+.rflip{margin-left:auto;display:inline-flex;align-items:center;gap:5px;color:#7A55B8;font-weight:700}
+.rcard:focus-visible .rf,.rcard:focus-visible .rb{outline:3px solid #7A55B8;outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.rin{transition:none}}
+
+@media (max-width:760px){
+  .rgrid{display:flex;flex-direction:column;gap:12px}.rcol{display:contents}
+  .rcard{margin:0}
+  .rgrid:not(.all) .rcol:nth-child(n+2){display:none}
+  .rmore{display:flex;justify-content:center;margin-top:16px}
+}
 </style><style>
 html,body{height:100%}
 html{background:#2B2140}body{background:#2B2140;margin:0;overflow:hidden}
@@ -1002,7 +1034,8 @@ function setMode(){if(cur<0||MODES[cur].bl){drawModes();return}const M=MODES[cur
   ti.innerHTML='<div class="acard"><span class="mi big">'+mic(M.id)+'</span><p>'+L(M.d)+'</p></div>'
    +'<div class="grp">'+T('Как делать','Қалай жасау керек')+'</div>'
    +'<ol>'+M.ph.map(ph=>'<li>'+L(ph.l).replace(/^./,x=>x.toUpperCase())+'<span>'+sec(ph.t)+'</span></li>').join('')+'</ol>'
-   +'<p class="tnote">'+T('Повторить '+M.reps+' раз – около '+mdur(M),M.reps+' рет қайталау – шамамен '+mdur(M))+'</p>';
+   +'<p class="tnote">'+T('Повторить '+M.reps+' раз – около '+mdur(M),M.reps+' рет қайталау – шамамен '+mdur(M))+'</p>'
+   +'<p class="tnote tsafe">'+T('При боли – остановитесь. При беременности, после родов или операции сначала спросите врача','Ауырса – тоқтаңыз. Жүктілікте, босанғаннан не отадан кейін алдымен дәрігерден сұраңыз')+'</p>';
   typo(ti);showIntro();drawModes()}
 document.getElementById('t-back').onclick=()=>{if(running){stopF=true;paused=false}cur=-1;tview('tv-list')};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
