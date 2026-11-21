@@ -17,7 +17,8 @@
       <div class="as" data-s="ks">
         <div class="ahead"><div class="grow"><b>Статистика</b><small id="ks-sub">за 30 дней</small></div></div>
         <div class="kseg" id="ks-tabs"><button data-v="o" class="on">Обзор</button><button data-v="a">Аудитория</button><button data-v="b">Поведение</button><button data-v="q">Вопросы</button></div>
-        <div class="kseg kseg3" id="ks-per"></div>
+        <div class="kseg kseg5" id="ks-per"></div>
+        <div class="acard kcal" id="ks-cal" hidden><h4>Свой период</h4><div class="kcd"><label>с<input type="date" id="ks-from"></label><label>по<input type="date" id="ks-to"></label></div><button class="abtn" id="ks-go">Показать</button></div>
         <div id="ks-body"></div>
       </div>
       <nav class="atabs ktabbar" aria-label="Разделы кабинета">
@@ -69,7 +70,9 @@
 .kseg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--a-soft) 75%,transparent);flex:none}
 .kseg button{border:0;border-radius:10px;padding:8px 2px;font:700 12px var(--body);background:transparent;color:var(--a-mut);cursor:pointer}
 .kseg button.on{background:var(--a-acc);color:var(--a-bg)}
-.kseg[hidden]{display:none}.kseg3{grid-template-columns:repeat(3,1fr)}
+.kseg[hidden]{display:none}.kseg5{grid-template-columns:repeat(5,1fr)}.kseg5 button{font-size:11.5px}
+.kcal[hidden]{display:none}.kcd{display:grid;grid-template-columns:1fr 1fr;gap:8px}.kcd label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;font-weight:700;color:var(--a-mut)}
+.kcd input{width:100%;box-sizing:border-box;min-width:0;border:0;border-radius:12px;padding:10px;font:600 15px var(--body);background:#ffffff12;color:var(--a-ink);box-shadow:inset 0 0 0 1.5px var(--a-soft);color-scheme:dark;-webkit-appearance:none;appearance:none;min-height:44px}
 .kseg2 button{display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 2px;font-size:11px}.kseg2 b{font-size:16px;font-weight:800;line-height:1.1}
 .kbig{display:flex;align-items:baseline;gap:8px}.kbig b{font-size:34px;font-weight:800;color:var(--a-ink);line-height:1}.kbig span{font-size:12px;color:var(--a-mut)}
 .ktip{min-height:18px;font-size:12px;color:var(--a-ink);font-weight:700}
@@ -165,8 +168,14 @@ function tapBars(el,tipEl,tips){el.querySelectorAll('.kbars>div').forEach((d,i)=
 const sw=(id,opts,cur)=>'<div class="kseg ksw" style="grid-template-columns:repeat('+opts.length+',auto)" data-sw="'+id+'">'+opts.map(([k,n])=>'<button data-k="'+k+'" class="'+(k===cur?'on':'')+'">'+n+'</button>').join('')+'</div>';
 let sv='o',R=null,geo='g',cnt='art';
 document.querySelectorAll('#ks-tabs button').forEach(b=>b.onclick=()=>{sv=b.dataset.v;document.querySelectorAll('#ks-tabs button').forEach(x=>x.classList.toggle('on',x===b));render();$('ks-body').parentElement.scrollTop=0});
-function per(){$('ks-per').innerHTML=[7,30,90].map(n=>'<button data-d="'+n+'" class="'+(n===vd?'on':'')+'">'+n+' дней</button>').join('');$('ks-per').hidden=sv==='q';
-  $('ks-per').querySelectorAll('button').forEach(b=>b.onclick=()=>{vd=+b.dataset.d;visits()});$('ks-sub').textContent=sv==='q'?'анонимные вопросы врачу':'за '+vd+' дней'}
+let pf='',pt='',cal=false;const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const fd=x=>x.slice(8)+'.'+x.slice(5,7);
+function per(){const P=[[1,'Сегодня'],[7,'7 дн'],[30,'30 дн'],[90,'90 дн'],[0,'Даты']];const cur=pf||cal?0:vd;
+  $('ks-per').innerHTML=P.map(([n,t])=>'<button data-d="'+n+'" class="'+(n===cur?'on':'')+'">'+t+'</button>').join('');$('ks-per').hidden=sv==='q';
+  $('ks-per').querySelectorAll('button').forEach(b=>b.onclick=()=>{const n=+b.dataset.d;if(!n){cal=!cal;render();return}cal=false;pf=pt='';vd=n;visits()});
+  $('ks-cal').hidden=!cal||sv==='q';
+  $('ks-sub').textContent=sv==='q'?'анонимные вопросы врачу':pf?(pf===pt?fd(pf):fd(pf)+' – '+fd(pt)):vd===1?'за сегодня':'за '+vd+' дней'}
+$('ks-go').onclick=()=>{const a=$('ks-from').value,b=$('ks-to').value||a;if(!a)return;pf=a<=b?a:b;pt=a<=b?b:a;cal=false;visits()};
 function qstats(){if(sv==='q')render()}
 function qview(){const n=items.length,wait=items.filter(x=>x.status==='new'||x.status==='draft').length,done=items.filter(x=>grp(x)==='answered');
   const rt=done.filter(x=>x.ut).map(x=>(x.ut-x.ts)/864e5),avg=rt.length?rt.reduce((a,b)=>a+b,0)/rt.length:null;
@@ -185,12 +194,12 @@ function render(){per();if(sv==='q')return qview();const box=$('ks-body');const 
   let h='';
   if(sv==='o'){const mx=Math.max(1,...r.per.map(x=>x.us+x.ua)),step=r.per.length>14?Math.ceil(r.per.length/7):1,dd=x=>x.d.slice(8)+'.'+x.d.slice(5,7);
     const f0=r.uniq.all||0,fr=v=>f0?Math.max(4,Math.round(v/f0*100)):0,pc=v=>f0?Math.round(v/f0*100)+'%':'';
-    h='<div class="acard"><div class="kbig"><b>'+(r.uniq.all||0)+'</b><span>человек зашли за '+vd+' дней</span></div><div class="ktip" id="ko-tip">Нажмите на день</div>'
+    h='<div class="acard"><div class="kbig"><b>'+(r.uniq.all||0)+'</b><span>человек зашли '+(pf?(pf===pt?fd(pf):'с '+fd(pf)+' по '+fd(pt)):vd===1?'сегодня':'за '+vd+' дней')+'</span></div>'+(r.per.length<2?'<div class="kkpis" style="margin-top:10px">'+kp([[r.uniq.site||0,'на сайте'],[(D['view:site']||0)+(D['view:app']||0),'просмотров страниц']])+'</div></div>':'<div class="ktip" id="ko-tip">Нажмите на день</div>'
      +'<div class="kbars two" id="ko-b">'+r.per.map((x,i)=>'<div><div class="pair"><i class="s" style="height:'+Math.round(x.us/mx*100)+'%"></i><i style="height:'+Math.round(x.ua/mx*100)+'%"></i></div><em>'+(i%step===0?dd(x):'&nbsp;')+'</em></div>').join('')+'</div>'
-     +'<div class="klg"><span><i style="background:#C9B4F5"></i>сайт</span><span><i style="background:linear-gradient(#F2A6C9,#9B7BE0)"></i>«Тонус»</span></div></div>'
+     +'<div class="klg"><span><i style="background:#C9B4F5"></i>сайт</span><span><i style="background:linear-gradient(#F2A6C9,#9B7BE0)"></i>«Тонус»</span></div></div>')
      +'<div class="kkpis">'+kp([[r.uniq.app||0,'в «Тонусе»'],[r.uniq.pwa||0,'установили на экран'],[avg?String(avg).replace('.',',')+' мин':'–','в среднем за заход'],[wa,'нажали WhatsApp']])+'</div>'
      +card('Путь пациентки','<div class="kfun">'+[['Зашли на сайт или в «Тонус»',f0],['Открыли «Тонус»',r.uniq.app||0],['Прошли тест',tests],['Установили на экран',r.uniq.pwa||0],['Написали в WhatsApp',wa]].map(([t,v])=>'<div class="s" style="--w:'+fr(v)+'%"><span>'+t+'</span><span><b>'+v+'</b><em>'+pc(v)+'</em></span></div>').join('')+'</div>');
-    box.innerHTML='<div class="kcol">'+h+'</div>';tapBars($('ko-b').parentElement,$('ko-tip'),r.per.map(x=>dd(x)+': сайт '+x.us+', «Тонус» '+x.ua));return}
+    box.innerHTML='<div class="kcol">'+h+'</div>';if($('ko-b'))tapBars($('ko-b').parentElement,$('ko-tip'),r.per.map(x=>dd(x)+': сайт '+x.us+', «Тонус» '+x.ua));return}
   if(sv==='a'){h=card('Откуда пришли',don(S.src,'заходов'))
      +card(geo==='g'?'Страны':'Города',hb(geo==='g'?S.g:S.c,geo==='g'?null:c=>c.replace(/^[A-Z]{2} /,'')),sw('geo',[['g','Страны'],['c','Города']],geo))
      +card('Устройства',don(S.dv,'заходов'));}
@@ -201,7 +210,7 @@ function render(){per();if(sv==='q')return qview();const box=$('ks-body');const 
   box.innerHTML='<div class="kcol">'+h+'</div>';
   box.querySelectorAll('[data-sw]').forEach(w=>w.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(w.dataset.sw==='geo')geo=b.dataset.k;else cnt=b.dataset.k;render()}))}
 async function visits(){R=null;render();
-  const r=await fetch('/api/stats',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key,days:vd})}).then(r=>r.json()).catch(()=>null);
+  const r=await fetch('/api/stats',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(pf?{key,from:pf,to:pt}:{key,days:vd})}).then(r=>r.json()).catch(()=>null);
   if(!r||!r.ok)R={err:'<p class="ksoon">Нет связи. Потяните экран вниз, чтобы обновить</p>'};
   else if(!r.configured)R={err:'<p class="ksoon">Статистика посетителей включится после подключения Upstash for Redis в Vercel</p>'};
   else R=r;render()}

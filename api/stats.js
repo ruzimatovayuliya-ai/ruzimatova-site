@@ -8,8 +8,16 @@ export default async function handler(req, res) {
   b = b || {};
   if (!checkKey(b.key)) { await new Promise(r => setTimeout(r, 600)); return res.status(401).json({ ok: false }); }
   if (!statsReady()) return res.json({ ok: true, configured: false });
-  const n = Math.min(90, Math.max(1, parseInt(b.days, 10) || 30));
-  const days = []; for (let i = n - 1; i >= 0; i--) days.push(day(Date.now() - i * 864e5));
+  // период: последние N дней (1 = сегодня) или свои даты from–to (YYYY-MM-DD, до 92 дней)
+  const re = /^\d{4}-\d{2}-\d{2}$/; let days = [];
+  if (re.test(b.from || '') && re.test(b.to || '')) {
+    let a = Date.parse(b.from + 'T00:00:00Z'), z = Date.parse(b.to + 'T00:00:00Z'); if (a > z) [a, z] = [z, a];
+    for (let t = a; t <= z && days.length < 92; t += 864e5) days.push(new Date(t).toISOString().slice(0, 10));
+  } else {
+    const n = Math.min(90, Math.max(1, parseInt(b.days, 10) || 30));
+    for (let i = n - 1; i >= 0; i--) days.push(day(Date.now() - i * 864e5));
+  }
+  const n = days.length;
   const H = ['d', 'g', 'c', 'dv', 'src', 'sec', 'ex', 'art', 'vid', 'test'];
   const cmds = [];
   for (const d of days) { for (const k of H) cmds.push(['HGETALL', k + ':' + d]); cmds.push(['PFCOUNT', 'u:' + d + ':site'], ['PFCOUNT', 'u:' + d + ':app']); }
