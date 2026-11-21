@@ -166,7 +166,7 @@ L_def="const L=a=>lang==='kz'?a[1]:a[0];\n"
 html=f'''<!doctype html>
 <html lang="ru"><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <title>Тонус</title>
 <meta name="description" content="Упражнения для мышц тазового дна, дневник цикла, статьи и вопросы врачу. Анонимно, без регистрации.">
 <meta name="robots" content="noindex">
